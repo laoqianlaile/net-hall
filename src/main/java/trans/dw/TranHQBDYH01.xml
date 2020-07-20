@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+	<tran tranCode="TranHQBDYH01" tranName="获取绑定银行信息">
+		<comps>
+			<comp compCode="CompHQBDYH01" compName="获取绑定银行信息" expression="">
+				<outParams>
+					<outParam paramCode="sfbd" ignoreNull="0" paramName="是否绑定" paramValue="sfbd" paramType="string(1,2)" />
+					<outParam paramCode="yhbh" ignoreNull="1" paramName="银行编号" paramValue="yhbh" paramType="string(0,-1)" />
+					<outParam paramCode="yhmc" ignoreNull="1" paramName="银行名称" paramValue="yhmc" paramType="string(0,-1)" />
+					<outParam paramCode="yhzh" ignoreNull="1" paramName="银行账号" paramValue="yhzh" paramType="string(0,-1)" />
+				</outParams>
+			</comp>
+		</comps>
+	</tran>
+</trans>

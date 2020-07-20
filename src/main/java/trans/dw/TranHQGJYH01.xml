@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHQGJYH01" tranName="获取归集银行信息">
+        <comps>
+        	<comp compCode="CompHQGJYH01" compName="获取归集银行信息" expression="">
+	        	<inParams>
+	        		<inParam paramCode="slh" ignoreNull="0" paramName="实例号" paramValue="_IS" paramType="int"/>
+	        	</inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

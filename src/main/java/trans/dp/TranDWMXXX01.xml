@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWMXXX01" tranName="单位明细账查询">
+        <comps>
+            <comp compCode="CompDWMXXX01" compName="获取单位明细账批量信息" expression="">
+                <inParams>
+                	<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="1" paramCode="json" paramName="下传文件json" paramType="string(0,-1)" paramValue="json"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHKFSBG01" tranName="还款方式变更">
+        <comps>
+            <comp compCode="CompHKFSBG01" compName="提交还款方式变更信息" expression="">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="jkhtbh" paramName="借款合同编号" paramType="string(1,30)" paramValue="jkhtbh"/>
+                	<inParam ignoreNull="0" paramCode="xdkhkfs" paramName="新贷款还款方式" paramType="string(1,2)" paramValue="xdkhkfs"/>
+                	<inParam ignoreNull="0" paramCode="bgyy" paramName="变更原因" paramType="string(1,1000)" paramValue="bgyy"/>
+                    <inParam ignoreNull="0" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+                </inParams>
+                 <outParams>
+                	<!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

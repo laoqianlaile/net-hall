@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="公积金密码修改"/>
+    <editlogs>
+      <log editor="Y00306(离线)" edittime="2013-10-15 16:30:19"/>
+    </editlogs>
+  </info>
+ <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+    $('#b_send').text('获取验证码');
+    $('#promp_1').css({ color: "red"});
+    $('#vercode').next().after('<button type="button" id="b_send1">获取验证码</button>');
+	$('#b_send').click(function (event) {
+	    console.log("1111")
+	    $(this).prop('disabled',true);
+	    ydl.sendCommand('getDxyzm',{"dxtype":"1"},function(data,code,msg){
+            if (code != '00000000') {
+                $(this).prop('disabled',false);
+                ydl.alert({'code':code, 'message':msg});
+            }else{
+                console.log("data.dxyzm : ",data.dxyzm);
+                ydl.setValue("dxtype","2");
+                window.setTimeout(function (){timeCheckcode(60)},1000);
+            }
+        })
+	});
+}
+function timeCheckcode(time){
+	time--;
+    $('#b_send').text('获取验证码('+time+'秒)').prop('disabled',true);
+	if(time==0){
+	    ydl.setValue("b_send",'获取验证码');
+		$('#b_send').text('获取验证码').prop('disabled',false);
+		return;
+	}else{
+	    window.setTimeout(function (){timeCheckcode(time)},1000);
+	}
+
+
+
+}
+//表单提交时执行
+function form_validate() {
+	//公积金密码必须是6位数字
+	if (!ydl.validator('pwd', {required: true, type: 'number', length: 6})) 
+		return false;
+
+	if (!ydl.validator('newqrypwd', {required: true, type: 'number', length: 6})) 
+		return false;
+
+	if (!ydl.validator('cfmqrypwd', {required: true, type: 'number', length: 6})) 
+		return false;
+
+	//新旧公积金密码不能相同
+	if (!ydl.validator('newqrypwd', 
+		{rule: $$('pwd').value != $$('newqrypwd').value,message:
+			'【新公积金密码】不能和【旧公积金密码】相同，请重新输入！'})) 
+			return false;
+
+	//两次录入的新公积金密码必须相同
+	if (!ydl.validator('cfmqrypwd', 
+		{rule: $$('cfmqrypwd').value == $$('newqrypwd').value,message:
+			'两次录入的新公积金密码必须相同！'})) 
+			return false;
+
+	return true;
+}
+
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+      <container uid="container-3436e18116144cf096fa740491eddf99" type="table" layout="fit" cols="4" id="ct_mmbg" >
+        <component type="label" for="pwd">原公积金密码：</component>
+        <component id="oldpwd" type="input" subtype="password"  colspan="2" datatype="number" required="1" width="80" maxlength="6" fromdic="false">=pwd</component>
+        <component type="blank"/>
+        <component type="label" for="newqrypwd">新公积金密码：</component>
+        <component id="newqrypwd" type="input" colspan="2" subtype="password" required="1" maxlength="6" width="80" datatype="number" fromdic="false">=newqrypwd</component>
+        <component type="blank"/>
+        <component type="label" for="cfmqrypwd">新公积金密码确认：</component>
+        <component id="cfmqrypwd" type="input" colspan="2" subtype="password" maxlength="6" width="80" datatype="number" required="1" fromdic="false">=cfmqrypwd</component>
+        <component type="blank"/>
+        <component type="label" for="handset">预留手机号：</component>
+        <component id="handset" type="input" subtype="text" readonly="1" width="100" maxlength="11" colspan="2">=getUserExtInfo("sjhm")</component>
+        <component type="blank"/>
+        <component type="label" for="vercode">短信验证码：</component>
+        <component id="dxyzm" type="input" subtype="text" required="1" width="80" maxlength="6" colspan="2">=vercode</component>
+        <component id="b_send" type="button" subtype="button"  width="80" maxlength="6" colspan="1"></component>
+        <component type="blank"/>
+        <component id="dxtype" type="hidden" subtype="button"  width="80" maxlength="6" colspan="1"></component>
+      </container>
+  </containers>
+</page>

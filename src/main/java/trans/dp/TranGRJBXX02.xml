@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRJBXX02" tranName="个人详细信息查询">
+        <comps>
+        	<comp compCode="CompGRJBXX02" compName="个人详细信息查询" expression="">
+                <inParams>
+                	<inParam ignoreNull="1" paramCode="grzh" paramName="个人账号" paramType="int" paramValue="grzh"/>
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="1" paramCode="xingming" paramName="姓名" paramType="string(0,-1)" paramValue="xingming" />
+                    <outParam ignoreNull="1" paramCode="zjlx" paramName="证件类型" paramType="string(0,-1)" paramValue="zjlx" />
+                    <outParam ignoreNull="1" paramCode="zjhm" paramName="证件号码" paramType="string(0,-1)" paramValue="zjhm" />
+                    <outParam ignoreNull="1" paramCode="jcbllx" paramName="缴存比例类型" paramType="string(0,-1)" paramValue="jcbllx" />
+                    <outParam ignoreNull="1" paramCode="grjcjs" paramName="个人缴存基数" paramType="string(0,-1)" paramValue="grjcjs" />
+                    <outParam ignoreNull="1" paramCode="dwyjce" paramName="单位月缴存额" paramType="string(0,-1)" paramValue="dwyjce" />
+                    <outParam ignoreNull="1" paramCode="gryjce" paramName="个人月缴存额" paramType="string(0,-1)" paramValue="gryjce" />
+                    <outParam ignoreNull="1" paramCode="yjce" paramName="月缴存额" paramType="string(0,-1)" paramValue="yjce" />
+                    <outParam ignoreNull="1" paramCode="sfsmrz" paramName="是否实名认证" paramType="string(0,-1)" paramValue="sfsmrz" />
+                    <outParam ignoreNull="1" paramCode="xingbie" paramName="性别" paramType="string(0,-1)" paramValue="xingbie" />
+                    <outParam ignoreNull="1" paramCode="hj" paramName="户籍" paramType="string(0,-1)" paramValue="hj" />
+                    <outParam ignoreNull="1" paramCode="gddhhm" paramName="固定电话号码" paramType="string(0,-1)" paramValue="gddhhm" />
+                    <outParam ignoreNull="1" paramCode="sjhm" paramName="手机号码" paramType="string(0,-1)" paramValue="sjhm" />
+                    <outParam ignoreNull="1" paramCode="csny" paramName="出生年月" paramType="string(0,-1)" paramValue="csny" />
+                    <outParam ignoreNull="1" paramCode="hyzk" paramName="婚姻状况" paramType="string(0,-1)" paramValue="hyzk" />
+                    <outParam ignoreNull="1" paramCode="zhiye" paramName="职业" paramType="string(0,-1)" paramValue="zhiye" />
+                    <outParam ignoreNull="1" paramCode="zhichen" paramName="职称" paramType="string(0,-1)" paramValue="zhichen" />
+                    <outParam ignoreNull="1" paramCode="zhiwu" paramName="职务" paramType="string(0,-1)" paramValue="zhiwu" />
+                    <outParam ignoreNull="1" paramCode="xueli" paramName="学历" paramType="string(0,-1)" paramValue="xueli" />
+                    <outParam ignoreNull="1" paramCode="yzbm" paramName="邮政编码" paramType="string(0,-1)" paramValue="yzbm" />
+                    <outParam ignoreNull="1" paramCode="jtzz" paramName="家庭住址" paramType="string(0,-1)" paramValue="jtzz" />
+                    <outParam ignoreNull="1" paramCode="jtysr" paramName="家庭月收入" paramType="string(0,-1)" paramValue="jtysr" />
+                    <outParam ignoreNull="1" paramCode="khyhmc" paramName="开户银行名称" paramType="string(0,-1)" paramValue="khyhmc" />
+                    <outParam ignoreNull="1" paramCode="khyhzh" paramName="开户银行账号" paramType="string(0,-1)" paramValue="khyhzh" />
+                    <outParam ignoreNull="1" paramCode="dwzh" paramName="单位账号" paramType="string(0,-1)" paramValue="dwzh" />
+                    <outParam ignoreNull="1" paramCode="dwmc" paramName="单位名称" paramType="string(0,-1)" paramValue="dwmc" />
+                    <outParam ignoreNull="1" paramCode="dwjcbl" paramName="单位缴存比例" paramType="string(0,-1)" paramValue="dwjcbl" />
+                    <outParam ignoreNull="1" paramCode="grjcbl" paramName="个人缴存比例" paramType="string(0,-1)" paramValue="grjcbl" />
+                    <outParam ignoreNull="1" paramCode="grzhye" paramName="个人账户余额" paramType="string(0,-1)" paramValue="grzhye" />
+                    <outParam ignoreNull="1" paramCode="qshjny" paramName="起始汇缴年月" paramType="string(0,-1)" paramValue="qshjny" />
+                    <outParam ignoreNull="1" paramCode="jzny" paramName="缴至年月" paramType="string(0,-1)" paramValue="jzny" />
+                    <outParam ignoreNull="1" paramCode="khrq" paramName="开户日期" paramType="string(0,-1)" paramValue="khrq" />
+                    <outParam ignoreNull="1" paramCode="grzhzt" paramName="个人账户状态" paramType="string(0,-1)" paramValue="grzhzt" />
+                    <outParam ignoreNull="1" paramCode="grdjbz" paramName="个人冻结标志" paramType="string(0,-1)" paramValue="grdjbz" />
+                    <outParam ignoreNull="1" paramCode="djje" paramName="冻结金额" paramType="string(0,-1)" paramValue="djje" />
+                    <outParam ignoreNull="1" paramCode="kyye" paramName="可用余额" paramType="string(0,-1)" paramValue="kyye" />
+                    <outParam ignoreNull="1" paramCode="zhjg" paramName="账户机构" paramType="string(0,-1)" paramValue="zhjg" />
+                    <outParam ignoreNull="1" paramCode="zjjcrq" paramName="最近缴存日期" paramType="string(0,-1)" paramValue="zjjcrq" />
+                    <outParam ignoreNull="1" paramCode="zjtqrq" paramName="最近提取日期" paramType="string(0,-1)" paramValue="zjtqrq" />
+                    <outParam ignoreNull="1" paramCode="tqcs" paramName="提取次数" paramType="string(0,-1)" paramValue="tqcs" />
+                    <outParam ignoreNull="1" paramCode="dkcs" paramName="贷款次数" paramType="string(0,-1)" paramValue="dkcs" />
+                    <outParam ignoreNull="1" paramCode="dwdh" paramName="单位电话" paramType="string(0,-1)" paramValue="dwdh" />
+                    <outParam ignoreNull="1" paramCode="dwdz" paramName="单位地址" paramType="string(0,-1)" paramValue="dwdz" />
+                    <outParam ignoreNull="1" paramCode="jcyh" paramName="缴存银行" paramType="string(0,-1)" paramValue="jcyh" />
+                    <outParam ignoreNull="1" paramCode="glyh" paramName="关联银行" paramType="string(0,-1)" paramValue="glyh" />
+                    <outParam ignoreNull="1" paramCode="glyhkh" paramName="关联银行卡号" paramType="string(0,-1)" paramValue="glyhkh" />
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

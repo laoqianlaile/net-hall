@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranTJGRQF01" tranName="提交启封信息">
+        <comps>
+        	<comp compCode="CompTJGRQF01" compName="提交启封信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                    <inParam ignoreNull="0" paramCode="operid" paramName="操作员id" paramType="string(1,30)" paramValue="_OPERID"/>
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="0" paramCode="zxjg" paramName="定时任务执行结果" paramValue="zxjg" paramType="string(0,-1)" ></outParam>
+                    <outParam ignoreNull="0" paramCode="jgms" paramName="结果描述" paramValue="jgms" paramType="string(0,-1)" ></outParam>
+           	   		<!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="委托扣划签约"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-09-19 08:52:18"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	getJkhtbh();
+	//借款合同编号change事件，调用交易获取贷款信息
+	$('#jkhtbh').change(function(event) {
+        getDkxx();
+	});
+	// 若页面加载时借款合同编号不为空，获取贷款信息
+	if($('#jkhtbh').val()!=""){
+    	getDkxx();
+	}
+	//增加获取借款人按钮
+	$('#datalist1').addButton('获取借款人', function(input) {
+		if (!ydl.validator('jkhtbh', {required:true})) return false;
+		if($('#jkhtbh').val() != ""){
+			ydl.sendCommand("hqjkrxx",{"jkhtbh":$('#jkhtbh').val()},function(data,code,msg){
+				if (code != '00000000') {
+					ydl.alert({'code':code, 'message':msg});
+				}else{
+					ydl.init.dataList({id:'datalist1'},'refresh',thisTab);
+				}
+			})
+		}
+	});
+}
+//列表datalist1初始化、翻页、保存、新增等动作完成后执行
+thisTab.datalist_callback_datalist1 = function(rows) {
+	$(rows).each(function(i){
+		//将交易密码类型改成密码样式
+		$(this).getCell(9).find('input').attr('type','password');
+	})
+}
+<!--获得借款合同编号-->
+function getJkhtbh(){
+	var array = poolSelect['jkhtbhsz'].split(",");
+	var items;
+	if(array.length==1){
+		items="<option  value="+array[0]+">"+array[0]+"</option>";
+	}	
+	if(array.length > 1){
+		items="<option value=''>请选择</option>";
+		for(var i=0;i<array.length;i++){
+			var jkhtbhval=array[i];
+			var jkhtbhname=array[i];
+			items+="<option value="+jkhtbhval+">"+jkhtbhname+"</option>";
+		}
+	}
+	$('#jkhtbh').append(items);
+}
+// 获取贷款信息
+function getDkxx(){
+    var jkhtbh=$('#jkhtbh').val();
+	if(jkhtbh != ""){
+		//获取贷款还款信息
+		ydl.sendCommand("getdkxxxx",{"jkhtbh":jkhtbh},function(data,code,msg){
+			if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+				$('#yqbj').text(data.yqbjze==""?"":ydl.addComma(data.yqbjze)+" 元");
+				$('#yqlx').text(data.yqlxze==""?"":ydl.addComma(data.yqlxze)+" 元");
+				$('#whfx').text(data.fxze==""?"":ydl.addComma(data.fxze)+" 元");
+				$('#yqzje').text(data.tqhj==""?"":ydl.addComma(data.tqhj)+" 元");
+				$('#dkye').text(data.dkye==""?"":ydl.addComma(data.dkye)+" 元");
+				$('#dkffrq').text(data.dkffrq);
+				$('#syqs').text(data.syqs==""?"":data.syqs+" 月");
+				$('#yhke').text(data.yhke==""?"":ydl.addComma(data.yhke)+" 元");
+				$('#zdhke').text(data.zdhke==""?"":ydl.addComma(data.zdhke)+" 元");
+				$('#htdkje').text(data.dkffe==""?"":ydl.addComma(data.dkffe)+" 元");
+				$('#jkrxm').text(data.jkrxm);
+				$('#loaneename').val(data.jkrxm);
+				$('#loaneecertinum').val(data.jkrzjhm);
+				$('#jkrzjhm').text(data.jkrzjhm);
+				$('#dkqs').text(data.dkqs==""?"":data.dkqs+" 月");
+				$('#yddqrq').text(data.yddqrq);
+				$('#dkzxll').text(data.dkll==""?"":data.dkll+" %");
+				$('#swtyhmc').text(data.swtyhmc);
+				$('#dkhkfs').text(data.dkhkfs==""?"":ydl.mudic.getName('bsp.ln.repaymode.'+data.dkhkfs));
+				ydl.init.dataList({id:'datalist1'},'refresh',thisTab);
+			}
+		})
+	}
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+	if($('#datalist1 tbody tr').length==0){
+		alert("请至少添加一条签约信息！");
+		return false;
+	}
+	return true;
+}
+
+
+
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form">
+      <component type="label" for="jkhtbh">借款合同编号：</component>
+      <component id="jkhtbh" type="multivalue" subtype="select" fromdic="false" required="true">
+        <sql datasource="workflow.cfg.xml"/>
+      </component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-829268850eb14529b8f2a068dc331504" type="table" layout="fit" cols="4" id="container-829268850eb14529b8f2a068dc331504" caption="贷款信息">
+      <component type="label">借款人姓名：</component>
+      <component type="plain" id="jkrxm"/>
+      <component type="label">借款人证件号码：</component>
+      <component type="plain" id="jkrzjhm"/>
+      <component type="label">贷款期数：</component>
+      <component type="plain" id="dkqs"/>
+      <component type="label">合同贷款金额：</component>
+      <component type="plain" id="htdkje"/>
+      <component type="label">贷款发放日期：</component>
+      <component type="plain" id="dkffrq"/>
+      <component type="label">约定到期日期：</component>
+      <component type="plain" id="yddqrq"/>
+      <component type="label">贷款还款方式：</component>
+      <component type="plain" id="dkhkfs"/>
+      <component type="label">受委托银行名称：</component>
+      <component type="plain" id="swtyhmc"/>
+      <component type="label">贷款余额：</component>
+      <component type="plain" id="dkye"/>
+      <component type="label">剩余期数：</component>
+      <component id="syqs" type="plain"/>
+      <component type="label">月还款额：</component>
+      <component id="yhke" type="plain"/>
+      <component type="label">最低还款额：</component>
+      <component id="zdhke" type="plain"/>
+      <component type="label">逾期本金：</component>
+      <component id="yqbj" type="plain"/>
+      <component type="label">逾期利息：</component>
+      <component id="yqlx" type="plain"/>
+      <component type="label">未还罚息：</component>
+      <component id="whfx" type="plain"/>
+      <component type="label">逾期总金额：</component>
+      <component id="yqzje" type="plain"/>
+    </container>
+    <container uid="container-877742eb15284e059d6bb912e4e87693" type="box" layout="auto-height" id="container-877742eb15284e059d6bb912e4e87693">
+      <component id="datalist1" type="datalist" paging="true" layout="fit" caption="签约列表(扣划顺序请从1开始一次填写；不需要修改的数据可进行删除)" allowinsert="false" allowdelete="true" allowupdate="true" allowprint="false" allowimport="false" allowexport="false" pagesize="10" version="1" searchbox="false" compatible="0" showrowid="true" dialogedit="0" saveimportfile="false" clearbeforeimport="true" template="false">
+        <columns>
+          <col id="seqno" desc="序号" coltype="3" hidden="true" required="false" ischar="false" dict="none" sort="false" negative="false"/>
+          <col id="xingming" desc="姓名" coltype="1" hidden="false" required="true" ischar="false" dict="none" sort="false" negative="false"/>
+          <col id="zjlx" desc="证件类型" coltype="1" hidden="false" required="true" ischar="false" dict="dynamic" datasource="os_mdic" sort="false" negative="false">bsp.pb.zjlx</col>
+          <col id="zjhm" desc="证件号码" coltype="1" hidden="false" required="true" ischar="false" dict="none" sort="false" negative="false"/>
+          <col id="kkrlx" desc="扣款人类型" coltype="1" hidden="false" required="false" ischar="false" dict="dynamic" datasource="os_mdic" sort="false" negative="false">bsp.ln.dedoptype</col>
+          <col id="qylx" desc="签约类型" coltype="2" hidden="false" required="true" ischar="false" dict="dynamic" datasource="os_mdic" sort="false" negative="false">bsp.ln.qylx</col>
+          <col id="khsx" desc="扣划顺序" coltype="2" hidden="false" required="false" ischar="false" maxlength="2" datatype="int" dict="none" sort="false" negative="false"/>
+          <col id="jymm" desc="交易密码" coltype="2" hidden="false" required="true" ischar="true" datatype="validchar" maxlength="20" dict="none" sort="false" negative="false"/>
+          <col id="grzhzt" desc="个人账户状态" coltype="1" hidden="false" required="true" ischar="false" dict="dynamic" datasource="os_mdic" sort="false" negative="false">bsp.dp.grzhzt</col>
+          <col id="grzhye" desc="个人账户余额" coltype="1" hidden="false" required="false" ischar="false" datatype="money" dict="none" sort="false" negative="false"/>
+        </columns>
+        <sqls datasource="ds_biz">
+          <sql type="insert"></sql>
+          <sql type="select">select seqno, accname1 as xingming, certitype as zjlx, certinum as zjhm, hyzk as grzhzt, fundsouflag as kkrlx, amt1 as grzhye, peoplenum as khsx, sex as qylx, agentinstcode as jymm from dp077 where instance=#{_IS,jdbcType=INTEGER}</sql>
+          <sql type="update">update dp077 set peoplenum=#{khsx,jdbcType=INTEGER}, sex=#{qylx,jdbcType=VARCHAR}, agentinstcode=#{jymm,jdbcType=VARCHAR} where instance=#{_IS,jdbcType=INTEGER} and seqno=#{seqno,jdbcType=INTEGER}</sql>
+          <sql type="delete">delete from dp077 where instance=#{_IS,jdbcType=INTEGER} and seqno=#{seqno,jdbcType=INTEGER}</sql>
+        </sqls>
+      </component>
+    </container>
+  </containers>
+</page>

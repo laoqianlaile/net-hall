@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranZJDXTQ01" tranName="建造、翻建、大修住房提取">
+        <comps>
+			<comp compCode="CompZJDXTQ01" compName="计算可提取金额" expression="#flag=='jsktqje'">
+				<inParams>
+					<inParam paramCode="grzh" ignoreNull="0" paramName="个人账号" paramValue="#getUserExtInfo('grzh')" paramType="string(1,20)"/>
+					<inParam paramCode="jzlx" ignoreNull="1" paramName="建造类型" paramValue="jzlx" paramType="string(0,-1)"/>
+					<inParam paramCode="spwh" ignoreNull="1" paramName="审批文号" paramValue="spwh" paramType="string(0,-1)"/>
+					<inParam paramCode="fwdz" ignoreNull="0" paramName="房屋地址" paramValue="fwdz" paramType="string(0,-1)"/>
+					<inParam paramCode="fwmj" ignoreNull="0" paramName="房屋面积" paramValue="fwmj" paramType="string(0,-1)"/>
+					<inParam paramCode="gczj" ignoreNull="0" paramName="工程造价" paramValue="jsfs" paramType="string(0,-1)"/>
+				</inParams>
+				<outParams>
+					<outParam paramCode="ktqje" ignoreNull="1" paramName="可提取金额" paramValue="ktqje" paramType="double(18,2)"/>
+				</outParams>
+			</comp>
+            <comp compCode="CompZJDXTQ02" compName="建造、翻建、大修住房提取提交" expression="#flag=='tjxx'">
+            	<inParams>
+            		<inParam paramCode="tqyy" ignoreNull="0" paramName="提取原因" paramValue="tqyy" paramType="string(0,-1)"/>
+            		<inParam paramCode="grzh" ignoreNull="1" paramName="个人账号" paramValue="grzh" paramType="string(0,-1)"/>
+            		<inParam paramCode="jzlx" ignoreNull="1" paramName="建造类型" paramValue="jzlx" paramType="string(0,-1)"/>
+            		<inParam paramCode="spwh" ignoreNull="1" paramName="审批文号" paramValue="spwh" paramType="string(0,-1)"/>
+            		<inParam paramCode="fwdz" ignoreNull="0" paramName="房屋地址" paramValue="fwdz" paramType="string(0,-1)"/>
+            		<inParam paramCode="fwmj" ignoreNull="0" paramName="房屋面积" paramValue="fwmj" paramType="double(18,2)"/>
+					<inParam paramCode="gczj" ignoreNull="0" paramName="工程造价" paramValue="jsfs" paramType="double(18,2)"/>
+					<inParam paramCode="yxfrgx" ignoreNull="0" paramName="与修房人关系" paramValue="yxfrgx" paramType="string(0,-1)" />
+					<inParam paramCode="xfrxm" ignoreNull="0" paramName="修房人姓名" paramValue="xfrxm" paramType="string(0,-1)"/>
+					<inParam paramCode="xfrzjlx" ignoreNull="0" paramName="修房人证件类型" paramValue="xfrzjlx" paramType="string(0,-1)" />
+					<inParam paramCode="xfrzjhm" ignoreNull="0" paramName="修房人证件号码" paramValue="xfrzjhm" paramType="string(0,-1)" />
+					<inParam paramCode="tqje" ignoreNull="0" paramName="提取金额" paramValue="tqje" paramType="double(18,2)" />
+					<inParam paramCode="gczj" ignoreNull="0" paramName="结算方式" paramValue="jsfs" paramType="string(0,-1)"/>
+					<inParam paramCode="skrzhmc" ignoreNull="0" paramName="收款人账户名称" paramValue="skrzhmc" paramType="string(1,120)" />
+					<inParam paramCode="skrkhyh" ignoreNull="0" paramName="收款人开户银行" paramValue="skrkhyh" paramType="string(1,20)" />
+					<inParam paramCode="skrzhhm" ignoreNull="0" paramName="收款人账户号码" paramValue="skrzhhm" paramType="string(1,20)" />
+            		<inParam paramCode="jymm" ignoreNull="0" paramName="交易密码" paramValue="jymm" paramType="string(0,-1)"/>
+            		<inParam paramCode="sjhm" ignoreNull="0" paramName="手机号码" paramValue="sjhm" paramType="string(0,11)"/>
+				</inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

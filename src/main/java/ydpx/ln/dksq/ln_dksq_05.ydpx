@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="抵押信息"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-09-25 14:59:45"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	//贷款担保类型不为空时，抵押信息、保证信息页签隐藏显示控制
+	if($('#dkdblx').val() != "" ){
+		var dkdblx=$('#dkdblx').val();
+		var dkdblxmask=ydl.mudic.getMask('bsp.ln.dkdblx.'+dkdblx);
+		if(dkdblxmask=='01' || dkdblxmask=='71'){
+			pageTabs[4].show();
+			pageTabs[5].hide();
+			ydl.listColWidth('dyrlist');
+			ydl.listColWidth('dywlist');
+		}else if(dkdblxmask=='03' || dkdblxmask=='73'){
+			pageTabs[5].show();
+			pageTabs[4].hide();
+			ydl.listColWidth('bzlist');
+		}else if(dkdblxmask=='70' || dkdblxmask=='72'){
+			pageTabs[4].show();
+			pageTabs[5].show();
+			ydl.listColWidth('bzlist');
+			ydl.listColWidth('dyrlist');
+			ydl.listColWidth('dywlist');
+		}else{
+			pageTabs[4].hide();
+			pageTabs[5].hide();
+		}
+	}else{
+		pageTabs[4].hide();
+	}
+	
+	//刷新抵押物信息、抵押人信息
+	ydl.init.dataList({id:'dyrlist'},'refresh',thisTab);
+	ydl.init.dataList({id:'dywlist'},'refresh',thisTab);
+	//复制借款人按钮点击事件
+	$('#b_jkrtodyr').click(function(event) {
+		//调用交易，查询借款申请人信息至抵押人信息
+		ydl.sendCommand('CMD08',{"dpbusitype":"12"}).done(function (data) {  
+			ydl.init.dataList({id:'dyrlist'},'refresh',thisTab);
+		});
+	});
+	//证件类型、证件号码change事件
+	$('#dyrlist_editor_zjlx,#dyrlist_editor_zjhm').change(function(event) {
+		var certitype = $('#dyrlist_editor_zjlx').val();
+		var certinum = $('#dyrlist_editor_zjhm').val();
+		ydl.validator.clear();
+		if(certitype !="" && certinum !="" && ydl.mudic.getMask("bsp.pb.zjlx."+certitype) == "01" ){
+			//证件类型为身份证的时候，对证件号码进行校验
+			if (!ydl.validator('dyrlist_editor_zjhm', {required: true, type: 'idcard'})) return false;
+		}
+	})
+}
+//列表dyrlist的数据提交前校验
+thisTab.datalist_validate_dyrlist=function(inputs,rows) {
+	//判断证件类型为身份证时，证件号码是否正确
+	var zjlx = $('#dyrlist_editor_zjlx').val();
+	if( ydl.mudic.getMask("bsp.pb.zjlx."+zjlx) == "01" ){
+		if (!ydl.validator('dyrlist_editor_zjhm', {required: true, type: 'idcard'})) return false;
+	}
+	return true;
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+	var d1 = ydl.sendCommand('CMD09', {}, function (data,code,msg) {
+		if (code != '00000000') {
+			ydl.alert({'code':code, 'message':msg});
+		}
+    }); 
+	return d1;
+}]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container uid="container-1bb931f1cef946729e1716cae332d446" type="box" layout="auto-height connect" id="container-1bb931f1cef946729e1716cae332d446">
+      <component id="dyrlist" type="datalist" paging="true" layout="fit" caption="抵押人信息" allowinsert="true" allowdelete="true" allowupdate="true" allowprint="false" allowimport="false" allowexport="false" pagesize="10" version="1" searchbox="false" compatible="0" showrowid="true" dialogedit="2" saveimportfile="false" clearbeforeimport="true" template="false">
+        <columns>
+          <col id="xingming" desc="抵押人姓名" coltype="2" hidden="false" required="true" ischar="true" maxlength="120" datatype="validchar" dict="none" sort="false" negative="false"/>
+          <col id="zjlx" desc="证件类型" coltype="2" hidden="false" required="true" ischar="true" dict="dynamic" datasource="os_mdic" sort="false" negative="false">bsp.pb.zjlx</col>
+          <col id="zjhm" desc="证件号码" coltype="2" hidden="false" required="true" ischar="true" maxlength="20" datatype="validchar" dict="none" sort="false" negative="false"/>
+          <col id="xingbie" desc="性别" coltype="2" hidden="false" required="true" ischar="true" dict="dynamic" datasource="os_mdic" sort="false" negative="false">bsp.pb.sex</col>
+          <col id="dwmc" desc="抵押人工作单位" coltype="2" hidden="false" required="true" ischar="true" maxlength="255" datatype="validchar" dict="none" sort="false" negative="false"/>
+          <col id="sjhm" desc="联系电话" coltype="2" hidden="false" required="true" ischar="true" maxlength="20" datatype="phone" dict="none" sort="false" negative="false"/>
+          <col id="seqno" coltype="3" hidden="true" required="false" ischar="false" dict="none" sort="false" negative="false"/>
+        </columns>
+        <sqls datasource="ds_biz">
+          <sql type="insert">insert into dp077(seqno, dpbusitype, accname1, certitype, certinum, sex, unitaccname1, accnum1, instance) values((select NVL(max(t.seqno),0)+1 from dp077 t where t.INSTANCE=#{_IS,jdbcType=INTEGER} and t.dpbusitype='12'), '12', #{xingming,jdbcType=VARCHAR}, #{zjlx,jdbcType=VARCHAR}, #{zjhm,jdbcType=VARCHAR}, #{xingbie,jdbcType=VARCHAR}, #{dwmc,jdbcType=VARCHAR}, #{sjhm,jdbcType=VARCHAR}, #{_IS,jdbcType=INTEGER})</sql>
+          <sql type="select">select accname1 as xingming, certitype as zjlx, certinum as zjhm, sex as xingbie, unitaccname1 as dwmc, accnum1 as sjhm, seqno from dp077 where dpbusitype='12' and instance=#{_IS,jdbcType=INTEGER}</sql>
+          <sql type="update">update dp077 set accname1=#{xingming,jdbcType=VARCHAR}, certitype=#{zjlx,jdbcType=VARCHAR}, certinum=#{zjhm,jdbcType=VARCHAR}, sex=#{xingbie,jdbcType=VARCHAR}, unitaccname1=#{dwmc,jdbcType=VARCHAR}, accnum1=#{sjhm,jdbcType=VARCHAR} where seqno=#{seqno,jdbcType=INTEGER} and dpbusitype='12' and instance=#{_IS,jdbcType=INTEGER}</sql>
+          <sql type="delete">delete from dp077 where seqno=#{seqno,jdbcType=INTEGER} and dpbusitype='12' and instance=#{_IS,jdbcType=INTEGER}</sql>
+        </sqls>
+      </component>
+    </container>
+    <container uid="container-71c60128965b4f25a8ee90ec25899fce" type="box" layout="buttons" id="container-71c60128965b4f25a8ee90ec25899fce">
+      <component id="b_jkrtodyr" type="button" subtype="button">复制借款人至此列表</component>
+    </container>
+    <container uid="container-77b82821970f43949d9345abe54119e9" type="box" layout="auto-height" id="container-77b82821970f43949d9345abe54119e9">
+      <component id="dywlist" type="datalist" paging="true" layout="fit" caption="抵押物信息" allowinsert="true" allowdelete="true" allowupdate="true" allowprint="false" allowimport="false" allowexport="false" pagesize="10" version="1" searchbox="false" compatible="0" showrowid="true" dialogedit="2" saveimportfile="false" clearbeforeimport="true" template="false">
+        <columns>
+          <col id="dylx" desc="抵押类型" coltype="2" hidden="false" required="true" ischar="false" dict="dynamic" datasource="os_mdic" sort="false" negative="false">bsp.ln.morttype</col>
+          <col id="dywlx" desc="抵押物类型" coltype="2" hidden="false" required="true" ischar="false" dict="dynamic" datasource="os_mdic" sort="false" negative="false">bsp.ln.mortproperty</col>
+          <col id="dywpgjz" desc="抵押物评估价值" coltype="2" hidden="false" required="true" ischar="false" maxlength="18" declen="2" datatype="money" dict="none" sort="false" negative="false"/>
+          <col id="dywmj" desc="抵押物面积" coltype="2" hidden="false" required="true" ischar="false" maxlength="10" declen="2" datatype="float" dict="none" sort="false" negative="false"/>
+          <col id="dywjgrq" desc="抵押物竣工日期" coltype="2" hidden="false" required="true" ischar="true" maxlength="10" datatype="date" dict="none" sort="false" negative="false"/>
+          <col id="dywqzh" desc="抵押物权证号" coltype="2" hidden="false" required="true" ischar="true" maxlength="20" datatype="validchar" dict="none" sort="false" negative="false"/>
+          <col id="dywfwzl" desc="抵押物房屋坐落" coltype="2" hidden="false" required="true" ischar="true" maxlength="255" datatype="validchar" dict="none" sort="false" negative="false"/>
+          <col id="seqno" desc="序号" coltype="3" hidden="true" required="false" ischar="false" datatype="int" dict="none" sort="false" negative="false"/>
+        </columns>
+        <sqls datasource="ds_biz">
+          <sql type="insert">insert into dp077(seqno, dpbusitype, fundsouflag, proptype, amt1, amt2, enddate, unitaccnum1, jtzz, instance) values((select NVL(max(t.seqno),0)+1 from dp077 t where t.INSTANCE=#{_IS,jdbcType=INTEGER} and t.dpbusitype='13'), '13', #{dylx,jdbcType=VARCHAR}, #{dywlx,jdbcType=VARCHAR}, #{dywpgjz,jdbcType=DECIMAL}, #{dywmj,jdbcType=DECIMAL}, to_date(#{dywjgrq,jdbcType=DATE},'yyyy-mm-dd'), #{dywqzh,jdbcType=VARCHAR}, #{dywfwzl,jdbcType=VARCHAR}, #{_IS,jdbcType=INTEGER})</sql>
+          <sql type="select">select fundsouflag as dylx, proptype as dywlx, amt1 as dywpgjz, amt2 as dywmj, enddate as dywjgrq, unitaccnum1 as dywqzh, jtzz as dywfwzl, seqno from dp077 where dpbusitype='13' and instance=#{_IS,jdbcType=INTEGER}</sql>
+          <sql type="update">update dp077 set fundsouflag=#{dylx,jdbcType=VARCHAR}, proptype=#{dywlx,jdbcType=VARCHAR}, amt1=#{dywpgjz,jdbcType=DECIMAL}, amt2=#{dywmj,jdbcType=DECIMAL}, enddate=#{dywjgrq,jdbcType=DATE}, unitaccnum1=#{dywqzh,jdbcType=VARCHAR}, jtzz=#{dywfwzl,jdbcType=VARCHAR} where seqno=#{seqno,jdbcType=INTEGER} and dpbusitype='13' and instance=#{_IS,jdbcType=INTEGER}</sql>
+          <sql type="delete">delete from dp077 where seqno=#{seqno,jdbcType=INTEGER} and dpbusitype='13' and instance=#{_IS,jdbcType=INTEGER}</sql>
+        </sqls>
+      </component>
+    </container>
+  </containers>
+</page>

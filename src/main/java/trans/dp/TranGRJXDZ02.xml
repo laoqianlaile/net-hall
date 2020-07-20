@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRJXDZ02" tranName="个人结息对账单查询">
+        <comps>
+            <comp compCode="CompGRJXDZ02" compName="个人结息对账单查询" expression="">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="grzh" paramName="个人账号" paramType="string(1,10)" paramValue="_OPERID"/>
+                </inParams>
+                 <outParams>
+                	<outParam ignoreNull="1" paramCode="qxrq" paramName="起息日期" paramType="string(0,-1)" paramValue="qxrq" />
+                	<outParam ignoreNull="1" paramCode="jxrq" paramName="结息日期" paramType="string(0,-1)" paramValue="jxrq" />
+                	<outParam ignoreNull="1" paramCode="hqrll" paramName="活期日利率" paramType="string(0,-1)" paramValue="hqrll" />
+                	<outParam ignoreNull="1" paramCode="dqrll" paramName="定期日利率" paramType="string(0,-1)" paramValue="dqrll" />
+              		<outParam ignoreNull="1" paramCode="dqbj" paramName="定期本金" paramType="string(0,-1)" paramValue="dqbj" />
+                	<outParam ignoreNull="1" paramCode="hqbj" paramName="活期本金" paramType="string(0,-1)" paramValue="hqbj" />
+                	<outParam ignoreNull="1" paramCode="zbj" paramName="总本金" paramType="string(0,-1)" paramValue="zbj" />
+                	<outParam ignoreNull="1" paramCode="dqlx" paramName="定期利息" paramType="string(0,-1)" paramValue="dqlx" />
+                	<outParam ignoreNull="1" paramCode="hqlx'" paramName="活期利息" paramType="string(0,-1)" paramValue="hqlx" />
+                	<outParam ignoreNull="1" paramCode="zlx" paramName="总利息" paramType="string(0,-1)" paramValue="zlx" />
+                	<outParam ignoreNull="1" paramCode="ye" paramName="余额" paramType="string(0,-1)" paramValue="ye" />
+                	<!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="pzfilename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="pzfilename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

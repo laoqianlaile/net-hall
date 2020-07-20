@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page template="0401" version="1.0" formaction="" id="DWHOME">
+  <info>
+    <description title="单位首页">单位首页</description>
+    <editlogs>
+      <log editor="Y00231(离线)" edittime="2017-09-05 11:12:10"/>
+    </editlogs>
+  </info>
+  <scripts>
+  	<script include="/ydpx/ish04/dwhome/dwhome.js"/>
+    <script><![CDATA[
+
+//页面加载后执行
+thisTab.pageOnload = function () {
+	
+	$('#page_main').removeClass('pull-left');
+	// 首页用户信息
+	var userContent = JSON.parse(pageData.userContent || '{}');
+	$('.user-content').append(userContentHtml(userContent));
+	
+	
+	//首页收起展开事件
+	$('.pack-up').on('click',function(){
+		if($('.user-img').width() === 180){
+			$(this).html('展开<span class="icon-up"></span>');
+			$('.user-img').animate({height:'68px',width:'68px'},200);
+			$('.user-content').animate({height:'68px'},200);
+		}
+		else{
+			$(this).html('收起<span class=""></span>');
+			$('.user-img').animate({height:'180px',width:'180px'},200);
+			$('.user-content').animate({height:'180px'},200);
+		}
+	});
+	
+};	
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers></containers>
+  <styles>
+    <style include="/ydpx/ish04/dwhome/dwhome.css"/>
+  </styles>
+  <frame><![CDATA[
+	<!-- 首页个人信息部分 -->
+	<div class="home-main-user">
+		<!-- 首页头像部分 -->
+		<div class="user-left">
+			<div class="user-img pull-left"></div>
+			<div class="line-home-wdzh"></div>
+			<a href="" class="my-account hide" id = "headerMyAccount">我的账户</a> 
+		</div>
+		<div class="operation-record">
+			<span class='operation-record-word'>最近操作记录</span>	
+			<span class='operation-record-img'></span>	
+		</div>	
+		
+		<div class="pull-left user-content row"></div>
+	</div>
+	<!-- 首页中间部分 -->
+	<div class="home-mid">
+		<!-- 首页中间部分汇缴信息部分 -->
+		<div class="huijiao-message active-block">
+			<span class="ydico-ish ydico-ish-T03_02_hjxx"></span>
+			<span class="kuai-head">汇缴信息</span>
+			<div class="huijiao-message-con">
+				<div class="huijiao-message-con-head"></div>
+				<div id="imgCircle" class="carousel slide" data-wrap="true">
+					<div class="carousel-inner" id="carousel-inner">
+						<a class="carousel-control left yjhj-left glyphicon glyphicon-menu-left" href="#imgCircle" 	data-slide="prev"></a>	
+						<a class="carousel-control right yjhj-right glyphicon glyphicon-menu-right" href="#imgCircle"  data-slide="next"></a>
+						<div id="carouselMenu">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<!-- 您可能要办理 -->
+		<div class="banli-message active-block">
+			<span class="ydico-ish ydico-ish-T01_03_nknybl"></span>
+			<span class="kuai-head">您可能要办理</span>
+		</div>	
+		<!-- 我的申报 -->
+		<div class="shenbao-message active-block">
+			<span class="ydico-ish ydico-ish-bespeak5"></span>
+			<span class="kuai-head">我的申报</span>
+			
+		</div>	
+		<!-- 归集业务 -->
+		<div class="guiji-message active-block">
+			<span class="ydico-ish ydico-ish-modify1"></span>
+			<span class="kuai-head">归集业务</span>
+			<ul>
+			</ul>	
+		</div>
+		<!-- 我要查询 -->
+		<div class="chaxun-message active-block">
+			<span class="ydico-ish ydico-ish-find-some1"></span>
+			<span class="kuai-head">我要查询</span>
+			<ul>
+			</ul>
+		</div>
+	<div>
+	
+	
+]]></frame>
+
+</page>

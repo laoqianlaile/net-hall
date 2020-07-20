@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFTQHK01" desc="提前还款" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="提前还款">ln_tqhk_01.ydpx</flowvar>
+              <flowvar name="ym02" desc="提前还款打印">ln_tqhk_02.ydpx</flowvar>
+          </flowvars>
+          <endpage buttonflag="o">
+		      <init>		        
+		        <setvar name="_RESULT_PAGE_TITLE"><![CDATA[提前还款业务办理成功！]]></setvar>
+		      </init>
+		  </endpage>
+		  <mudics>
+			<mudic key="bsp.ln.repaymode" desc="贷款还款方式"></mudic>
+			<mudic key="bsp.ln.repaytype" desc="还款类型"></mudic>
+			<mudic key="bsp.ln.jsfs" desc="结算方式"></mudic>
+		  </mudics> 
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="提前还款" appflag="X" buttonflag="a" in="1" out="1" isleaveprompt="1">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		</step>
+		<step id="step2" url="=_flowvar_ym02" desc="提前还款" appflag="X" buttonflag="l" in="1" out="0">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		        <setvar name="_prfilename">提前还款协议</setvar>
+		    </init>
+		     <buttons>
+          	 	<buttons id="l" text="完成" icon="ok"/>
+            </buttons>
+		</step>
+</flow>

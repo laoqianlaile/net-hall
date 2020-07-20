@@ -1,0 +1,38 @@
+/* 页面公共 */
+*{font-family: "微软雅黑";list-style: none;}
+html{height: 100%;}
+body{width: 100%;height: 100%;min-width: 1020px; background:#f3f3f3;}
+#page_wrap{padding: 0px 0px 0px 0px;}
+/* 快捷菜单 */
+.row{margin-left: 0px;margin-right: 0px;}
+.col-custom{width: 18%;}
+.shortcut-menu{background:#ffffff ;padding-bottom: 10px;min-width: 1020px; overflow: hidden;}
+.shortcut-menu div{cursor: pointer;background: #4aa8ea;height: 0;padding-bottom: 15%;margin-left: 14px;text-align: center;margin-top:20px;margin-right:6px;}
+.shortcut-menu div:nth-child(even){background: #3e91cc;}
+.shortcut-menu div:hover{background: #ffb400}
+.shortcut-menu div span{font-size: 66px;display: inline-block;color: white;margin-top:20%}
+.shortcut-menu div p{color: #ffffff;margin-top: 5px;}
+.shortcut-menu div div{height: 100%;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);background: none;width: 100%;margin:0;}
+/* 通知和消息提醒列表公共 */
+.list{position: relative;top:10px;padding-top:4px;min-width: 1020px;}
+.list img{display:inline-block;padding-right: 10px;position:relative;top:2px;width: 29px}
+.list a{position:relative;top:7px;width: 90%;display:inline-block;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;font-size: 12px;color: #484848;}
+li{padding-bottom: 8px;padding-top: 8px;border-bottom: dotted 1px #D5D5D5;}
+li:nth-child(1){border-bottom: solid 1px #D5D5D5;}
+li:nth-child(3){border:none}
+li:first-child a{float: right;padding-right: 20px;margin-top: -23px;}
+li span{width: 68%;display:inline-block}
+li span:nth-child(even){width: 31%;display: inline-block;}
+.time{font-size: 12px;color: #999999;text-align: right;padding-right: 20px;display:inline-block;}
+
+/* 通知与消息提醒 */
+.list {overflow:auto;}
+.list > div {width: 49%;height:100%;display: block;background: #ffffff;float:left;}
+.list ul {padding: 3px 0px 0px 0px; margin: 0px;}
+.list > div a:first-child {color: #4ba8eb;width: 55px;}
+.list ul li {cursor: pointer;  padding: 7px 0px 12px 14px;}
+.list ul li:nth-child(1) {cursor: default;}
+/* 通知 */
+.notice {background: #ffffff;}
+/* 消息提醒 */
+.message {background: #ffffff; margin-left: 1.5%;}

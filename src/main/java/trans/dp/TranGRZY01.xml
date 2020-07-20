@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRZY01" tranName="个人基本信息变更">
+        <comps>
+            <comp compCode="CompGRZY01" compName="获取单位托管户账号" expression="#flag=='gettghzh'">
+            	<inParams>
+            		<inParam paramCode="dwzh" ignoreNull="0" paramName="单位账号" paramValue="=getUserExtInfo('dwdjh')" paramType="string(1,20)"/>
+            	</inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="tghzh" paramName="托管户账号" paramType="string(1,20)" paramValue="tghzh" />
+                </outParams>
+            </comp>
+            <comp compCode="CompGRZY02" compName="校验批量错误信息" expression="#flag=='jyplxx'">
+            	<inParams>
+            		<inParam paramCode="instance" ignoreNull="0" paramName="实例号" paramValue="_IS" paramType="int"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompGRZY03" compName="提交转移信息" expression="#flag=='tjzyxx'">
+            	<inParams>
+            		<inParam paramCode="instance" ignoreNull="0" paramName="实例号" paramValue="_IS" paramType="int"/>
+            		<inParam paramCode="zylx" ignoreNull="0" paramName="转移类型" paramValue="zylx" paramType="string(1,2)"/>
+            		<inParam paramCode="zyjylx" ignoreNull="1" paramName="转移交易类型" paramValue="zyjylx" paramType="string(0,1)"/>
+            		<inParam paramCode="zcdwzh" ignoreNull="0" paramName="转出单位账号" paramValue="zcdwzh" paramType="string(1,20)"/>
+            		<inParam paramCode="zrdwzh" ignoreNull="0" paramName="转入单位账号" paramValue="zrdwzh" paramType="string(1,20)"/>
+            		<inParam paramCode="zcdwmc" ignoreNull="1" paramName="转出单位名称" paramValue="zcdwmc" paramType="string(0,255)"/>
+            		<inParam paramCode="zrdwmc" ignoreNull="1" paramName="转入单位名称" paramValue="zrdwmc" paramType="string(0,255)"/>
+            	</inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

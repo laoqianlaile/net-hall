@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranZFFZTQ01" tranName="支付房租提取">
+        <comps>
+        	<comp compCode="CompZFFZTQ01" compName="获取公租房信息" expression="#flag=='hqgzfxx'">
+        		<inParams>
+	        		<inParam paramCode="xingming" ignoreNull="0" paramName="姓名" paramValue="#getUserExtInfo('xingming')" paramType="string(0,-1)"/>
+	        		<inParam paramCode="zjlx" ignoreNull="0" paramName="证件类型" paramValue="#getUserExtInfo('zjlx')" paramType="string(0,-1)"/>
+	        		<inParam paramCode="zjhm" ignoreNull="0" paramName="证件号码" paramValue="#getUserExtInfo('zjhm')" paramType="string(0,-1)"/>
+        		</inParams>
+                <outParams>
+                	<outParam paramCode="zlfwdz" ignoreNull="1" paramName="租赁房屋地址" paramValue="zlfwdz" paramType="string(0,-1)"/>
+                	<outParam paramCode="fwjzmj" ignoreNull="1" paramName="房屋建筑面积" paramValue="fwjzmj" paramType="string(0,-1)"/>
+                	<outParam paramCode="zfyzj" ignoreNull="1" paramName="支付月租金" paramValue="zfyzj" paramType="double(18,2)"/>
+                </outParams>
+            </comp>
+            <comp compCode="CompZFFZTQ02" compName="计算可提取金额" expression="#flag=='jsktqje'">
+        		<inParams>
+	        		<inParam paramCode="grzh" ignoreNull="0" paramName="个人登记号" paramValue="#getUserExtInfo('grzh')" paramType="string(1,20)"/>
+	        		<inParam paramCode="zflx" ignoreNull="0" paramName="支付类型" paramValue="zflx" paramType="string(1,2)"/>
+	        		<inParam paramCode="dsfpbh" ignoreNull="1" paramName="地税发票编号" paramValue="dsfpbh" paramType="string(0,-1)"/>
+	        		<inParam paramCode="zfyzj" ignoreNull="0" paramName="支付月租金" paramValue="zfyzj" paramType="double(18,2)"/>
+	        		<inParam paramCode="fwjzmj" ignoreNull="1" paramName="房屋建筑面积" paramValue="fwjzmj" paramType="string(0,-1)"/>
+	        		<inParam paramCode="zlkssj" ignoreNull="0" paramName="租赁开始时间" paramValue="zlkssj" paramType="string(1,6)"/>
+	        		<inParam paramCode="zljssj" ignoreNull="0" paramName="租赁结束时间" paramValue="zljssj" paramType="string(1,6)"/>
+        		</inParams>
+                <outParams>
+                	<outParam paramCode="ktqje" ignoreNull="1" paramName="可提取金额" paramValue="ktqje" paramType="double(18,2)"/>
+                </outParams>
+            </comp>
+            <comp compCode="CompZFFZTQ03" compName="提交租房提取信息" expression="#flag=='tjxx'">
+        		<inParams>
+	        		<inParam paramCode="grzh" ignoreNull="0" paramName="个人登记号" paramValue="#getUserExtInfo('grzh')" paramType="string(1,20)"/>
+	        		<inParam paramCode="zflx" ignoreNull="0" paramName="支付类型" paramValue="zflx" paramType="string(1,2)"/>
+	        		<inParam paramCode="dsfpbh" ignoreNull="1" paramName="地税发票编号" paramValue="dsfpbh" paramType="string(0,-1)"/>
+	        		<inParam paramCode="zfyzj" ignoreNull="0" paramName="支付月租金" paramValue="zfyzj" paramType="double(18,2)"/>
+	        		<inParam paramCode="fwjzmj" ignoreNull="1" paramName="房屋建筑面积" paramValue="fwjzmj" paramType="string(0,-1)"/>
+	        		<inParam paramCode="zlkssj" ignoreNull="0" paramName="租赁开始时间" paramValue="zlkssj" paramType="string(1,6)"/>
+	        		<inParam paramCode="zljssj" ignoreNull="0" paramName="租赁结束时间" paramValue="zljssj" paramType="string(1,6)"/>
+	        		<inParam paramCode="zlfwdz" ignoreNull="0" paramName="租赁房屋地址" paramValue="zlfwdz" paramType="string(1,255)"/>
+	        		<inParam paramCode="fwjzmj" ignoreNull="1" paramName="房屋建筑面积" paramValue="fwjzmj" paramType="string(0,-1)"/>
+	        		<inParam paramCode="czr" ignoreNull="0" paramName="出租人" paramValue="czr" paramType="string(1,120)"/>
+	        		<inParam paramCode="czrdh" ignoreNull="0" paramName="出租人电话" paramValue="czrdh" paramType="string(1,20)"/>
+	        		<inParam paramCode="czrzjlx" ignoreNull="0" paramName="出租人证件类型" paramValue="czrzjlx" paramType="string(1,2)"/>
+	        		<inParam paramCode="czrzjhm" ignoreNull="0" paramName="出租人证件号码" paramValue="czrzjhm" paramType="string(1,20)"/>
+	        		<inParam paramCode="tqyy" ignoreNull="0" paramName="提取原因" paramValue="tqyy" paramType="string(1,2)"/>
+	        		<inParam paramCode="tqje" ignoreNull="0" paramName="提取金额" paramValue="tqje" paramType="double(18,2)"/>
+	        		<inParam paramCode="jsfs" ignoreNull="0" paramName="结算方式" paramValue="jsfs" paramType="string(1,2)" />
+					<inParam paramCode="skrzhmc" ignoreNull="0" paramName="收款人账户名称" paramValue="skrzhmc" paramType="string(1,120)" />
+					<inParam paramCode="skrkhyh" ignoreNull="0" paramName="收款人开户银行" paramValue="skrkhyh" paramType="string(1,20)" />
+					<inParam paramCode="skrzhhm" ignoreNull="0" paramName="收款人账户号码" paramValue="skrzhhm" paramType="string(1,20)" />
+					<inParam paramCode="sjhm" ignoreNull="0" paramName="手机号码" paramValue="sjhm" paramType="string(1,11)"/>
+					<inParam paramCode="jymm" ignoreNull="0" paramName="交易密码" paramValue="jymm" paramType="string(0,-1)"/>
+        		</inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

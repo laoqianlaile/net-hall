@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranPLYC03" tranName="批量异常文件获取">
+        <comps>
+        	<comp compCode="CompPLYC03" compName="批量异常文件获取" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="instanceid" paramName="实例号" paramType="string(0,-1)" paramValue="_IS"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

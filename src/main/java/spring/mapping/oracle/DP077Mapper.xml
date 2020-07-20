@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yd.ish.dao.mybatis.DP077Mapper" >
+  <resultMap id="BaseResultMap" type="com.yd.ish.model.mybatis.DP077" >
+    <id column="SEQNO" property="seqno" jdbcType="INTEGER" />
+    <result column="DPBUSITYPE" property="dpbusitype" jdbcType="VARCHAR" />
+    <result column="TRANSDATE" property="transdate" jdbcType="DATE" />
+    <result column="UNITACCNUM1" property="unitaccnum1" jdbcType="VARCHAR" />
+    <result column="UNITACCNUM2" property="unitaccnum2" jdbcType="VARCHAR" />
+    <result column="UNITACCNAME1" property="unitaccname1" jdbcType="VARCHAR" />
+    <result column="UNITACCNAME2" property="unitaccname2" jdbcType="VARCHAR" />
+    <result column="ACCNUM1" property="accnum1" jdbcType="VARCHAR" />
+    <result column="ACCNUM2" property="accnum2" jdbcType="VARCHAR" />
+    <result column="ACCNAME1" property="accname1" jdbcType="VARCHAR" />
+    <result column="ACCNAME2" property="accname2" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
+    <result column="CERTITYPE" property="certitype" jdbcType="VARCHAR" />
+    <result column="CERTINUM" property="certinum" jdbcType="VARCHAR" />
+    <result column="BASENUM" property="basenum" jdbcType="DECIMAL" />
+    <result column="UNITPROP" property="unitprop" jdbcType="DECIMAL" />
+    <result column="INDIPROP" property="indiprop" jdbcType="DECIMAL" />
+    <result column="AMT1" property="amt1" jdbcType="DECIMAL" />
+    <result column="AMT2" property="amt2" jdbcType="DECIMAL" />
+    <result column="PEOPLENUM" property="peoplenum" jdbcType="INTEGER" />
+    <result column="BEGDATE" property="begdate" jdbcType="DATE" />
+    <result column="ENDDATE" property="enddate" jdbcType="DATE" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="ONYM" property="onym" jdbcType="VARCHAR" />
+    <result column="BEGYM" property="begym" jdbcType="VARCHAR" />
+    <result column="ENDYM" property="endym" jdbcType="VARCHAR" />
+    <result column="FUNDSOUFLAG" property="fundsouflag" jdbcType="VARCHAR" />
+    <result column="PROPTYPE" property="proptype" jdbcType="VARCHAR" />
+    <result column="PAYVOUNUM" property="payvounum" jdbcType="VARCHAR" />
+    <result column="PAYVOUAMT" property="payvouamt" jdbcType="DECIMAL" />
+    <result column="PAYVOUBANK" property="payvoubank" jdbcType="VARCHAR" />
+    <result column="INSTANCE" property="instance" jdbcType="INTEGER" />
+    <result column="AGENTINSTCODE" property="agentinstcode" jdbcType="VARCHAR" />
+    <result column="AGENTOP" property="agentop" jdbcType="VARCHAR" />
+    <result column="XMQP" property="xmqp" jdbcType="VARCHAR" />
+    <result column="SJHM" property="sjhm" jdbcType="VARCHAR" />
+    <result column="ZIP" property="zip" jdbcType="VARCHAR" />
+    <result column="JTZZ" property="jtzz" jdbcType="VARCHAR" />
+    <result column="JTYSR" property="jtysr" jdbcType="DECIMAL" />
+    <result column="HYZK" property="hyzk" jdbcType="VARCHAR" />
+    <result column="FREEUSE1" property="freeuse1" jdbcType="VARCHAR" />
+    <result column="FREEUSE2" property="freeuse2" jdbcType="DECIMAL" />
+    <result column="FREEUSE3" property="freeuse3" jdbcType="DATE" />
+    <result column="FREEUSE4" property="freeuse4" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SEQNO, DPBUSITYPE, TRANSDATE, UNITACCNUM1, UNITACCNUM2, UNITACCNAME1, UNITACCNAME2, ACCNUM1, ACCNUM2, 
+    ACCNAME1, ACCNAME2, SEX, BIRTHDAY, CERTITYPE, CERTINUM, BASENUM, UNITPROP, INDIPROP, 
+    AMT1, AMT2, PEOPLENUM, BEGDATE, ENDDATE, REASON, ONYM, BEGYM, ENDYM, FUNDSOUFLAG, 
+    PROPTYPE, PAYVOUNUM, PAYVOUAMT, PAYVOUBANK, INSTANCE, AGENTINSTCODE, AGENTOP, XMQP, 
+    SJHM, ZIP, JTZZ, JTYSR, HYZK, FREEUSE1, FREEUSE2, FREEUSE3, FREEUSE4
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from DP077
+    where SEQNO = #{seqno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from DP077
+    where SEQNO = #{seqno,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yd.ish.model.mybatis.DP077" >
+    insert into DP077 (SEQNO, DPBUSITYPE, TRANSDATE, 
+      UNITACCNUM1, UNITACCNUM2, UNITACCNAME1, UNITACCNAME2,
+      ACCNUM1, ACCNUM2, ACCNAME1, 
+      ACCNAME2, SEX, BIRTHDAY, 
+      CERTITYPE, CERTINUM, BASENUM, 
+      UNITPROP, INDIPROP, AMT1, 
+      AMT2, PEOPLENUM, BEGDATE, 
+      ENDDATE, REASON, ONYM, 
+      BEGYM, ENDYM, FUNDSOUFLAG, 
+      PROPTYPE, PAYVOUNUM, PAYVOUAMT, 
+      PAYVOUBANK, INSTANCE, AGENTINSTCODE, 
+      AGENTOP, XMQP, SJHM, 
+      ZIP, JTZZ, JTYSR, HYZK, 
+      FREEUSE1, FREEUSE2, FREEUSE3, 
+      FREEUSE4)
+    values (#{seqno,jdbcType=INTEGER}, #{dpbusitype,jdbcType=VARCHAR}, #{transdate,jdbcType=DATE}, 
+      #{unitaccnum1,jdbcType=VARCHAR}, #{unitaccnum2,jdbcType=VARCHAR}, #{unitaccname1,jdbcType=VARCHAR},  #{unitaccname2,jdbcType=VARCHAR},
+      #{accnum1,jdbcType=VARCHAR}, #{accnum2,jdbcType=VARCHAR}, #{accname1,jdbcType=VARCHAR}, 
+      #{accname2,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
+      #{certitype,jdbcType=VARCHAR}, #{certinum,jdbcType=VARCHAR}, #{basenum,jdbcType=DECIMAL}, 
+      #{unitprop,jdbcType=DECIMAL}, #{indiprop,jdbcType=DECIMAL}, #{amt1,jdbcType=DECIMAL}, 
+      #{amt2,jdbcType=DECIMAL}, #{peoplenum,jdbcType=INTEGER}, #{begdate,jdbcType=DATE}, 
+      #{enddate,jdbcType=DATE}, #{reason,jdbcType=VARCHAR}, #{onym,jdbcType=VARCHAR}, 
+      #{begym,jdbcType=VARCHAR}, #{endym,jdbcType=VARCHAR}, #{fundsouflag,jdbcType=VARCHAR}, 
+      #{proptype,jdbcType=VARCHAR}, #{payvounum,jdbcType=VARCHAR}, #{payvouamt,jdbcType=DECIMAL}, 
+      #{payvoubank,jdbcType=VARCHAR}, #{instance,jdbcType=INTEGER}, #{agentinstcode,jdbcType=VARCHAR}, 
+      #{agentop,jdbcType=VARCHAR}, #{xmqp,jdbcType=VARCHAR}, #{sjhm,jdbcType=VARCHAR}, 
+      #{zip,jdbcType=VARCHAR}, #{jtzz,jdbcType=VARCHAR}, #{jtysr,jdbcType=DECIMAL}, #{hyzk,jdbcType=VARCHAR}, 
+      #{freeuse1,jdbcType=VARCHAR}, #{freeuse2,jdbcType=DECIMAL}, #{freeuse3,jdbcType=DATE}, 
+      #{freeuse4,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yd.ish.model.mybatis.DP077" >
+    insert into DP077
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seqno != null" >
+        SEQNO,
+      </if>
+      <if test="dpbusitype != null" >
+        DPBUSITYPE,
+      </if>
+      <if test="transdate != null" >
+        TRANSDATE,
+      </if>
+      <if test="unitaccnum1 != null" >
+        UNITACCNUM1,
+      </if>
+      <if test="unitaccnum2 != null" >
+        UNITACCNUM2,
+      </if>
+      <if test="unitaccname1 != null" >
+        UNITACCNAME1,
+      </if>
+      <if test="unitaccname2 != null" >
+        UNITACCNAME2,
+      </if>
+      <if test="accnum1 != null" >
+        ACCNUM1,
+      </if>
+      <if test="accnum2 != null" >
+        ACCNUM2,
+      </if>
+      <if test="accname1 != null" >
+        ACCNAME1,
+      </if>
+      <if test="accname2 != null" >
+        ACCNAME2,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="certitype != null" >
+        CERTITYPE,
+      </if>
+      <if test="certinum != null" >
+        CERTINUM,
+      </if>
+      <if test="basenum != null" >
+        BASENUM,
+      </if>
+      <if test="unitprop != null" >
+        UNITPROP,
+      </if>
+      <if test="indiprop != null" >
+        INDIPROP,
+      </if>
+      <if test="amt1 != null" >
+        AMT1,
+      </if>
+      <if test="amt2 != null" >
+        AMT2,
+      </if>
+      <if test="peoplenum != null" >
+        PEOPLENUM,
+      </if>
+      <if test="begdate != null" >
+        BEGDATE,
+      </if>
+      <if test="enddate != null" >
+        ENDDATE,
+      </if>
+      <if test="reason != null" >
+        REASON,
+      </if>
+      <if test="onym != null" >
+        ONYM,
+      </if>
+      <if test="begym != null" >
+        BEGYM,
+      </if>
+      <if test="endym != null" >
+        ENDYM,
+      </if>
+      <if test="fundsouflag != null" >
+        FUNDSOUFLAG,
+      </if>
+      <if test="proptype != null" >
+        PROPTYPE,
+      </if>
+      <if test="payvounum != null" >
+        PAYVOUNUM,
+      </if>
+      <if test="payvouamt != null" >
+        PAYVOUAMT,
+      </if>
+      <if test="payvoubank != null" >
+        PAYVOUBANK,
+      </if>
+      <if test="instance != null" >
+        INSTANCE,
+      </if>
+      <if test="agentinstcode != null" >
+        AGENTINSTCODE,
+      </if>
+      <if test="agentop != null" >
+        AGENTOP,
+      </if>
+      <if test="xmqp != null" >
+        XMQP,
+      </if>
+      <if test="sjhm != null" >
+        SJHM,
+      </if>
+      <if test="zip != null" >
+        ZIP,
+      </if>
+      <if test="jtzz != null" >
+        JTZZ,
+      </if>
+      <if test="jtysr != null" >
+        JTYSR,
+      </if>
+      <if test="hyzk != null" >
+        HYZK,
+      </if>
+      <if test="freeuse1 != null" >
+        FREEUSE1,
+      </if>
+      <if test="freeuse2 != null" >
+        FREEUSE2,
+      </if>
+      <if test="freeuse3 != null" >
+        FREEUSE3,
+      </if>
+      <if test="freeuse4 != null" >
+        FREEUSE4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seqno != null" >
+        #{seqno,jdbcType=INTEGER},
+      </if>
+      <if test="dpbusitype != null" >
+        #{dpbusitype,jdbcType=VARCHAR},
+      </if>
+      <if test="transdate != null" >
+        #{transdate,jdbcType=DATE},
+      </if>
+      <if test="unitaccnum1 != null" >
+        #{unitaccnum1,jdbcType=VARCHAR},
+      </if>
+      <if test="unitaccnum2 != null" >
+        #{unitaccnum2,jdbcType=VARCHAR},
+      </if>
+      <if test="unitaccname1 != null" >
+        #{unitaccname1,jdbcType=VARCHAR},
+      </if>
+      <if test="unitaccname2 != null" >
+        #{unitaccname2,jdbcType=VARCHAR},
+      </if>
+      <if test="accnum1 != null" >
+        #{accnum1,jdbcType=VARCHAR},
+      </if>
+      <if test="accnum2 != null" >
+        #{accnum2,jdbcType=VARCHAR},
+      </if>
+      <if test="accname1 != null" >
+        #{accname1,jdbcType=VARCHAR},
+      </if>
+      <if test="accname2 != null" >
+        #{accname2,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="certitype != null" >
+        #{certitype,jdbcType=VARCHAR},
+      </if>
+      <if test="certinum != null" >
+        #{certinum,jdbcType=VARCHAR},
+      </if>
+      <if test="basenum != null" >
+        #{basenum,jdbcType=DECIMAL},
+      </if>
+      <if test="unitprop != null" >
+        #{unitprop,jdbcType=DECIMAL},
+      </if>
+      <if test="indiprop != null" >
+        #{indiprop,jdbcType=DECIMAL},
+      </if>
+      <if test="amt1 != null" >
+        #{amt1,jdbcType=DECIMAL},
+      </if>
+      <if test="amt2 != null" >
+        #{amt2,jdbcType=DECIMAL},
+      </if>
+      <if test="peoplenum != null" >
+        #{peoplenum,jdbcType=INTEGER},
+      </if>
+      <if test="begdate != null" >
+        #{begdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=DATE},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="onym != null" >
+        #{onym,jdbcType=VARCHAR},
+      </if>
+      <if test="begym != null" >
+        #{begym,jdbcType=VARCHAR},
+      </if>
+      <if test="endym != null" >
+        #{endym,jdbcType=VARCHAR},
+      </if>
+      <if test="fundsouflag != null" >
+        #{fundsouflag,jdbcType=VARCHAR},
+      </if>
+      <if test="proptype != null" >
+        #{proptype,jdbcType=VARCHAR},
+      </if>
+      <if test="payvounum != null" >
+        #{payvounum,jdbcType=VARCHAR},
+      </if>
+      <if test="payvouamt != null" >
+        #{payvouamt,jdbcType=DECIMAL},
+      </if>
+      <if test="payvoubank != null" >
+        #{payvoubank,jdbcType=VARCHAR},
+      </if>
+      <if test="instance != null" >
+        #{instance,jdbcType=INTEGER},
+      </if>
+      <if test="agentinstcode != null" >
+        #{agentinstcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agentop != null" >
+        #{agentop,jdbcType=VARCHAR},
+      </if>
+      <if test="xmqp != null" >
+        #{xmqp,jdbcType=VARCHAR},
+      </if>
+      <if test="sjhm != null" >
+        #{sjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="jtzz != null" >
+        #{jtzz,jdbcType=VARCHAR},
+      </if>
+      <if test="jtysr != null" >
+        #{jtysr,jdbcType=DECIMAL},
+      </if>
+      <if test="hyzk != null" >
+        #{hyzk,jdbcType=VARCHAR},
+      </if>
+      <if test="freeuse1 != null" >
+        #{freeuse1,jdbcType=VARCHAR},
+      </if>
+      <if test="freeuse2 != null" >
+        #{freeuse2,jdbcType=DECIMAL},
+      </if>
+      <if test="freeuse3 != null" >
+        #{freeuse3,jdbcType=DATE},
+      </if>
+      <if test="freeuse4 != null" >
+        #{freeuse4,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yd.ish.model.mybatis.DP077" >
+    update DP077
+    <set >
+      <if test="dpbusitype != null" >
+        DPBUSITYPE = #{dpbusitype,jdbcType=VARCHAR},
+      </if>
+      <if test="transdate != null" >
+        TRANSDATE = #{transdate,jdbcType=DATE},
+      </if>
+      <if test="unitaccnum1 != null" >
+        UNITACCNUM1 = #{unitaccnum1,jdbcType=VARCHAR},
+      </if>
+      <if test="unitaccnum2 != null" >
+        UNITACCNUM2 = #{unitaccnum2,jdbcType=VARCHAR},
+      </if>
+      <if test="unitaccname1 != null" >
+        UNITACCNAME1 = #{unitaccname1,jdbcType=VARCHAR},
+      </if>
+      <if test="unitaccname2 != null" >
+        UNITACCNAME2 = #{unitaccname2,jdbcType=VARCHAR},
+      </if>
+      <if test="accnum1 != null" >
+        ACCNUM1 = #{accnum1,jdbcType=VARCHAR},
+      </if>
+      <if test="accnum2 != null" >
+        ACCNUM2 = #{accnum2,jdbcType=VARCHAR},
+      </if>
+      <if test="accname1 != null" >
+        ACCNAME1 = #{accname1,jdbcType=VARCHAR},
+      </if>
+      <if test="accname2 != null" >
+        ACCNAME2 = #{accname2,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="certitype != null" >
+        CERTITYPE = #{certitype,jdbcType=VARCHAR},
+      </if>
+      <if test="certinum != null" >
+        CERTINUM = #{certinum,jdbcType=VARCHAR},
+      </if>
+      <if test="basenum != null" >
+        BASENUM = #{basenum,jdbcType=DECIMAL},
+      </if>
+      <if test="unitprop != null" >
+        UNITPROP = #{unitprop,jdbcType=DECIMAL},
+      </if>
+      <if test="indiprop != null" >
+        INDIPROP = #{indiprop,jdbcType=DECIMAL},
+      </if>
+      <if test="amt1 != null" >
+        AMT1 = #{amt1,jdbcType=DECIMAL},
+      </if>
+      <if test="amt2 != null" >
+        AMT2 = #{amt2,jdbcType=DECIMAL},
+      </if>
+      <if test="peoplenum != null" >
+        PEOPLENUM = #{peoplenum,jdbcType=INTEGER},
+      </if>
+      <if test="begdate != null" >
+        BEGDATE = #{begdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null" >
+        ENDDATE = #{enddate,jdbcType=DATE},
+      </if>
+      <if test="reason != null" >
+        REASON = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="onym != null" >
+        ONYM = #{onym,jdbcType=VARCHAR},
+      </if>
+      <if test="begym != null" >
+        BEGYM = #{begym,jdbcType=VARCHAR},
+      </if>
+      <if test="endym != null" >
+        ENDYM = #{endym,jdbcType=VARCHAR},
+      </if>
+      <if test="fundsouflag != null" >
+        FUNDSOUFLAG = #{fundsouflag,jdbcType=VARCHAR},
+      </if>
+      <if test="proptype != null" >
+        PROPTYPE = #{proptype,jdbcType=VARCHAR},
+      </if>
+      <if test="payvounum != null" >
+        PAYVOUNUM = #{payvounum,jdbcType=VARCHAR},
+      </if>
+      <if test="payvouamt != null" >
+        PAYVOUAMT = #{payvouamt,jdbcType=DECIMAL},
+      </if>
+      <if test="payvoubank != null" >
+        PAYVOUBANK = #{payvoubank,jdbcType=VARCHAR},
+      </if>
+      <if test="instance != null" >
+        INSTANCE = #{instance,jdbcType=INTEGER},
+      </if>
+      <if test="agentinstcode != null" >
+        AGENTINSTCODE = #{agentinstcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agentop != null" >
+        AGENTOP = #{agentop,jdbcType=VARCHAR},
+      </if>
+      <if test="xmqp != null" >
+        XMQP = #{xmqp,jdbcType=VARCHAR},
+      </if>
+      <if test="sjhm != null" >
+        SJHM = #{sjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        ZIP = #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="jtzz != null" >
+        JTZZ = #{jtzz,jdbcType=VARCHAR},
+      </if>
+      <if test="jtysr != null" >
+        JTYSR = #{jtysr,jdbcType=DECIMAL},
+      </if>
+      <if test="hyzk != null" >
+        HYZK = #{hyzk,jdbcType=VARCHAR},
+      </if>
+      <if test="freeuse1 != null" >
+        FREEUSE1 = #{freeuse1,jdbcType=VARCHAR},
+      </if>
+      <if test="freeuse2 != null" >
+        FREEUSE2 = #{freeuse2,jdbcType=DECIMAL},
+      </if>
+      <if test="freeuse3 != null" >
+        FREEUSE3 = #{freeuse3,jdbcType=DATE},
+      </if>
+      <if test="freeuse4 != null" >
+        FREEUSE4 = #{freeuse4,jdbcType=INTEGER},
+      </if>
+    </set>
+    where SEQNO = #{seqno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yd.ish.model.mybatis.DP077" >
+    update DP077
+    set DPBUSITYPE = #{dpbusitype,jdbcType=VARCHAR},
+      TRANSDATE = #{transdate,jdbcType=DATE},
+      UNITACCNUM1 = #{unitaccnum1,jdbcType=VARCHAR},
+      UNITACCNUM2 = #{unitaccnum2,jdbcType=VARCHAR},
+      UNITACCNAME1 = #{unitaccname1,jdbcType=VARCHAR},
+      UNITACCNAME2 = #{unitaccname2,jdbcType=VARCHAR},
+      ACCNUM1 = #{accnum1,jdbcType=VARCHAR},
+      ACCNUM2 = #{accnum2,jdbcType=VARCHAR},
+      ACCNAME1 = #{accname1,jdbcType=VARCHAR},
+      ACCNAME2 = #{accname2,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=DATE},
+      CERTITYPE = #{certitype,jdbcType=VARCHAR},
+      CERTINUM = #{certinum,jdbcType=VARCHAR},
+      BASENUM = #{basenum,jdbcType=DECIMAL},
+      UNITPROP = #{unitprop,jdbcType=DECIMAL},
+      INDIPROP = #{indiprop,jdbcType=DECIMAL},
+      AMT1 = #{amt1,jdbcType=DECIMAL},
+      AMT2 = #{amt2,jdbcType=DECIMAL},
+      PEOPLENUM = #{peoplenum,jdbcType=INTEGER},
+      BEGDATE = #{begdate,jdbcType=DATE},
+      ENDDATE = #{enddate,jdbcType=DATE},
+      REASON = #{reason,jdbcType=VARCHAR},
+      ONYM = #{onym,jdbcType=VARCHAR},
+      BEGYM = #{begym,jdbcType=VARCHAR},
+      ENDYM = #{endym,jdbcType=VARCHAR},
+      FUNDSOUFLAG = #{fundsouflag,jdbcType=VARCHAR},
+      PROPTYPE = #{proptype,jdbcType=VARCHAR},
+      PAYVOUNUM = #{payvounum,jdbcType=VARCHAR},
+      PAYVOUAMT = #{payvouamt,jdbcType=DECIMAL},
+      PAYVOUBANK = #{payvoubank,jdbcType=VARCHAR},
+      INSTANCE = #{instance,jdbcType=INTEGER},
+      AGENTINSTCODE = #{agentinstcode,jdbcType=VARCHAR},
+      AGENTOP = #{agentop,jdbcType=VARCHAR},
+      XMQP = #{xmqp,jdbcType=VARCHAR},
+      SJHM = #{sjhm,jdbcType=VARCHAR},
+      ZIP = #{zip,jdbcType=VARCHAR},
+      JTZZ = #{jtzz,jdbcType=VARCHAR},
+      JTYSR = #{jtysr,jdbcType=DECIMAL},
+      HYZK = #{hyzk,jdbcType=VARCHAR},
+      FREEUSE1 = #{freeuse1,jdbcType=VARCHAR},
+      FREEUSE2 = #{freeuse2,jdbcType=DECIMAL},
+      FREEUSE3 = #{freeuse3,jdbcType=DATE},
+      FREEUSE4 = #{freeuse4,jdbcType=INTEGER}
+    where SEQNO = #{seqno,jdbcType=INTEGER}
+  </update>
+</mapper>

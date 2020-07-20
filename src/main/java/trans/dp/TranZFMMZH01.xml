@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranZFMMZH01" tranName="支付密码找回">
+        <comps>
+            <comp compCode="CompZFMMZH01" compName="支付密码找回" expression="">
+                <inParams>
+                	<inParam ignoreNull="1" paramCode="yzfmm" paramName="原支付密码" paramType="string(0,-1)" paramValue="yzfmm"/>
+                    <inParam ignoreNull="0" paramCode="xzfmm" paramName="新支付密码" paramType="string(0,-1)" paramValue="xzfmm"/>
+                	<inParam ignoreNull="0" paramCode="qrxzfmm" paramName="确认新支付密码" paramType="string(0,-1)" paramValue="qrxzfmm"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

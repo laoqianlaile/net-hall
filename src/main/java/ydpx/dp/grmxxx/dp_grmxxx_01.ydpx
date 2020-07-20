@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+      <log editor="Y01115(离线)" edittime="2018-06-27 11:29:13"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+
+//校验开始日期结束日期大小关系
+	$('#c_ksrq').change(function(event) {
+		ydl.validator.clear();
+		if($('#c_ksrq').val() !="" && $('#c_jsrq').val()!=""){
+			if (!ydl.validator('c_ksrq',{silent: true, rule:$('#c_jsrq').val() >= $('#c_ksrq').val(),message:"开始日期不能大于结束日期！请重新输入"})) return false;
+		}
+	});
+	$('#c_jsrq').change(function(event) {
+		ydl.validator.clear();
+		if($('#c_jsrq').val() !="" && $('#c_ksrq').val()!=""){
+			if (!ydl.validator('c_jsrq',{silent: true, rule:$('#c_jsrq').val() >= $('#c_ksrq').val(),message:"结束日期不能小于开始日期！请重新输入"})) return false;
+		}
+	});
+
+	//设置可选择日期范围
+	$('#c_ksrq').datepicker({
+		forceParse: false,
+		endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+	});
+	//设置可选择日期范围
+	$('#c_jsrq').datepicker({
+		forceParse: false,
+		endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+	});
+
+	//关联两个日期控件的起止范围
+	$('#c_ksrq').datepicker('changeDate', function(date) {
+	    $('#c_jsrq').datepicker('setStartDate', date);
+	});
+	$('#c_jsrq').datepicker('changeDate', function(date) {
+	    $('#c_ksrq').datepicker('setEndDate', date);
+	});
+
+}
+
+//点击查询按钮，获取批量数据，刷新列表
+	$('#b_query').addIcon('search').click(function(event) {
+			var grzh = $("#c_grzh").val();
+			var zjhm = $("#c_zjhm").val();
+			var ksrq = $("#c_ksrq").val();
+			var jsrq = $("#c_jsrq").val();
+			var flag = false;
+			if(!grzh&&!zjhm){
+				flag = true;			
+			}
+			//校验个人账号、证件号码至少录入一项
+				if(flag){
+				    ydl.alert("个人账号、证件号码至少录入一项!");
+				    return false;
+				}else{
+					ydl.sendCommand('GRMXZCX',{"grzh":grzh,"zjhm":zjhm,"ksrq":ksrq,"jsrq":jsrq},function(data,code,msg){
+				    	if (code != '00000000') {
+							ydl.alert({'code':code, 'message':msg});
+						}else{
+						 	ydl.init.list('grjcbgmxlist', {}, thisTab);
+						}
+				    });
+			    }
+	});
+	
+
+//表单提交时执行
+thisTab.form_validate = function () {
+	return true;
+}
+
+]]></script>
+  </scripts>
+  <dataset>
+   <sql id="ds1" desc="查询列表数据" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="ds_biz"><![CDATA[
+    select Unitaccname1 as xingming, certinum as zjhm ,accnum1 as grzh,Transdate as jyrq,Peoplenum as bgrs, freeuse1 as zy, Amt1  as fse, Amt2 as ye,Unitaccname2 as jbjg, Reason as tqyy,
+    Jtzz as bz from dp077 where 1=1
+    	<if test="_IS != null">
+        	and instance= #{_IS, jdbcType=INTEGER}
+		</if>
+		<if test="ds1_order_by != null">
+          	order by ${ds1_order_by}
+        </if>
+	]]></sql>
+  </dataset>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form" layout="connect">
+
+      <component type="label" for="c_grzh">个人账号：</component>
+      <component id="c_grzh" type="input" subtype="text" readonly="false" fromdic="false"  />
+      <component type="label" for="c_zjhm">证件号码：</component>
+      <component id="c_zjhm" type="input" subtype="text" readonly="false" fromdic="false"  />
+      <component type="label" for="c_ksrq">开始日期：</component>
+      <component type="input" subtype="date" id="c_ksrq" required="false" fromdic="false" prefix="从" datatype="yyyy-mm-dd" maxlength="10"/>
+      <component type="label" for="c_jsrq">结束日期：</component>
+      <component type="input" subtype="date" id="c_jsrq" required="false" fromdic="false" prefix="至" datatype="yyyy-mm-dd" maxlength="10"/>
+    </container>
+    <container uid="container-c26495d672124a0880602dfe2be17737" type="box" layout="buttons" id="container-c26495d672124a0880602dfe2be17737">
+      <component id="b_query" type="button" subtype="button">查询</component>
+    </container>
+    <container uid="container-f140e53869eb4b628bae8ecd1a07fad8" type="list" layout="auto-height" cols="10" id="grjcbgmxlist" dataset="ds1"  allowexport="true" allowprint="true" caption="单位下个人明细账信息">
+      <listhead>
+		<component type="label" sortname="xingming">姓名</component>
+		<component type="label" sortname="grzh">个人账号</component>
+		<component type="label" sortname="zjhm">证件号码</component>
+        <component type="label" sortname="jyrq">交易日期</component>
+        <component type="label" sortname="fse">发生额</component>
+        <component type="label" sortname="ye">余额</component>
+        <component type="label" sortname="jbjg">经办机构</component>
+        <component type="label" sortname="tqyy">提取原因</component>
+        <component type="label" sortname="zy">摘要</component>
+        <component type="label" sortname="bz">备注</component>
+      </listhead>
+      <listbody>
+		<component type="plain">=ds1.xingming[#]</component>
+		<component type="plain">=ds1.grzh[#]</component>
+		<component type="plain">=ds1.zjhm[#]</component>
+        <component type="plain">=ds1.jyrq[#]</component>
+        <component type="plain" datatype="money">=ds1.fse[#]</component>
+        <component type="plain" datatype="money">=ds1.ye[#]</component>
+        <component type="plain">=ds1.jbjg[#]</component>
+        <component type="plain">=ds1.tqyy[#]</component>
+        <component type="plain">=ds1.zy[#]</component>
+        <component type="plain">=ds1.bz[#]</component>
+      </listbody>
+      <hidden/>
+    </container>
+  </containers>
+</page>

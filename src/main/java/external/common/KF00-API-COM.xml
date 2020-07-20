@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+    <interface id="KF00-API-COM-001"  tr_code="123456" system="99" des="公共发送短信">
+        <up>
+        	<pch des="批次号">=pch</pch>
+        	<yhbs des="用户标识">=yhbs</yhbs>
+        	<qdxx des="手机号">=sjh</qdxx>
+        	<mbbh des="模版编号">=mbbh</mbbh>
+        	<mbbl des="模版变量json格式">=mbbl</mbbl>
+        </up>
+    </interface>
+</interfaces>

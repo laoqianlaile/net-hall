@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="static/css/weui.min.css">
+  <script src="../lib/js/jquery-3.3.1-with-migrate-3.0.0.min.js"></script>
+  <script src="js/common.js"></script>
+  <title>提示</title>
+</head>
+<body>
+  <div class="wrap" id="app" v-cloak v-show="isshow">
+    <!-- <a href=""><img src="img/icon_fh.png" alt="" class="pic-return"></a> -->
+    <img src="img/pic_ch.png" alt="" class="pic-img">
+    <img src="img/wz.png" alt="" class="pic-word hide">
+    <img src="img/wz_no_url.png" alt="" class="pic-word-no-url-word">
+    <a href="javascript:;" class="download-btn hide" @click="download()"><img src="img/icon_xzapp.png" alt="" class="pic-download"></a>
+  
+    <div class="sharebg" @click="hideShare()" v-show="showShare"></div>
+    <img :src="shareUrl" class="shareImg" @click="hideShare()" v-show="showShare">
+  </div>
+
+
+  <script src="static/js/lib/vue.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="static/js/lib/weui.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="static/js/lib/zepto_1.2.0.js" type="text/javascript" charset="utf-8"></script>
+  <script src="static/js/base/base.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/downloadforqrcode.js"></script>
+</body>
+</html>

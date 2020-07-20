@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWMMZH01" tranName="单位登录密码找回">
+        <comps>
+            <comp compCode="CompDWMMZH01" compName="单位登录密码找回" expression="">
+                <inParams>
+               	    <inParam ignoreNull="0" paramCode="dwzh" paramName="单位账号" paramType="string(0,-1)" paramValue="dwzh"/>
+                	<inParam ignoreNull="0" paramCode="dwmc" paramName="单位名称" paramType="string(0,-1)" paramValue="dwmc"/>
+                    <inParam ignoreNull="0" paramCode="xdlmm" paramName="新登录密码" paramType="string(0,-1)" paramValue="xdlmm"/>
+                	<inParam ignoreNull="0" paramCode="qrxdlmm" paramName="确认新登录密码" paramType="string(0,-1)" paramValue="qrxdlmm"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

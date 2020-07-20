@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFYYSQ02" desc="预约查询" startPage="step1" endmessage="">
+    <config>
+        <flowvars>
+            <flowvar name="yysq01" desc="预约查询">common_yysq_05.ydpx</flowvar>
+        </flowvars>
+		<mudics>
+          	<mudic key="ish.gg.yy.yyggcs" desc="预约公共参数"></mudic>
+          	<mudic key="ish.gg.wf.qdm" desc="预约申请渠道"></mudic>
+          	<mudic key="ish.gg.yy.yysqzt" desc="预约状态"></mudic>
+          	<mudic key="ish.gg.yy.yyczzt" desc="预约操作状态"></mudic>
+          	<mudic key="ish.gg.other.sf" desc="是否"></mudic>
+        </mudics>
+        <subpages>
+			<subpage id="subpage01" desc="凭证补打展示页面" url="common_yysq_06.ydpx"></subpage>
+		</subpages>
+    </config>
+    <step id="step1" url="=_flowvar_yysq01" desc="预约查询" appflag="X"  buttonflag="" in="0" out="0">
+        <init>
+            <setvar name="pagetit">=_STEPNAME</setvar>
+        </init>
+    </step>
+</flow>

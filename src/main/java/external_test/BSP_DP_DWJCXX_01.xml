@@ -1,0 +1,22 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2018-05-29</tr_acdt>
+		<tr_time>2018-05-29 13:54:20</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<dwjcbl des="单位缴存比例">8</dwjcbl>
+		<grjcbl des="个人缴存比例">8</grjcbl>
+		<dwfcrs des="单位封存人数">5</dwfcrs>
+	</body>
+</root>

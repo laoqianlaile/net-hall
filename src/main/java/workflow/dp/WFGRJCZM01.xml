@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFGRJCZM01" desc="个人住房公积金缴存证明打印" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="个人住房公积金缴存证明打印">dp_grjczm_01.ydpx</flowvar> 
+          </flowvars>
+           <endpage>
+		      <init>		        
+		        <setvar name="_RESULT_PAGE_TITLE"><![CDATA[个人住房公积金缴存证明打印成功！]]></setvar>
+		      </init>
+		  </endpage> 
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="个人住房公积金缴存证明打印" appflag="X" buttonflag="l" in="1" out="0">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		     <buttons>
+          	 	<buttons id="l" text="完成" icon="ok"/>
+            </buttons>
+		</step>
+</flow>

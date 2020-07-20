@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWBJ05" tranName="获取单位最近一笔补缴信息">
+        <comps>
+        	<comp compCode="CompDWBJ05" compName="获取单位最近一笔补缴信息" expression="">
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="djh" paramName="登记号" paramType="string(0,-1)" paramValue="djh"/>
+                    <outParam ignoreNull="0" paramCode="ksny" paramName="开始年月" paramType="string(0,-1)" paramValue="ksny"/>
+					<outParam ignoreNull="0" paramCode="jzny" paramName="缴至年月" paramType="string(0,-1)" paramValue="jzny"/>
+					<outParam ignoreNull="0" paramCode="sjrs" paramName="实缴人数" paramType="string(0,-1)" paramValue="sjrs"/>
+                    <outParam ignoreNull="0" paramCode="yjrs" paramName="应缴人数" paramType="string(0,-1)" paramValue="yjrs"/>
+                    <outParam ignoreNull="0" paramCode="sjje" paramName="实缴金额" paramType="string(0,-1)" paramValue="sjje"/>
+                    <outParam ignoreNull="0" paramCode="yjje" paramName="应缴金额" paramType="string(0,-1)" paramValue="yjje"/>
+                    <outParam ignoreNull="0" paramCode="jclx" paramName="缴存类型" paramType="string(0,-1)" paramValue="jclx"/>
+                    <outParam ignoreNull="0" paramCode="jkfs" paramName="缴款方式" paramType="string(0,-1)" paramValue="jkfs"/>
+                    <outParam ignoreNull="0" paramCode="zchzrje" paramName="暂存款转入金额" paramType="string(0,-1)" paramValue="zchzrje"/>
+                    <outParam ignoreNull="0" paramCode="zchzcje" paramName="暂存款转出金额" paramType="string(0,-1)" paramValue="zchzcje"/>
+                    <outParam ignoreNull="0" paramCode="slrq" paramName="受理日期" paramType="string(0,-1)" paramValue="slrq"/>
+                    <outParam ignoreNull="0" paramCode="rzrq" paramName="入账日期" paramType="string(0,-1)" paramValue="rzrq"/>
+                    <outParam ignoreNull="0" paramCode="ywzt" paramName="业务状态" paramType="string(0,-1)" paramValue="ywzt"/>
+
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

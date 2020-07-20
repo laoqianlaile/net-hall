@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranJCJSTZ01" tranName="缴存基数调整">
+        <comps>
+        	 <comp compCode="CompJCJSTZ01" compName="获取缴存基数调低标志" expression="#flag=='hqtdflag'">
+            	 <inParams>
+               		<inParam ignoreNull="0" paramCode="dwzh" paramName="单位账号" paramType="string(1,30)" paramValue="dwzh"/>
+                </inParams>
+                <outParams>
+                	<outParam paramCode="tdflag" ignoreNull="0" paramName="缴存基数调低标志" paramValue="tdflag" paramType="string(0,-1)"/>
+                </outParams>
+            </comp>
+      	   <comp compCode="CompJCJSTZ02" compName="校验提交信息" expression="#flag=='jyxx'">
+            	 <inParams>
+               		<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+            </comp>
+            <comp compCode="CompJCJSTZ03" compName="提交缴存基数调整信息" expression="#flag=='tjxx'">
+                <inParams>
+               		<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+               		<inParam ignoreNull="0" paramCode="dwzh" paramName="单位账号" paramType="string(1,30)" paramValue="dwzh"/>
+                </inParams>
+                <outParams>
+                	<!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+             <comp compCode="CompJCJSTZ04" compName="获取月缴存额" expression="#flag=='hqyjce'">
+            	 <inParams>
+               		<inParam ignoreNull="0" paramCode="grzh" paramName="个人账号" paramType="string(0,-1)" paramValue="grzh"/>
+               		<inParam ignoreNull="0" paramCode="tzhgrjcjs" paramName="调整后个人缴存基数" paramType="string(0,-1)" paramValue="tzhgrjcjs"/>
+                </inParams>
+                  <outParams>
+               		<outParam ignoreNull="0" paramCode="tzdwyjce" paramName="调整后单位月缴存额" paramType="string(0,-1)" paramValue="tzdwyjce"/>
+               		<outParam ignoreNull="0" paramCode="tzgryjce" paramName="调整后个人月缴存额" paramType="string(0,-1)" paramValue="tzgryjce"/>
+               		<outParam ignoreNull="0" paramCode="tzhyjce" paramName="调整后月缴存额" paramType="string(0,-1)" paramValue="tzhyjce"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

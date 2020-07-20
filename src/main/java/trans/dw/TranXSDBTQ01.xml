@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranXSDBTQ01" tranName="享受低保提取">
+        <comps>
+			<comp compCode="CompXSDBTQ01" compName="校验并计算可提取金额" expression="#flag=='jsktqje'">
+				<inParams>
+					<inParam paramCode="grzh" ignoreNull="0" paramName="个人账号" paramValue="#getUserExtInfo('grzh')" paramType="string(1,20)"/>
+					<inParam paramCode="dbbh" ignoreNull="0" paramName="低保编号" paramValue="dbbh" paramType="string(0,-1)"/>
+				</inParams>
+				<outParams>
+					<outParam paramCode="ktqje" ignoreNull="1" paramName="可提取金额" paramValue="ktqje" paramType="double(18,2)"/>
+				</outParams>
+			</comp>
+            <comp compCode="CompXSDBTQ02" compName="享受低保提取提交" expression="#flag=='tjxx'">
+            	<inParams>
+            		<inParam paramCode="tqyy" ignoreNull="0" paramName="提取原因" paramValue="tqyy" paramType="string(0,-1)"/>
+            		<inParam paramCode="grzh" ignoreNull="1" paramName="个人账号" paramValue="#getUserExtInfo('grzh')" paramType="string(0,-1)"/>
+					<inParam paramCode="tqje" ignoreNull="0" paramName="提取金额" paramValue="tqje" paramType="double(18,2)" />
+					<inParam paramCode="gczj" ignoreNull="0" paramName="结算方式" paramValue="jsfs" paramType="string(0,-1)"/>
+					<inParam paramCode="skrzhmc" ignoreNull="0" paramName="收款人账户名称" paramValue="skrzhmc" paramType="string(1,120)" />
+					<inParam paramCode="skrkhyh" ignoreNull="0" paramName="收款人开户银行" paramValue="skrkhyh" paramType="string(1,20)" />
+					<inParam paramCode="skrzhhm" ignoreNull="0" paramName="收款人账户号码" paramValue="skrzhhm" paramType="string(1,20)" />
+            		<inParam paramCode="jymm" ignoreNull="0" paramName="交易密码" paramValue="jymm" paramType="string(0,-1)"/>
+            		<inParam paramCode="sjhm" ignoreNull="0" paramName="手机号码" paramValue="sjhm" paramType="string(0,11)"/>
+				</inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

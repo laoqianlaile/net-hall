@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHJYZJS" tranName="汇缴验证及试算">
+        <comps>
+            <comp compCode="CompSingleTransaction" compName="汇缴验证及试算" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getHJYZJS"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="汇缴验证及试算"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

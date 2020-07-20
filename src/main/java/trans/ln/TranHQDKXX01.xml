@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHQDKXX01" tranName="获取贷款信息">
+        <comps>
+            <comp compCode="CompHQDKXX01" compName="获取贷款信息" expression="">
+                <inParams>
+					<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                	<inParam ignoreNull="1" paramCode="jkhtbh" paramName="借款合同编号" paramType="string(1,30)" paramValue="jkhtbh"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="jgmc" paramName="机构名称" paramType="string(0,-1)" paramValue="jgmc"/>
+                	<outParam ignoreNull="1" paramCode="swtyhmc" paramName="受委托银行名称" paramType="string(0,-1)" paramValue="swtyhmc"/>
+                	<outParam ignoreNull="1" paramCode="jkrxm" paramName="借款人姓名" paramType="string(0,-1)" paramValue="jkrxm"/>
+                	<outParam ignoreNull="1" paramCode="jkrzjhm" paramName="借款人证件号码" paramType="string(0,-1)" paramValue="jkrzjhm"/>
+                	<outParam ignoreNull="1" paramCode="dkffrq" paramName="贷款发放日期" paramType="string(0,-1)" paramValue="dkffrq"/>
+                	<outParam ignoreNull="1" paramCode="dkffe" paramName="贷款发放额" paramType="string(0,-1)" paramValue="dkffe"/>
+                	<outParam ignoreNull="1" paramCode="dkqs" paramName="贷款期数" paramType="string(0,-1)" paramValue="dkqs"/>
+                	<outParam ignoreNull="1" paramCode="ydhkr" paramName="约定还款日" paramType="string(0,-1)" paramValue="ydhkr"/>
+                	<outParam ignoreNull="1" paramCode="dkhkfs" paramName="贷款还款方式" paramType="string(0,-1)" paramValue="dkhkfs"/>
+                	<outParam ignoreNull="1" paramCode="yhke" paramName="月还款额" paramType="string(0,-1)" paramValue="yhke"/>
+                	<outParam ignoreNull="1" paramCode="hkzh" paramName="还款账号" paramType="string(0,-1)" paramValue="hkzh"/>
+                	<outParam ignoreNull="1" paramCode="htzt" paramName="合同状态" paramType="string(0,-1)" paramValue="htzt"/>
+                	<outParam ignoreNull="1" paramCode="dkye" paramName="贷款余额" paramType="string(0,-1)" paramValue="dkye"/>
+                	<outParam ignoreNull="1" paramCode="dkll" paramName="贷款利率" paramType="string(0,-1)" paramValue="dkll"/>
+                	<outParam ignoreNull="1" paramCode="sfyq" paramName="是否逾期" paramType="string(0,-1)" paramValue="sfyq"/>
+                	<outParam ignoreNull="1" paramCode="yqbjze" paramName="逾期本金总额" paramType="string(0,-1)" paramValue="yqbjze"/>
+                	<outParam ignoreNull="1" paramCode="yqlxze" paramName="逾期利息总额" paramType="string(0,-1)" paramValue="yqlxze"/>
+                	<outParam ignoreNull="1" paramCode="fxze" paramName="罚息总额" paramType="string(0,-1)" paramValue="fxze"/>
+                	<outParam ignoreNull="1" paramCode="tqhj" paramName="拖欠合计" paramType="string(0,-1)" paramValue="tqhj"/>
+                	<outParam ignoreNull="1" paramCode="dqqc" paramName="当前期次" paramType="string(0,-1)" paramValue="dqqc"/>
+                	<outParam ignoreNull="1" paramCode="yddqrq" paramName="约定到期日期" paramType="string(0,-1)" paramValue="yddqrq"/>
+                	<outParam ignoreNull="1" paramCode="syqs" paramName="剩余期数" paramType="string(0,-1)" paramValue="syqs"/>
+                	<outParam ignoreNull="1" paramCode="xdqrq" paramName="现到期日期" paramType="string(0,-1)" paramValue="xdqrq"/>
+                	<outParam ignoreNull="1" paramCode="tqqbhkje" paramName="提前全部还款金额" paramType="string(0,-1)" paramValue="tqqbhkje"/>
+					<outParam ignoreNull="1" paramCode="kkrlx" paramName="扣款人类型" paramType="string(0,-1)" paramValue="kkrlx"/>
+                	<outParam ignoreNull="1" paramCode="kkrxm" paramName="扣款人姓名" paramType="string(0,-1)" paramValue="kkrxm"/>
+                	<outParam ignoreNull="1" paramCode="kkrzjhm" paramName="扣款人证件号码" paramType="string(0,-1)" paramValue="kkrzjhm"/>
+                	<outParam ignoreNull="1" paramCode="gtjkrxm" paramName="共同借款人姓名" paramType="string(0,-1)" paramValue="gtjkrxm"/>      
+                	<outParam ignoreNull="1" paramCode="zdhke" paramName="最低还款额" paramType="string(0,-1)" paramValue="zdhke"/>
+					<outParam ignoreNull="1" paramCode="dkzxll" paramName="贷款执行利率" paramType="string(0,-1)" paramValue="dkzxll"/>
+					<outParam ignoreNull="1" paramCode="htdkje" paramName="合同贷款金额" paramType="string(0,-1)" paramValue="htdkje"/>
+					<outParam ignoreNull="1" paramCode="yqbj" paramName="逾期本金" paramType="string(0,-1)" paramValue="yqbj"/>
+					<outParam ignoreNull="1" paramCode="yqlx" paramName="逾期利息" paramType="string(0,-1)" paramValue="yqlx"/>
+					<outParam ignoreNull="1" paramCode="whfx" paramName="未还罚息" paramType="string(0,-1)" paramValue="whfx"/>
+					<outParam ignoreNull="1" paramCode="yqzje" paramName="逾期总金额" paramType="string(0,-1)" paramValue="yqzje"/>
+					<outParam ignoreNull="1" paramCode="xcslx" paramName="新产生利息" paramType="string(0,-1)" paramValue="xcslx"/>
+					<outParam ignoreNull="1" paramCode="wdqbj" paramName="未到期本金" paramType="string(0,-1)" paramValue="wdqbj"/>
+					<!--ish04新增-->
+					<outParam ignoreNull="1" paramCode="hsbjze" paramName="回收本金总额" paramType="string(0,-1)" paramValue="hsbjze"/>
+				</outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

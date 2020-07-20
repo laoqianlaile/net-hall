@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="DKYS" desc="贷款预审" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+	<config>
+		<flowvars>
+			<flowvar name="ym01" desc="贷款预审1">dp_dkys_01.ydpx</flowvar>
+			<flowvar name="ym02" desc="贷款预审2">dp_dkys_02.ydpx</flowvar>
+			<flowvar name="ym03" desc="贷款预审3">dp_dkys_03.ydpx</flowvar>
+			<flowvar name="ym04" desc="贷款预审4">dp_dkys_04.ydpx</flowvar>
+			<flowvar name="ym05" desc="贷款预审5">dp_dkys_05.ydpx</flowvar>
+			<flowvar name="ym06" desc="贷款预审6">dp_dkys_06.ydpx</flowvar>
+			<flowvar name="ym07" desc="贷款预审结果">dp_dkys_07.ydpx</flowvar>
+		</flowvars>
+		<buttons>
+			<button id="A" text="返回首页" icon="home" url="/home"/> <!-- 可以改变系统提供的按钮上的文字和图标 -->
+		</buttons>
+		<title>=pagetit</title>
+	</config>
+	<step id="step1" url="=_flowvar_ym01" desc="贷款预审1" appflag="X" buttonflag="Ag" in="0" out="0">
+		<init>
+			<setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		</init>
+	</step>
+	<step id="step2" url="=_flowvar_ym02" desc="贷款预审2" appflag="X" buttonflag="Ag" in="0" out="0">
+		<init>
+			<setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		</init>
+	</step>
+	<step id="step3" url="=_flowvar_ym03" desc="贷款预审3" appflag="X" buttonflag="Ag" in="0" out="0">
+		<init>
+			<setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		</init>
+	</step>
+	<step id="step4" url="=_flowvar_ym04" desc="贷款预审4" appflag="X" buttonflag="Ag" in="0" out="0">
+		<init>
+			<setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		</init>
+	</step>
+	<step id="step5" url="=_flowvar_ym05" desc="贷款预审5" appflag="X" buttonflag="Ag" in="0" out="0">
+		<init>
+			<setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		</init>
+	</step>
+	<step id="step6" url="=_flowvar_ym06" desc="贷款预审6" appflag="X" buttonflag="Ag" in="0" out="0">
+		<init>
+			<setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		</init>
+	</step>
+	<step id="step7" url="=_flowvar_ym07" desc="贷款预审结果" appflag="X" buttonflag="A" in="0" out="0">
+		<init>
+			<setvar name="pagetit">=_STEPNAME</setvar>
+		</init>
+	</step>
+</flow>

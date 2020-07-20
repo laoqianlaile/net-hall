@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="个人账户明细查询"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-09-29 11:30:55"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	$('#startdate').val(ydl.dateAdd($('#enddate').val(), -1, 'y'));
+	//校验开始日期结束日期大小关系
+	$('#startdate').change(function(event) {
+		ydl.validator.clear();
+		if($('#startdate').val() !="" && $('#enddate').val()!=""){
+			if (!ydl.validator('startdate',{silent: true, rule:$('#enddate').val() >= $('#startdate').val(),message:"开始日期不能大于结束日期！请重新输入"})) return false;
+		}
+	});
+	$('#enddate').change(function(event) {
+		ydl.validator.clear();
+		if($('#enddate').val() !="" && $('#startdate').val()!=""){
+			if (!ydl.validator('enddate',{silent: true, rule:$('#enddate').val() >= $('#startdate').val(),message:"结束日期不能小于开始日期！请重新输入"})) return false;
+		}
+	});
+
+	//设置可选择日期范围
+	$('#startdate').datepicker({
+		forceParse: false,
+		endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+	});
+	//设置可选择日期范围
+	$('#enddate').datepicker({
+		forceParse: false,
+		endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+	});
+
+	//关联两个日期控件的起止范围
+	 $('#startdate').datepicker('changeDate', function(date) {
+	     $('#enddate').datepicker('setStartDate', date);
+	 });
+	 $('#enddate').datepicker('changeDate', function(date) {
+	     $('#startdate').datepicker('setEndDate', date);
+	 });
+	
+	//点击查询按钮，获取批量数据，刷新列表
+	$('#b_query').addIcon('search').click(function(event) {
+		if($('#startdate').val() !="" && $('#enddate').val()!=""){
+			if (!ydl.validator('startdate',{silent: true, rule:$('#enddate').val() >= $('#startdate').val(),message:"开始日期不能大于结束日期！请重新输入"})) return false;
+		}
+		var startdate = $("#startdate").val();
+	 	var enddate = $("#enddate").val();
+
+	    console.log(startdate)
+		ydl.sendCommand('cmdCX',{"startdate":startdate,"enddate":enddate},function(data,code,msg){
+	    	if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+			 	ydl.init.list('gjjmxlist', {}, thisTab);
+			}
+	    });
+	});
+}
+
+//表单提交时执行
+thisTab.form_validate = function () {
+	return true;
+}]]></script>
+  </scripts>
+  <dataset>
+    <sql id="ds1" desc="获取公积金账户明细信息" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="ds_biz"><![CDATA[
+    select seqno hh,accnum1 jyrq,accname1 grzh,unitaccname2 xm,payvounum ywlx,unitaccname1 fse,JTZZ ye,unitaccnum2 ksny,REASON zzny,AGENTOP bz,XMQP rzzt,ACCNUM2 jbr from dp077 where 1=1
+<if test="_IS != null">
+ 	and instance= #{_IS, jdbcType=INTEGER}
+</if>
+<if test="ds1_order_by != null">
+          	order by ${ds1_order_by}
+        </if>]]></sql>
+  </dataset>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form" layout="connect">
+      <component type="label" for="grzh">个人账号：</component>
+      <component type="plain" id="grzh">=getUserExtInfo('grzh')</component>
+
+      <component type="label" for="startdate">开始日期：</component>
+      <component id="startdate" type="input" subtype="date" datatype="yyyy-mm-dd" fromdic="false">=startdate</component>
+      <component type="label" for="enddate">结束时间：</component>
+      <component id="enddate" type="input" subtype="date" datatype="yyyy-mm-dd" fromdic="false">=@sysdate</component>
+    </container>
+    <container uid="container-03f1dd67eb1843a28108d15200eb5f51" type="box" layout="buttons" id="container-03f1dd67eb1843a28108d15200eb5f51">
+      <component type="button" subtype="button" id="b_query">查询</component>
+    </container>
+    <container uid="container-452fd43a3e45496fb074a428690dba16" type="list" layout="auto-height no-result-info" cols="12" id="gjjmxlist" dataset="ds1" caption="个人账户明细查询" allowexport="true" allowprint="flase">
+      <listhead>
+        <component type="label">序号</component>
+        <component type="label">交易日期</component>
+        <component type="label">个人账号</component>
+        <component type="label">姓名</component>
+        <component type="label">业务类型</component>
+        <component type="label">发生额</component>
+        <component type="label">余额</component>
+        <component type="label" >开始年月</component>
+        <component type="label">终止年月</component>
+        <component type="label">备注</component>
+        <component type="label">入账状态</component>
+        <component type="label">经办人</component>
+      </listhead>
+      <listbody>
+        <component type="plain" id="hh">=ds1._xh[#]</component>
+        <component type="plain" id="jyrq">=ds1.jyrq[#]</component>
+        <component type="plain" id="grzh1">=ds1.grzh[#]</component>
+        <component type="plain" id="xm">=ds1.xm[#]</component>
+        <component type="plain" id="ywlx">=ds1.ywlx[#]</component>
+        <component type="plain" id="fse">=ds1.fse[#]</component>
+        <component type="plain" id="ye">=ds1.ye[#]</component>
+        <component type="plain" id="ksny">=ds1.ksny[#]</component>
+        <component type="plain" id="zzny">=ds1.zzny[#]</component>
+        <component type="plain" id="bz">=ds1.bz[#]</component>
+        <component type="plain" id="rzzt">=ds1.rzzt[#]</component>
+        <component type="plain" id="jbr">=ds1.jbr[#]</component>
+      </listbody>
+
+    </container>
+  </containers>
+</page>

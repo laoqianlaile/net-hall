@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+      <log editor="武丹(离线)" edittime="2017-09-18 14:34:57"/>
+    </editlogs>
+  </info>
+  <styles>
+   	<style include="/common/css/yysq.css" />
+   	<style>
+   		#ct_form .panel-body {
+			padding: 0;
+		} 
+		#pageFlowButtons button{
+			background:#3e97df;
+			border-color:#3e97df;
+			color:#fff;
+		}
+   	</style>
+  </styles>
+  <scripts>
+  	 <script><![CDATA[//页面加载后执行
+   thisTab.pageOnload = function () {
+		$("#b_flow_g").hide();
+		//查询业务数据
+		var url = ydl.contexPath + '/yyManager/selectAllYw?_POOLKEY=' + poolSelect["_POOLKEY"];
+
+        console.log("url: "+url);
+		ydl.ajax(url, {}, function(data) {
+
+			//测试数据
+			var data = [
+				{gnlj: '', yycl: '3', ywms: '支取业务', ywmc: '支取业务', ywbh: '41', ywlch: '200', ywxsmc: '支取业务'}, 
+				{gnlj: '123', yycl: '2', ywms: '贷款业务', ywmc: '贷款业务', ywbh: '42', ywlch: '100', ywxsmc: '贷款业务'},
+				{gnlj: '123', yycl: '2', ywms: '56456', ywmc: '贷款业务', ywbh: '42', ywlch: '100', ywxsmc: '贷款业务'},
+				{gnlj: '123', yycl: '2', ywms: '贷款业务', ywmc: '贷款业务', ywbh: '42', ywlch: '100', ywxsmc: '贷款业务'},
+				{gnlj: '123', yycl: '2', ywms: 'dfdssgdsg', ywmc: '贷款业务', ywbh: '42', ywlch: '100', ywxsmc: '贷款业务'},
+				{gnlj: '123', yycl: '2', ywms: '', ywmc: '贷款业务', ywbh: '42', ywlch: '100', ywxsmc: '贷款业务'},
+				{gnlj: '123', yycl: '2', ywms: '贷款业务', ywmc: '贷款业务', ywbh: '42', ywlch: '100', ywxsmc: '贷款业务'},
+				{gnlj: '123', yycl: '2', ywms: '', ywmc: '贷款业务', ywbh: '42', ywlch: '100', ywxsmc: '贷款业务'}
+			];
+
+			     
+			//卡片信息
+			var content = $.map(data, function (item) {
+				var yyclmc = ydl.mudic.getName('ish.gg.yy.yyywblcl.' + item.yycl);
+				item['yyclmc'] = yyclmc;
+				var subdata = JSON.stringify(item);
+		        return '<div class="card" data-id=' + item.ywbh + ' data-item=' + subdata + '>' +
+		          '<div class="card-ywmc">' + item.ywxsmc + '</div>' +
+		          '<div class="card-yycl">' + yyclmc + '</div>' +
+		        '</div>';
+		    }).join('');
+		    
+		    //全部信息
+		    var html = '<div class="yyyw-title">请点击卡片，选择您要预约的业务！</div>' + 
+		    	'<div class="yyyw-cards pull-left">' + content + '</div>' +
+		    	'<div class="yyyw-info pull-left">' +
+		    		'<div class="default">' +
+			    		'<span class="default-img"></span>' +
+			    		'<div class="default-title">当前无提示信息</div>' +
+			    		'<div class="default-info">业务的提示信息会在这里显示！</div>' +
+		    		'</div>' +
+		    		'<div class="tip">' +
+		    			'<div class="tip-title">' +
+		    				'<span class="glyphicon glyphicon-exclamation-sign tip-img"></span>' +
+		    				'<span class="tip-title-info">温馨提示：</span>' +
+		    				'<div class="tip-title-desc">请仔细查看预约业务提示</div>' +
+		    			'</div>' +
+			    		'<div class="tip-info"></div>' +
+		    		'</div>' +
+		    	'</div>';
+		    $('#ct_form>.panel-body').append(html);
+		    
+		    //设置默认网点
+		    var ywbh = poolSelect['ywbh'];
+		    if(ywbh && ywbh.length > 0) selectCard($('.card[data-id="' + ywbh + '"]'));
+		});
+	    
+	    //选中卡片事件
+	    $('body').on('click', '.card', function() {
+	    	selectCard($(this));
+	    });
+	    
+	    //“取消”按钮事件
+		$("#b_flow_C").click(function(){
+			ydl.customDialog({
+				title:"确认提示",
+				text:"确定要放弃预约操作？",
+				buttons:"确定,取消",
+				callback:function(button){
+					switch (button) {
+						case 0: location.href = ydl.contexPath + '/home';break;
+	    				case 1: break;
+					};
+				}
+			});
+		});
+	    
+	    //选中卡片函数
+	    function selectCard($this) {
+	    	if(!$this.hasClass('selected')) {
+	    		//添加选中样式
+	    		$('#ct_form>.panel-body').find('.card.selected').find('.select-img').remove();
+	    		$('#ct_form>.panel-body').find('.card.selected').removeClass('selected');
+	    		$this.addClass('selected');
+	    		$this.append('<div class="select-img"></div>');
+	    		//赋值
+	    		var item = $this.data('item');
+	    		var ywms = item.ywms;
+	    		$('#ywbh').val(item.ywbh);
+	    		$('#ywlch').val(item.ywlch);
+	    		$('#ywxsmc').val(item.ywxsmc);
+	    		$('#gnlj').val(item.gnlj);
+	    		$('#ywms').val(ywms); 
+	    		//显示描述
+	    		if(ywms && ywms.length > 0) { 
+	    			$('.default').hide();
+	    			$('.tip').show().find('.tip-info').html(ywms);
+	    		}
+	    		else {
+	    			$('.default').show();
+	    			$('.tip').hide().find('.tip-info').html('');
+	    		}
+	    	}
+	    }
+	}
+	
+	$("#b_flow_G").click(function(){
+		//判断是否选择，未选择则不继续
+		if ($('#ywbh').val() == '') {
+			ydl.alert('请选择您要预约的业务。');
+			return false;
+		};
+		// 校验选择的预约业务
+		ydl.sendCommand('checkYyyw',{},function(data,code,msg){
+	    	if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+				return false;
+			}else{
+			   if ($('#gnlj').val() != '') {
+				  ydl.customDialog({
+					title:"确认提示",
+					text:"该业务需要录入业务信息，是否继续？",
+					buttons:"确定,取消",
+					callback:function(button){
+						switch (button) {
+							case 0: ydl.go(ydl.contexPath+$('#gnlj').val()+"?key="+$('#ywbh').val());
+									  break;
+		    				case 1: break;
+						};
+					}
+				 });
+			   }else{
+			   		$("#b_flow_g").click();
+			   }
+			}
+		});
+	});
+	//表单提交时执行
+	thisTab.form_validate = function () {
+	    return true;
+	}
+	]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form"></container>
+    <container uid="container-7cbec035706348f0afe24953b4f3c995" type="hidden" id="container-7cbec035706348f0afe24953b4f3c995">
+      <component id="ywbh" type="hidden">=ywbh</component>
+      <component id="ywlch" type="hidden">=ywlch</component>
+      <component id="ywxsmc" type="hidden">=ywxsmc</component>
+      <component id="gnlj" type="hidden">=gnlj</component>
+      <component id="ywms" type="hidden">=ywms</component>
+    </container>
+  </containers>
+</page>

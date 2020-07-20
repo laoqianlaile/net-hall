@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0402" version="2.0" formaction="">
+  <info>
+    <description title="个人详细信息"></description>
+    <editlogs>
+      <log editor="王赫" edittime="2018-01-24 15:08:32"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[
+    //页面加载后执行 
+	thisTab.pageOnload=function() {
+	    $("#grjcjs").text(poolSelect['grjcjs']=="" ? "" : ydl.addComma(poolSelect['grjcjs']) + " 元");
+	    $("#jtysr").text(poolSelect['jtysr']=="" ? "" : ydl.addComma(poolSelect['jtysr']) + " 元");
+	    $("#dwyjce").text(poolSelect['dwyjce']=="" ? "" : ydl.addComma(poolSelect['dwyjce']) + " 元");
+	    $("#gryjce").text(poolSelect['gryjce']=="" ? "" : ydl.addComma(poolSelect['gryjce']) + " 元");
+	    $("#yjce").text(poolSelect['yjce']=="" ? "" : ydl.addComma(poolSelect['yjce']) + " 元");
+	    $("#grzhye").text(poolSelect['grzhye']=="" ? "" : ydl.addComma(poolSelect['grzhye']) + " 元");
+	    $("#djje").text(poolSelect['djje']=="" ? "" : ydl.addComma(poolSelect['djje']) + " 元");
+        $("#dwjcbl").text(poolSelect['dwjcbl']=="" ? "" : poolSelect['dwjcbl']+ " %");
+	    $("#grjcbl").text(poolSelect['grjcbl']=="" ? "" : poolSelect['grjcbl'] + " %");
+	}
+	
+    //表单提交时执行
+    thisTab.form_validate=function(){
+	   return true;
+    }
+
+]]></script>
+  </scripts>
+  <ajax/>
+  <containers>
+     <container type="table" id="ct_form" cols="4" uid="ct_form" layout="connect">
+      <component type="label">个人账号：</component>
+      <component id="grzh" type="plain" subtype="text" required="false" fromdic="false">=grzh</component>
+      <component type="label">姓名：</component>
+      <component id="xingming" type="plain" subtype="text" required="false" fromdic="false">=xingming</component>
+      <component type="label">是否实名认证：</component>
+      <component id="sfsmrz" type="plain" subtype="text" required="false" fromdic="false">=getMulData("ish.gg.other.sf",sfsmrz)</component>
+      <component type="label">性别：</component>
+      <component id="xb" type="plain" subtype="text" required="false" fromdic="false">=getMulData("bsp.pb.sex",xingbie)</component>
+      <component type="label">证件类型：</component>
+      <component id="zjlx" type="plain" subtype="text" required="false" fromdic="false">=getMulData("ish.gg.user.zjlx",zjlx)</component>
+      <component type="label">证件号码：</component>
+      <component id="zjhm" type="plain" subtype="text" required="false" fromdic="false">=zjhm</component>
+      <component type="label">户籍：</component>
+      <component id="hj" type="plain" subtype="text" required="false" fromdic="false">=getMulData("bsp.pb.hj",hj)</component>
+      <component type="label">固定电话号码：</component>
+      <component id="gddhhm" type="plain" subtype="text" required="false" fromdic="false">=gddhhm</component>
+      <component type="label">手机号码：</component>
+      <component id="sjhm" type="plain" subtype="text" required="false" fromdic="false">=sjhm</component>
+      <component type="label">出生年月：</component>
+      <component id="csny" type="plain" subtype="text" required="false" fromdic="false">=csny</component>
+      <component type="label">婚姻状况：</component>
+      <component id="hyzk" type="plain" subtype="text" required="false" fromdic="false">=getMulData("bsp.pb.hyzk",hyzk)</component>
+      <component type="label">职业：</component>
+      <component id="zy" type="plain" subtype="text" required="false" fromdic="false">=getMulData("bsp.pb.occupation",zhiye)</component>
+      <component type="label">职称：</component>
+      <component id="zc" type="plain" subtype="text" required="false" fromdic="false">=getMulData("bsp.pb.techpost",zhichen)</component>
+      <component type="label">职务：</component>
+      <component id="zw" type="plain" subtype="text" required="false" fromdic="false">=getMulData("bsp.pb.headship",zhiwu)</component>
+      <component type="label">学历：</component>
+      <component id="xl" type="plain" subtype="text" required="false" fromdic="false">=getMulData("bsp.pb.xueli",xueli)</component>
+      <component type="label">邮政编码：</component>
+      <component id="yzbm" type="plain" subtype="text" required="false" fromdic="false">=yzbm</component>
+      <component type="label">家庭住址：</component>
+      <component id="jtzz" type="plain" subtype="text" required="false" fromdic="false">=jtzz</component>
+      <component type="label">家庭月收入：</component>
+      <component id="jtysr" type="plain" subtype="text" required="false" fromdic="false" >=jtysr</component>
+      <component type="label">开户银行名称：</component>
+      <component id="khyhmc" type="plain" subtype="text" required="false" fromdic="false">=khyhmc</component>
+      <component type="label">开户银行账号：</component>
+      <component id="khyhzh" type="plain" subtype="text" required="false" fromdic="false">=khyhzh</component>
+      <component type="label">单位账号：</component>
+      <component id="dwzh" type="plain" subtype="text" required="false" fromdic="false">=dwzh</component>
+      <component type="label">单位名称：</component>
+      <component id="dwmc" type="plain" subtype="text" required="false" fromdic="false">=dwmc</component>
+      <component type="label">个人缴存基数：</component>
+      <component id="grjcjs" type="plain" subtype="text" required="false" fromdic="false" >=grjcjs</component>
+      <component type="label">单位缴存比例：</component>
+      <component id="dwjcbl" type="plain" subtype="text" required="false" fromdic="false">=dwjcbl</component>
+      <component type="label">个人缴存比例：</component>
+      <component id="grjcbl" type="plain" subtype="text" required="false" fromdic="false">=grjcbl</component>
+      <component type="label">单位月缴存额：</component>
+      <component id="dwyjce" type="plain" subtype="text" required="false" fromdic="false" >=dwyjce</component>
+      <component type="label">个人月缴存额：</component>
+      <component id="gryjce" type="plain" subtype="text" required="false" fromdic="false" >=gryjce</component>
+      <component type="label">月缴存额：</component>
+      <component id="yjce" type="plain" subtype="text" required="false" fromdic="false" >=yjce</component>
+      <component type="label">个人账户余额：</component>
+      <component id="grzhye" type="plain" subtype="text" required="false" fromdic="false" >=grzhye</component>
+      <component type="label">缴至年月：</component>
+      <component id="jzny" type="plain" subtype="text" required="false" fromdic="false">=jzny</component>
+      <component type="label">开户日期：</component>
+      <component id="khrq" type="plain" subtype="text" required="false" fromdic="false">=khrq</component>
+      <component type="label">个人账户状态：</component>
+      <component id="grzhzt" type="plain" subtype="text" required="false" fromdic="false">=getMulData("bsp.dp.grzhzt",grzhzt)</component>
+      <component type="label">个人冻结标志：</component>
+      <component id="grdjbz" type="plain" subtype="text" required="false" fromdic="false">=grdjbz</component>
+      <component type="label">冻结金额：</component>
+      <component id="djje" type="plain" subtype="text" required="false" fromdic="false">=djje</component>
+      <component type="label">账户机构：</component>
+      <component id="zhjg" type="plain" subtype="text" required="false" fromdic="false">=zhjg</component>
+      <component type="label">最近缴存日期：</component>
+      <component id="zjjcrq" type="plain" subtype="text" required="false" fromdic="false">=zjjcrq</component>
+      <component type="label">最近提取日期：</component>
+      <component id="zjtqrq" type="plain" subtype="text" required="false" fromdic="false">=zjtqrq</component>
+      <component type="label">提取次数：</component>
+      <component id="tqcs" type="plain" subtype="text" required="false" fromdic="false">=tqcs</component>
+      <component type="label">贷款次数：</component>
+      <component id="dkcs" type="plain" subtype="text" required="false" fromdic="false">=dkcs</component>
+    </container>
+  </containers>
+</page>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<page template="0301" version="1.0" formaction="">
+  <info>
+    <description title="个人贷款基本信息查询"/>
+    <editlogs>
+      <log editor="ypf" edittime="2020-03-26"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+function pageOnload() {
+	$('#datalist1').addClass('nowrap');
+	query();
+
+}
+
+//表单提交时执行
+function form_validate() {
+	return true;
+}
+
+//还款明细条件查询
+function query() {
+
+	var data=ydl.workflow.sendCommand({flag:1},true);
+	if (data != null){
+			ydl.init.dataList({ id: 'datalist1'}, 'refresh');
+	}
+	var dups = getAllPers();
+	if( dups.length == 0 ){
+		alert( '此条件还款明细信息不存在！' );
+		return false;
+	}
+
+
+}
+
+function datalist_callback_datalist1(rows){
+
+	//需要增加链接的字段
+	var colindex = [
+		['3','/subPage.summer?_PAGEID=step2&_PROCID=70000003','&xingming2~3']
+	];
+	$(rows).filter(':gt(0)').each(function(){
+			var $rows = $(this);
+			$.each(colindex,function(i){
+				$rows.find('td:eq('+colindex[i][0]+') > span').wrap(function(){
+					var conditions = colindex[i][2];
+					var arr = conditions.split(/&{1}[a-z0-9]+~{1}/g);
+					if(arr.length>0){
+						for(var xx =0;xx<arr.length;xx++){
+							if(arr[xx])
+							conditions = conditions.replace(new String('~'+arr[xx]),new String('='+$rows.find('td:eq('+arr[xx]+')').text()));
+						}
+					}
+					return '<a href=javascript:openW1("'+ydl.contexPath+''+colindex[i][1]+''+conditions+'") ></a>';
+				});
+			});
+	});
+}
+
+function openW1(url){
+	ydl.openWindow(url,{height:600,width:1000});
+}
+
+function getAllPers(){
+	var pers = [];
+	$( '#datalist1 tr:gt(0)' ).each(function(){
+		var tr = $( this );
+		var idx = tr.index();
+		var p = {};
+		lo( tr.html(), 'red' );
+		p.begindate = $.trim( tr.getCell( 'begindate', 'input' ).val() );
+		p.index = idx;
+		pers.push( p );
+	});
+	return pers;
+}
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container uid="container-15fff37da92c42f8918b4888fa355c7f" type="box" layout="fit" id="dtl_list">
+      <component id="datalist1" type="datalist" paging="true" layout="fit" caption="" allowinsert="false" allowupdate="false" allowdelete="false" allowprint="true" pagesize="10" version="1" searchbox="false" compatible="0" showrowid="true" dialogedit="0" allowexport="true" allowimport="false" saveimportfile="false" clearbeforeimport="true" template="false">
+        <columns>
+          <col id="grzh" desc="个人账号" coltype="1" hidden="false" required="false" ischar="false" datatype="int" dict="none" sort="false" negative="false"/>
+          <col id="xingming2" desc="借款合同编号" coltype="1" hidden="false" required="false" ischar="false" datatype="validchar" dict="none" sort="false" negative="false"/>
+          <col id="begym" desc="结清标志" coltype="1" hidden="true" required="false" ischar="false" datatype="validchar" dict="none" sort="false" negative="false"/>
+          <col id="endym" desc="合同状态" coltype="1" hidden="false" required="false" ischar="false" datatype="validchar" dict="dynamic" datasource="workflow.cfg.xml" sort="false" negative="false">="select itemid, itemval from multileveldic where typeid='loancontrstate' and p_level=2 and status='1'"</col>
+          <col id="xingming" desc="贷款经办银行" coltype="1" hidden="false" required="false" ischar="false" datatype="validchar" dict="none" sort="false" negative="false"/>
+          <col id="amt1" desc="贷款金额" coltype="1" hidden="false" required="false" ischar="false" datatype="money" dict="none" sort="false" negative="false"/>
+          <col id="amt2" desc="本金合计" coltype="1" hidden="true" required="false" ischar="false" datatype="money" dict="none" sort="false" negative="false"/>
+          <col id="amt3" desc="利息合计" coltype="1" hidden="true" required="false" ischar="false" datatype="money" dict="none" sort="false" negative="false"/>
+          <col id="amt4" desc="罚息合计" coltype="1" hidden="true" required="false" ischar="false" datatype="money" dict="none" sort="false" negative="false"/>
+          <col id="grjcjs" desc="还款总额" coltype="1" hidden="true" required="false" ischar="false" datatype="money" dict="none" sort="false" negative="false"/>
+          <col id="payvouamt" desc="本金余额" coltype="1" hidden="false" required="false" ischar="false" datatype="money" dict="none" sort="false" negative="false"/>
+          <col id="transdate" desc="借款日期" coltype="1" hidden="false" required="false" ischar="false" datatype="date" dict="none" sort="false" negative="false"/>
+          <col id="instancenum" desc="实例号" coltype="3" hidden="true" required="false" ischar="false" datatype="int" dict="none" sort="false" negative="false"/>
+        </columns>
+        <sqls datasource="workflow.cfg.xml">
+          <sql type="insert">=""</sql>
+          <sql type="select">="select grzh, xingming2, begym, endym, xingming, amt1, amt2, amt3, amt4, grjcjs, payvouamt, instancenum,transdate from dp077 where instancenum="+_IS+" order by peoplenum"</sql>
+          <sql type="update">=""</sql>
+          <sql type="delete">=""</sql>
+        </sqls>
+      </component>
+    </container>
+    <container uid="container-08f3e4f78b4f47dc99953675f2c24c0b" type="hidden" id="container-08f3e4f78b4f47dc99953675f2c24c0b">
+      <component id="accnum" type="hidden">=_ACCNUM</component>
+      <component id="zjhm" type="hidden">=_DEPUTYIDCARDNUM</component>
+    </container>
+  </containers>
+</page>

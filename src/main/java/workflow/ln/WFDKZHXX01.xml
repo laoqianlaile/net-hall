@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFDKZHXX01" desc="公积金贷款账户信息" startPage="step1" endurl="" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="公积金贷款账户信息">ln_dkzhxx_01.ydpx</flowvar>
+          </flowvars>
+          <mudics>
+          	  <mudic key="bsp.ln.loancontrstate" desc="合同状态"></mudic>
+          	  <mudic key="bsp.pb.validflag" desc="是否"></mudic>
+          </mudics>
+          <buttons>
+           <buttons id="A" text="返回首页" icon="home" url="/home"/>
+          </buttons>
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="公积金贷款账户信息" appflag="X" buttonflag="A" inCause="getPoolValue('a','NO')=='NO'" in="1" out="0">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		</step>
+</flow>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranDLHQCD01" tranName="登录获取菜单">
+        <comps>
+            <comp compCode="CompDLHQCD01" compName="获取角色都有哪些菜单" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="rolecodes" paramName="角色编号 多个用 ; 隔开" paramType="string(0,-1)" paramValue="rolecodes"/>
+                    <inParam ignoreNull="0" paramCode="systemtype" paramName="所属子系统" paramType="string(0,-1)" paramValue="systemtype"/>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="json" paramName="json数据" paramType="string(0,-1)" paramValue="json"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

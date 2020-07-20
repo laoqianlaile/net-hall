@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranJCJSBG1" tranName="缴存基数变更">
+        <comps>
+            <comp compCode="CompBatchPostTransaction" compName="缴存基数变更" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getJCJSBG1"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="缴存基数变更"/>
+                    <inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant"
+                             paramValue="dp077:dp077,GRZH:unitaccnum1,XINGMING2:unitaccname2,ZJHM:unitaccname1,DWZH2:certinum,INSTANCE:instance,AGENTINSTCODE:agentinstcode,AGENTOP:agentop,SEQNO:seqno,GRJCJS:accname2,AMT1:accnum2,AMT2:freeuse1,PAYVOUAMT:unitaccnum2,FREEUSE1:accnum1,FREEUSE2:accname1,DWMC:reason,DPBUSITYPE:dpbusitype,TRANSDATE:jyrq,INSTANCE:instance,XINGMING:unitaccname2"/>
+                    <inParam ignoreNull="1" paramCode="fileField" paramName="上传文件字段名" paramType="constant"
+                             paramValue="file"/>
+                    <inParam ignoreNull="1" paramCode="batchDataListId" paramName="批量列表id" paramType="constant"
+                             paramValue="JSBGList"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

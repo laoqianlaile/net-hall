@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDKSQ02" tranName="贷款申请">
+        <comps>
+            <comp compCode="CompDKSQ20" compName="校验贷款资质" expression="#flag=='outstep1'">
+            	<inParams>
+            		<inParam ignoreNull="0" paramCode="grzh" paramName="个人账号" paramType="string(0,-1)" paramValue="grzh"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompDKSQ01" compName="获取登录人的个人信息" expression="#flag=='instep2'">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+            </comp>
+            <comp compCode="CompDKSQ07" compName="获取全部支行" expression="#flag=='instep2'">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+            </comp>
+            <comp compCode="CompDKSQ05" compName="获取贷款利率参数" expression="#flag=='instep2'">
+                <outParams>
+                    <outParam ignoreNull="1" paramCode="downFiveRate" paramName="五年以下利率" paramType="string(0,-1)" paramValue="downFiveRate"/>
+                    <outParam ignoreNull="1" paramCode="upFiveRate" paramName="五年以上利率" paramType="string(0,-1)" paramValue="upFiveRate"/>
+                    <outParam ignoreNull="1" paramCode="llfdbl" paramName="利率浮动比例" paramType="string(0,-1)" paramValue="llfdbl"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

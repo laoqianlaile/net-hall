@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDKSFTQ01" tranName="贷款首付提取">
+        <comps>
+			<comp compCode="CompDKSFTQ01" compName="计算可提取金额" expression="#flag=='jsktqje'">
+				<inParams>
+					<inParam paramCode="grzh" ignoreNull="0" paramName="个人账号" paramValue="#getUserExtInfo('grzh')" paramType="string(1,20)"/>
+					<inParam paramCode="jkhtbh" ignoreNull="0" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(0,-1)"/>
+					<inParam paramCode="ygfrgx" ignoreNull="0" paramName="与购房人关系" paramValue="ygfrgx" paramType="string(1,2)" />
+					<inParam paramCode="gfrxm" ignoreNull="0" paramName="购房人姓名" paramValue="gfrxm" paramType="string(0,-1)"/>
+					<inParam paramCode="gfrzjlx" ignoreNull="0" paramName="购房人证件类型" paramValue="gfrzjlx" paramType="string(0,-1)"/>
+					<inParam paramCode="gfrzjhm" ignoreNull="0" paramName="购房人证件号码" paramValue="gfrzjhm" paramType="string(0,-1)"/>
+					<inParam paramCode="fkrq" ignoreNull="1" paramName="放款日期" paramValue="fkrq" paramType="string(1,10)"/>
+					<inParam paramCode="fwzj" ignoreNull="1" paramName="房屋总价" paramValue="fwzj" paramType="double(18,2)"/>
+					<inParam paramCode="fwzl" ignoreNull="1" paramName="房屋坐落" paramValue="fwzl" paramType="string(0,-1)"/>
+					<inParam paramCode="gfsfk" ignoreNull="0" paramName="购房首付款" paramValue="gfsfk" paramType="double(18,2)"/>
+					<inParam ignoreNull="1" paramCode="jkhtbh" paramName="借款合同编号" paramType="string(1,30)" paramValue="jkhtbh"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+					<inParam paramCode="sfkytqje" ignoreNull="0" paramName="首付款已提取额" paramValue="sfkytqje" paramType="double(18,2)"/>
+				</inParams>
+				<outParams>
+					<outParam paramCode="ktqje" ignoreNull="1" paramName="可提取金额" paramValue="ktqje" paramType="double(18,2)"/>
+				</outParams>
+			</comp>
+            <comp compCode="CompDKSFTQ02" compName="贷款首付提取提交" expression="#flag=='tjxx'">
+            	<inParams>
+            		<inParam paramCode="tqyy" ignoreNull="0" paramName="提取原因" paramValue="tqyy" paramType="string(0,-1)"/>
+            		<inParam paramCode="grzh" ignoreNull="1" paramName="个人账号" paramValue="#getUserExtInfo('grzh')" paramType="string(0,-1)"/>
+					<inParam paramCode="tqje" ignoreNull="0" paramName="提取金额" paramValue="tqje" paramType="double(18,2)" />
+					<inParam paramCode="gczj" ignoreNull="0" paramName="结算方式" paramValue="jsfs" paramType="string(0,-1)"/>
+					<inParam paramCode="skrzhmc" ignoreNull="0" paramName="收款人账户名称" paramValue="skrzhmc" paramType="string(1,120)" />
+					<inParam paramCode="skrkhyh" ignoreNull="0" paramName="收款人开户银行" paramValue="skrkhyh" paramType="string(1,20)" />
+					<inParam paramCode="skrzhhm" ignoreNull="0" paramName="收款人账户号码" paramValue="skrzhhm" paramType="string(1,20)" />
+            		<inParam paramCode="jymm" ignoreNull="0" paramName="交易密码" paramValue="jymm" paramType="string(0,-1)"/>
+            		<inParam paramCode="sjhm" ignoreNull="0" paramName="手机号码" paramValue="sjhm" paramType="string(0,11)"/>
+					<inParam paramCode="jkhtbh" ignoreNull="0" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(0,-1)"/>
+					<inParam paramCode="gfrxm" ignoreNull="0" paramName="购房人姓名" paramValue="gfrxm" paramType="string(0,-1)"/>
+					<inParam paramCode="gfrzjlx" ignoreNull="0" paramName="购房人证件类型" paramValue="gfrzjlx" paramType="string(0,-1)"/>
+					<inParam paramCode="gfrzjhm" ignoreNull="0" paramName="购房人证件号码" paramValue="gfrzjhm" paramType="string(0,-1)"/>
+					<inParam paramCode="fkrq" ignoreNull="1" paramName="放款日期" paramValue="fkrq" paramType="string(1,10)"/>
+					<inParam paramCode="fwzj" ignoreNull="1" paramName="房屋总价" paramValue="fwzj" paramType="double(18,2)"/>
+					<inParam paramCode="fwzl" ignoreNull="1" paramName="房屋坐落" paramValue="fwzl" paramType="string(0,-1)"/>
+					<inParam paramCode="gfsfk" ignoreNull="0" paramName="购房首付款" paramValue="gfsfk" paramType="double(18,2)"/>
+					<inParam paramCode="ygfrgx" ignoreNull="0" paramName="与购房人关系" paramValue="ygfrgx" paramType="string(1,2)" />
+					<inParam ignoreNull="1" paramCode="jkhtbh" paramName="借款合同编号" paramType="string(1,30)" paramValue="jkhtbh"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+					<inParam paramCode="sfkytqje" ignoreNull="0" paramName="首付款已提取额" paramValue="sfkytqje" paramType="double(18,2)"/>
+				</inParams>
+            </comp>
+			<comp compCode="CompDKSFTQ03" compName="获取贷款首付信息" expression="#flag=='hqdksfxx'">
+				<inParams>
+					<inParam ignoreNull="1" paramCode="jkhtbh" paramName="借款合同编号" paramType="string(1,30)" paramValue="jkhtbh"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+					<inParam paramCode="jkhtbh" ignoreNull="0" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(1,20)"/>
+				</inParams>
+				<outParams>
+					<outParam paramCode="fkrq" ignoreNull="1" paramName="放款日期" paramValue="fkrq" paramType="string(1,10)"/>
+					<outParam paramCode="fwzj" ignoreNull="1" paramName="房屋总价" paramValue="fwzj" paramType="double(18,2)"/>
+					<outParam paramCode="fwzl" ignoreNull="1" paramName="房屋坐落" paramValue="fwzl" paramType="string(0,-1)"/>
+					<outParam paramCode="gfsfk" ignoreNull="0" paramName="购房首付款" paramValue="gfsfk" paramType="double(18,2)"/>
+					<outParam paramCode="sfkytqje" ignoreNull="0" paramName="首付款已提取额" paramValue="sfkytqje" paramType="double(18,2)"/>
+				</outParams>
+			</comp>
+        </comps>
+    </tran>
+</trans>

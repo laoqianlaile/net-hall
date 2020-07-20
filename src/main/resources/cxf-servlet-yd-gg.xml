@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd
+		http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
+
+    <!--消息发布接口 add by 宋刚 2018-01-23-->
+    <jaxws:endpoint id="ydTranXXGL07" implementor="com.yd.biz.service.impl.DefaultSingleServiceImpl" address="/ydTranXXGL07">
+        <jaxws:inInterceptors>
+            <ref bean="ipAddressInterceptor" />
+            <ref bean="authInterceptor" />
+            <ref bean="customInterceptor" />
+            <ref bean="concurrentInterceptor" />
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+    <!-- 批量异常接口 -->
+    <jaxws:endpoint id="ydTranPLYC01" implementor="com.yd.biz.service.impl.DefaultSingleServiceImpl" address="/ydTranPLYC01">
+        <!-- 自定义的拦截器 -->
+    	<jaxws:inInterceptors>
+            <ref bean="ipAddressInterceptor"/>
+            <ref bean="authInterceptor"/>
+            <ref bean="customInterceptor"/>
+            <ref bean="concurrentInterceptor"/>
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+</beans>

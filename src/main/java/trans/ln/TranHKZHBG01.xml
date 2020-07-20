@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHKZHBG01" tranName="还款账号变更">
+        <comps>
+            <comp compCode="CompHKZHBG01" compName="提交还款账号变更信息" expression="">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="jkhtbh" paramName="借款合同编号" paramType="string(1,30)" paramValue="jkhtbh"/>
+                	<inParam ignoreNull="0" paramCode="kkrlx" paramName="新扣款人类型" paramType="string(1,2)" paramValue="kkrlx"/>
+                	<inParam ignoreNull="1" paramCode="kkrxm" paramName="新扣款人姓名" paramType="string(0,-1)" paramValue="kkrxm"/>
+                	<inParam ignoreNull="1" paramCode="kkrzjhm" paramName="新扣款人证件号码" paramType="string(0,-1)" paramValue="kkrzjhm"/>
+                	<inParam ignoreNull="1" paramCode="hkzh" paramName="新还款账号" paramType="string(0,-1)" paramValue="hkzh"/>
+                    <inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

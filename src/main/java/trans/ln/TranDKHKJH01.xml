@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDKHKJH01" tranName="公积金贷款还款计划">
+        <comps>
+            <comp compCode="CompDKHKJH01" compName="公积金贷款还款计划" expression="">
+                <inParams>
+                	<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                    <inParam ignoreNull="1" paramCode="jkhtbh" paramName="借款合同编号" paramType="string(0,30)" paramValue="jkhtbh"/>
+                    <inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+                    <inParam ignoreNull="1" paramCode="dkje" paramName="贷款金额" paramType="string(0,-1)" paramValue="dkje"/>
+                    <inParam ignoreNull="1" paramCode="dkqx" paramName="贷款期限" paramType="string(0,-1)" paramValue="dkqx"/>
+                    <inParam ignoreNull="1" paramCode="dkhkfs" paramName="贷款还款方式" paramType="string(0,-1)" paramValue="dkhkfs"/>
+                    <inParam ignoreNull="1" paramCode="hkr" paramName="还款日" paramType="string(0,-1)" paramValue="hkr"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

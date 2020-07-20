@@ -1,0 +1,54 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info></ans_info>
+		<particular_code></particular_code>
+		<particular_info></particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<returnCode des="返回码">0</returnCode>
+		<message des="返回信息">成功</message>
+		<totalSize des="总条数">3</totalSize>
+		<details>
+			<detail>
+				<xh des="序号">1</xh>
+				<sbh des="申报号">111111</sbh>
+				<slh des="实例号">18245</slh>
+				<czyzh des="操作员账号">kf001</czyzh>
+				<czyxm des="操作员姓名">开发人员</czyxm>
+				<sbzt  des="申报状态">1</sbzt>
+				<reason des="退回原因"></reason>
+				<cjsj des="建立时间">2017-10-10 10:11:11</cjsj>
+			</detail>
+			<detail>
+				<xh des="序号">2</xh>
+				<sbh des="申报号">222222</sbh>
+				<slh des="实例号">18246</slh>
+				<czyzh des="操作员账号">kf001</czyzh>
+				<czyxm des="操作员姓名">开发人员</czyxm>
+				<sbzt  des="申报状态">1</sbzt>
+				<reason des="退回原因"></reason>
+				<cjsj des="建立时间">2017-10-10 10:11:11</cjsj>
+			</detail>
+			<detail>
+				<xh des="序号">2</xh>
+				<sbh des="申报号">333333</sbh>
+				<slh des="实例号">18247</slh>
+				<czyzh des="操作员账号">kf001</czyzh>
+				<czyxm des="操作员姓名">开发人员</czyxm>
+				<sbzt  des="申报状态">1</sbzt>
+				<reason des="退回原因"></reason>
+				<cjsj des="建立时间">2017-10-10 10:11:11</cjsj>
+			</detail>
+		</details>
+	</body>
+</root>

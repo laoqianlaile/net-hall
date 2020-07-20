@@ -1,0 +1,43 @@
+package com.yd.ish.biz.comp.common.dlgl;
+
+import com.yd.svrplatform.comm_mdl.external.parse.XmlResHead;
+import com.yd.svrplatform.comm_mdl.external.parse.XmlResObj;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import com.yd.biz.comp.BaseComp;
+
+ /**
+ * 名称：CompDLYZ703
+ * <p>功能：发送短信验证码<br>
+ * @brief 发送短信验证码
+ * @author  柏慧敏
+ * @version  0.1 2019年8月5日 柏慧敏创建
+ * @note
+ */
+@Component("CompDLYZ703")
+public class CompDLYZ703 extends BaseComp{
+
+	private static final Logger logger = LoggerFactory.getLogger(CompDLYZ703.class);
+
+	@Override
+	public int execute() {
+
+		/*入口参数赋值开始*/
+    	/*入口参数赋值结束*/
+
+		logger.info("[+]调用接口校验单位用户并发送验证码开始");
+		XmlResObj data =  super.sendExternal("BSP-OAPI-601",false);
+		XmlResHead head=data.getHead();
+		logger.info("[-]调用接口校验单位用户并发送验证码结束");
+
+		/*出口参数赋值开始*/
+		setOutParam("returnCode", head.getParticular_code());
+		setOutParam("msg", head.getParticular_info());
+		/*出口参数赋值结束*/
+
+    	return 0;
+   }
+
+}

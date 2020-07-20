@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHQDWXX01" tranName="获取单位信息">
+        <comps>
+        	<comp compCode="CompHQDWXX01" compName="获取单位信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="1" paramCode="dwjcbl" paramName="单位缴存比例" paramType="string(0,-1)" paramValue="dwjcbl"/>
+                    <outParam ignoreNull="1" paramCode="grjcbl" paramName="个人缴存比例" paramType="string(0,-1)" paramValue="grjcbl"/>
+                    <outParam ignoreNull="1" paramCode="dwfcrs" paramName="单位封存人数" paramType="string(0,-1)" paramValue="dwfcrs"/>
+                    <outParam ignoreNull="1" paramCode="dwmc" paramName="单位名称" paramType="string(0,-1)" paramValue="dwmc"/>
+                    <outParam ignoreNull="1" paramCode="tyshxydm" paramName="统一社会信用代码" paramType="string(0,-1)" paramValue="tyshxydm"/>
+                    <outParam ignoreNull="1" paramCode="zzjgdm" paramName="组织机构代码" paramType="string(0,-1)" paramValue="zzjgdm"/>
+                    <outParam ignoreNull="1" paramCode="dwdz" paramName="单位地址" paramType="string(0,-1)" paramValue="dwdz"/>
+                    <outParam ignoreNull="1" paramCode="dwfrdbxm" paramName="单位法人代表姓名" paramType="string(0,-1)" paramValue="dwfrdbxm"/>
+                    <outParam ignoreNull="1" paramCode="dwfrdbzjlx" paramName="单位法人代表证件类型" paramType="string(0,-1)" paramValue="dwfrdbzjlx"/>
+                    <outParam ignoreNull="1" paramCode="dwfrdbzjhm" paramName="单位法人代表证件号码" paramType="string(0,-1)" paramValue="dwfrdbzjhm"/>
+                    <outParam ignoreNull="1" paramCode="dwfrlxdh" paramName="单位法人联系电话" paramType="string(0,-1)" paramValue="dwfrlxdh"/>
+                    <outParam ignoreNull="1" paramCode="dwsbzh" paramName="单位社保账号" paramType="string(0,-1)" paramValue="dwsbzh"/>
+                    <outParam ignoreNull="1" paramCode="gszch" paramName="工商注册号" paramType="string(0,-1)" paramValue="gszch"/>
+                    <outParam ignoreNull="1" paramCode="dwsshy" paramName="单位所属行业" paramType="string(0,-1)" paramValue="dwsshy"/>
+                    <outParam ignoreNull="1" paramCode="dwxz" paramName="单位性质" paramType="string(0,-1)" paramValue="dwxz"/>
+                    <outParam ignoreNull="1" paramCode="sbjczrs" paramName="社保缴存总人数" paramType="string(0,-1)" paramValue="sbjczrs"/>
+                    <outParam ignoreNull="1" paramCode="sbjczjs" paramName="社保缴存总基数" paramType="string(0,-1)" paramValue="sbjczjs"/>
+                    <outParam ignoreNull="1" paramCode="dwjb" paramName="单位级别" paramType="string(0,-1)" paramValue="dwjb"/>
+                    <outParam ignoreNull="1" paramCode="sjdwmc" paramName="上级单位名称" paramType="string(0,-1)" paramValue="sjdwmc"/>
+                    <outParam ignoreNull="1" paramCode="sjdwzh" paramName="上级单位账号" paramType="string(0,-1)" paramValue="sjdwzh"/>
+                    <outParam ignoreNull="1" paramCode="dwlsgx" paramName="单位隶属关系" paramType="string(0,-1)" paramValue="dwlsgx"/>
+                    <outParam ignoreNull="1" paramCode="dwjjlx" paramName="单位经济类型" paramType="string(0,-1)" paramValue="dwjjlx"/>
+                    <outParam ignoreNull="1" paramCode="dwyb" paramName="单位邮编" paramType="string(0,-1)" paramValue="dwyb"/>
+                    <outParam ignoreNull="1" paramCode="dwdzxx" paramName="单位电子信箱" paramType="string(0,-1)" paramValue="dwdzxx"/>
+                    <outParam ignoreNull="1" paramCode="dwslrq" paramName="单位设立日期" paramType="string(0,-1)" paramValue="dwslrq"/>
+                    <outParam ignoreNull="1" paramCode="dwfxr" paramName="单位发薪日" paramType="string(0,-1)" paramValue="dwfxr"/>
+                    <outParam ignoreNull="1" paramCode="zgbm" paramName="主管部门" paramType="string(0,-1)" paramValue="zgbm"/>
+                    <outParam ignoreNull="1" paramCode="sftsba" paramName="是否托收备案" paramType="string(0,-1)" paramValue="sftsba"/>
+                    <outParam ignoreNull="1" paramCode="dwxxhdnf" paramName="单位信息核对年份" paramType="string(0,-1)" paramValue="dwxxhdnf"/>
+                    <outParam ignoreNull="1" paramCode="szqy" paramName="所在区域" paramType="string(0,-1)" paramValue="szqy"/>
+                    <outParam ignoreNull="1" paramCode="szxz" paramName="所在乡镇（街道）" paramType="string(0,-1)" paramValue="szxz"/>
+                    <outParam ignoreNull="1" paramCode="yhmc" paramName="银行名称" paramType="string(0,-1)" paramValue="yhmc"/>
+                    <outParam ignoreNull="1" paramCode="wdmc" paramName="网点名称" paramType="string(0,-1)" paramValue="wdmc"/>
+                    <outParam ignoreNull="1" paramCode="jjr" paramName="缴交日" paramType="string(0,-1)" paramValue="jjr"/>
+                    <outParam ignoreNull="1" paramCode="jcqsny" paramName="缴存起始年月" paramType="string(0,-1)" paramValue="jcqsny"/>
+                    <outParam ignoreNull="1" paramCode="jzny" paramName="缴至年月" paramType="string(0,-1)" paramValue="jzny"/>
+                    <outParam ignoreNull="1" paramCode="dwzhzt" paramName="单位账户状态" paramType="string(0,-1)" paramValue="dwzhzt"/>
+                    <outParam ignoreNull="1" paramCode="dwhjzt" paramName="单位缓缴状态" paramType="string(0,-1)" paramValue="dwhjzt"/>
+                    <outParam ignoreNull="1" paramCode="dwqjzt" paramName="单位欠缴状态" paramType="string(0,-1)" paramValue="dwqjzt"/>
+                    <outParam ignoreNull="1" paramCode="yjrs" paramName="应缴人数" paramType="string(0,-1)" paramValue="yjrs"/>
+                    <outParam ignoreNull="1" paramCode="yjje" paramName="应缴金额" paramType="string(0,-1)" paramValue="yjje"/>
+                    <outParam ignoreNull="1" paramCode="zckye" paramName="暂存款余额" paramType="string(0,-1)" paramValue="zckye"/>
+                    <outParam ignoreNull="1" paramCode="filename" paramName="经办人文件名" paramType="string(0,-1)" paramValue="filename"/>
+                    <!--ish04新增-->
+                    <outParam ignoreNull="1" paramCode="jbrxxjson" paramName="经办人信息json数据" paramType="string(0,-1)" paramValue="jbrxxjson"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

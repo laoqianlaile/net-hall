@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRZYCX" tranName="个人转移信息查询">
+        <comps>
+            <comp compCode="CompBatchGetTransaction" compName="个人转移信息查询" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getGRZYCX"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="个人转移信息查询"/>
+                    <inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant"
+                             paramValue="freeuse4:iCount,XMQP:jyrq,freeuse1:zcdwzh,accname1:zcdwmc,unitaccnum1:zcgrzh,jtzz:zcgrxm,payvounum:zrdwzh,accname2:zrdwmc,unitaccname1:jbjg,unitaccname2:jbgy"/>
+                    <inParam ignoreNull="1" paramCode="fileField" paramName="上传文件字段名" paramType="constant"
+                             paramValue="file"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

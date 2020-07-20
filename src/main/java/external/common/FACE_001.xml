@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+
+    <interface id="FACE_IDNO_CHECK" tr_code="123456" system="99" des="身份证校验">
+        <up>
+            <idNo des="身份证号">=idNo</idNo>
+        </up>
+        <down>
+            <returnCode des="返回码">=returnCode</returnCode>
+            <message des="返回信息">=message</message>
+            <data des="返回数据">=data</data>
+        </down>
+    </interface>
+
+</interfaces>

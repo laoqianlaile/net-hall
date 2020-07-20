@@ -1,0 +1,45 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<xmmc des="项目名称">中懋天地一期</xmmc>
+		<lpqymc des="楼盘区域名称">01</lpqymc>
+		<xmwz des="项目位置">吉林省长春市净月开发区和融路2341号</xmwz>
+		<xykssj des="协议开始日期">2018-04-11</xykssj>
+		<xyjssj des="协议结束日期">2021-04-11</xyjssj>
+		<lpmj des="楼盘面积">120000.00</lpmj>
+		<lpjj des="楼盘均价">9800.00</lpjj>
+		<lpzts des="楼盘总套数">12</lpzts>
+		<lpzzs des="楼盘总幢数">13</lpzzs>
+		<yssj des="预售时间">2018-12-11</yssj>
+		<jgsj des="竣工时间">2020-01-07</jgsj>
+		<syqlx des="使用权类型">01</syqlx>
+		<syqzzrq des="使用权终止日期">2088-04-11</syqzzrq>
+		<tdzfzjg des="土地证发证机关">土地局</tdzfzjg>
+		<jsydghydmj des="建设用地规划用地面积">20000.00</jsydghydmj>
+		<jsydghjsgm des="保证金建设用地规划建设规模">120000.00</jsydghjsgm>
+		<jsydghydxz des="建设用地规划用地性质">住宅、商用</jsydghydxz>
+		<tdzbh des="土地证编号">TDZ0210001</tdzbh>
+		<jsgcsgxkz des="建筑工程施工许可证">JZSG00128710</jsgcsgxkz>
+		<jzgcghxkz des="建筑工程规划许可证">JZGH71620001</jzgcghxkz>
+		<jsydghxkz des="建设用地规划许可证">JSYD19730188</jsydghxkz>
+		<bzjkhyh des="保证金开户银行">50082</bzjkhyh>
+		<bzjzhmc des="保证金账户名称">吉林省凯旋集团</bzjzhmc>
+		<bzjzhhm des="保证金账户号码">62220172000122872001</bzjzhhm>
+		<jyfw des="经营范围">房地产</jyfw>
+		<filename des="上传文件">xmldxx.txt,xmlpxx.txt</filename>
+	</body>
+</root>

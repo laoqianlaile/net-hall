@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWTSXX01" tranName="单位托收信息">
+        <comps>
+            <comp compCode="CompDWTSXX01" compName="获取单位托收信息" expression="">
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="wtskxybh" paramName="委托收款协议编号" paramType="string(0,-1)" paramValue="wtskxybh" />
+                	<outParam ignoreNull="1" paramCode="wtskxyzt" paramName="委托收款协议状态" paramType="string(0,-1)" paramValue="wtskxyzt" />
+                	<outParam ignoreNull="1" paramCode="fkdwmc" paramName="付款单位名称" paramType="string(0,-1)" paramValue="fkdwmc" />
+                	<outParam ignoreNull="1" paramCode="fkdwyhmc" paramName="付款单位银行名称" paramType="string(0,-1)" paramValue="fkdwyhmc" />
+                	<outParam ignoreNull="1" paramCode="fkdwyhzh" paramName="付款单位银行账号" paramType="string(0,-1)" paramValue="fkdwyhzh" />
+                	<outParam ignoreNull="1" paramCode="fkhtcjhh" paramName="付款行同城交换号" paramType="string(0,-1)" paramValue="fkhtcjhh" />
+                	<outParam ignoreNull="1" paramCode="tsr" paramName="托收日" paramType="string(0,-1)" paramValue="tsr" />
+                	<outParam ignoreNull="1" paramCode="qyjbrq" paramName="签约经办日期" paramType="string(0,-1)" paramValue="qyjbrq" />
+                	<outParam ignoreNull="1" paramCode="qyjbjg" paramName="签约经办机构" paramType="string(0,-1)" paramValue="qyjbjg" />
+                	<outParam ignoreNull="1" paramCode="qyjbr" paramName="签约经办人" paramType="string(0,-1)" paramValue="qyjbr" />
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

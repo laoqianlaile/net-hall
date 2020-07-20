@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page template="0402" version="1.0" formaction="" id="HOME">
+  <info>
+    <description title="任务列表">任务列表</description>
+    <editlogs>
+      <log editor="Y00231(离线)" edittime="2017-09-05 11:12:10"/>
+    </editlogs>
+  </info>
+  <scripts>
+  	<script include="/ydpx/home/home.js"/>
+    <script><![CDATA[
+
+//页面加载后执行
+thisTab.pageOnload = function () {
+
+	
+};	
+thisTab.datalist_callback_tasklist = function (rows) {
+
+	//待办任务状态
+	var appSet = {'0':'正常','1':'撤回','2':'撤销','3':'继续','4':'暂存','5':'停止','6':'挂起','7':'运行','8':'锁定','9':'完成'};
+	
+	$(rows).each(function () {
+		//业务名加链接
+		var $taskid = $(this).getCell('taskid', 'span');
+	    $taskid.html("<a href=\"javascript:pop_up_window_waitTask(\'"+$taskid.text()+"\');\">"+$taskid.text()+"</a>");
+		//翻译待办任务状态
+		var $inststate = $(this).getCell('inststate', 'span');
+		var inststate = $inststate.text();
+		$inststate.html(appSet[inststate] || inststate);
+	});
+};
+	window.pop_up_window_waitTask = function (taskid) {
+ 		ydl.go(ydl.contexPath+"/flow/task/"+taskid);
+	 };
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+  	<container type="box" id="ct_list1">
+        <component height="200" id="tasklist" defer="false"
+         type="datalist" caption="待办任务列表" paging="true" layout="" allowinsert="false" allowupdate="false"
+          allowdelete="false" pagesize="7" showrowid="false" dialogedit="0" allowexport="false"
+          allowimport="false" saveimportfile="false" allowprint="false" version="1"
+                   searchbox="false" compatible="0" clearbeforeimport="false" template="false">
+          <columns>
+  		  <col width="45" id="taskid" desc="任务号" coltype="1" hidden="false" required="false" ischar="true" dict="none" keycol="false"/>
+  		  <col width="200" id="flowname" desc="业务" coltype="1" hidden="false" required="false" ischar="true" dict="none" keycol="false"/>
+  		  <col width="300" id="title" desc="业务描述" coltype="1" hidden="false" required="false" ischar="true" dict="none" keycol="false"/>
+  		  <col width="150" id="createtime" desc="创建时间" coltype="1" hidden="false" required="false" ischar="true" dict="none" keycol="false"/>
+  		  <col width="64" id="inststate" desc="状态" coltype="1" hidden="false" required="false" ischar="true" dict="none" keycol="false"/>
+          </columns>
+          <sqls datasource="ds_plat">
+            <sql type="insert"></sql>
+  		  <sql type="select"><![CDATA[
+  			select a.FLOWNAME, a.TITLE, a.TASKID, a.instanceid, a.CREATETIME, inststate from WF_TASK a ,WF_instance b  where a.INSTANCEID=b.INSTANCEID and  BELONGTO=#{_OPERID,jdbcType=VARCHAR}
+  			<if test="qname != null"> and a.FLOWNAME like '%'||#{qname,jdbcType=VARCHAR}||'%'</if>
+  			<if test="qtitle != null"> and a.TITLE like '%'||#{qtitle,jdbcType=VARCHAR}||'%'</if>
+  			<if test="fromDate != null"> and a.CREATETIME &gt;= #{fromDate,jdbcType=VARCHAR}</if>
+  			<if test="toDate != null"> and a.CREATETIME &lt;= #{toDate,jdbcType=VARCHAR}</if>
+  			and (
+  				<if test="flwNowmal != null"> inststate = #{flwNowmal,jdbcType=VARCHAR}</if>
+  				<if test="flwLocked != null and flwNowmal != null"> or inststate = #{flwLocked,jdbcType=VARCHAR}</if>
+  				<if test="flwLocked != null and flwNowmal == null"> inststate = #{flwLocked,jdbcType=VARCHAR}</if>
+  				<if test="flwLocked == null and flwNowmal == null"> 1=1 </if>
+  			)
+  			order by taskid desc
+  		  ]]></sql>
+            <sql type="update"></sql>
+            <sql type="delete"></sql>
+          </sqls>
+        </component>
+       </container>
+   </containers>
+  <styles>
+    <style include="/ydpx/home/home.css"/>
+  </styles>
+  <frame><![CDATA[
+
+]]></frame>
+
+</page>

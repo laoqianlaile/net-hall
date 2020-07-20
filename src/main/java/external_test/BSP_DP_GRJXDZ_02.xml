@@ -1,0 +1,31 @@
+<root>
+  <head>
+    <reqflag>1</reqflag>
+    <tr_code />
+    <sys_no>88</sys_no>
+    <corp_no>100</corp_no>
+    <oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+    <tr_acdt>2017-06-08</tr_acdt>
+    <tr_time>2017-06-08 14:55:37</tr_time>
+    <ans_code>0</ans_code>
+    <ans_info>成功</ans_info>
+    <particular_code>0000</particular_code>
+    <particular_info>操作成功！</particular_info>
+    <file>dwgzcx.txt</file>
+    <reserved>保留字段</reserved>
+  </head>
+  <body>
+    <qxrq des="起息日期">2017-07-01</qxrq>
+    <jxrq des="结息日期">2018-06-30</jxrq>
+    <dqrll des="定期日利率">0.0042</dqrll>
+	<hqrll des="活期日利率">0.0042</hqrll>
+	<hqbj des="活期本金">5000.00</hqbj>
+	<dqbj des="定期本金">10000.00</dqbj>
+	<hqlx des="活期利息">210.00</hqlx>
+	<dqlx des="定期利息">420.00</dqlx>
+	<zlx des="总利息">630.00</zlx>
+	<zbj des="总本金">15000.00</zbj>
+	<grzhye des="个人账户余额">15630.00</grzhye>
+	<filename>pzwj/dwjxdzpz.pdf</filename>
+  </body>
+</root>

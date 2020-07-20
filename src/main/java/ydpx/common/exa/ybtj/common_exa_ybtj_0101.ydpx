@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+      <log editor="Y01026(离线)" edittime="2018-01-10 14:08:40"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	if(poolSelect["rw"]=='r'){
+		$(":input").attr("readonly",true);
+		ydl.init.dataList({id:'sllist',allowUpdate:false,allowInsert:false,allowDelete:false},'update');
+	}
+}
+
+//表单提交时执行
+thisTab.form_validate = function () {
+	return true;
+}
+
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form">
+      <component type="label" for="djh">登记号：</component>
+      <component id="djh" type="input" subtype="text" fromdic="false" required="true">=djh</component>
+      <component type="label" for="mc">名称：</component>
+      <component id="mc" type="input" subtype="text" fromdic="false" required="true">=mc</component>
+    </container>
+    <container uid="container-1" type="box" layout="auto-height" id="container-1">
+      <component id="sllist" type="datalist" paging="true" layout="fit" allowinsert="true" allowdelete="true" allowupdate="true" allowprint="false" allowimport="false" allowexport="false" pagesize="10" version="1" searchbox="false" compatible="0" showrowid="true" dialogedit="0" saveimportfile="false" clearbeforeimport="true" template="false">
+        <columns>
+           <col id="xh" desc="序号" coltype="2" hidden="false" required="true" ischar="false" dict="none" datatype="int" sort="false" negative="false"/>
+           <col id="xingming" desc="姓名" coltype="2" hidden="false" required="false" ischar="false" dict="none" sort="false" negative="false"/>
+           <col id="zjlx" desc="证件类型" coltype="2" hidden="false" required="false" ischar="false" dict="dynamic" datasource="os_mdic" sort="false" negative="false">ish.gg.user.zjlx</col>
+           <col id="zjhm" desc="证件号码" coltype="2" hidden="false" required="false" ischar="false" dict="none" sort="false" negative="false"/>
+           <col id="jcjs" desc="缴存基数" coltype="2" hidden="false" required="false" ischar="false" dict="none" sort="false" negative="false"/>
+           <col id="sjhm" desc="手机号码" coltype="2" hidden="false" required="false" ischar="false" dict="none" sort="false" negative="false"/>
+        </columns>
+        <sqls datasource="ds_biz">
+           <sql type="insert">insert into CPL_SHENBAO_TEMP (xh,xingming, zjlx, zjhm,jcjs,sjhm, instanceid) values (#{xh,jdbcType=INTEGER},#{xingming,jdbcType=VARCHAR}, #{zjlx,jdbcType=VARCHAR}, #{zjhm,jdbcType=VARCHAR},#{jcjs,jdbcType=VARCHAR},#{sjhm,jdbcType=VARCHAR}, #{_IS,jdbcType=INTEGER})</sql>
+           <sql type="select">select xh ,xingming,zjlx,zjhm,jcjs,sjhm from CPL_SHENBAO_TEMP where instanceid=#{_IS,jdbcType=INTEGER}</sql>
+           <sql type="update">update CPL_SHENBAO_TEMP set xingming =#{xingming,jdbcType=VARCHAR}, zjlx =#{zjlx,jdbcType=VARCHAR}, zjhm =#{zjhm,jdbcType=VARCHAR},jcjs =#{jcjs,jdbcType=VARCHAR},sjhm =#{sjhm,jdbcType=VARCHAR} where xh=#{xh,jdbcType=INTEGER} and instanceid=#{_IS,jdbcType=INTEGER}</sql>
+           <sql type="delete">delete from CPL_SHENBAO_TEMP where xh=#{xh,jdbcType=INTEGER} and instanceid=#{_IS,jdbcType=VARCHAR}</sql>
+        </sqls>
+      </component>
+    </container>
+  </containers>
+</page>

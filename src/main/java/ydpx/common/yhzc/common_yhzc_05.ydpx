@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0403" version="2.0" formaction="">
+    <info>
+        <description title="=pagetit"/>
+        <editlogs>
+            <log editor="0000(离线)" edittime="2016-04-12 13:03:49"/>
+        </editlogs>
+    </info>
+    <styles>
+        <style>
+            #pageTabs .form-group {
+                margin: 10px 0 10px 0;
+            }
+        </style>
+    </styles>
+    <scripts>
+        <script include="/common/script/aes.js"/>
+        <script include="/common/script/my-aes-crypto.js"/>
+        <script><![CDATA[//页面加载后执行
+        thisTab.pageOnload = function () {
+            //设置所有校验后均不改变焦点
+            ydl.validator.setDefault({
+                focus: false
+            });
+            var jbrxm_tips = $('#jbrxm_tips').text();
+            var jbrzjhm_tips = $('#jbrzjhm_tips').text();
+            var jbrsjhm_tips = $('#jbrsjhm_tips').text();
+            var dlmm_tips = $('#dlmm_tips').text();
+            var qrdlmm_tips = $('#qrdlmm_tips').text();
+            $('#jbrzjlx_tips').text("");
+            addTP('jbrzjlx');
+            //手机短信验证码获取 开始
+            var param = {
+                before: cmdValidate,//发送短信验证码之前调用的方法，次方法需要返回boolean类型值，只有返回true，才会发送短信验证码。可以不传此参数
+                pid: 'dxyzm',
+                ywmc: '单位临时用户注册业务',	//业务名称：此项需要根据自己的业务进行修改
+                xhid: 'yzmxh',
+                cmd: 'cmd001',		//流程助手中cmd方法中的task参数值
+                func: 'checkForm'
+                //fail:refresh		//发送失败调用的方法，可以不传此参数
+            };
+            cst.verification(param);
+            //手机短信验证码获取 结束
+
+            //失去焦点事件
+
+            //【经办人姓名】失去焦点事件
+            $("#jbrxm").blur(function () {
+                var jbrxm = $('#jbrxm').val().trim();
+                if (jbrxm != "") {
+                    if (ydl.validator('jbrxm', {required: true, silent: true, type: 'validchar'})) {
+                        $('#jbrxm_tips').text("");
+                        addTP('jbrxm');
+                    } else {
+                        $('#jbrxm_tips').text(jbrxm_tips);
+                    }
+                } else {
+                    $('#jbrxm_tips').text(jbrxm_tips);
+                }
+            });
+            //【经办人证件号码】失去焦点事件
+            $("#jbrzjhm").blur(function () {
+                var jbrzjhm = $('#jbrzjhm').val().trim();
+                if (jbrzjhm != "") {
+                    if (ydl.validator('jbrzjhm', {required: true, silent: true, type: 'idcard'})) {
+                        $('#jbrzjhm_tips').text("");
+                        addTP('jbrzjhm');
+                    } else {
+                        $('#jbrzjhm_tips').text(jbrzjhm_tips);
+                    }
+                } else {
+                    $('#jbrzjhm_tips').text(jbrzjhm_tips);
+                }
+            });
+            //【经办人手机号码】失去焦点事件
+            $("#jbrsjhm").blur(function () {
+                var jbrsjhm = $('#jbrzjhm').val().trim();
+                if (jbrsjhm != "") {
+                    if (ydl.validator('jbrsjhm', {required: true, silent: true, type: 'mobile'})) {
+                        $('#jbrsjhm_tips').text("");
+                        addTP('jbrsjhm');
+                    } else {
+                        $('#jbrsjhm_tips').text(jbrsjhm_tips);
+                    }
+                } else {
+                    $('#jbrsjhm_tips').text(jbrsjhm_tips);
+                }
+            });
+            //【登陆密码】失去焦点事件
+            $("#dlmm").blur(function () {
+                var dlmm = $('#dlmm').val().trim();
+                if (dlmm != "") {
+                    if (ydl.validator('dlmm', {required: true, silent: true, type: 'number', length: 6})) {
+                        $('#dlmm_tips').text("");
+                        addTP('dlmm');
+                        checkDLMM();
+                    } else {
+                        $('#dlmm_tips').text(dlmm_tips);
+                    }
+                } else {
+                    $('#dlmm_tips').text(dlmm_tips);
+                }
+            });
+            //【确认登录密码】失去焦点事件
+            $("#qrdlmm").blur(function () {
+                checkDLMM();
+            });
+
+        }
+
+        function addTP(id) {
+            $('#' + id + '_tips').append("<img id='" + id + "_tp' height='20' width='20' src='/ish/ydpx/ish01/yhzc_05/tg.png'  alt='通过' />");
+        }
+
+        function cmdValidate() {
+            var dlmm = $('#dlmm').val().trim();
+            var qrdlmm = $('#qrdlmm').val().trim();
+            var result = true;
+            result &= ydl.validator('jbrxm', {required: true, silent: true, type: 'validchar'});
+            result &= ydl.validator('jbrzjlx', {required: true, silent: true});
+            result &= ydl.validator('jbrzjhm', {required: true, silent: true, type: 'idcard'});
+            result &= ydl.validator('jbrsjhm', {required: true, silent: true, type: 'mobile'});
+            result &= ydl.validator('dlmm', {required: true, silent: true, type: 'number', length: 6});
+            result &= ydl.validator('qrdlmm', {required: true, silent: true, type: 'number', length: 6});
+            result &= ydl.validator('qrdlmm', {rule: dlmm == qrdlmm, message: '两次新密码输入不一致，请重新输入!'});
+            return !!result;
+        }
+
+        //验证两次输入的密码是否一致
+        function checkDLMM() {
+            var dlmm = $('#dlmm').val().trim();
+            var qrdlmm = $('#qrdlmm').val().trim();
+            ydl.validator('dlmm', {required: true, silent: true});
+            if (qrdlmm != "") {
+                if (ydl.validator('qrdlmm', {rule: dlmm == qrdlmm, message: '两次新密码输入不一致，请重新输入!'})) {
+                    $('#qrdlmm_tips').text("");
+                    addTP('qrdlmm');
+                } else {
+                    $('#qrdlmm_tips').text("请再次输入登陆密码。");
+                }
+            } else {
+                $('#qrdlmm_tips').text("请再次输入登陆密码。");
+            }
+        }
+
+        //页面校验
+        thisTab.checkForm = function () {
+            return cmdValidate();
+        }
+        //表单提交时执行
+        thisTab.form_validate = function () {
+            var result = true;
+            result = cmdValidate();
+            if (result) {
+                var dlmm = $('#dlmm').val();
+                var token = $('#token').val();
+                $("#hdlmm").val(encrypt(dlmm, token));
+                $('#dlmm').removeAttr("name");
+                $('#qrdlmm').removeAttr("name");
+            } else {
+                $("#hdlmm").val("");
+                $('#dlmm').attr('name', 'dlmm');
+                $('#qrdlmm').attr('name', 'qrdlmm');
+            }
+            return !!result;
+        }
+
+        ]]></script>
+    </scripts>
+    <dataset/>
+    <ajax/>
+    <containers>
+        <container uid="jbrxx" caption="经办人信息" type="table" layout="fit"
+                   cols="6" id="jbrxx">
+            <component type="plain"/>
+            <component type="label" for="jbrxm">经办人姓名：</component>
+            <component id="jbrxm" type="input" subtype="text" readonly="false" fromdic="false" required="true"
+                       datatype="validchar" colspan="2" autocomplete="off"/>
+            <component id="jbrxm_tips" type="plain" colspan="2">请输入真实的姓名。</component>
+            <component type="plain"/>
+            <component type="label" for="jbrzjlx">经办人证件类型：</component>
+            <component id="jbrzjlx" type="multivalue" subtype="select" readonly="true" fromdic="false" value="01"
+                       required="true" colspan="2" autocomplete="off">
+                <sql datasource="os_mdic">bsp.pb.zjlx</sql>
+                <item label="请选择..."/>
+                <item label="=paraval" value="=paraname"/>
+            </component>
+            <component id="jbrzjlx_tips" type="plain" colspan="2">请选择证件类型。</component>
+            <component type="plain"/>
+            <component type="label" for="jbrzjhm">经办人证件号码：</component>
+            <component id="jbrzjhm" type="input" subtype="text" readonly="false" fromdic="false" required="true"
+                       datatype="idcard" colspan="2" autocomplete="off"/>
+            <component id="jbrzjhm_tips" type="plain" colspan="2">请输入真实的身份证号码。</component>
+            <component type="plain"/>
+            <component type="label" for="jbrsjhm">经办人手机号码：</component>
+            <component id="jbrsjhm" type="input" subtype="text" readonly="false" fromdic="false" required="true"
+                       datatype="mobile" colspan="2" autocomplete="off"/>
+            <component id="jbrsjhm_tips" type="plain" colspan="2">请输入经办人手机号码。</component>
+        </container>
+        <container uid="szmm" caption="设置密码" type="table" layout="fit"
+                   cols="6" id="szmm">
+            <component type="plain"/>
+            <component type="label" for="dlmm">登录密码：</component>
+            <component id="dlmm" type="input" subtype="password" readonly="false" fromdic="false" required="true"
+                       maxlength="6" colspan="2" autocomplete="off"/>
+            <component id="dlmm_tips" type="plain" colspan="2">请设置登录密码，密码为6位数字。</component>
+            <component type="plain"/>
+            <component type="label" for="qrdlmm">确认登录密码：</component>
+            <component id="qrdlmm" type="input" subtype="password" readonly="false" fromdic="false" required="true"
+                       maxlength="6" colspan="2" autocomplete="off"/>
+            <component id="qrdlmm_tips" type="plain" colspan="2">请再次输入登录密码。</component>
+            <component type="plain"/>
+            <component type="label" for="dxyzm">短信验证码：</component>
+            <component id="dxyzm" type="input" subtype="text" required="true" fromdic="false" colspan="2"
+                       autocomplete="off"/>
+            <component id="p_yzm" type="plain" colspan="2"/>
+            <component type="blank" colspan="6"/>
+            <component type="blank" colspan="6"/>
+            <component type="blank" colspan="6"/>
+        </container>
+        <container type="hidden" id="container-1745d1b198785e1421b8165580983523"
+                   uid="container-1745d1b198785e1421b8165580983523">
+            <component id="yzmxh" type="hidden"/>
+            <component id="token" type="hidden">=token</component>
+            <component id="hdlmm" type="hidden"/>
+        </container>
+    </containers>
+</page>

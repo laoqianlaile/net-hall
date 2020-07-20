@@ -1,0 +1,163 @@
+/* 首页样式 */
+#page_wrap {position: static;}
+.page-main-user,
+#pageTabs>ul.nav-tabs {display: none;}
+#pageMain {background-color: transparent; padding: 0px; margin: 0px;}
+#pageTabs > div.tab-content {background-color: transparent;}
+
+/* 首页个人信息 */
+.home-main-user{
+	width: 1180px;
+	background: #fff;
+	margin:0 auto;
+	overflow: hidden;
+    position: relative;
+}
+.user-img {
+	width: 180px;
+	height: 180px;
+	background: url(image/male-180x180.jpg) no-repeat;
+	background-size: 100%;
+}
+.user-content {
+	width: 980px;
+	height: 180px;
+	background:#fff;
+	margin-left: 0px;
+}
+.home-user-name {line-height: 3em; font-size: 24px;}
+.user-content>div label {font-weight: normal; color: #969696; line-height: 2em;}
+.user-content>div span {line-height: 2em;}
+
+.pack-up {
+	font-size: 12px;
+	color: #0086df;
+	cursor: pointer;
+	top:10px;
+	right: 20px;
+    position: absolute;
+}
+.pack-up span{
+	display: inline-block;
+	width: 7px;
+	height: 5px;
+	margin-left: 10px;
+	background: url(image/icon-arrow-gray-7x5.png) no-repeat;
+}
+.pack-up .icon-up{background-position: -7px 0px;}
+/* 首页一级菜单 */
+.home-main-nav {
+	width: 1180px;
+	margin:0 auto;
+	margin-top: 40px;
+	margin-bottom: 10px;
+}
+.home-main-nav ul {overflow: hidden; padding: 0px; margin: 0px -10px 0px -10px;}
+/* 一级菜单一行图标数量 */
+.home-main-nav .col6 li{width: 180px;}
+.home-main-nav .col5 li{width: 220px;}
+.home-main-nav .col4 li{width: 280px;}
+.home-main-nav .col3 li{width: 380px;}
+.home-main-nav .col2 li{width: 580px;}
+/* 一级菜单具体样式 */
+.home-main-nav li {
+	float: left;
+	height: 180px;
+	margin: 0px 10px 20px 10px;
+	font-size: 18px;
+	color: #fff;
+	border-radius: 5px;
+    list-style: none;
+    text-align: center;
+}
+.home-main-nav li > a {color: #fff; text-decoration: none; display: block;}
+.home-main-nav li span {font-size: 98px; margin-top: 20px;}
+.home-main-nav li p {margin:0 auto; line-height: 60px;}
+/* 首页一级菜单背景 */
+.home-main-nav .icon-bg0 {background: #4cb0fb;}
+.home-main-nav .icon-bg1 {background: #ffb93f;}
+.home-main-nav .icon-bg2 {background: #85d260;}
+.home-main-nav .icon-bg3 {background: #1cccc2;}
+.home-main-nav .icon-bg4 {background: #ff7145;}
+.home-main-nav .icon-bg0:hover {background: #449fe1;}
+.home-main-nav .icon-bg1:hover {background: #e5a639;}
+.home-main-nav .icon-bg2:hover {background: #77bd55;}
+.home-main-nav .icon-bg3:hover {background: #19b6ad;}
+.home-main-nav .icon-bg4:hover {background: #e5653e;}
+/* 首页二级菜单 */
+.submenu-keep {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	z-index: 5;
+}
+.submenu {
+	position: absolute;
+	height: 350px;
+	border-radius: 5px;
+	/* border: 1px solid #87d567;
+	   color: #87d567;
+	   2017-12-19维护
+    */
+	border: 1px solid #0086e4; 
+	color: #ffffff;
+	z-index: 6;
+}
+
+/* 菜单展开样式 
+.submenu.sty-col0 {border: 1px solid #4cb0fb; color: #4cb0fb;}
+.submenu.sty-col0 .submenu-list>div a {color: #4cb0fb;}
+.submenu.sty-col1 {border: 1px solid #ffb93f; color: #ffb93f;}
+.submenu.sty-col1 .submenu-list>div a {color: #ffb93f;}
+.submenu.sty-col2 {border: 1px solid #87d567; color: #87d567;}
+.submenu.sty-col2 .submenu-list>div a {color: #87d567;}
+.submenu.sty-col3 {border: 1px solid #1cccc2; color: #1cccc2;}
+.submenu.sty-col3 .submenu-list>div a {color: #1cccc2;}
+.submenu.sty-col4 {border: 1px solid #ff7145; color: #ff7145;}
+.submenu.sty-col4 .submenu-list>div a {color: #ff7145;}
+*/
+.submenu-content {
+	/* background-color: rgba(0, 0, 0, 0.8); 2017-12-19维护 */
+	background-color: rgba(0,24,71,0.9);
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.submenu.desc {height: auto;}
+.submenu-head,
+.submenu-btn {
+	min-height: 50px; margin: 0 auto; font-size: 18px; text-align: center; line-height: 50px; 
+	/* border-bottom: 1px solid #5c5c5c;   2017-12-19维护*/
+	border-bottom: 1px solid #0086e4;
+}
+/* .submenu-btn {border: none; border-top: 1px solid #5c5c5c;}  2017-12-19维护*/
+.submenu-btn {border: none; border-top: 1px solid #0062a7;}
+.submenu-btn span.glyphicon {cursor: pointer;}
+.submenu-btn span.glyphicon:hover {color: #fff;}
+.submenu-btn span.menudesc {line-height: 25px;display: inline-block;padding-top: 10px;}
+.submenu .submenu-list {overflow: hidden; height: 246px; padding-top: 18px;}
+.submenu .submenu-list.exist-grouptitle {padding-top: 0px;}
+.submenu .submenu-list>div {float: left; margin-left: 6px;}
+/* .submenu .submenu-list>div a { font-size: 14px; color: #87d567; display: block; padding-left: 15px; padding-right: 15px; line-height: 42px; height: 42px; white-space: nowrap;} 2017-12-19维护*/
+.submenu .submenu-list>div a { font-size: 14px; color: #ffffff; display: block; padding-left: 15px; padding-right: 15px; line-height: 42px; height: 42px; white-space: nowrap;}
+
+.submenu .submenu-list div.menulist3 {overflow: hidden; height: 210px; background-color: rgba(0, 0, 0, 0.6);}
+.submenu .submenu-list div.menulist3>div {float: left; }
+.submenu .submenu-list>div>span {display: block; text-align: center; line-height: 30px; height: 30px; font-size: 14px; color: #fff;}
+
+
+/* 兼容代码 */
+@media \0screen\,screen\9 {
+	.submenu .submenu-list>div,
+	.submenu .submenu-list div.menulist3 div,
+	.submenu-head {position: relative;}
+    .submenu-content,
+	.submenu .submenu-list div.menulist3 {background-color:#000000; *zoom:1; position:static;}
+	.submenu-content {filter:Alpha(opacity=70);}
+	.submenu .submenu-list div.menulist3 {filter:Alpha(opacity=40);}
+	.submenu .submenu-list div.menulist3 a,
+	.submenu-head span {filter:Alpha(opacity=100);}
+}

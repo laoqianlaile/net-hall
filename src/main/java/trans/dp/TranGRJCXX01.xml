@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRJCXX01" tranName="获取个人缴存信息">
+        <comps>
+            <comp compCode="CompGRJCXX01" compName="获取个人缴存信息" expression="#taskFlag=='queryGRJCXX'">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="grzh" paramName="个人账号" paramType="string(1,20)" paramValue="grzh"/>
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="1" paramCode="xingming" paramName="姓名" paramValue="xingming" paramType="string(0,80)" ></outParam>
+                    <outParam ignoreNull="1" paramCode="grjcjs" paramName="个人缴存基数" paramValue="grjcjs" paramType="string(0,-1)" ></outParam>
+                    <outParam ignoreNull="1" paramCode="yjce" paramName="月缴存额" paramValue="yjce" paramType="string(0,-1)" ></outParam>
+                    <outParam ignoreNull="1" paramCode="zjhm" paramName="证件号码" paramValue="zjhm" paramType="string(0,20)" ></outParam>
+                    <outParam ignoreNull="1" paramCode="zjlx" paramName="证件类型" paramValue="zjlx" paramType="string(0,2)" ></outParam>
+                    <outParam ignoreNull="1" paramCode="dwyjce" paramName="单位月缴存额" paramValue="dwyjce" paramType="string(0,-1)" ></outParam>
+                    <outParam ignoreNull="1" paramCode="gryjce" paramName="个人月缴存额" paramValue="gryjce" paramType="string(0,-1)" ></outParam>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

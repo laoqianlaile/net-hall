@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFYWPZCD01" desc="网上业务凭证重打" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="网上业务凭证重打">dp_ywpzcd_01.ydpx</flowvar> 
+          </flowvars>
+          <title>=pagetit</title>
+          <mudics>
+		 	<mudic key="bsp.pb.orgreprt" desc="单位凭证重打业务"></mudic>
+          	<mudic key="bsp.pb.personreprt" desc="个人凭证重打业务"></mudic>
+          	<mudic key="ish.gg.user.yhlx" desc="用户类型"></mudic>
+          </mudics>
+          <subpages>
+			<subpage id="subpage01" desc="凭证补打展示页面" url="dp_ywpzcd_02.ydpx"></subpage>
+		  </subpages>
+		  <buttons>
+           <buttons id="A" text="返回首页" icon="home" url="/home"/>
+          </buttons>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="网上业务凭证重打" appflag="X" buttonflag="A" in="0" out="0">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		</step>
+</flow>

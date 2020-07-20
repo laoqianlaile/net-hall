@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFBZSL01" desc="帮助功能示例" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+	<config>
+  		<flowvars> 
+      		<flowvar name="ym01" desc="帮助功能展示页面">common_exa_bzsl_01.ydpx,common_exa_bzsl_02.ydpx</flowvar> 
+ 		</flowvars>
+  		<title>=pagetit</title>
+	</config>
+	<step id="step1" url="=_flowvar_ym01" desc="信息录入" appflag="X" in="0" out="0">
+    	<init>
+        	<setvar name="pagetit">=_STEPNAME</setvar>
+    	</init>
+	</step>
+</flow>

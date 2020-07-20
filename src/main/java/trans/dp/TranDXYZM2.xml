@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDXYZM2" tranName="短信验证码处理">
+        <comps>
+			<comp compCode="CompSingleTransaction" compName="短信验证码处理" expression="">
+				<inParams>
+					<inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+							 paramValue="getDXYZM2"/>
+					<inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+							 paramValue="短信验证码处理"/>
+				</inParams>
+				<outParams>
+					<outParam ignoreNull="1" paramCode="uprop" paramName="缴存基数" paramType="string(0,-1)" paramValue="uprop"/>
+					<outParam ignoreNull="1" paramCode="unitprop" paramName="缴存基数" paramType="string(0,-1)" paramValue="unitprop"/>
+				</outParams>
+			</comp>
+        </comps>
+    </tran>
+</trans>

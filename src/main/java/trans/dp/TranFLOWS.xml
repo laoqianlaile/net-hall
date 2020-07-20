@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranFLOWS" tranName="申报流程编号">
+        <comps>
+            <comp compCode="CompSingleTransaction" compName="申报流程编号" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getflows"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="申报流程编号"/>
+
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="1" paramCode="basenum" paramName="缴存基数" paramType="string(0,-1)"
+                              paramValue="jcjs"/>
+                    <outParam ignoreNull="1" paramCode="iprop" paramName="个人缴存比例" paramType="string(0,-1)"
+                              paramValue="iprop"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

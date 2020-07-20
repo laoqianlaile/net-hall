@@ -1,0 +1,30 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<zjhm des="证件号码">220722199307100443</zjhm>
+		<grzhzt des="个人账户状态">01</grzhzt>
+		<hjbz des="户籍标志">01</hjbz>
+		<grzhye des="个人账户余额">34000.00</grzhye>
+		<sfydk des="是否有贷款">0</sfydk>
+		<ssjg des="所属机构">长春管理中心南关分中心</ssjg>
+		<xhtqyy des="销户提取原因">离休、退休</xhtqyy>
+		<sctqrq des="上次提取日期">2017-07-15</sctqrq>
+		<sjhm des="手机号码">15999999999</sjhm>
+		<djje des="冻结金额">0.00</djje>
+		<kyye des="可用余额">34000.00</kyye>
+	</body>
+</root>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFDWKH01" desc="单位开户" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="单位开户">dp_dwkh_01.ydpx</flowvar>
+          </flowvars>
+          <mudics>
+			  <mudic key="bsp.cm.tradetype" desc="单位所属行业"></mudic>
+			  <mudic key="bsp.cm.unitkind" desc="单位性质"></mudic>
+			  <mudic key="bsp.cm.supsubrelation" desc="单位隶属关系"></mudic>
+			  <mudic key="bsp.cm.dwjjlx" desc="单位经济类型"></mudic>
+			  <mudic key="bsp.pb.zjlx" desc="证件类型"></mudic>
+			  <mudic key="bsp.dp.bankcode" desc="受托银行代码"></mudic>
+          </mudics>
+          <endpage buttonflag="o">
+		      <init>		        
+		        <setvar name="_RESULT_PAGE_TITLE"><![CDATA[个人开户业务办理成功！]]></setvar>
+		      </init>
+		  </endpage> 
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="单位开户" appflag="X" buttonflag="aiq" in="0" out="1" isleaveprompt="1">
+		    <init>
+				<setvar name="_HIDE_PERSON_INFO" desc="控制个人信息隐藏方式">false</setvar><!--true 隐藏 -->
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+				<setvar name="rw">=_rw</setvar>
+		    </init>
+			<!--申报业务标签，项目开发时，若为申报业务，需要放开下方注释-->
+			<!--
+			<submit>
+				<apply apptitle="单位开户" appOrgType="0" appOrgDesc=""  roleType="0" roleDesc="" apptype="0" inCause="true" />&lt;!&ndash; apptype0预办理 1待办任务&ndash;&gt;
+			</submit>
+			-->
+		</step>
+</flow>

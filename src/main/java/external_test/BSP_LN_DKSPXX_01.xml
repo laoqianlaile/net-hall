@@ -1,0 +1,29 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file>dkspxx.txt</file>
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<filename>dkspxx.txt</filename>
+		<dksqbh des="贷款申请编号">2018061209</dksqbh>
+		<jkhtbh des="借款合同编号">G00000018</jkhtbh>
+		<swtyhmc des="受委托银行名称">中国工商银行</swtyhmc>
+		<htdkje des="合同贷款金额">400000</htdkje>
+		<dkqs des="贷款期数">360</dkqs>
+		<fwzj des="房屋总价">1000000</fwzj>
+		<fwzl des="房屋坐落">吉林省长春市生态大街2309号</fwzl>
+		<dklx des="贷款类型">01</dklx>
+		<fwxz des="房屋性质">一手房</fwxz>
+	</body>
+</root>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="DWZLBG" desc="单位资料变更" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage=""><!-- menu_gen_inst="1" -->
+    <config>
+        <flowvars>
+            <flowvar name="ym01" desc="单位资料变更">dw_dwzlbg_01.ydpx</flowvar>
+            <flowvar name="ym02" desc="单位基本资料变更回单">dw_dwzlbg_03.ydpx</flowvar>
+            <flowvar name="ym03" desc="单位信息变更登记表">dw_dwzlbg_02.ydpx</flowvar>
+        </flowvars>
+        <buttons>
+            <button id="A" text="返回首页" icon="home" url="/home"/> <!-- 可以改变系统提供的按钮上的文字和图标 -->
+        </buttons>
+
+        <title>=pagetit</title>
+    </config>
+    <step id="step1" url="=_flowvar_ym01" desc="单位资料变更" appflag="X" buttonflag="Aa" in="1" out="1">
+        <init>
+            <setvar name="pagetit">=_STEPNAME</setvar>
+        </init>
+    </step>
+    <step id="step2" url="=_flowvar_ym02" desc="单位基本资料变更回单" appflag="X" buttonflag="Aa" in="1" out="1">
+        <init>
+            <setvar name="pagetit">=_STEPNAME</setvar>
+            <setvar name="_prfilename">单位基本资料变更回单</setvar>
+        </init>
+        <!--<buttons>-->
+            <!--<buttons id="l" text="完成" icon="ok"/>-->
+        <!--</buttons>-->
+    </step>
+    <step id="step3" url="=_flowvar_ym03" desc="单位信息变更登记表" appflag="X" buttonflag="l" in="1" out="0">
+        <init>
+            <setvar name="pagetit">=_STEPNAME</setvar>
+            <setvar name="_prfilename">单位信息变更登记表</setvar>
+        </init>
+        <buttons>
+            <buttons id="l" text="完成" icon="ok"/>
+        </buttons>
+    </step>
+</flow>

@@ -1,0 +1,22 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info></ans_info>
+		<particular_code></particular_code>
+		<particular_info></particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<returnCode des="返回码">0</returnCode>
+		<message des="返回信息">成功</message>
+		<data des="返回数据"><![CDATA[{"qdbs":"NP","_ST_step1":"start","yhbs":"1","unitaccnum":"12","_LONGINTYPE":"developer","_STEPNAME":"申报测试","_WF":"WFSBYW02","unitaccname":"12","title":"申报测试","pagetit":"申报测试","_IS":"189430","ymnr":"","slh":"189430","_OPERID":"kf001","_SENDDATE":"2017-10-19","_SENDTIME":"08:56:33","wtlcbh":"WFSBYW02","jglx":"1","_TYPE":"menu","_SENDOPERID":"kf001","sbrxm":"开发人员","_SYSCODE":"21","$page":"common_exa_sbyw_02.ydpx","_ORGID":"org001","sbrzjhm":"12344567890","_APPLY":"0","plywsj":"D:\\ish\\file\\apply\\2017-10-19\\apptest1_189430.txt,D:\\ish\\file\\apply\\2017-10-19\\apptest2_189430.txt","sbrzh":"kf001","rwlx":"1","_LASTST":"start","_POOLKEY":"DATAPOOL_e7b7ff77-097d-4911-bf50-87cd7c35233d","_FLOWNAME":"????????-????","_ST":"step1","_flowvar_ym01":"common_exa_sbyw_02.ydpx","_OPERNAME":"????","zdjg":"","_ATTRIBUTES":"{}","_ORGNAME":"????","_ROLELIST":"DEV01001","_filename":"D:\\ish\\file\\apply\\2017-10-19\\apptest1_189430.txt,D:\\ish\\file\\apply\\2017-10-19\\apptest2_189430.txt"}]]></data>
+	</body>
+</root>

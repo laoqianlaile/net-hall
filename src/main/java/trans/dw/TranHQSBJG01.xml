@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHQSBJG01" tranName="获取申报提交到核心的指定机构">
+        <comps>
+			<comp compCode="CompHQSBJG01" compName="查询申报机构" expression="">
+				<inParams>
+					<inParam paramCode="grzh" ignoreNull="0" paramName="个人账号" paramValue="#getUserExtInfo('grzh')" paramType="string(1,20)"/>
+					<inParam paramCode="ywbh" ignoreNull="0" paramName="业务编号" paramValue="ywbh" paramType="string(0,-1)"/>
+					<inParam paramCode="qdbh" ignoreNull="0" paramName="渠道编号" paramValue="qdbh" paramType="string(0,-1)"/>
+				</inParams>
+				<outParams>
+					<outParam paramCode="zdjg" ignoreNull="1" paramName="指定机构" paramValue="zdjg" paramType="string(0,-1)"/>
+				</outParams>
+			</comp>
+        </comps>
+    </tran>
+</trans>

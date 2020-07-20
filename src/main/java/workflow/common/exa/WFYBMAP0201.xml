@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFYBMAP0201" desc="综服2.0测试示例" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+	<config>
+  		<flowvars> 
+      		<flowvar name="ym01" desc="信息录入页面">common_exa_ybmap_0201.ydpx</flowvar>
+ 		</flowvars>
+  		<title>=pagetit</title>
+	</config>
+	<step id="step1" url="=_flowvar_ym01" desc="信息录入" appflag="X" buttonflag="a" in="0" out="1">
+    	<init>
+        	<setvar name="pagetit">=_STEPNAME</setvar>
+    	</init>
+	</step>
+</flow>

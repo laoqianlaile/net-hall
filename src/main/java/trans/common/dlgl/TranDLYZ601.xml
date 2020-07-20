@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranDLYZ601" tranName="开发商用户登录验证返回用户信息">
+        <comps>
+        	<comp compCode="CompDLYZ601" compName="开发商用户登录验证返回用户信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="loginId" paramName="登录id" paramType="string(0,25)" paramValue="loginId"/>
+                    <inParam ignoreNull="0" paramCode="password" paramName="密码" paramType="string(0,-1)" paramValue="password"/>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="kfsdjh" paramName="开发商登记号" paramType="string(0,-1)" paramValue="kfsdjh"/>
+                	<outParam ignoreNull="0" paramCode="kfsmc" paramName="开发商名称" paramType="string(0,-1)" paramValue="kfsmc"/>
+                	<outParam ignoreNull="0" paramCode="kfsdz" paramName="开发商地址" paramType="string(0,-1)" paramValue="kfsdz"/>
+                	<outParam ignoreNull="0" paramCode="jbrxm" paramName="经办人姓名" paramType="string(0,-1)" paramValue="jbrxm"/>
+                	<outParam ignoreNull="0" paramCode="yzbm" paramName="邮编" paramType="string(0,-1)" paramValue="yzbm"/>
+                	<outParam ignoreNull="0" paramCode="kfsdh" paramName="电话" paramType="string(0,-1)" paramValue="kfsdh"/>
+                	<outParam ignoreNull="0" paramCode="rolecodes" paramName="角色集合" paramType="string(0,-1)" paramValue="rolecodes"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

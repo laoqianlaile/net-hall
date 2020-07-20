@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranXMWH01" tranName="开发商项目维护">
+        <comps>
+			<comp compCode="CompXMCX02" compName="获取项目信息列表" expression="#flag=='instep1'">
+				<inParams>
+					<inParam ignoreNull="1" paramCode="kfsdjh" paramName="开发商登记号" paramType="string(1,20)" paramValue="kfsdjh"/>
+					<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+				</inParams>
+			</comp>
+			<comp compCode="CompXMXQ02" compName="获取协议有效时间参数" expression="#flag=='instep2'">
+				<outParams>
+					<outParam ignoreNull="1" paramCode="yxsj" paramName="有效时间" paramType="string(0,-1)" paramValue="yxsj"/>
+				</outParams>
+			</comp>
+			<comp compCode="CompXMXQ01" compName="获取开发商信息" expression="#flag=='instep2'">
+				<inParams>
+					<inParam ignoreNull="1" paramCode="kfsdjh" paramName="开发商登记号" paramType="string(1,20)" paramValue="kfsdjh"/>
+				</inParams>
+				<outParams>
+					<outParam ignoreNull="1" paramCode="kfsmc" paramName="开发商名称" paramType="string(0,-1)" paramValue="kfsmc"/>
+					<outParam ignoreNull="1" paramCode="dwlx" paramName="单位类型" paramType="string(0,-1)" paramValue="dwlx"/>
+					<outParam ignoreNull="1" paramCode="zcdz" paramName="注册地址" paramType="string(0,-1)" paramValue="zcdz"/>
+					<outParam ignoreNull="1" paramCode="bgdz" paramName="办公地址" paramType="string(0,-1)" paramValue="bgdz"/>
+					<outParam ignoreNull="1" paramCode="dwfrdbxm" paramName="单位法人代表姓名" paramType="string(0,-1)" paramValue="dwfrdbxm"/>
+					<outParam ignoreNull="1" paramCode="dwfrdbzjlx" paramName="单位法人代表证件类型" paramType="string(0,-1)" paramValue="dwfrdbzjlx"/>
+					<outParam ignoreNull="1" paramCode="dwfrdbzjhm" paramName="单位法人代表证件号码" paramType="string(0,-1)" paramValue="dwfrdbzjhm"/>
+					<outParam ignoreNull="1" paramCode="sjhm" paramName="手机号码" paramType="string(0,-1)" paramValue="sjhm"/>
+					<outParam ignoreNull="1" paramCode="dwdh" paramName="单位电话" paramType="string(0,-1)" paramValue="dwdh"/>
+					<outParam ignoreNull="1" paramCode="zczb" paramName="注册资本" paramType="string(0,-1)" paramValue="zczb"/>
+					<outParam ignoreNull="1" paramCode="dwslrq" paramName="单位设立日期" paramType="string(0,-1)" paramValue="dwslrq"/>
+					<outParam ignoreNull="1" paramCode="kfzz" paramName="开发资质" paramType="string(0,-1)" paramValue="kfzz"/>
+					<outParam ignoreNull="1" paramCode="tyshxydm" paramName="统一社会信用代码" paramType="string(0,-1)" paramValue="tyshxydm"/>
+					<outParam ignoreNull="1" paramCode="jgxydm" paramName="机构信用代码" paramType="string(0,-1)" paramValue="jgxydm"/>
+					<outParam ignoreNull="1" paramCode="sfsqbzj" paramName="是否收取保证金" paramType="string(0,-1)" paramValue="sfsqbzj"/>
+					<outParam ignoreNull="1" paramCode="bzjbl" paramName="保证金比例" paramType="string(0,-1)" paramValue="bzjbl"/>
+					<outParam ignoreNull="1" paramCode="jyfw" paramName="经营范围" paramType="string(0,-1)" paramValue="jyfw"/>
+				</outParams>
+			</comp>
+			<comp compCode="CompXMCX01" compName="获取项目、楼栋、楼盘信息" expression="#flag=='instep2'">
+				<inParams>
+					<inParam ignoreNull="1" paramCode="xmxyh" paramName="项目协议号" paramType="string(1,20)" paramValue="xmxyh"/>
+					<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+				</inParams>
+				<outParams>
+					<outParam ignoreNull="1" paramCode="yxsj" paramName="有效时间" paramType="string(0,-1)" paramValue="yxsj"/>
+					<outParam ignoreNull="1" paramCode="xmmc" paramName="项目名称" paramType="string(0,-1)" paramValue="xmmc"/>
+					<outParam ignoreNull="1" paramCode="lpqymc" paramName="楼盘区域名称" paramType="string(0,-1)" paramValue="lpqymc"/>
+					<outParam ignoreNull="1" paramCode="xmwz" paramName="项目位置" paramType="string(0,-1)" paramValue="xmwz"/>
+					<outParam ignoreNull="1" paramCode="xykssj" paramName="协议开始日期" paramType="string(0,-1)" paramValue="xykssj"/>
+					<outParam ignoreNull="1" paramCode="xyjssj" paramName="协议结束日期" paramType="string(0,-1)" paramValue="xyjssj"/>
+					<outParam ignoreNull="1" paramCode="lpmj" paramName="楼盘面积" paramType="string(0,-1)" paramValue="lpmj"/>
+					<outParam ignoreNull="1" paramCode="lpjj" paramName="楼盘均价" paramType="string(0,-1)" paramValue="lpjj"/>
+					<outParam ignoreNull="1" paramCode="lpzts" paramName="楼盘总套数" paramType="string(0,-1)" paramValue="lpzts"/>
+					<outParam ignoreNull="1" paramCode="lpzzs" paramName="楼盘总幢数" paramType="string(0,-1)" paramValue="lpzzs"/>
+					<outParam ignoreNull="1" paramCode="yssj" paramName="预售时间" paramType="string(0,-1)" paramValue="yssj"/>
+					<outParam ignoreNull="1" paramCode="jgsj" paramName="竣工时间" paramType="string(0,-1)" paramValue="jgsj"/>
+					<outParam ignoreNull="1" paramCode="syqlx" paramName="使用权类型" paramType="string(0,-1)" paramValue="syqlx"/>
+					<outParam ignoreNull="1" paramCode="syqzzrq" paramName="使用权终止日期" paramType="string(0,-1)" paramValue="syqzzrq"/>
+					<outParam ignoreNull="1" paramCode="tdzfzjg" paramName="土地证发证机关" paramType="string(0,-1)" paramValue="tdzfzjg"/>
+					<outParam ignoreNull="1" paramCode="jsydghydmj" paramName="建设用地规划用地面积" paramType="string(0,-1)" paramValue="jsydghydmj"/>
+					<outParam ignoreNull="1" paramCode="jsydghjsgm" paramName="保证金建设用地规划建设规模比例" paramType="string(0,-1)" paramValue="jsydghjsgm"/>
+					<outParam ignoreNull="1" paramCode="jsydghydxz" paramName="建设用地规划用地性质" paramType="string(0,-1)" paramValue="jsydghydxz"/>
+					<outParam ignoreNull="1" paramCode="tdzbh" paramName="土地证编号" paramType="string(0,-1)" paramValue="tdzbh"/>
+					<outParam ignoreNull="1" paramCode="jsgcsgxkz" paramName="建筑工程施工许可证" paramType="string(0,-1)" paramValue="jsgcsgxkz"/>
+					<outParam ignoreNull="1" paramCode="jzgcghxkz" paramName="建筑工程规划许可证" paramType="string(0,-1)" paramValue="jzgcghxkz"/>
+					<outParam ignoreNull="1" paramCode="jsydghxkz" paramName="建设用地规划许可证" paramType="string(0,-1)" paramValue="jsydghxkz"/>
+					<outParam ignoreNull="1" paramCode="bzjkhyh" paramName="保证金开户银行" paramType="string(0,-1)" paramValue="bzjkhyh"/>
+					<outParam ignoreNull="1" paramCode="bzjzhmc" paramName="保证金账户名称" paramType="string(0,-1)" paramValue="bzjzhmc"/>
+					<outParam ignoreNull="1" paramCode="bzjzhhm" paramName="保证金账户号码" paramType="string(0,-1)" paramValue="bzjzhhm"/>
+					<outParam ignoreNull="1" paramCode="filename" paramName="下传文件名" paramType="string(0,-1)" paramValue="filename"/>
+				</outParams>
+			</comp>
+			<comp compCode="CompXMWH02" compName="校验是否有信息变更" expression="#flag=='checksfxg'">
+				<inParams>
+					<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+					<inParam ignoreNull="0" paramCode="filename" paramName="下传文件名称" paramType="string(0,-1)" paramValue="filename"/>
+				</inParams>
+			</comp>
+			<comp compCode="CompXMWH01" compName="提交开发商项目维护信息" expression="#flag=='outstep2'">
+				<inParams>
+					<inParam ignoreNull="1" paramCode="xmmc" paramName="项目名称" paramType="string(0,-1)" paramValue="xmmc"/>
+					<inParam ignoreNull="1" paramCode="lpqymc" paramName="楼盘区域名称" paramType="string(0,-1)" paramValue="lpqymc"/>
+					<inParam ignoreNull="1" paramCode="xmwz" paramName="项目位置" paramType="string(0,-1)" paramValue="xmwz"/>
+					<inParam ignoreNull="1" paramCode="xykssj" paramName="协议开始日期" paramType="string(0,-1)" paramValue="xykssj"/>
+					<inParam ignoreNull="1" paramCode="xyjssj" paramName="协议结束日期" paramType="string(0,-1)" paramValue="xyjssj"/>
+					<inParam ignoreNull="1" paramCode="lpmj" paramName="楼盘面积" paramType="string(0,-1)" paramValue="lpmj"/>
+					<inParam ignoreNull="1" paramCode="lpjj" paramName="楼盘均价" paramType="string(0,-1)" paramValue="lpjj"/>
+					<inParam ignoreNull="1" paramCode="lpzts" paramName="楼盘总套数" paramType="string(0,-1)" paramValue="lpzts"/>
+					<inParam ignoreNull="1" paramCode="lpzzs" paramName="楼盘总幢数" paramType="string(0,-1)" paramValue="lpzzs"/>
+					<inParam ignoreNull="1" paramCode="yssj" paramName="预售时间" paramType="string(0,-1)" paramValue="yssj"/>
+					<inParam ignoreNull="1" paramCode="jgsj" paramName="竣工时间" paramType="string(0,-1)" paramValue="jgsj"/>
+					<inParam ignoreNull="1" paramCode="syqlx" paramName="使用权类型" paramType="string(0,-1)" paramValue="syqlx"/>
+					<inParam ignoreNull="1" paramCode="syqzzrq" paramName="使用权终止日期" paramType="string(0,-1)" paramValue="syqzzrq"/>
+					<inParam ignoreNull="1" paramCode="tdzfzjg" paramName="土地证发证机关" paramType="string(0,-1)" paramValue="tdzfzjg"/>
+					<inParam ignoreNull="1" paramCode="jsydghydmj" paramName="建设用地规划用地面积" paramType="string(0,-1)" paramValue="jsydghydmj"/>
+					<inParam ignoreNull="1" paramCode="jsydghjsgm" paramName="保证金建设用地规划建设规模比例" paramType="string(0,-1)" paramValue="jsydghjsgm"/>
+					<inParam ignoreNull="1" paramCode="jsydghydxz" paramName="建设用地规划用地性质" paramType="string(0,-1)" paramValue="jsydghydxz"/>
+					<inParam ignoreNull="1" paramCode="tdzbh" paramName="土地证编号" paramType="string(0,-1)" paramValue="tdzbh"/>
+					<inParam ignoreNull="1" paramCode="jsgcsgxkz" paramName="建筑工程施工许可证" paramType="string(0,-1)" paramValue="jsgcsgxkz"/>
+					<inParam ignoreNull="1" paramCode="jzgcghxkz" paramName="建筑工程规划许可证" paramType="string(0,-1)" paramValue="jzgcghxkz"/>
+					<inParam ignoreNull="1" paramCode="jsydghxkz" paramName="建设用地规划许可证" paramType="string(0,-1)" paramValue="jsydghxkz"/>
+					<inParam ignoreNull="1" paramCode="bzjkhyh" paramName="保证金开户银行" paramType="string(0,-1)" paramValue="bzjkhyh"/>
+					<inParam ignoreNull="1" paramCode="bzjzhmc" paramName="保证金账户名称" paramType="string(0,-1)" paramValue="bzjzhmc"/>
+					<inParam ignoreNull="1" paramCode="bzjzhhm" paramName="保证金账户号码" paramType="string(0,-1)" paramValue="bzjzhhm"/>
+					<inParam ignoreNull="1" paramCode="jyfw" paramName="经营范围" paramType="string(0,-1)" paramValue="jyfw"/>
+					<inParam ignoreNull="1" paramCode="bgdz" paramName="办公地址" paramType="string(0,-1)" paramValue="bgdz"/>
+					<inParam ignoreNull="1" paramCode="dwdh" paramName="单位电话" paramType="string(0,-1)" paramValue="dwdh"/>
+					<inParam ignoreNull="1" paramCode="sjhm" paramName="手机号码" paramType="string(0,-1)" paramValue="sjhm"/>
+					<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+				</inParams>
+			</comp>
+        </comps>
+    </tran>
+</trans>

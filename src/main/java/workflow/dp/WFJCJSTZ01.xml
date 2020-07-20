@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFJCJSTZ01" desc="缴存基数调整" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+	<config>
+          <flowvars> 
+              <flowvar name="ym01" desc="缴存基数调整">dp_jcjstz_01.ydpx</flowvar> 
+              <flowvar name="ym02" desc="缴存基数调整">dp_jcjstz_02.ydpx</flowvar> 
+          </flowvars>
+         <mudics>	
+		  	 <mudic key="ish.gg.other.sf" desc="是否"></mudic>
+          </mudics>  
+          
+          <endpage>
+		      <init>		        
+		        <setvar name="_RESULT_PAGE_TITLE"><![CDATA[缴存基数调整业务办理成功！]]></setvar>
+		      </init>
+		  </endpage> 
+		  <buttons>>
+           <buttons id="D" text="打印" icon="print"/>
+       	 </buttons>
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="缴存基数调整" appflag="X" buttonflag="a" isleaveprompt="1" in="1" out="1">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		</step>
+		 <step id="step2" url="=_flowvar_ym02" desc="缴存基数调整" appflag="X" buttonflag="l" in="1" out="0">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		    <buttons>
+          	 	<buttons id="l" text="完成" icon="ok"/>
+            </buttons>
+		</step> 
+</flow>

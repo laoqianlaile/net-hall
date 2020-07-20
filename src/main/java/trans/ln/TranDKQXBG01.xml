@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDKQXBG01" tranName="贷款期限变更">
+        <comps>
+            <comp compCode="CompDKQXBG01" compName="获取变更后信息" expression="#flag=='hqbghxx'">
+            	<inParams>
+            		<inParam paramCode="jkhtbh" ignoreNull="0" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(1,30)"/>
+            		<inParam paramCode="tzhwdqqs" ignoreNull="0" paramName="调整后未到期期数" paramValue="tzhwdqqs" paramType="string(1,3)"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+				</inParams>
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="tzhyhke" paramName="调整后月还款额" paramType="string(0,-1)" paramValue="tzhyhke"/>
+                	<outParam ignoreNull="1" paramCode="tzhdkzqs" paramName="调整后贷款总期数" paramType="string(0,-1)" paramValue="tzhdkzqs"/>
+                	<outParam ignoreNull="1" paramCode="tzhdqrq" paramName="调整后到期日期" paramType="string(0,-1)" paramValue="tzhdqrq"/>
+                </outParams>
+            </comp>
+            <comp compCode="CompDKQXBG02" compName="提交变更信息" expression="#flag=='tjxx'">
+           	 	<inParams>
+            		<inParam paramCode="jkhtbh" ignoreNull="1" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(1,30)"/>
+            		<inParam paramCode="tzhwdqqs" ignoreNull="1" paramName="调整后未到期期数" paramValue="tzhwdqqs" paramType="string(1,3)"/>
+            		<inParam paramCode="bgyy" ignoreNull="1" paramName="变更原因" paramValue="bgyy" paramType="string(1,1000)"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+				</inParams>
+            	<outParams>
+                	<!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

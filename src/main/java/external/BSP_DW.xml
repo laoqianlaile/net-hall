@@ -1,0 +1,1417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+    <interface id="BSP_DW_HQBDYHK_01" tr_code="123456" system="99" des="获取个人在中心绑定银行卡">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+		</up>
+		<down>
+			<sfbd des="是否绑定">=sfbd</sfbd>
+			<yhbh des="银行编号">=yhbh</yhbh>
+			<yhmc des="银行名称">=yhmc</yhmc>
+			<yhzh des="银行账号">=yhzh</yhzh>
+		</down>
+	</interface>
+	<interface id="BSP_DW_GMZZZF_01" tr_code="123456" system="99" des="购买自住住房提取提交">
+	<!-- <interface id="BSP_DW_GMZZZF_01" tr_code="businessquotai/appapi11006.json" system="HTTP_GET_YBMAP2" des="购买自住住房提取提交"> -->
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<gflx des="购房类型">=gflx</gflx>
+			<ygfrgx des="与购房人关系">=ygfrgx</ygfrgx>
+			<gfrxm des="购房人姓名">=gfrxm</gfrxm>
+			<gfrzjlx des="购房人证件类型">=gfrzjlx</gfrzjlx>
+			<gfrzjhm des="购房人证件号码">=gfrzjhm</gfrzjhm>
+			<gfhtbh des="购房合同编号">=gfhtbh</gfhtbh>
+			<wqhtbh des="网签合同编号">=wqhtbh</wqhtbh>
+			<fwcqzh des="房屋产权证号">=fwcqzh</fwcqzh>
+			<fph des="发票号">=fph</fph>
+			<fwjzmj des="房屋建筑面积">=fwjzmj</fwjzmj>
+			<fwzl des="房屋坐落">=fwzl</fwzl>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+			<tqje des="提取金额">=tqje</tqje>
+			<jsfs des="结算方式">=jsfs</jsfs>
+			<skrzhmc des="收款人账户名称">=skrzhmc</skrzhmc>
+			<skrkhyh des="收款人开户银行">=skrkhyh</skrkhyh>
+			<skrzhhm des="收款人账户号码">=skrzhhm</skrzhhm>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<jymm des="交易密码">=jymm</jymm>
+			<sjhm des="手机号码">=sjhm</sjhm>
+		</up>
+		<down>
+			
+		</down>
+	</interface>
+	<interface id="BSP_DW_HQGZFXX_01" tr_code="123456" system="99" des="获取公租房信息">
+		<up>
+			<xingming des="姓名">=getRealUserExtInfo('xingming')</xingming>
+			<zjlx des="证件类型">=getRealUserExtInfo('zjlx')</zjlx>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+		</up>
+		<down>
+			<zlfwdz des="租赁房屋地址">=zlfwdz</zlfwdz>
+			<fwjzmj des="房屋建筑面积">=fwjzmj</fwjzmj>
+			<zfyzj des="支付月租金">=zfyzj</zfyzj>
+		</down>
+	</interface>
+	<interface id="BSP_DW_JSKTQED_01" tr_code="123456" system="99" des="计算可提取金额">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<zflx des="租房类型">=zflx</zflx>
+			<dsfpbh des="地税发票编号">=dsfpbh</dsfpbh>
+			<zfyzj des="支付月租金">=zfyzj</zfyzj>
+			<fwjzmj des="房屋建筑面积">=fwjzmj</fwjzmj>
+			<zlkssj des="租赁开始时间">=zlkssj</zlkssj>
+			<zljssj des="租赁结束时间">=zljssj</zljssj>
+		</up>
+		<down>
+			<ktqje des="可提取金额">=ktqje</ktqje>
+		</down>
+	</interface>
+	<interface id="BSP_DW_TJZFTQXX_01" tr_code="123456" system="99" des="提交租房提取信息">
+	<!-- <interface id="BSP_DW_TJZFTQXX_01" tr_code="businessquotai/appapi11009.json" system="HTTP_GET_YBMAP2" des="提交租房提取信息"> -->
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<zflx des="租房类型">=zflx</zflx>
+			<dsfpbh des="地税发票编号">=dsfpbh</dsfpbh>
+			<zfyzj des="支付月租金">=zfyzj</zfyzj>
+			<fwjzmj des="房屋建筑面积">=fwjzmj</fwjzmj>
+			<zlkssj des="租赁开始时间">=zlkssj</zlkssj>
+			<zljssj des="租赁结束时间">=zljssj</zljssj>
+			<zlfwdz des="租赁房屋地址">=zlfwdz</zlfwdz>
+			<fwjzmj des="房屋建筑面积">=fwjzmj</fwjzmj>
+			<czr des="出租人">=czr</czr>
+			<czrdh des="出租人电话">=czrdh</czrdh>
+			<czrzjlx des="出租人证件类型">=czrzjlx</czrzjlx>
+			<czrzjhm des="出租人证件号码">=czrzjhm</czrzjhm>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<tqje des="提取金额">=tqje</tqje>
+			<jsfs des="结算方式">=jsfs</jsfs>
+			<skrzhmc des="收款人账户名称">=skrzhmc</skrzhmc>
+			<skrkhyh des="收款人开户银行">=skrkhyh</skrkhyh>
+			<skrzhhm des="收款人账户号码">=skrzhhm</skrzhhm>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<jymm des="交易密码">=jymm</jymm>
+		</up>
+		<down>
+		</down>
+	</interface>
+	<interface id="BSP_DW_HQGJYH_01" tr_code="123456" system="99" des="获取归集银行信息">
+		<down>
+			<file des="归集银行文件">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_DW_HQTQJE_01" tr_code="123456" system="99" des="获取提取金额">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<sdhtbh des="商贷合同编号">=sdhtbh</sdhtbh>
+			<hklx des="还款类型">=hklx</hklx>
+		</up>
+		<down>
+			<tqje des="提取金额">=tqje</tqje>
+		</down>
+	</interface>
+	<interface id="BSP_DW_HQHKXX_02" tr_code="123456" system="99" des="获取商贷贷款还款信息">
+		<up>
+			<sddkhth des="商贷贷款合同号">=sddkhth</sddkhth>
+		</up>
+		<down>
+			<dkyh des="贷款银行">=dkyh</dkyh>
+			<dkye des="贷款余额">=dkye</dkye>
+			<yhmc des="银行名称">=yhmc</yhmc>
+		</down>
+	</interface>
+	<interface id="BSP_DW_CHDKTQ_01" tr_code="123456" system="99" des="偿还公积金贷款提交">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<sdhtbh des="商贷合同编号">=sdhtbh</sdhtbh>
+			<wqhtbh des="网签合同编号">=wqhtbh</wqhtbh>
+			<dkyh des="贷款银行">=dkyh</dkyh>
+			<dkye des="贷款余额">=dkye</dkye>
+			<jsfs des="结算方式">=jsfs</jsfs>
+			<skrzhmc des="收款人账户名称">=skrzhmc</skrzhmc>
+			<skrkhyh des="收款人开户银行">=skrkhyh</skrkhyh>
+			<skrzhhm des="收款人账户号码">=skrzhhm</skrzhhm>
+			<hklx des="还款类型">=hklx</hklx>
+			<tqje des="提取金额">=tqje</tqje>
+			<jymm des="交易密码">=jymm</jymm>
+		</up>
+	</interface>
+	<interface id="BSP_DW_JSJZDXKTQJE_01" tr_code="123456" system="99" des="获取建造、翻建、大修住房提取金额">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<jzlx des="建造类型">=jzlx</jzlx>
+			<spwh des="审批文号">=spwh</spwh>
+			<fwdz des="房屋地址">=fwdz</fwdz>
+			<fwmj des="房屋面积">=fwmj</fwmj>
+			<gczj des="工程造价">=gczj</gczj>
+		</up>
+		<down>
+			<ktqje des="可提取金额">=ktqje</ktqje>
+		</down>
+	</interface>
+	<interface id="BSP_DW_TJJZDXTQXX_01" tr_code="123456" system="99" des="建造、翻建、大修住房提取提交">
+	<!-- <interface id="BSP_DW_TJJZDXTQXX_01" tr_code="businessquotai/appapi11007.json" system="HTTP_POST_YBMAP2" des="建造、翻建、大修住房提取提交"> -->
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<jzlx des="建造类型">=jzlx</jzlx>
+			<spwh des="审批文号">=spwh</spwh>
+			<fwdz des="房屋地址">=fwdz</fwdz>
+			<fwmj des="房屋面积">=fwmj</fwmj>
+			<gczj des="工程造价">=gczj</gczj>
+			<yxfrgx des="与修房人关系">=yxfrgx</yxfrgx>
+			<xfrxm des="修房人">=xfrxm</xfrxm>
+			<xfrzjlx des="修房人证件类型">=xfrzjlx</xfrzjlx>
+			<xfrzjhm des="修房人证件号码">=xfrzjhm</xfrzjhm>
+			<jsfs des="结算方式">=jsfs</jsfs>
+			<skrzhmc des="收款人账户名称">=skrzhmc</skrzhmc>
+			<skrkhyh des="收款人开户银行">=skrkhyh</skrkhyh>
+			<skrzhhm des="收款人账户号码">=skrzhhm</skrzhhm>
+			<tqje des="提取金额">=tqje</tqje>
+			<jymm des="交易密码">=jymm</jymm>
+		</up>
+	</interface>
+	<interface id="BSP_DW_JSXHTQJE_01" tr_code="123456" system="99" des="计算销户提取金额">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<tqyy des="提取原因">=tqyy</tqyy>
+		</up>
+		<down>
+			<tqlx des="提取利息">=tqlx</tqlx>
+			<tqje des="提取金额">=tqje</tqje>
+		</down>
+	</interface>
+	<interface id="BSP_DW_TJXHTQXX_01" tr_code="123456" system="99" des="销户提取提交">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<grzhzt des="个人账户状态">=grzhzt</grzhzt>
+			<hjbz des="户籍标志">=hjbz</hjbz>
+			<grzhye des="个人账户余额">=grzhye</grzhye>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<sfydk des="是否有贷款">=sfydk</sfydk>
+			<ssjg des="所属机构">=ssjg</ssjg>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwbh')</dwzh>
+			<dwmc des="单位名称">=getRealUserExtInfo('dwmc')</dwmc>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<tqje des="提取金额">=tqje</tqje>
+			<sctqrq des="上次提取日期">=sctqrq</sctqrq>
+			<jsfs des="结算方式">=jsfs</jsfs>
+			<skrzhmc des="收款人账户名称">=skrzhmc</skrzhmc>
+			<skrkhyh des="收款人开户银行">=skrkhyh</skrkhyh>
+			<skrzhhm des="收款人账户号码">=skrzhhm</skrzhhm>
+			<jymm des="交易密码">=jymm</jymm>
+		</up>
+	</interface>
+	<interface id="BSP_DW_JSWYTQJE_01" tr_code="123456" system="99" des="计算物业费提取金额">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<wyf des="物业费">=wyf</wyf>
+			<fph des="发票号">=fph</fph>
+		</up>
+		<down>
+			<ktqje des="可提取金额">=ktqje</ktqje>
+		</down>
+	</interface>
+	<interface id="BSP_DW_TJWYTQXX_01" tr_code="123456" system="99" des="物业费提取提交">
+		<!-- <interface id="BSP_DW_TJWYTQXX_01" tr_code="businessquotai/appapi11003.json" system="HTTP_POST_YBMAP2" des="物业费提取提交"> -->
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<jsfs des="结算方式">=jsfs</jsfs>
+			<skrzhmc des="收款人账户名称">=skrzhmc</skrzhmc>
+			<skrkhyh des="收款人开户银行">=skrkhyh</skrkhyh>
+			<skrzhhm des="收款人账户号码">=skrzhhm</skrzhhm>
+			<tqje des="提取金额">=tqje</tqje>
+			<jymm des="交易密码">=jymm</jymm>
+			<wyf des="物业费">=wyf</wyf>
+			<fph des="发票号">=fph</fph>
+		</up>
+	</interface>
+	<interface id="BSP_DW_JSDKSFTQJE_01" tr_code="123456" system="99" des="计算贷款首付提取金额">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<gfrzjhm des="购房人证件号码">=gfrzjhm</gfrzjhm>
+			<gfrxm des="购房人姓名">=gfrxm</gfrxm>
+			<fkrq des="放款日期">=fkrq</fkrq>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+			<fwzl des="房屋坐落">=fwzl</fwzl>
+			<gfsfk des="购房首付款">=gfsfk</gfsfk>
+			<sfkytqje des="首付款已提取额">=sfkytqje</sfkytqje>
+		</up>
+		<down>
+			<ktqje des="可提取金额">=ktqje</ktqje>
+		</down>
+	</interface>
+	<interface id="BSP_DW_TJDKSFTQXX_01" tr_code="123456" system="99" des="贷款首付提取提交">
+		<!-- <interface id="BSP_DW_TJDKSFTQXX_01" tr_code="businessquotai/appapi11011.json" system="HTTP_POST_YBMAP2" des="物业费提取提交"> -->
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<jsfs des="结算方式">=jsfs</jsfs>
+			<skrzhmc des="收款人账户名称">=skrzhmc</skrzhmc>
+			<skrkhyh des="收款人开户银行">=skrkhyh</skrkhyh>
+			<skrzhhm des="收款人账户号码">=skrzhhm</skrzhhm>
+			<tqje des="提取金额">=tqje</tqje>
+			<jymm des="交易密码">=jymm</jymm>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<gfrzjhm des="购房人证件号码">=gfrzjhm</gfrzjhm>
+			<gfrxm des="购房人姓名">=gfrxm</gfrxm>
+			<fkrq des="放款日期">=fkrq</fkrq>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+			<fwzl des="房屋坐落">=fwzl</fwzl>
+			<gfsfk des="购房首付款">=gfsfk</gfsfk>
+			<sfkytqje des="首付款已提取额">=sfkytqje</sfkytqje>
+		</up>
+	</interface>
+	<interface id="BSP_DW_HQDKSFXX_01" tr_code="123456" system="99" des="获取贷款首付信息">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+		</up>
+		<down>
+			<fkrq des="放款日期">=fkrq</fkrq>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+			<fwzl des="房屋坐落">=fwzl</fwzl>
+			<gfsfk des="购房首付款">=gfsfk</gfsfk>
+			<sfkytqje des="首付款已提取额">=sfkytqje</sfkytqje>
+		</down>
+	</interface>
+	<interface id="BSP_DW_JSXSDBTQJE_01" tr_code="123456" system="99" des="校验并计算享受低保提取金额">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<dbbh des="低保编号">=dbbh</dbbh>
+		</up>
+		<down>
+			<ktqje des="可提取金额">=ktqje</ktqje>
+		</down>
+	</interface>
+	<interface id="BSP_DW_TJXSDBTQXX_01" tr_code="123456" system="99" des="享受低保提取提交">
+		<!-- <interface id="BSP_DW_TJXSDBTQXX_01" tr_code="businessquotai/appapi11013.json" system="HTTP_POST_YBMAP2" des="物业费提取提交"> -->
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<jsfs des="结算方式">=jsfs</jsfs>
+			<skrzhmc des="收款人账户名称">=skrzhmc</skrzhmc>
+			<skrkhyh des="收款人开户银行">=skrkhyh</skrkhyh>
+			<skrzhhm des="收款人账户号码">=skrzhhm</skrzhhm>
+			<tqje des="提取金额">=tqje</tqje>
+			<jymm des="交易密码">=jymm</jymm>
+			<dbbh des="低保编号">=dbbh</dbbh>
+		</up>
+	</interface>
+	<!-- 网厅单位基本信息查询 -->
+	<interface id="getDWJBXXCX" keepattr1="7022" tr_code="business/appapi115007.json" system="HTTP_POST_YBMAP2" des="单位基本信息查询">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwzh')</dwzh>
+			<unitaccnum des="单位账号">=getRealUserExtInfo('dwzh')</unitaccnum>
+			<BrcCode des="机构编码">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<lmselpayamt des="上月自筹汇缴金额">=lmselpayamt</lmselpayamt>
+			<appronum des="批准文件号">=appronum</appronum>
+			<unitacctype des="单位账户类型">=unitacctype</unitacctype>
+			<supunittype des="上级单位类型">=supunittype</supunittype>
+			<begym des="开始年月">=begym</begym>
+			<styhdm des="受托银行代码">=styhdm</styhdm>
+			<basebankaccnum des="基本银行账号">=basebankaccnum</basebankaccnum>
+			<payeebankaccnum des="收款账号">=payeebankaccnum</payeebankaccnum>
+			<chgaddpayamt des="汇缴金额变动增加金额">=chgaddpayamt</chgaddpayamt>
+			<dwjcrs des="单位缴存人数">=dwjcrs</dwjcrs>
+			
+			<cmdecpaynum des="本月减少汇缴人数">=cmdecpaynum</cmdecpaynum>
+			<jbrgddhhm des="经办人固定电话号码">=jbrgddhhm</jbrgddhhm>
+			<chgdecpayamt des="汇缴金额变动减少金额">=chgdecpayamt</chgdecpayamt>
+			<sincolflag des="是否允许单边汇缴参数">=sincolflag</sincolflag>
+			<morecheflag des="是否允许多张支票参数">=morecheflag</morecheflag>
+			<dwfxr des="单位发薪日">=dwfxr</dwfxr>
+			<email des="电子邮箱">=email</email>
+			<crefilnum des="成立文件号">=crefilnum</crefilnum>
+			<dwlsgx des="单位隶属关系">=dwlsgx</dwlsgx>
+			<dwjjlx des="单位经济类型">=dwjjlx</dwjjlx>
+			
+			<dwsshy des="单位所属行业">=dwsshy</dwsshy>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<cstcollbankacc des="单位托收银行账号">=cstcollbankacc</cstcollbankacc>
+			<ye des="余额">=ye</ye>
+			<unitprebal des="预缴账户余额">=unitprebal</unitprebal>
+			<jzny des="缴至年月">=jzny</jzny>
+			<indinorprop des="个人正常比例">=indinorprop</indinorprop>
+			<dwkhrq des="单位开户日期">=dwkhrq</dwkhrq>
+			<zt des="个人账户状态">=zt</zt>
+			<unitkind des="单位性质">=unitkind</unitkind>
+			
+			<cmselpaynum des="本月自筹汇缴人数">=cmselpaynum</cmselpaynum>
+			<lmfinpaynum des="上月财政汇缴人数">=lmfinpaynum</lmfinpaynum>
+			<endym des="终止年月">=endym</endym>
+			<lmfinpayamt des="上月财政汇缴金额">=lmfinpayamt</lmfinpayamt>
+			<cmselpayamt des="本月自筹汇缴金额">=cmselpayamt</cmselpayamt>
+			<cmfinpaynum des="本月财政汇缴人数">=cmfinpaynum</cmfinpaynum>
+			<cmfinpayamt des="本月财政汇缴金额">=cmfinpayamt</cmfinpayamt>
+			<cmpaynum des="本月汇缴人数">=cmpaynum</cmpaynum>
+			<yjce des="月缴额">=yjce</yjce>
+			<wtinstcode des="网厅申报机构">=wtinstcode</wtinstcode>
+			
+			<transdate des="交易日期">=transdate</transdate>
+			<cstbankaccname des="受托银行账户名称">=cstbankaccname</cstbankaccname>
+			<baseuppflag des="基数上限标准">=baseuppflag</baseuppflag>
+			<cocietycode des="统一社会信用代码">=cocietycode</cocietycode>
+			<mngdept des="主管部门">=mngdept</mngdept>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<dwfrdbxm des="单位法人代表姓名">=dwfrdbxm</dwfrdbxm>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<zhkhyhmc des="账户开户银行名称">=zhkhyhmc</zhkhyhmc>
+			
+			<dwfrdbzjlx des="单位法人代表证件类型">=dwfrdbzjlx</dwfrdbzjlx>
+			<dwfrdbzjhm des="单位法人代表证件号码">=dwfrdbzjhm</dwfrdbzjhm>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<jbrzjhm des="经办人证件号码">=jbrzjhm</jbrzjhm>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<dpbankname des="归集银行专户名称">=dpbankname</dpbankname>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<cmaddpaynum des="本月增加汇缴人数">=cmaddpaynum</cmaddpaynum>
+			<unitprop des="单位比例">=unitprop</unitprop>
+			<fundsouflag des="资金来源标志">=fundsouflag</fundsouflag>
+			<dwjcbl des="资金来源标志">=fundsouflag</dwjcbl>
+			<grjcbl des="资金来源标志">=fundsouflag</grjcbl>
+			<accbankcode des="账户银行">=accbankcode</accbankcode>
+			<upreusebal des="预缴户可用余额">=upreusebal</upreusebal>
+			<lmselpaynum des="上月自筹汇缴人数">=lmselpaynum</lmselpaynum>
+			<jbrsjhm des="经办人手机号码">=jbrsjhm</jbrsjhm>
+			<dwdzxx des="单位电子信箱">=dwdzxx</dwdzxx>
+		</down>
+	</interface>
+	<!-- 网厅个人账户变更查询 -->
+	<interface id="getGRZHBGCX" keepattr1="7028" tr_code="business/appapi115301.json" system="HTTP_POST_YBMAP2" des="网厅个人账户变更查询 ">
+		<up>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<begdate des="开始日期">=begdate</begdate>
+			<enddate des="结束日期">=enddate</enddate>
+			<ywlx des="业务类型">=ywlx</ywlx>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
+	<!-- 网厅单位个人开户 -->
+	<interface id="getGRKH1" keepattr1="7009" tr_code="business/appapi110068.json" system="HTTP_POST_YBMAP2" des="网厅单位个人开户">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwzh')</dwzh>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">0</flag1>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道上传实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=wtinstcode</BrcCode>
+		</up>
+		<down>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<amt des="金额">=amt</amt>
+			<year des="年">=year</year>
+			<month des="月">=month</month>
+			<amt1 des="金额1">=amt1</amt1>
+			<amt2 des="金额2">=amt2</amt2>
+			<transamt des="交易金额">=transamt</transamt>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<interface id="getGRKH2" keepattr1="7009" tr_code="business/appapi110068.json" system="HTTP_POST_YBMAP2" des="网厅单位个人开户">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwzh')</dwzh>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">1</flag1>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道上传实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=wtinstcode</BrcCode>
+		</up>
+		<down>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<amt des="金额">=amt</amt>
+			<year des="年">=year</year>
+			<month des="月">=month</month>
+			<amt1 des="金额1">=amt1</amt1>
+			<amt2 des="金额2">=amt2</amt2>
+			<transamt des="交易金额">=transamt</transamt>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<!-- 网厅单位明细信息查询 -->
+	<interface id="getDWMXXXCX" keepattr1="7023" tr_code="business/appapi115011.json" system="HTTP_POST_YBMAP2" des="网厅单位明细信息查询">
+		<up>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<begdate des="开始日期">=begdate</begdate>
+			<enddate des="终止日期">=enddate</enddate>
+			<ywlx des="业务类型">=ywlx</ywlx>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
+	<!-- 网厅单位职工信息查询 -->
+	<interface id="getDWZGXXCX" keepattr1="7006" tr_code="business/appapi110019.json" system="HTTP_POST_YBMAP2" des="网厅单位职工信息查询">
+		<up>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<type des="类型">=type</type>
+			<dwjcbl des="单位缴存比例">=dwjcbl</dwjcbl>
+			<grjcbl des="个人缴存比例">=grjcbl</grjcbl>
+			<instcode des="机构代码">=instcode</instcode>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
+	<!-- 个人转移查询 -->
+	<interface id="getGRZYCX" keepattr1="7029" tr_code="business/appapi115302.json" system="HTTP_POST_YBMAP2" des="个人转移查询">
+		<up>
+			<grzh des="个人账号">=grzh</grzh>
+			<tsiunitaccnum des="转入单位账号">=tsiunitaccnum</tsiunitaccnum>
+			<tsounitaccnum des="转出单位账号">=dwzh</tsounitaccnum>
+			<grjcbl des="个人缴存比例">=grjcbl</grjcbl>
+			<begdate des="开始日期">=begdate</begdate>
+			<enddate des="结束日期">=enddate</enddate>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
+	<!-- 申报流程 -->
+	<interface id="getflows" tr_code="business/appapi110065.json" system="HTTP_POST_YBMAP2" des="申报流程" keepattr1="7065">
+		<up>
+			<unitaccnum des="检查标识">=getRealUserExtInfo('dwzh')</unitaccnum>
+			<flowids des="标志1">=flowids</flowids>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<flownames des="专管员">=flownames</flownames>
+		</down>
+	</interface>
+	<!-- 个人封存 -->
+	<interface id="upGRFCXXSC1" tr_code="business/appapi110066.json" system="HTTP_POST_YBMAP2" des="个人封存" keepattr1="7007">
+		<up>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">0</flag1>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwzh')</dwzh>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=wtinstcode</BrcCode>
+		</up>
+		<down>
+			<monpaysum des="月应汇缴额">=monpaysum</monpaysum>
+			<sealnum des="封存人数">=sealnum</sealnum>
+			<month des="月">=month</month>
+			<transamt des="交易金额">=transamt</transamt>
+			<amt1 des="金额1">=amt1</amt1>
+			<year des="年">=year</year>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<interface id="upGRFCXXSC2" tr_code="business/appapi110066.json" system="HTTP_POST_YBMAP2" des="个人封存" keepattr1="7007">
+		<up>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">1</flag1>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwzh')</dwzh>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=wtinstcode</BrcCode>
+		</up>
+		<down>
+			<monpaysum des="月应汇缴额">=monpaysum</monpaysum>
+			<sealnum des="封存人数">=sealnum</sealnum>
+			<month des="月">=month</month>
+			<transamt des="交易金额">=transamt</transamt>
+			<amt1 des="金额1">=amt1</amt1>
+			<year des="年">=year</year>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<!-- 单位资料变更查询 -->
+	<interface id="getDWZLBGCX" keepattr1="7027" tr_code="business/appapi115300.json" system="HTTP_POST_YBMAP2" des="单位资料变更查询">
+		<up>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<begdate des="开始日期">=begdate</begdate>
+			<enddate des="结束日期">=enddate</enddate>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
+	<!-- 单位资料变更 -->
+	<interface id="getDWZLBG1" keepattr1="7024" tr_code="business/appapi115013.json" system="HTTP_POST_YBMAP2" des="单位资料变更">
+		<up>
+			<ChannelSeq des="交易实例号">=_IS</ChannelSeq>
+			<dwsshy des="单位所属行业">=dwsshy</dwsshy>
+			<agentinstcode des="经办机构">=agentinstcode</agentinstcode>
+			<unitacctype des="单位账户类型">=unitacctype</unitacctype>
+			<dwlsgx des="单位隶属关系">=dwlsgx</dwlsgx>
+			<jbrzjlx des="经办人证件类型">=jbrzjlx</jbrzjlx>
+			<mngdept des="主管部门">=mngdept</mngdept>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<chkop des="复核柜员">=chkop</chkop>
+			<remark des="备注">=remark</remark>
+			<approveop des="审批柜员">=approveop</approveop>
+			<dwjjlx des="单位经济类型">=dwjjlx</dwjjlx>
+			<dwfxr des="单位发薪日">=dwfxr</dwfxr>
+			<dwfrdbzjlx des="单位法人代表证件类型">=dwfrdbzjlx</dwfrdbzjlx>
+			<acceptreason des="受理原因">=acceptreason</acceptreason>
+			<baseuppflag des="基数上限标准">=baseuppflag</baseuppflag>
+			<jbrzjhm des="经办人证件号码">=jbrzjhm</jbrzjhm>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<dwfrdbxm des="单位法人代表姓名">=dwfrdbxm</dwfrdbxm>
+			<appronum des="批准文件号">=appronum</appronum>
+			<cstbankaccname des="受托银行账户名称">=cstbankaccname</cstbankaccname>
+			<styhmc des="受托银行名称">=styhmc</styhmc>
+			<styhdm des="受托银行代码">=styhdm</styhdm>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<checkid des="检查标识">=checkid</checkid>
+			<unitkind des="单位性质">=unitkind</unitkind>
+			<createdate des="成立时间">=createdate</createdate>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<crefilnum des="成立文件号">=crefilnum</crefilnum>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<agentop des="经办柜员">=agentop</agentop>
+			<jbrsjhm des="经办人手机号码">=jbrsjhm</jbrsjhm>
+			<cocietycode des="统一社会信用代码">=cocietycode</cocietycode>
+			<basebankaccnum des="基本银行账号">=basebankaccnum</basebankaccnum>
+			<jbrgddhhm des="经办人固定电话号码">=jbrgddhhm</jbrgddhhm>
+			<dwfrdbzjhm des="单位法人代表证件号码">=dwfrdbzjhm</dwfrdbzjhm>
+			<dwdzxx des="单位电子信箱">=dwdzxx</dwdzxx>
+			<finalflag des="单位级别标志">=finalflag</finalflag>
+			<ownershipkind des="所有制性质">=ownershipkind</ownershipkind>
+			<accbankcode des="账户银行">=accbankcode</accbankcode>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<flag1 des="标志1">=0</flag1>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<interface id="getDWZLBG2" keepattr1="7024" tr_code="business/appapi115013.json" system="HTTP_POST_YBMAP2" des="单位资料变更">
+		<up>
+			<ChannelSeq des="交易实例号">=_IS</ChannelSeq>
+			<dwsshy des="单位所属行业">=dwsshy</dwsshy>
+			<agentinstcode des="经办机构">=agentinstcode</agentinstcode>
+			<unitacctype des="单位账户类型">=unitacctype</unitacctype>
+			<dwlsgx des="单位隶属关系">=dwlsgx</dwlsgx>
+			<jbrzjlx des="经办人证件类型">=jbrzjlx</jbrzjlx>
+			<mngdept des="主管部门">=mngdept</mngdept>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<chkop des="复核柜员">=chkop</chkop>
+			<remark des="备注">=remark</remark>
+			<approveop des="审批柜员">=approveop</approveop>
+			<dwjjlx des="单位经济类型">=dwjjlx</dwjjlx>
+			<dwfxr des="单位发薪日">=dwfxr</dwfxr>
+			<dwfrdbzjlx des="单位法人代表证件类型">=dwfrdbzjlx</dwfrdbzjlx>
+			<acceptreason des="受理原因">=acceptreason</acceptreason>
+			<baseuppflag des="基数上限标准">=baseuppflag</baseuppflag>
+			<jbrzjhm des="经办人证件号码">=jbrzjhm</jbrzjhm>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<dwfrdbxm des="单位法人代表姓名">=dwfrdbxm</dwfrdbxm>
+			<appronum des="批准文件号">=appronum</appronum>
+			<cstbankaccname des="受托银行账户名称">=cstbankaccname</cstbankaccname>
+			<styhmc des="受托银行名称">=styhmc</styhmc>
+			<styhdm des="受托银行代码">=styhdm</styhdm>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<checkid des="检查标识">=checkid</checkid>
+			<unitkind des="单位性质">=unitkind</unitkind>
+			<createdate des="成立时间">=createdate</createdate>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<crefilnum des="成立文件号">=crefilnum</crefilnum>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<agentop des="经办柜员">=agentop</agentop>
+			<jbrsjhm des="经办人手机号码">=jbrsjhm</jbrsjhm>
+			<cocietycode des="统一社会信用代码">=cocietycode</cocietycode>
+			<basebankaccnum des="基本银行账号">=basebankaccnum</basebankaccnum>
+			<jbrgddhhm des="经办人固定电话号码">=jbrgddhhm</jbrgddhhm>
+			<dwfrdbzjhm des="单位法人代表证件号码">=dwfrdbzjhm</dwfrdbzjhm>
+			<dwdzxx des="单位电子信箱">=dwdzxx</dwdzxx>
+			<finalflag des="单位级别标志">=finalflag</finalflag>
+			<ownershipkind des="所有制性质">=ownershipkind</ownershipkind>
+			<accbankcode des="账户银行">=accbankcode</accbankcode>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<flag1 des="标志1">=1</flag1>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<!-- 职工基数变更 -->
+	<interface id="getJCJSBG1" keepattr1="7010" tr_code="business/appapi110069.json" system="HTTP_POST_YBMAP2" des="职工基数变更">
+		<up>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<flag1 des="标志1">0</flag1>
+			<file des="文件名称">=file</file>
+			<filename des="文件名称">=file</filename>
+			<ChannelSeq des="交易实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<bfchgbasenum des="变更前基数">=bfchgbasenum</bfchgbasenum>
+			<bfchgunitpayamt des="变更前单位月汇缴金额">=bfchgunitpayamt</bfchgunitpayamt>
+			<transdate des="交易日期">=transdate</transdate>
+			<afchgbasenum des="变更后基数">=afchgbasenum</afchgbasenum>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<cmpaynum des="本月汇缴人数">=cmpaynum</cmpaynum>
+			<spaynum des="补缴人数">=spaynum</spaynum>
+			<afchgunitpayamt des="变更后单位月汇缴金额">=afchgunitpayamt</afchgunitpayamt>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<interface id="getJCJSBG2" keepattr1="7010" tr_code="business/appapi110069.json" system="HTTP_POST_YBMAP2" des="职工基数变更">
+		<up>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<flag1 des="标志1">1</flag1>
+			<file des="文件名称">=file</file>
+			<filename des="文件名称">=file</filename>
+			<ChannelSeq des="交易实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<bfchgbasenum des="变更前基数">=bfchgbasenum</bfchgbasenum>
+			<bfchgunitpayamt des="变更前单位月汇缴金额">=bfchgunitpayamt</bfchgunitpayamt>
+			<transdate des="交易日期">=transdate</transdate>
+			<afchgbasenum des="变更后基数">=afchgbasenum</afchgbasenum>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<cmpaynum des="本月汇缴人数">=cmpaynum</cmpaynum>
+			<spaynum des="补缴人数">=spaynum</spaynum>
+			<afchgunitpayamt des="变更后单位月汇缴金额">=afchgunitpayamt</afchgunitpayamt>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<!-- 缴存比例变更 -->
+	<interface id="getJCBLBG1" keepattr1="7026" tr_code="business/appapi115022.json" system="HTTP_POST_YBMAP2" des="缴存比例变更">
+		<up>
+			<ChannelSeq des="交易实例号">=_IS</ChannelSeq>
+			<bfchgunitprop des="变更前单位比例">=bfchgunitprop</bfchgunitprop>
+			<checkid des="检查标识">=checkid</checkid>
+			<afchgindiprop des="变更后个人比例">=afchgindiprop</afchgindiprop>
+			<afchgunitprop des="变更后单位比例">=afchgunitprop</afchgunitprop>
+			<authfilenum des="批准文号">=authfilenum</authfilenum>
+			<chgreason des="调整原因">=chgreason</chgreason>
+			<lpaym des="缴至年月">=lpaym</lpaym>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<propchgtype des="比例变更类型">1</propchgtype>
+			<unitaccname des="单位名称">=unitaccname</unitaccname>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<flag1 des="标志1">=0</flag1>
+            <propreduendym des="比例调低终止年月">=propreduendym</propreduendym>
+            <bfchgindiprop des="变更前个人比例">=grjcbl</bfchgindiprop>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<unitacctype des="单位账户类型">=unitacctype</unitacctype>
+			<afchgindipaysum des="变更后个人汇缴总额">=afchgindipaysum</afchgindipaysum>
+			<fundsouflag des="资金来源标志">=fundsouflag</fundsouflag>
+			<bfchgindipaysum des="变更前个人汇缴总额">=bfchgindipaysum</bfchgindipaysum>
+			<cmpaynum des="本月汇缴人数">=cmpaynum</cmpaynum>
+			<spaynum des="补缴人数">=spaynum</spaynum>
+			<transdate des="交易日期">=transdate</transdate>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<interface id="getJCBLBG2" keepattr1="7026" tr_code="business/appapi115022.json" system="HTTP_POST_YBMAP2" des="缴存比例变更">
+		<up>
+			<ChannelSeq des="交易实例号">=_IS</ChannelSeq>
+			<bfchgunitprop des="变更前单位比例">=bfchgunitprop</bfchgunitprop>
+			<checkid des="检查标识">=checkid</checkid>
+			<afchgindiprop des="变更后个人比例">=afchgindiprop</afchgindiprop>
+			<afchgunitprop des="变更后单位比例">=afchgunitprop</afchgunitprop>
+			<authfilenum des="批准文号">=authfilenum</authfilenum>
+			<chgreason des="调整原因">=chgreason</chgreason>
+			<lpaym des="缴至年月">=lpaym</lpaym>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<propchgtype des="比例变更类型">1</propchgtype>
+			<unitaccname des="单位名称">=unitaccname</unitaccname>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<flag1 des="标志1">=1</flag1>
+			<propreduendym des="比例调低终止年月">=propreduendym</propreduendym>
+			<bfchgindiprop des="变更前个人比例">=grjcbl</bfchgindiprop>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<unitacctype des="单位账户类型">=unitacctype</unitacctype>
+			<afchgindipaysum des="变更后个人汇缴总额">=afchgindipaysum</afchgindipaysum>
+			<fundsouflag des="资金来源标志">=fundsouflag</fundsouflag>
+			<bfchgindipaysum des="变更前个人汇缴总额">=bfchgindipaysum</bfchgindipaysum>
+			<cmpaynum des="本月汇缴人数">=cmpaynum</cmpaynum>
+			<spaynum des="补缴人数">=spaynum</spaynum>
+			<transdate des="交易日期">=transdate</transdate>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<!-- 网厅汇缴登记 -->
+	<interface id="getZXGHJ1" keepattr1="7030" tr_code="business/appapi115801.json" system="HTTP_POST_YBMAP2" des="网厅汇缴登记">
+		<up>
+			<begym des="开始年月">=begym</begym>
+			<endym des="终止年月">=endym</endym>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<paymode des="缴款方式">=paymode</paymode>
+			<factpayamt des="实际缴款金额">=factpayamt</factpayamt>
+			<cstbankaccname des="单位托收银行账户名称">=cstbankaccname</cstbankaccname>
+			<styhdm des="受托银行代码">=styhdm</styhdm>
+			<upaytotamt des="应缴金额">=upaytotamt</upaytotamt>
+			<uprepayamt des="预缴户转出金额">=uprepayamt</uprepayamt>
+			<uprepayinamt des="预缴户转入金额">=uprepayinamt</uprepayinamt>
+			<basebankaccnum des="基本银行账号">=basebankaccnum</basebankaccnum>
+			<regdate des="登记日期">=regdate</regdate>
+			<regnum des="登记号">=regnum</regnum>
+			<ChannelSeq des="实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+			<flag1 des="标志1">=3</flag1>
+		</up>
+		<down>
+			<amt1 des="金额1">=amt1</amt1>
+			<amt3 des="金额3">=amt3</amt3>
+			<flag des="标志">=flag</flag>
+			<prominfo des="提示信息">=prominfo</prominfo>
+			<filename des="文件名称">=filename</filename>
+			<regdate des="登记日期">=regdate</regdate>
+			<regnum des="登记号">=regnum</regnum>
+		</down>
+	</interface>
+	<!-- 网厅汇缴登记 -->
+	<interface id="getZXGHJ2" keepattr1="7030" tr_code="business/appapi115801.json" system="HTTP_POST_YBMAP2" des="网厅汇缴登记">
+		<up>
+			<begym des="开始年月">=begym</begym>
+			<endym des="终止年月">=endym</endym>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<paymode des="缴款方式">=paymode</paymode>
+			<factpayamt des="实际缴款金额">=factpayamt</factpayamt>
+			<cstbankaccname des="单位托收银行账户名称">=cstbankaccname</cstbankaccname>
+			<styhdm des="受托银行代码">=styhdm</styhdm>
+			<upaytotamt des="应缴金额">=upaytotamt</upaytotamt>
+			<uprepayamt des="预缴户转出金额">=uprepayamt</uprepayamt>
+			<uprepayinamt des="预缴户转入金额">=uprepayinamt</uprepayinamt>
+			<basebankaccnum des="基本银行账号">=basebankaccnum</basebankaccnum>
+			<regdate des="登记日期">=regdate</regdate>
+			<regnum des="登记号">=regnum</regnum>
+			<ChannelSeq des="实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+			<flag1 des="标志1">=4</flag1>
+		</up>
+		<down>
+			<amt1 des="金额1">=amt1</amt1>
+			<amt3 des="金额3">=amt3</amt3>
+			<flag des="标志">=flag</flag>
+			<prominfo des="提示信息">=prominfo</prominfo>
+			<filename des="文件名称">=filename</filename>
+			<regdate des="登记日期">=regdate</regdate>
+			<regnum des="登记号">=regnum</regnum>
+		</down>
+	</interface>
+	<!-- 汇缴验证及计算 -->
+	<interface id="getHJYZJS" keepattr1="7035" tr_code="business/appapi119003.json" system="HTTP_POST_YBMAP2" des="汇缴验证及计算">
+		<up>
+			<begym des="开始年月">=begym</begym>
+			<endym des="终止年月">=endym</endym>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<colpaytype des="汇缴类型">=colpaytype</colpaytype>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+			<ChannelSeq des="实例号">=_IS</ChannelSeq>
+		</up>
+		<down>
+			<factpayamt des="实际缴款金额">=factpayamt</factpayamt>
+		</down>
+	</interface>
+	<!-- 网厅补缴登记 -->
+	<interface id="getBJDJ1" keepattr1="7011" tr_code="business/appapi110070.json" system="HTTP_POST_YBMAP2" des="网厅补缴登记">
+		<up>
+			<factpayamt des="实际缴款金额">=factpayamt</factpayamt>
+			<flag des="标志">=flag</flag>
+			<payinaccbank des="划入银行">=payinaccbank</payinaccbank>
+			<paymode des="缴款方式">=paymode</paymode>
+			<spayamt des="补缴金额">=spayamt</spayamt>
+			<spaytype des="补缴类型">=spaytype</spaytype>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<spaynum des="补缴人数">=spaynum</spaynum>
+			<uprepayamt des="预缴户转出金额">=uprepayamt</uprepayamt>
+			<vounum des="凭证号">=vounum</vounum>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<payerbankcode des="付款银行代码">=payerbankcode</payerbankcode>
+			<payerbankaccnm0 des="付款单位银行账户名称">=payerbankaccnm0</payerbankaccnm0>
+			<payerbankacc0 des="付款单位银行账户账号">=payerbankacc0</payerbankacc0>
+			<speflag des="特殊标志">=speflag</speflag>
+			<flag1 des="标志1">=0</flag1>
+			<ChannelSeq des="实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<regnum des="登记号">=regnum</regnum>
+			<filename des="文件名称">=filename</filename>
+			<payinaccbank des="划入银行">=payinaccbank</payinaccbank>
+		</down>
+	</interface>
+	<!-- 网厅补缴登记 -->
+	<interface id="getBJDJ2" keepattr1="7011" tr_code="business/appapi110070.json" system="HTTP_POST_YBMAP2" des="网厅补缴登记">
+		<up>
+			<factpayamt des="实际缴款金额">=factpayamt</factpayamt>
+			<flag des="标志">=flag</flag>
+			<payinaccbank des="划入银行">=payinaccbank</payinaccbank>
+			<paymode des="缴款方式">=paymode</paymode>
+			<spayamt des="补缴金额">=spayamt</spayamt>
+			<spaytype des="补缴类型">=spaytype</spaytype>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<spaynum des="补缴人数">=spaynum</spaynum>
+			<uprepayamt des="预缴户转出金额">=uprepayamt</uprepayamt>
+			<vounum des="凭证号">=vounum</vounum>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<payerbankcode des="付款银行代码">=payerbankcode</payerbankcode>
+			<payerbankaccnm0 des="付款单位银行账户名称">=payerbankaccnm0</payerbankaccnm0>
+			<payerbankacc0 des="付款单位银行账户账号">=payerbankacc0</payerbankacc0>
+			<speflag des="特殊标志">=speflag</speflag>
+			<flag1 des="标志1">=1</flag1>
+			<ChannelSeq des="实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<regnum des="登记号">=regnum</regnum>
+			<filename des="文件名称">=filename</filename>
+			<payinaccbank des="划入银行">=payinaccbank</payinaccbank>
+		</down>
+	</interface>
+	<!-- 网厅补缴登记 -->
+	<interface id="getBJDJ3" keepattr1="7011" tr_code="business/appapi110070.json" system="HTTP_POST_YBMAP2" des="网厅补缴登记">
+		<up>
+			<factpayamt des="实际缴款金额">=factpayamt</factpayamt>
+			<flag des="标志">=flag</flag>
+			<payinaccbank des="划入银行">=payinaccbank</payinaccbank>
+			<paymode des="缴款方式">=paymode</paymode>
+			<spayamt des="补缴金额">=spayamt</spayamt>
+			<spaytype des="补缴类型">=spaytype</spaytype>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<spaynum des="补缴人数">=spaynum</spaynum>
+			<uprepayamt des="预缴户转出金额">=uprepayamt</uprepayamt>
+			<vounum des="凭证号">=vounum</vounum>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<payerbankcode des="付款银行代码">=payerbankcode</payerbankcode>
+			<payerbankaccnm0 des="付款单位银行账户名称">=payerbankaccnm0</payerbankaccnm0>
+			<payerbankacc0 des="付款单位银行账户账号">=payerbankacc0</payerbankacc0>
+			<speflag des="特殊标志">=speflag</speflag>
+			<flag1 des="标志1">=2</flag1>
+			<ChannelSeq des="实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<regnum des="登记号">=regnum</regnum>
+			<filename des="文件名称">=filename</filename>
+			<payinaccbank des="划入银行">=payinaccbank</payinaccbank>
+		</down>
+	</interface>
+	<!-- 网厅个人转移 -->
+	<interface id="getGRZY1" keepattr1="7018" tr_code="business/appapi110079.json" system="HTTP_POST_YBMAP2" des="网厅个人转移">
+		<up>
+			<trstype des="转移类型">=trstype</trstype>
+			<tsiunitaccnum des="转入单位账号">=tsiunitaccnum</tsiunitaccnum>
+			<tsounitaccnum des="转出单位账号">=tsounitaccnum</tsounitaccnum>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">=0</flag1>
+			<accinstcode des="账户机构">=accinstcode</accinstcode>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道上传实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<trsnum des="转移人数">=trsnum</trsnum>
+			<calintyear des="结息年份">=calintyear</calintyear>
+			<year des="年">=year</year>
+			<month des="月">=month</month>
+			<day des="日">=day</day>
+			<amt1 des="金额1">=amt1</amt1>
+			<amt2 des="金额2">=amt2</amt2>
+			<amt3 des="金额3">=amt3</amt3>
+			<trsamt des="转移金额">=trsamt</trsamt>
+			<jzmonth2 des="月2">=jzmonth2</jzmonth2>
+			<jzyear2 des="年2">=jzyear2</jzyear2>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<interface id="getGRZY2" keepattr1="7018" tr_code="business/appapi110079.json" system="HTTP_POST_YBMAP2" des="网厅个人转移">
+		<up>
+			<trstype des="转移类型">=trstype</trstype>
+			<tsiunitaccnum des="转入单位账号">=tsiunitaccnum</tsiunitaccnum>
+			<tsounitaccnum des="转出单位账号">=tsounitaccnum</tsounitaccnum>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">=1</flag1>
+			<accinstcode des="账户机构">=accinstcode</accinstcode>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道上传实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<trsnum des="转移人数">=trsnum</trsnum>
+			<calintyear des="结息年份">=calintyear</calintyear>
+			<year des="年">=year</year>
+			<month des="月">=month</month>
+			<day des="日">=day</day>
+			<amt1 des="金额1">=amt1</amt1>
+			<amt2 des="金额2">=amt2</amt2>
+			<amt3 des="金额3">=amt3</amt3>
+			<trsamt des="转移金额">=trsamt</trsamt>
+			<jzmonth2 des="月2">=jzmonth2</jzmonth2>
+			<jzyear2 des="年2">=jzyear2</jzyear2>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<interface id="getGRZY3" keepattr1="7018" tr_code="business/appapi110079.json" system="HTTP_POST_YBMAP2" des="网厅个人转移">
+		<up>
+			<trstype des="转移类型">=trstype</trstype>
+			<tsiunitaccnum des="转入单位账号">=tsiunitaccnum</tsiunitaccnum>
+			<tsounitaccnum des="转出单位账号">=tsounitaccnum</tsounitaccnum>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">=2</flag1>
+			<accinstcode des="账户机构">=accinstcode</accinstcode>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道上传实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<trsnum des="转移人数">=trsnum</trsnum>
+			<calintyear des="结息年份">=calintyear</calintyear>
+			<year des="年">=year</year>
+			<month des="月">=month</month>
+			<day des="日">=day</day>
+			<amt1 des="金额1">=amt1</amt1>
+			<amt2 des="金额2">=amt2</amt2>
+			<amt3 des="金额3">=amt3</amt3>
+			<trsamt des="转移金额">=trsamt</trsamt>
+			<jzmonth2 des="月2">=jzmonth2</jzmonth2>
+			<jzyear2 des="年2">=jzyear2</jzyear2>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<interface id="getGRZY4" keepattr1="7018" tr_code="business/appapi110079.json" system="HTTP_POST_YBMAP2" des="网厅个人转移">
+		<up>
+			<trstype des="转移类型">=trstype</trstype>
+			<tsiunitaccnum des="转入单位账号">=tsiunitaccnum</tsiunitaccnum>
+			<tsounitaccnum des="转出单位账号">=tsounitaccnum</tsounitaccnum>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">=3</flag1>
+			<accinstcode des="账户机构">=accinstcode</accinstcode>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道上传实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<trsnum des="转移人数">=trsnum</trsnum>
+			<calintyear des="结息年份">=calintyear</calintyear>
+			<year des="年">=year</year>
+			<month des="月">=month</month>
+			<day des="日">=day</day>
+			<amt1 des="金额1">=amt1</amt1>
+			<amt2 des="金额2">=amt2</amt2>
+			<amt3 des="金额3">=amt3</amt3>
+			<trsamt des="转移金额">=trsamt</trsamt>
+			<jzmonth2 des="月2">=jzmonth2</jzmonth2>
+			<jzyear2 des="年2">=jzyear2</jzyear2>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<interface id="getGRZY5" keepattr1="7018" tr_code="business/appapi110079.json" system="HTTP_POST_YBMAP2" des="网厅个人转移">
+		<up>
+			<trstype des="转移类型">=trstype</trstype>
+			<tsiunitaccnum des="转入单位账号">=tsiunitaccnum</tsiunitaccnum>
+			<tsounitaccnum des="转出单位账号">=tsounitaccnum</tsounitaccnum>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">=5</flag1>
+			<accinstcode des="账户机构">=accinstcode</accinstcode>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道上传实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<trsnum des="转移人数">=trsnum</trsnum>
+			<calintyear des="结息年份">=calintyear</calintyear>
+			<year des="年">=year</year>
+			<month des="月">=month</month>
+			<day des="日">=day</day>
+			<amt1 des="金额1">=amt1</amt1>
+			<amt2 des="金额2">=amt2</amt2>
+			<amt3 des="金额3">=amt3</amt3>
+			<trsamt des="转移金额">=trsamt</trsamt>
+			<jzmonth2 des="月2">=jzmonth2</jzmonth2>
+			<jzyear2 des="年2">=jzyear2</jzyear2>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<!-- 网厅单位基本信息查询2 -->
+	<interface id="getDWJBXXCX2" keepattr1="7022" tr_code="business/appapi115007.json" system="HTTP_POST_YBMAP2" des="单位基本信息查询">
+		<up>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<unitaccnum des="单位账号">=dwzh</unitaccnum>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<lmselpayamt des="上月自筹汇缴金额">=lmselpayamt</lmselpayamt>
+			<appronum des="批准文件号">=appronum</appronum>
+			<unitacctype des="单位账户类型">=unitacctype</unitacctype>
+			<supunittype des="上级单位类型">=supunittype</supunittype>
+			<begym des="开始年月">=begym</begym>
+			<styhdm des="受托银行代码">=styhdm</styhdm>
+			<basebankaccnum des="基本银行账号">=basebankaccnum</basebankaccnum>
+			<payeebankaccnum des="收款账号">=payeebankaccnum</payeebankaccnum>
+			<chgaddpayamt des="汇缴金额变动增加金额">=chgaddpayamt</chgaddpayamt>
+			<dwjcrs des="单位缴存人数">=dwjcrs</dwjcrs>
+
+			<cmdecpaynum des="本月减少汇缴人数">=cmdecpaynum</cmdecpaynum>
+			<jbrgddhhm des="经办人固定电话号码">=jbrgddhhm</jbrgddhhm>
+			<chgdecpayamt des="汇缴金额变动减少金额">=chgdecpayamt</chgdecpayamt>
+			<sincolflag des="是否允许单边汇缴参数">=sincolflag</sincolflag>
+			<morecheflag des="是否允许多张支票参数">=morecheflag</morecheflag>
+			<dwfxr des="单位发薪日">=dwfxr</dwfxr>
+			<email des="电子邮箱">=email</email>
+			<crefilnum des="成立文件号">=crefilnum</crefilnum>
+			<dwlsgx des="单位隶属关系">=dwlsgx</dwlsgx>
+			<dwjjlx des="单位经济类型">=dwjjlx</dwjjlx>
+
+			<dwsshy des="单位所属行业">=dwsshy</dwsshy>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<cstcollbankacc des="单位托收银行账号">=cstcollbankacc</cstcollbankacc>
+			<ye des="余额">=ye</ye>
+			<unitprebal des="预缴账户余额">=unitprebal</unitprebal>
+			<jzny des="缴至年月">=jzny</jzny>
+			<indinorprop des="个人正常比例">=indinorprop</indinorprop>
+			<dwkhrq des="单位开户日期">=dwkhrq</dwkhrq>
+			<zt des="个人账户状态">=zt</zt>
+			<unitkind des="单位性质">=unitkind</unitkind>
+
+			<cmselpaynum des="本月自筹汇缴人数">=cmselpaynum</cmselpaynum>
+			<lmfinpaynum des="上月财政汇缴人数">=lmfinpaynum</lmfinpaynum>
+			<endym des="终止年月">=endym</endym>
+			<lmfinpayamt des="上月财政汇缴金额">=lmfinpayamt</lmfinpayamt>
+			<cmselpayamt des="本月自筹汇缴金额">=cmselpayamt</cmselpayamt>
+			<cmfinpaynum des="本月财政汇缴人数">=cmfinpaynum</cmfinpaynum>
+			<cmfinpayamt des="本月财政汇缴金额">=cmfinpayamt</cmfinpayamt>
+			<cmpaynum des="本月汇缴人数">=cmpaynum</cmpaynum>
+			<yjce des="月缴额">=yjce</yjce>
+			<wtinstcode des="网厅申报机构">=wtinstcode</wtinstcode>
+
+			<transdate des="交易日期">=transdate</transdate>
+			<cstbankaccname des="受托银行账户名称">=cstbankaccname</cstbankaccname>
+			<baseuppflag des="基数上限标准">=baseuppflag</baseuppflag>
+			<cocietycode des="统一社会信用代码">=cocietycode</cocietycode>
+			<mngdept des="主管部门">=mngdept</mngdept>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<dwfrdbxm des="单位法人代表姓名">=dwfrdbxm</dwfrdbxm>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<zhkhyhmc des="账户开户银行名称">=zhkhyhmc</zhkhyhmc>
+
+			<dwfrdbzjlx des="单位法人代表证件类型">=dwfrdbzjlx</dwfrdbzjlx>
+			<dwfrdbzjhm des="单位法人代表证件号码">=dwfrdbzjhm</dwfrdbzjhm>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<jbrzjhm des="经办人证件号码">=jbrzjhm</jbrzjhm>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<dpbankname des="归集银行专户名称">=dpbankname</dpbankname>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<cmaddpaynum des="本月增加汇缴人数">=cmaddpaynum</cmaddpaynum>
+			<unitprop des="单位比例">=unitprop</unitprop>
+			<fundsouflag des="资金来源标志">=fundsouflag</fundsouflag>
+			<dwjcbl des="单位缴存比例">=fundsouflag</dwjcbl>
+			<grjcbl des="个人缴存比例">=fundsouflag</grjcbl>
+			<accbankcode des="账户银行">=accbankcode</accbankcode>
+			<upreusebal des="预缴户可用余额">=upreusebal</upreusebal>
+			<lmselpaynum des="上月自筹汇缴人数">=lmselpaynum</lmselpaynum>
+			<jbrsjhm des="经办人手机号码">=jbrsjhm</jbrsjhm>
+			<dwdzxx des="单位电子信箱">=dwdzxx</dwdzxx>
+		</down>
+	</interface>
+	<!-- 个人启封 -->
+	<interface id="upGRQFXXSC1" tr_code="business/appapi110067.json" system="HTTP_POST_YBMAP2" des="个人启封" keepattr1="7008">
+		<up>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">=0</flag1>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwzh')</dwzh>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<monpaysum des="月应汇缴额">=monpaysum</monpaysum>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<month des="月">=month</month>
+			<transamt des="交易金额">=transamt</transamt>
+			<amt des="金额1">=amt</amt>
+			<year des="年">=year</year>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<interface id="upGRQFXXSC2" tr_code="business/appapi110067.json" system="HTTP_POST_YBMAP2" des="个人启封" keepattr1="7008">
+		<up>
+			<checkid des="检查标识">=checkid</checkid>
+			<flag1 des="标志1">=1</flag1>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwzh')</dwzh>
+			<filename des="文件名称">=file</filename>
+			<file des="文件名称">=file</file>
+			<ChannelSeq des="渠道实例号">=_IS</ChannelSeq>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+			<monpaysum des="月应汇缴额">=monpaysum</monpaysum>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<month des="月">=month</month>
+			<transamt des="交易金额">=transamt</transamt>
+			<amt des="金额1">=amt</amt>
+			<year des="年">=year</year>
+			<filename des="文件名称">=filename</filename>
+		</down>
+	</interface>
+	<!-- 单位专办员密码修改 -->
+	<interface id="getDWZBYMMBG" tr_code="business/appapi168099.json" system="HTTP_POST_YBMAP2" des="单位专办员密码修改" keepattr1="7052">
+		<up>
+			<confirmpwd des="确认密码">=confirmpwd</confirmpwd>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwzh')</dwzh>
+			<opercode des="专办员编号">=opercode</opercode>
+			<pwd des="密码">=oldpwd</pwd>
+			<newpwd des="新密码">=newpwd</newpwd>
+			<flag des="标志">2</flag>
+			<BrcCode des="经办机构">=getUserExtInfo('wtinstcode')</BrcCode>
+		</up>
+		<down>
+
+		</down>
+	</interface>
+	<!-- 网厅单位基本信息查询3 -->
+	<interface id="getDWJBXXCX3" keepattr1="7022" tr_code="business/appapi115007.json" system="HTTP_POST_YBMAP2" des="单位基本信息查询">
+		<up>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<unitaccnum des="单位账号">=dwzh</unitaccnum>
+			<BrcCode des="经办机构">=07750011</BrcCode>
+		</up>
+		<down>
+			<lmselpayamt des="上月自筹汇缴金额">=lmselpayamt</lmselpayamt>
+			<appronum des="批准文件号">=appronum</appronum>
+			<unitacctype des="单位账户类型">=unitacctype</unitacctype>
+			<supunittype des="上级单位类型">=supunittype</supunittype>
+			<begym des="开始年月">=begym</begym>
+			<styhdm des="受托银行代码">=styhdm</styhdm>
+			<basebankaccnum des="基本银行账号">=basebankaccnum</basebankaccnum>
+			<payeebankaccnum des="收款账号">=payeebankaccnum</payeebankaccnum>
+			<chgaddpayamt des="汇缴金额变动增加金额">=chgaddpayamt</chgaddpayamt>
+			<dwjcrs des="单位缴存人数">=dwjcrs</dwjcrs>
+
+			<cmdecpaynum des="本月减少汇缴人数">=cmdecpaynum</cmdecpaynum>
+			<jbrgddhhm des="经办人固定电话号码">=jbrgddhhm</jbrgddhhm>
+			<chgdecpayamt des="汇缴金额变动减少金额">=chgdecpayamt</chgdecpayamt>
+			<sincolflag des="是否允许单边汇缴参数">=sincolflag</sincolflag>
+			<morecheflag des="是否允许多张支票参数">=morecheflag</morecheflag>
+			<dwfxr des="单位发薪日">=dwfxr</dwfxr>
+			<email des="电子邮箱">=email</email>
+			<crefilnum des="成立文件号">=crefilnum</crefilnum>
+			<dwlsgx des="单位隶属关系">=dwlsgx</dwlsgx>
+			<dwjjlx des="单位经济类型">=dwjjlx</dwjjlx>
+
+			<dwsshy des="单位所属行业">=dwsshy</dwsshy>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<cstcollbankacc des="单位托收银行账号">=cstcollbankacc</cstcollbankacc>
+			<ye des="余额">=ye</ye>
+			<unitprebal des="预缴账户余额">=unitprebal</unitprebal>
+			<jzny des="缴至年月">=jzny</jzny>
+			<indinorprop des="个人正常比例">=indinorprop</indinorprop>
+			<dwkhrq des="单位开户日期">=dwkhrq</dwkhrq>
+			<zt des="个人账户状态">=zt</zt>
+			<unitkind des="单位性质">=unitkind</unitkind>
+
+			<cmselpaynum des="本月自筹汇缴人数">=cmselpaynum</cmselpaynum>
+			<lmfinpaynum des="上月财政汇缴人数">=lmfinpaynum</lmfinpaynum>
+			<endym des="终止年月">=endym</endym>
+			<lmfinpayamt des="上月财政汇缴金额">=lmfinpayamt</lmfinpayamt>
+			<cmselpayamt des="本月自筹汇缴金额">=cmselpayamt</cmselpayamt>
+			<cmfinpaynum des="本月财政汇缴人数">=cmfinpaynum</cmfinpaynum>
+			<cmfinpayamt des="本月财政汇缴金额">=cmfinpayamt</cmfinpayamt>
+			<cmpaynum des="本月汇缴人数">=cmpaynum</cmpaynum>
+			<yjce des="月缴额">=yjce</yjce>
+			<wtinstcode des="网厅申报机构">=wtinstcode</wtinstcode>
+
+			<transdate des="交易日期">=transdate</transdate>
+			<cstbankaccname des="受托银行账户名称">=cstbankaccname</cstbankaccname>
+			<baseuppflag des="基数上限标准">=baseuppflag</baseuppflag>
+			<cocietycode des="统一社会信用代码">=cocietycode</cocietycode>
+			<mngdept des="主管部门">=mngdept</mngdept>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<dwfrdbxm des="单位法人代表姓名">=dwfrdbxm</dwfrdbxm>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<zhkhyhmc des="账户开户银行名称">=zhkhyhmc</zhkhyhmc>
+
+			<dwfrdbzjlx des="单位法人代表证件类型">=dwfrdbzjlx</dwfrdbzjlx>
+			<dwfrdbzjhm des="单位法人代表证件号码">=dwfrdbzjhm</dwfrdbzjhm>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<jbrzjhm des="经办人证件号码">=jbrzjhm</jbrzjhm>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<dpbankname des="归集银行专户名称">=dpbankname</dpbankname>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<cmaddpaynum des="本月增加汇缴人数">=cmaddpaynum</cmaddpaynum>
+			<unitprop des="单位比例">=unitprop</unitprop>
+			<fundsouflag des="资金来源标志">=fundsouflag</fundsouflag>
+			<dwjcbl des="资金来源标志">=fundsouflag</dwjcbl>
+			<grjcbl des="资金来源标志">=fundsouflag</grjcbl>
+			<accbankcode des="账户银行">=accbankcode</accbankcode>
+			<upreusebal des="预缴户可用余额">=upreusebal</upreusebal>
+			<lmselpaynum des="上月自筹汇缴人数">=lmselpaynum</lmselpaynum>
+			<jbrsjhm des="经办人手机号码">=jbrsjhm</jbrsjhm>
+			<dwdzxx des="单位电子信箱">=dwdzxx</dwdzxx>
+		</down>
+	</interface>
+	<!-- 网厅单位基本信息查询3 -->
+	<interface id="getDWJBXXCX4" keepattr1="7022" tr_code="business/appapi115007.json" system="HTTP_POST_YBMAP2" des="单位基本信息查询">
+		<up>
+			<dwzh des="单位账号">=dwzh1</dwzh>
+			<unitaccnum des="单位账号">=dwzh1</unitaccnum>
+			<BrcCode des="经办机构">=07750011</BrcCode>
+		</up>
+		<down>
+			<lmselpayamt des="上月自筹汇缴金额">=lmselpayamt</lmselpayamt>
+			<appronum des="批准文件号">=appronum</appronum>
+			<unitacctype des="单位账户类型">=unitacctype</unitacctype>
+			<supunittype des="上级单位类型">=supunittype</supunittype>
+			<begym des="开始年月">=begym</begym>
+			<styhdm des="受托银行代码">=styhdm</styhdm>
+			<basebankaccnum des="基本银行账号">=basebankaccnum</basebankaccnum>
+			<payeebankaccnum des="收款账号">=payeebankaccnum</payeebankaccnum>
+			<chgaddpayamt des="汇缴金额变动增加金额">=chgaddpayamt</chgaddpayamt>
+			<dwjcrs des="单位缴存人数">=dwjcrs</dwjcrs>
+
+			<cmdecpaynum des="本月减少汇缴人数">=cmdecpaynum</cmdecpaynum>
+			<jbrgddhhm des="经办人固定电话号码">=jbrgddhhm</jbrgddhhm>
+			<chgdecpayamt des="汇缴金额变动减少金额">=chgdecpayamt</chgdecpayamt>
+			<sincolflag des="是否允许单边汇缴参数">=sincolflag</sincolflag>
+			<morecheflag des="是否允许多张支票参数">=morecheflag</morecheflag>
+			<dwfxr des="单位发薪日">=dwfxr</dwfxr>
+			<email des="电子邮箱">=email</email>
+			<crefilnum des="成立文件号">=crefilnum</crefilnum>
+			<dwlsgx des="单位隶属关系">=dwlsgx</dwlsgx>
+			<dwjjlx des="单位经济类型">=dwjjlx</dwjjlx>
+
+			<dwsshy des="单位所属行业">=dwsshy</dwsshy>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<cstcollbankacc des="单位托收银行账号">=cstcollbankacc</cstcollbankacc>
+			<ye des="余额">=ye</ye>
+			<unitprebal des="预缴账户余额">=unitprebal</unitprebal>
+			<jzny des="缴至年月">=jzny</jzny>
+			<indinorprop des="个人正常比例">=indinorprop</indinorprop>
+			<dwkhrq des="单位开户日期">=dwkhrq</dwkhrq>
+			<zt des="个人账户状态">=zt</zt>
+			<unitkind des="单位性质">=unitkind</unitkind>
+
+			<cmselpaynum des="本月自筹汇缴人数">=cmselpaynum</cmselpaynum>
+			<lmfinpaynum des="上月财政汇缴人数">=lmfinpaynum</lmfinpaynum>
+			<endym des="终止年月">=endym</endym>
+			<lmfinpayamt des="上月财政汇缴金额">=lmfinpayamt</lmfinpayamt>
+			<cmselpayamt des="本月自筹汇缴金额">=cmselpayamt</cmselpayamt>
+			<cmfinpaynum des="本月财政汇缴人数">=cmfinpaynum</cmfinpaynum>
+			<cmfinpayamt des="本月财政汇缴金额">=cmfinpayamt</cmfinpayamt>
+			<cmpaynum des="本月汇缴人数">=cmpaynum</cmpaynum>
+			<yjce des="月缴额">=yjce</yjce>
+			<wtinstcode des="网厅申报机构">=wtinstcode</wtinstcode>
+
+			<transdate des="交易日期">=transdate</transdate>
+			<cstbankaccname des="受托银行账户名称">=cstbankaccname</cstbankaccname>
+			<baseuppflag des="基数上限标准">=baseuppflag</baseuppflag>
+			<cocietycode des="统一社会信用代码">=cocietycode</cocietycode>
+			<mngdept des="主管部门">=mngdept</mngdept>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<dwfrdbxm des="单位法人代表姓名">=dwfrdbxm</dwfrdbxm>
+			<peoplenum des="人数">=peoplenum</peoplenum>
+			<zhkhyhmc des="账户开户银行名称">=zhkhyhmc</zhkhyhmc>
+
+			<dwfrdbzjlx des="单位法人代表证件类型">=dwfrdbzjlx</dwfrdbzjlx>
+			<dwfrdbzjhm des="单位法人代表证件号码">=dwfrdbzjhm</dwfrdbzjhm>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<jbrzjhm des="经办人证件号码">=jbrzjhm</jbrzjhm>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<dpbankname des="归集银行专户名称">=dpbankname</dpbankname>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<cmaddpaynum des="本月增加汇缴人数">=cmaddpaynum</cmaddpaynum>
+			<unitprop des="单位比例">=unitprop</unitprop>
+			<fundsouflag des="资金来源标志">=fundsouflag</fundsouflag>
+			<dwjcbl des="资金来源标志">=fundsouflag</dwjcbl>
+			<grjcbl des="资金来源标志">=fundsouflag</grjcbl>
+			<accbankcode des="账户银行">=accbankcode</accbankcode>
+			<upreusebal des="预缴户可用余额">=upreusebal</upreusebal>
+			<lmselpaynum des="上月自筹汇缴人数">=lmselpaynum</lmselpaynum>
+			<jbrsjhm des="经办人手机号码">=jbrsjhm</jbrsjhm>
+			<dwdzxx des="单位电子信箱">=dwdzxx</dwdzxx>
+		</down>
+	</interface>
+	<!-- 短信接口1 -->
+	<interface id="getDXYZM2" keepattr1="7062" tr_code="business/appapi149008.json" system="HTTP_POST_YBMAP2" des="短信接口">
+		<up>
+			<type des="业务类型">=1</type>
+			<sjhm des="手机号码">=jbrsjhm</sjhm>
+			<smstmplcode des="业务编码">0502</smstmplcode>
+			<dxyzm des="短信验证码">=dxyzm</dxyzm>
+			<BrcCode des="经办机构">=07750011</BrcCode>
+		</up>
+		<down>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<smstmplcode des="业务编码">=smstmplcode</smstmplcode>
+			<dxyzm des="短信验证码">=dxyzm</dxyzm>
+		</down>
+	</interface>
+	<!-- 短信接口2 -->
+	<interface id="getDXYZM3" keepattr1="7062" tr_code="business/appapi149008.json" system="HTTP_POST_YBMAP2" des="短信接口">
+		<up>
+			<type des="业务类型">=2</type>
+			<sjhm des="手机号码">=jbrsjhm</sjhm>
+			<smstmplcode des="业务编码">0502</smstmplcode>
+			<dxyzm des="短信验证码">=dxyzm</dxyzm>
+			<BrcCode des="经办机构">=07750011</BrcCode>
+		</up>
+		<down>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<smstmplcode des="业务编码">=smstmplcode</smstmplcode>
+			<dxyzm des="短信验证码">=dxyzm</dxyzm>
+		</down>
+	</interface>
+	<!-- CA登录 -->
+	<interface id="getCALogin" keepattr1="7059" tr_code="business/appapi110022.json" system="HTTP_POST_YBMAP2" des="CA登录">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+			<dlmm des="登录密码">=dlmm</dlmm>
+			<dwzh>=pubzh</dwzh>
+			<dlfs>1</dlfs>
+			<opercode>=pubzh</opercode>
+			<pwd>=dlmm</pwd>
+			<zsbh>=zsbh</zsbh>
+			<dxyzm>=dxyzm</dxyzm>
+		</up>
+		<down>
+			<jbrxm des="经办人姓名">=opname</jbrxm>
+			<dwdjh des="单位登记号">=opercode</dwdjh>
+			<dwzh des="单位登记号">=dwzh</dwzh>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<instcode des="机构号">=dwzh</instcode>
+			<instname des="机构名">=dwmc</instname>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<shcxdm des="社会诚信代码">=shcxdm</shcxdm>
+			<rolecode des="角色号">ORG01001</rolecode>
+			<jbjg des="经办机构">=BrcCode</jbjg>
+
+		</down>
+	</interface>
+
+</interfaces>

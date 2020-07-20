@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page template="0401" version="1.0" formaction="" id="WDZH">
+  <info>
+    <description title="我的帐户">我的账户</description>
+    <editlogs>
+      <log editor="" edittime=""/>
+    </editlogs>
+  </info>
+  <scripts>
+		<script include="/ydpx/ish04/grwdzh/echarts.min.js"/>
+  	<script include="/ydpx/ish04/grwdzh/grwdzh.js"/>
+    <script><![CDATA[
+
+//页面加载后执行
+thisTab.pageOnload = function () {
+	$('#page_main').removeClass('pull-left');
+	
+/*	var userData = {
+		name: "华信永道北京科技股份有限公司",
+		info: [
+			{label: "单位地址", value: "北京市海淀区知春路113号银网中心", cols: 6},
+			{label: "社会诚信代码", value: "232323232123456789", cols: 6},
+			{label: "单位登记号", value: "100001", cols: 3},
+			{label: "单位邮编", value: "130012", cols: 3},
+			{label: "单位成立时间", value: "2012-09-01", cols: 3}
+		]
+	};*/
+	
+	var userContent = JSON.parse(pageData.userContent || '{}');
+	$('.user-content').append(userContentHtml(userContent));
+	
+	//首页收起展开事件
+	$('.pack-up').on('click',function(){
+		if($('.user-img').width() === 180){
+			$(this).html('展开<span class="icon-up"></span>');
+			$('.user-img').animate({height:'68px',width:'68px'},200);
+			$('.user-content').animate({height:'68px'},200);
+		}
+		else{
+			$(this).html('收起<span class=""></span>');
+			$('.user-img').animate({height:'180px',width:'180px'},200);
+			$('.user-content').animate({height:'180px'},200);
+		}
+	});
+	
+};	
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers></containers>
+  <styles>
+    <style include="/ydpx/ish04/grwdzh/grwdzh.css"/>
+  </styles>
+  <frame><![CDATA[
+	<div class="left-base">
+		<!-- 个人基本信息 -->
+		<div class="info-base" id="grInfo">
+			<div class="info-title">
+				个人基本信息
+				<span class="info-more">更多<span class="glyphicon glyphicon-menu-down"></span></span>
+				<span class="info-normal">收起<span class="glyphicon glyphicon-menu-up"></span></span>
+			</div>
+			<div class="info-main">
+				<div class="head-base">
+					<div class="head-img"></div>
+					<div id="infoUserName"></div>
+				</div>
+				<!-- 进度条 -->
+				<div class="progress">
+					<div id="progressBar" class="progress-bar" role="sprogressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+				</div>
+				<div class="progress-text">资料完整程度：<span id="progressNum">0</span>%</div>
+				<a class="renew-info"></a>
+				<div class="main-title">基础信息</div>
+				<ul id="infoJcxx">
+				</ul>
+				<div class="main-title jtzyxx">家庭职业信息</div>
+				<ul id="infoJtzyxx">
+				</ul>
+			</div>	
+		</div>
+	</div>
+	<div class="right-base">
+		<!-- 个人账户基本信息 -->
+		<div class="info-base" id="grzhInfo">
+			<div class="info-title">
+				个人账户基本信息
+				<span class="info-more">更多<span class="glyphicon glyphicon-menu-down"></span></span>
+				<span class="info-normal">收起<span class="glyphicon glyphicon-menu-up"></span></span>
+			</div>
+			<div class="info-main">
+				<div class="info-header">
+					<div class="header-money">
+						<span><span id="zhyeLabel"></span><span class="header-money-icon"></span></span><div class="info-money-hide">**.**<span class="info-money-unit">元</span></div><div class="info-money-show"><span id="zhye"></span><span class="info-money-unit">元</span></div>
+					</div>
+					<div id="drawingOutBase">
+						<a class="drawing-out bg-blue"></a>
+					</div>
+					<div class="header-right">
+						<a class="account-info bg-red"></a>
+						<div class="state" id="zhzt"></div>
+					</div>
+				</div>
+				<div class="info-body">
+					<div class="row" id="grzhInfoBody">
+					</div>
+				</div>
+				<div class="info-footer">
+					<ul id="grzhInfoFooter">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 公积金贷款账户信息 -->
+		<div class="info-base" id="gjjdkInfo">
+			<div class="info-title">
+				公积金贷款账户信息
+				<span class="info-more">更多<span class="glyphicon glyphicon-menu-down"></span></span>
+				<span class="info-normal">收起<span class="glyphicon glyphicon-menu-up"></span></span>
+			</div>
+			<div class="info-main">
+				<div class="info-header">
+				</div>
+				<div class="info-body">
+					<div class="row" id="dkxxInfoBody">
+					</div>
+				</div>
+				<div class="info-footer">
+					<ul id="policInfoFooter">
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+]]></frame>
+
+</page>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFYHZC01" desc="个人用户注册" startPage="step1" flowchart="1" isMenu="0" checksession="0" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+    <config>
+        <flowvars>
+            <flowvar name="ym01" desc="身份信息校验">common_yhzc_01.ydpx</flowvar>
+            <!--<flowvar name="xyym01" desc="协议页面">common_xyzs_01.ydpx</flowvar>-->  <!--0403模板  -->
+            <!--<flowvar name="ym02" desc="实名认证">common_yhzc_02.ydpx</flowvar>
+            <flowvar name="ym03" desc="刷脸认证">common_yhzc_03.ydpx</flowvar>
+            <flowvar name="ym04" desc="修改密码">common_yhzc_04.ydpx</flowvar>-->
+        </flowvars>
+        <mudics>
+            <mudic key="ish.gg.user.zjlx" desc="证件类型"></mudic>
+            <mudic key="ish.gg.other.dxyzm" desc="短信验证码"></mudic>
+            <mudic key="ish.gg.func.systemtype" desc="子系统"></mudic>
+            <mudic key="ish.gg.other.sf" desc="是否"></mudic>
+        </mudics>
+        <title>=pagetit</title>
+        <buttons>
+            <buttons id="A" text="返回" icon="backward" url="/"/> <!-- 页面上的按钮id将会为 b_flow_A appvalue="0"  -->
+            <buttons id="B" text="不同意" icon="remove"/> <!-- 页面上的按钮id将会为 b_flow_B appvalue="0"  -->
+        </buttons>
+        <endpage buttonflag="n">
+            <init>
+                <setvar name="_HIDE_PERSON_INFO" desc="控制个人信息隐藏方式">true</setvar><!--true 隐藏 -->
+                <setvar name="_RESULT_PAGE_TITLE"><![CDATA[恭喜您，注册成功。]]></setvar>
+                <setvar name="_RESULT_PAGE_CONTENT"><![CDATA[='姓名：'+xingming+'<br>证件类型：'+zjlxmc+'<br>证件号码：'+zjhm]]></setvar>
+            </init>
+        </endpage>
+    </config>
+    <step id="step1" url="=_flowvar_ym01" desc="身份信息校验" appflag="X" buttonflag="Aa" in="0" out="1" flowchartkey="1" >
+        <init>
+            <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+        </init>
+    </step>
+    <!--<step id="step2" url="=_flowvar_xyym01" desc="签订协议" appflag="X" buttonflag="Bb" notoid="step1" in="1" out="0" flowchartkey="1" >
+        <init>
+            <setvar name="rw">r</setvar>
+            <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+            <setvar name="returnType">login</setvar>
+        </init>
+    </step>
+    <step id="step3" url="=_flowvar_ym02" desc="实名认证" appflag="X" buttonflag="Ag" in="0" out="1" flowchartkey="1" >
+        <init>
+            <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+        </init>
+    </step>
+    <step id="step4" url="=_flowvar_ym03" desc="刷脸认证" appflag="X" buttonflag="Ag" in="0" out="1" flowchartkey="1" >
+        <init>
+            <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+        </init>
+    </step>
+    <step id="step5" url="=_flowvar_ym04" desc="修改密码" inCause="isCscxmm=='1' || isCsjymm =='1'" appflag="X" buttonflag="Aa" in="0" out="1" flowchartkey="1" >
+        <init>
+            <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+        </init>
+    </step>-->
+</flow>

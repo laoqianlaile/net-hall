@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="贷款信息"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-08-22 09:17:51"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	//可贷金额后增加计算按钮
+	$('#kdje').addButton('计算', function(input) {
+		jsDkjeqx();
+	});	
+	
+	//可贷期限后增加计算按钮
+	$('#kdqx').addButton('计算', function(input) {
+		jsDkjeqx();
+	});	
+	
+	//月还款额后增加计算按钮
+	$('#yhke').addButton('计算', function(input) {
+		if (!ydl.validator('dntfdk', {required:true})) return false;
+		if (!ydl.validator('sqje', {rule:Number($('#sqje').val())>0,message:"申请金额需大于0"})) return false;
+		if (!ydl.validator('sqqx', {rule:Number($('#sqqx').val())>0,message:"申请期限需大于0"})) return false;
+		if (!ydl.validator('sqje', {type:'money',rule:Number($('#sqje').val())<=Number($('#kdje').val()),message:"申请金额不能大于可贷金额"})) return false;
+		if (!ydl.validator('sqqx', {type:'int',rule:Number($('#sqqx').val())<=Number($('#kdqx').val()),message:"申请期限不能大于可贷期限"})) return false;
+		if (!ydl.validator('dklx', {required:true})) return false;
+		if (!ydl.validator('dkhkfs', {required:true})) return false;
+		var dkje=$('#sqje').val();
+		var dkqx=$('#sqqx').val();
+		var dklx=$('#dklx').val();
+		var dkhkfs=$('#dkhkfs').val();
+		var dntfdk=$('#dntfdk').val();
+		//调用交易计算月还款额
+		ydl.sendCommand('CMD06',{"dkje":dkje,"dkqx":dkqx,"dklx":dklx,"dkhkfs":dkhkfs,
+		"dntfdk":dntfdk},function(data,code,msg){
+			if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+				ydl.setValue('yhke',data.yhke);
+			}
+		});
+	});
+	
+	//申请金额、申请期限，鼠标获得焦点后校验可贷金额期限是否已获取
+	$('#sqje').focus(function(event) {
+		if($('#kdje').val() == ""){
+			ydl.alert("请点击计算按钮，计算可贷金额");
+			return false;
+		}
+	});
+	$('#sqqx').focus(function(event) {
+		if($('#kdqx').val() == ""){
+			ydl.alert("请点击计算按钮，计算可贷期限。");
+			return false;
+		}
+	});
+	
+	//申请金额change事件
+	$('#sqje').change(function(event) {
+		ydl.validator.clear('sqje');
+		ydl.setValue('yhke',"");
+		//校验申请金额不能大于可贷金额
+		if($('#sqje').val() != ""){
+		    if (!ydl.validator('sqje', {rule:Number($('#sqje').val())>0,message:"申请金额需大于0"})) return false;
+			if (!ydl.validator('sqje', {rule:Number($('#sqje').val())<=Number($('#kdje').val()),message:"申请金额不能大于可贷金额"})) return false;
+		}
+	});
+	
+	//申请期限change事件
+	$('#sqqx').change(function(event) {
+		ydl.validator.clear('sqqx');
+		ydl.setValue('yhke',"");
+		//校验申请期限不能大于可贷期限
+		if($('#sqqx').val() != ""){
+        	if (!ydl.validator('sqqx', {rule:Number($('#sqqx').val())>0,message:"申请期限需大于0"})) return false;
+			if (!ydl.validator('sqqx', {rule:Number($('#sqqx').val())<=Number($('#kdqx').val()),message:"申请期限不能大于可贷期限"})) return false;
+			//根据申请期限获取贷款利率
+			if(Number($('#sqqx').val()) > 5){
+				ydl.setValue('jkhtll',poolSelect['upFiveRate']);
+			}else{
+				ydl.setValue('jkhtll',poolSelect['downFiveRate']);
+			}
+		}
+	});
+	//贷款担保类型change事件
+	$('#dkdblx').change(function(event) {
+		var dkdblx=$('#dkdblx').val();
+		var dkdblxmask=ydl.mudic.getMask('bsp.ln.dkdblx.'+dkdblx);
+		//根据贷款担保类型控制抵押信息页签，保证页签的隐藏显示
+		if(dkdblxmask=='01' || dkdblxmask=='71'){
+			pageTabs[4].show();
+			pageTabs[5].hide();
+			ydl.listColWidth('dyrlist');
+			ydl.listColWidth('dywlist');
+		}else if(dkdblxmask=='03' || dkdblxmask=='73'){
+			pageTabs[5].show();
+			pageTabs[4].hide();
+			ydl.listColWidth('bzlist');
+		}else if(dkdblxmask=='70' || dkdblxmask=='72'){
+			pageTabs[4].show();
+			pageTabs[5].show();
+			ydl.listColWidth('bzlist');
+			ydl.listColWidth('dyrlist');
+			ydl.listColWidth('dywlist');
+		}else{
+			pageTabs[4].hide();
+			pageTabs[5].hide();
+		}
+	});
+}
+
+//计算贷款金额期限
+function jsDkjeqx(){
+	var dntfdk=$('#dntfdk').val();
+	var fwzj=$('#fwzj').val();
+	//校验房屋套数、房屋总价是否必填
+	var r = true;
+	r &= ydl.validator('dntfdk', {required:true});
+	r &= ydl.validator('fwzj', {type:'money',required:true});
+	if (!r){
+		pageTabs[1].open();
+		return false;
+	}else{
+		//调用交易计算可贷金额期限
+		ydl.sendCommand('CMD05',{"dntfdk":dntfdk,"fwzj":fwzj},function(data,code,msg){
+			if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+				ydl.setValue('kdje',data.zgdked);
+				ydl.setValue('kdqx',data.zgdknx);
+			}
+		});
+	}
+}
+
+//表单提交时执行
+thisTab.form_validate = function () {
+    if (!ydl.validator('sqje', {rule:Number($('#sqje').val())>0,message:"申请金额需大于0"})) return false;
+	if (!ydl.validator('sqqx', {rule:Number($('#sqqx').val())>0,message:"申请期限需大于0"})) return false;
+	if (!ydl.validator('sqje', {rule:0<Number($('#sqje').val())<=Number($('#kdje').val()),message:"申请金额不能大于可贷金额"})) return false;
+	if (!ydl.validator('sqqx', {rule:0<Number($('#sqqx').val())<=Number($('#kdqx').val()),message:"申请期限不能大于可贷期限"})) return false;
+	return true;
+}]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container uid="container-d3335293ba8f446c85de6aac0f007e94" type="table" layout="fit" cols="4" id="container-d3335293ba8f446c85de6aac0f007e94" caption="贷款申请基本信息">
+      <component type="label" for="dklx">贷款类型：</component>
+      <component id="dklx" type="multivalue" subtype="select" fromdic="false" value="=dklx" required="true">
+        <sql datasource="os_mdic">bsp.ln.dklx</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="dkdblx">贷款担保类型：</component>
+      <component id="dkdblx" type="multivalue" subtype="select" fromdic="false" value="=dkdblx" required="true">
+        <sql datasource="os_mdic">bsp.ln.dkdblx</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="dkhkfs">贷款还款方式：</component>
+      <component id="dkhkfs" type="multivalue" subtype="select" fromdic="false" value="=dkhkfs" required="true">
+        <sql datasource="os_mdic">bsp.ln.dkhkfs</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="swtyhmc">受委托银行名称：</component>
+      <component id="swtyhmc" type="multivalue" subtype="combo" value="=swtyhmc" required="true" combobutton="true" combofuzzy="true" combomark="false" combodirty="false" fromdic="false">
+        <sql datasource="ds_biz">select unitaccnum1, unitaccname1 from dp077 where instance= #{_IS, jdbcType=INTEGER} and dpbusitype='00'</sql>
+        <item label="请选择..."/>
+        <item label="=unitaccname1" value="=unitaccnum1"/>
+      </component>
+    </container>
+    <container type="table" id="ct_form" cols="4" uid="ct_form" caption="公积金贷款借款申请信息">
+      <component type="label" for="kdje">可贷金额：</component>
+      <component id="kdje" type="input" subtype="money" fromdic="false" datatype="money" maxlength="18" declen="2" suffix="元" readonly="true">=kdje</component>
+      <component type="label" for="kdqx">可贷期限：</component>
+      <component id="kdqx" type="input" subtype="text" fromdic="false" datatype="int" suffix="年" readonly="true">=kdqx</component>
+      <component type="label" for="sqje">申请金额：</component>
+      <component id="sqje" type="input" subtype="money" fromdic="false" datatype="money" maxlength="18" declen="2" required="true" suffix="元">=sqje</component>
+      <component type="label" for="sqqx">申请期限：</component>
+      <component id="sqqx" type="input" subtype="text" fromdic="false" suffix="年" datatype="int" required="true">=sqqx</component>
+      <component type="label" for="jtysr">家庭月收入：</component>
+      <component id="jtysr" type="input" subtype="money" fromdic="false" required="true" datatype="money" maxlength="18" declen="2" suffix="元">=jtysr</component>
+      <component type="label" for="jkhtll">借款合同利率：</component>
+      <component id="jkhtll" type="input" subtype="text" fromdic="false" readonly="true" suffix="%" datatype="float">=jkhtll</component>
+      <component type="label" for="llfdbl">利率浮动比例：</component>
+      <component id="llfdbl" type="input" subtype="text" fromdic="false" datatype="float" readonly="true" suffix="%">=llfdbl</component>
+      <component type="label" for="yhke">月还款额：</component>
+      <component id="yhke" type="input" subtype="money" fromdic="false" datatype="money" maxlength="18" declen="2" suffix="元" readonly="true">=yhke</component>
+    </container>
+  </containers>
+</page>

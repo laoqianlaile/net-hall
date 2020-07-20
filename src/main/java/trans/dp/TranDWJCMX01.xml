@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWJCMX01" tranName="单位缴存明细查询">
+        <comps>
+        	<comp compCode="CompDWJCMX01" compName="单位缴存明细查询" expression="">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                    <inParam ignoreNull="1" paramCode="jclx" paramName="缴存类型" paramType="string(0,-1)" paramValue="jclx"/>
+                    <inParam ignoreNull="1" paramCode="jkfs" paramName="缴款方式" paramType="string(0,-1)" paramValue="jkfs"/>
+                    <inParam ignoreNull="1" paramCode="ywzt" paramName="业务状态" paramType="string(0,-1)" paramValue="ywzt"/>
+                    <inParam ignoreNull="1" paramCode="rzksrq" paramName="入账开始日期" paramType="string(0,-1)" paramValue="rzksrq"/>
+                    <inParam ignoreNull="1" paramCode="rzjsrq" paramName="入账结束日期" paramType="string(0,-1)" paramValue="rzjsrq"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

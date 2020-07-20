@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFDKXXCX01" desc="贷款信息查询" startPage="step1" endurl="" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="贷款信息查询">ln_dkxxcx_01.ydpx</flowvar>
+          </flowvars>
+            <mudics>
+                <mudic key="bsp.ln.loancontrstate" desc="合同状态"></mudic>
+                <mudic key="bsp.pb.zjlx" desc="证件类型"></mudic>
+            </mudics>
+          <buttons>
+          	 <buttons id="H" text="返回首页" icon="home" url="/home"/>
+          </buttons>
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="贷款信息查询" appflag="X" buttonflag="H" in="1" out="0">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		</step>
+</flow>

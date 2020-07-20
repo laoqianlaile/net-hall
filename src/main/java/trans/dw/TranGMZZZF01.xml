@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+	<tran tranCode="TranGMZZZF01" tranName="购买自住住房提取提交">
+		<comps>
+			<comp compCode="CompGMZZZF01" compName="购买自住住房提取提交" expression="">
+				<inParams>
+					<inParam paramCode="gflx" ignoreNull="0" paramName="购房类型" paramValue="gflx" paramType="string(1,2)" />
+					<inParam paramCode="ygfrgx" ignoreNull="0" paramName="与购房人关系" paramValue="ygfrgx" paramType="string(1,2)" />
+					<inParam paramCode="gfrxm" ignoreNull="0" paramName="购房人姓名" paramValue="gfrxm" paramType="string(1,120)" />
+					<inParam paramCode="gfrzjlx" ignoreNull="0" paramName="购房人证件类型" paramValue="gfrzjlx" paramType="string(1,2)" />
+					<inParam paramCode="gfrzjhm" ignoreNull="0" paramName="购房人证件号码" paramValue="gfrzjhm" paramType="string(1,20)" />
+					<inParam paramCode="gfhtbh" ignoreNull="1" paramName="购房合同编号" paramValue="gfhtbh" paramType="string(0,-1)" />
+					<inParam paramCode="wqhtbh" ignoreNull="1" paramName="网签合同编号" paramValue="wqhtbh" paramType="string(0,-1)" />
+					<inParam paramCode="fwcqzh" ignoreNull="0" paramName="房屋产权证号" paramValue="fwcqzh" paramType="string(1,30)" />
+					<inParam paramCode="fph" ignoreNull="0" paramName="发票号" paramValue="fph" paramType="string(1,30)" />
+					<inParam paramCode="fwjzmj" ignoreNull="0" paramName="房屋建筑面积" paramValue="fwjzmj" paramType="double(10,2)" />
+					<inParam paramCode="fwzl" ignoreNull="0" paramName="房屋坐落" paramValue="fwzl" paramType="string(1,255)" />
+					<inParam paramCode="fwzj" ignoreNull="0" paramName="房屋总价" paramValue="fwzj" paramType="double(18,2)" />
+					<inParam paramCode="tqje" ignoreNull="0" paramName="提取金额" paramValue="tqje" paramType="double(18,2)" />
+					<inParam paramCode="jsfs" ignoreNull="0" paramName="结算方式" paramValue="jsfs" paramType="string(1,2)" />
+					<inParam paramCode="skrzhmc" ignoreNull="0" paramName="收款人账户名称" paramValue="skrzhmc" paramType="string(1,120)" />
+					<inParam paramCode="skrkhyh" ignoreNull="0" paramName="收款人开户银行" paramValue="skrkhyh" paramType="string(1,20)" />
+					<inParam paramCode="skrzhhm" ignoreNull="0" paramName="收款人账户号码" paramValue="skrzhhm" paramType="string(1,20)" />
+					<inParam paramCode="tqyy" ignoreNull="0" paramName="提取原因" paramValue="tqyy" paramType="string(1,2)"/>
+					<inParam paramCode="sjhm" ignoreNull="0" paramName="手机号码" paramValue="sjhm" paramType="string(1,11)"/>
+					<inParam paramCode="jymm" ignoreNull="0" paramName="交易密码" paramValue="jymm" paramType="string(0,-1)"/>
+				</inParams>
+			</comp>
+		</comps>
+	</tran>
+</trans>

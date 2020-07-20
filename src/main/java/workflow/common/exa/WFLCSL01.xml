@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFLCSL01" desc="流程可视化示例" startPage="step1" endurl="" endmessage=""><!-- menu_gen_inst="1" -->
+	<config>
+		<flowvars>
+			<flowvar name="ym01" desc="流程可视化示例">common_exa_lcsl_01.ydpx</flowvar>
+		</flowvars>
+		<title>=pagetit</title>
+	</config>
+	<step id="step1" url="=_flowvar_ym01" desc="流程可视化示例" appflag="X" buttonflag="" in="0" out="0" >
+		<init>
+		    <setvar name="pagetit">=_STEPNAME</setvar>
+		</init>
+	</step>
+</flow>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranSJZHGL01" tranName="手机号码与公积金账号关联">
+        <comps>
+            <comp compCode="CompSJZHGL01" compName="提交手机号码与公积金账号关联信息" expression="#flag='tjxx'">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="grzh" paramName="个人账号" paramType="string(0,-1)" paramValue="grzh"/>
+                    <inParam ignoreNull="0" paramCode="jymm" paramName="个人公积金密码" paramType="string(0,-1)" paramValue="jymm"/>
+                	<inParam ignoreNull="0" paramCode="sjhm" paramName="手机号码" paramType="string(0,-1)" paramValue="sjhm"/>
+                </inParams>
+            </comp>
+             <comp compCode="CompSJZHGL02" compName="校验个人交易密码" expression="#flag='jyjymm'">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="grzh" paramName="个人账号" paramType="string(0,-1)" paramValue="grzh"/>
+                	<inParam ignoreNull="0" paramCode="jymm" paramName="交易密码" paramType="string(0,-1)" paramValue="jymm"/>
+                </inParams>
+                 <outParams>
+                	<outParam ignoreNull="0" paramCode="jymmCorrect" paramName="交易密码正确标志" paramType="string(0,-1)" paramValue="jymmCorrect" />
+          		  </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

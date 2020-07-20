@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+    <interface id="YBMAP2_TEST1" tr_code="aaa" system="TEST_YBMAP2" des="测试接口1-普通接口">
+		<up>
+			<testIn1 des="入口参数1" jmflag="1">=testIn1</testIn1>
+			<testIn2 des="入口参数2">=testIn2</testIn2>
+		</up>
+		<down>
+		    <testOut1 des="入口参数1">=testOut1</testOut1>
+		</down>
+	</interface>
+</interfaces>

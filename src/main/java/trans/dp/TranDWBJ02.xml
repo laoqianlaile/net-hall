@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWBJ02" tranName="获取个人补缴信息">
+        <comps>
+        	<comp compCode="CompDWBJ02" compName="获取个人补缴信息" expression="">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="grzh" paramName="个人账号" paramType="string(0,-1)" paramValue="grzh"/>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="xingming" paramName="姓名" paramType="string(0,7)" paramValue="xingming"/>
+					<outParam ignoreNull="0" paramCode="zjhm" paramName="证件号码" paramType="string(0,-1)" paramValue="zjhm"/>
+					<outParam ignoreNull="0" paramCode="bjje" paramName="补缴金额" paramType="string(0,-1)" paramValue="bjje"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

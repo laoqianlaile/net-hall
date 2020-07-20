@@ -1,0 +1,31 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2018-5-30</tr_acdt>
+		<tr_time>2018-5-30 16:47:07</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file/>
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<khrq des="开户日期">20110816</khrq>
+		<dwzhzt des="单位账户状态">正常</dwzhzt>
+		<zhjg des="账户机构">南关区公积金中心</zhjg>
+		<dwjcbl des="单位缴存比例">8</dwjcbl>
+		<grjcbl des="个人缴存比例">8</grjcbl>
+		<jcqsny des="缴存起始年月">201108</jcqsny>
+		<jzny des="缴至年月">201808</jzny>
+		<zhye des="账户余额">78634.00</zhye>
+		<zjly des="资金来源">0</zjly>
+		<fcrs des="封存人数">5</fcrs>
+		<zcrs des="正常人数">320</zcrs>
+		<filename>pzwj/dwjczmpz.pdf</filename>
+	</body>
+</root>

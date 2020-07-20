@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWBJ03" tranName="计算实际补缴金额">
+        <comps>
+            <comp compCode="CompDWBJ03" compName="计算实际补缴金额" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="jkfs" paramName="缴款方式" paramType="string(0,-1)" paramValue="jkfs"/>
+                    <inParam ignoreNull="0" paramCode="zchkyye" paramName="暂存户可用余额" paramType="string(0,-1)" paramValue="zchkyye"/>
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="0" paramCode="sjje" paramName="实际补缴金额总数" paramType="string(0,-1)" paramValue="sjje"/>
+                    <outParam ignoreNull="0" paramCode="bjrs" paramName="补缴人数" paramType="string(0,-1)" paramValue="bjrs"/>
+                    <outParam ignoreNull="0" paramCode="zchzcje" paramName="暂存户转出金额" paramType="string(0,-1)" paramValue="zchzcje"/>
+                    <outParam ignoreNull="0" paramCode="jg" paramName="计算结果标识" paramType="string(0,-1)" paramValue="jg"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

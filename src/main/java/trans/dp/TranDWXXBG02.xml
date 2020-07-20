@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWXXBG02" tranName="提交单位信息及经办人信息">
+        <comps>
+        	<comp compCode="CompDWXXBG02" compName="提交单位信息及经办人信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="dwzh" paramName="单位账号" paramType="string(0,-1)" paramValue="dwzh"/>
+                    <inParam ignoreNull="0" paramCode="dwsshy" paramName="单位所属行业" paramType="string(0,-1)" paramValue="dwsshy"/>
+                    <inParam ignoreNull="0" paramCode="dwxz" paramName="单位性质" paramType="string(0,-1)" paramValue="dwxz"/>
+                    <inParam ignoreNull="1" paramCode="dwlsgx" paramName="单位隶属关系" paramType="string(0,-1)" paramValue="dwlsgx"/>
+                    <inParam ignoreNull="0" paramCode="dwjjlx" paramName="单位经济类型" paramType="string(0,-1)" paramValue="dwjjlx"/>
+                    <inParam ignoreNull="0" paramCode="dwyb" paramName="单位邮编" paramType="string(0,-1)" paramValue="dwyb"/>
+                    <inParam ignoreNull="0" paramCode="dwdzxx" paramName="单位电子信箱" paramType="string(0,-1)" paramValue="dwdzxx"/>
+                    <inParam ignoreNull="0" paramCode="dwslrq" paramName="单位设立日期" paramType="string(0,-1)" paramValue="dwslrq"/>
+                    <inParam ignoreNull="1" paramCode="dwfxr" paramName="单位发薪日" paramType="string(0,-1)" paramValue="dwfxr"/>
+                    <inParam ignoreNull="1" paramCode="zgbm" paramName="主管部门" paramType="string(0,-1)" paramValue="zgbm"/>
+                    <inParam ignoreNull="1" paramCode="sftsba" paramName="是否托收备案" paramType="string(0,-1)" paramValue="sftsba"/>
+                </inParams>
+                <outParams>
+                    <!--启用凭证系统时设置此出口参数  -->
+                    <outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

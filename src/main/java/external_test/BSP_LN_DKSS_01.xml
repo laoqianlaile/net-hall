@@ -1,0 +1,31 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file>dkss.txt</file>
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<shbj des="实还本金">9000.00</shbj>
+		<shlx des="实还利息">1900.00</shlx>
+		<shfx des="实还罚息">500.00</shfx>
+		<tqhkbjze des="提前还款本金总额">11400.00</tqhkbjze>
+		<xsyqs des="新剩余期数">200</xsyqs>
+		<yhke des="月还款额">2500.00</yhke>
+		<lxhj des="利息合计">150000.00</lxhj>
+		<hkhj des="还款合计">650000.00</hkhj>
+		<hkehj des="还款额合计">500000.00</hkehj>
+		<syyhke des="商贷月还款额">2200.00</syyhke>
+		<gjjyhke des="公积金月还款额">3000.00</gjjyhke>
+		<filename des="还款计划文件名">dkss.txt</filename>
+	</body>
+</root>

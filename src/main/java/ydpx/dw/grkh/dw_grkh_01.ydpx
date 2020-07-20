@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="个人开户"/>
+    <editlogs>
+      <log editor="wsf" edittime="2020-04-17"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script include="/common/script/cst_phone_verification.js"/>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+    var grjcbl = parseFloat($("#grjcbl").val()).toFixed(0);
+    var dwjcbl = parseFloat($("#dwjcbl").val()).toFixed(0);
+    $("#grjcbl").val(grjcbl);
+    $("#dwjcbl").val(dwjcbl);
+}
+thisTab.datalist_save_dsAccLst = function(buttonType){
+    //可在此校验某些数据是否输入正确等操作
+    var data = ydl.init.ajax('ajax1');
+}
+thisTab.datalist_callback_dsAccLst = function(rows) {
+	$(rows).each(function(){
+	    initRow(this);
+	});
+}
+thisTab.datalist_add_dsAccLst = function(row) {
+    initRow(row);
+};
+function initRow(row) {
+    var $grjcjs = $(row).getCell('grjcjs', 'input');
+    var $amt1 = ydl.attr($(row).getCell('amt1', 'input'), 'readonly');
+    var $amt2 = ydl.attr($(row).getCell('amt2', 'input'), 'readonly');
+    var $payvouamt = ydl.attr($(row).getCell('payvouamt', 'input'), 'readonly');
+    var $zjlx = $(row).getCell('zjlx', 'select');
+    var $zjhm = $(row).getCell('zjhm', 'input');
+    //$(row).getCell('zjhm', 'input').css('width', '150px');
+
+    if( poolSelect["rw"] != 'r' )
+    {
+        if( $zjlx.val()=='' ) {
+            $zjlx.val('01');
+        }
+        if($(row).getCell('grjcjs', 'input').val() == '')
+        $(row).getCell('grjcjs', 'input').val('0.00');
+        if($(row).getCell('amt1', 'input').val() == '')
+        $(row).getCell('amt1', 'input').val('0.00');
+        if($(row).getCell('amt2', 'input').val() == '')
+        $(row).getCell('amt2', 'input').val('0.00');
+        if($(row).getCell('payvouamt', 'input').val() == '')
+        $(row).getCell('payvouamt', 'input').val('0.00');
+    }
+    if(!ydl.validator('dwzh',{type: 'validchar'})){
+        $$('dwzh').value = '';
+        return false;
+    }
+    var dwjcbl = parseFloat($('#dwjcbl').val()/100).toFixed(2);//单位比例
+    var grjcbl = parseFloat($('#grjcbl').val()/100).toFixed(2);//个人比例
+    $(row).getCell('grjcjs', 'input').change(function() {
+        $grjcjs.val(parseFloat($(row).getCell('grjcjs', 'input').val()).toFixed(2));
+        var unitpayamt = Math.round(parseFloat($grjcjs.val())*dwjcbl);
+        var indipayamt = Math.round(parseFloat($grjcjs.val())*grjcbl);
+        $(row).getCell('payvouamt', 'input').val(parseFloat(Math.round(unitpayamt)).toFixed(2));
+        $(row).getCell('amt2', 'input').val(parseFloat(Math.round(indipayamt)).toFixed(2));
+        var payamt = (Math.round(Math.round(unitpayamt)+Math.round(indipayamt)));
+        $(row).getCell('amt1', 'input').val(parseFloat(Math.round(payamt)).toFixed(2));
+        if($grjcjs.val().trim() == 0){
+            $grjcjs.val('0.00');
+        }
+    });
+    //$(row).getCell('xingming', 'input').css('width', '100px');
+    //$(row).getCell('grjcjs', 'input').css('width', '60px');
+}
+]]></script>
+  </scripts>
+  <dataset>
+
+  </dataset>
+
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form" layout="connect">
+        <component type="label" for="dwzh">单位账号：</component>
+        <component id="dwzh" type="input" subtype="text" maxlength="20" fromdic="true" required="1" readonly="1">=getRealUserExtInfo('dwzh')</component>
+        <component type="label" for="dwmc">单位名称：</component>
+        <component id="dwmc" type="input" subtype="text" maxlength="255" fromdic="true" readonly="1" width="90%">=dwmc</component>
+        <component type="label" for="fundsouflag">资金来源标志：</component>
+        <component id="fundsouflag" type="input" subtype="text" maxlength="20" fromdic="true" required="1" readonly="1">=getMulData('bsp.dp.fundsouflag',fundsouflag)</component>
+        <component type="label" for="jzny">缴至年月：</component>
+        <component id="jzny" type="input" subtype="text" maxlength="7" fromdic="true" readonly="1">=jzny</component>
+        <component type="label" for="dwjcbl">单位缴存比例：</component>
+        <component id="dwjcbl" type="input" subtype="text" maxlength="4" fromdic="true" datatype="int" declen="2" readonly="1" suffix="%">=unitprop</component>
+        <component type="label" for="grjcbl">个人缴存比例：</component>
+        <component id="grjcbl" type="input" subtype="text" maxlength="6" fromdic="true" datatype="int" declen="3" readonly="1" suffix="%">=indinorprop</component>
+        <component type="hidden" id="wtinstcode">=wtinstcode</component>
+    </container>
+    <container uid="container-afe70c24c464475f98fac56a2bdc321b" type="box" layout="auto-height" id="container-afe70c24c464475f98fac56a2bdc321b">
+      <component id="dsAccLst" type="datalist" paging="true" layout="fit" caption="职工开户信息" allowinsert="true" allowupdate="true" allowdelete="true" pagesize="10" showrowid="true" dialogedit="0" allowexport="true" allowimport="true" saveimportfile="true" allowprint="false" version="1" searchbox="false" compatible="0" exportfilename="=&quot;个人开户_&quot;+dwzh+&quot;_&quot;+dwmc" clearbeforeimport="true" template="false">
+        <columns>
+          <col id="xingming" desc="姓名" coltype="2" hidden="false" required="true" ischar="true" maxlength="20" datatype="validchar" dict="none" importcol="0" sort="false" negative="false"/>
+          <col id="zjlx" desc="证件类型" coltype="2" hidden="false" required="true" ischar="true" maxlength="2" datatype="validchar" dict="dynamic" datasource="os_mdic" importcol="1" sort="false" negative="false">bsp.pb.zjlx</col>
+          <col id="zjhm" desc="证件号码" coltype="2" hidden="false" required="true" ischar="true" maxlength="20" datatype="validchar" dict="none" importcol="2" sort="false" negative="false"/>
+          <col id="grjcjs" desc="缴存基数" coltype="2" hidden="false" required="true" ischar="false" maxlength="12" datatype="money" dict="none" importcol="3" sort="false" negative="false"/>
+          <col id="payvouamt" desc="单位月缴额" coltype="2" hidden="false" required="true" ischar="false" maxlength="12" datatype="money" dict="none" importcol="4" sort="false" negative="false"/>
+          <col id="amt2" desc="个人月缴额" coltype="2" hidden="false" required="true" ischar="false" maxlength="12" datatype="money" dict="none" importcol="5" sort="false" negative="true"/>
+          <col id="amt1" desc="月缴额(元)" coltype="2" hidden="false" required="true" ischar="false" maxlength="12" datatype="money" dict="none" importcol="6" sort="false" negative="true"/>
+          <col id="dwzh2" desc="手机号" coltype="2" hidden="false" required="true" ischar="true" maxlength="11" datatype="phone" dict="none" importcol="7" sort="false" negative="false"/>
+          <col id="seqno" desc="序号" coltype="3" hidden="true" required="false" ischar="false" datatype="int" dict="none" sort="false" negative="false"/>
+        </columns>
+        <sqls datasource="ds_biz">
+            <sql type="insert">="insert into dp077(unitprop, indiprop, accname1, certitype, certinum, basenum, amt1, proptype, dpbusitype, transdate, unitaccnum1, agentinstcode, agentop,payvouamt, amt2, unitaccnum2, instance,seqno) values ('"+dwjcbl+"'/100,'"+grjcbl+"'/100, '"+xingming[#]+"', '"+zjlx[#]+"', '"+zjhm[#]+"', "+grjcjs[#]+", "+amt1[#]+", '1', '58', CURRENT_DATE, '"+dwzh+"','"+wtinstcode+"', '9999', "+payvouamt[#]+","+amt2[#]+", '"+dwzh2[#]+"', "+_IS+",(select NVL(max(t.seqno),0)+1 from dp077 t where t.instance="+_IS+" and dpbusitype='58'))"</sql>
+            <sql type="select">="select accname1 as xingming,certitype as zjlx,certinum as zjhm,basenum as grjcjs,amt1,seqno,payvouamt, amt2, unitaccnum2 as dwzh2, instance, unitprop, indiprop, proptype, dpbusitype, transdate, unitaccnum1, agentinstcode, agentop from dp077 where instance="+_IS</sql>
+            <sql type="update">="update dp077 set accname1='"+xingming[#]+"', certitype='"+zjlx[#]+"', certinum='"+zjhm[#]+"', basenum="+grjcjs[#]+", amt1="+amt1[#]+", amt2="+amt2[#]+",payvouamt="+payvouamt[#]+" ,unitaccnum2='"+dwzh2[#]+"' where instance="+_IS+" and seqno="+seqno[#]</sql>
+            <sql type="delete">="delete from dp077 where instance="+_IS+" and seqno="+seqno[#]</sql>
+        </sqls>
+      </component>
+    </container>
+    <container uid="container-9ec376e04c6c44b291a090c990267324" type="hidden" id="container-9ec376e04c6c44b291a090c990267324">
+      <component id="accinstcode" type="hidden">=accinstcode</component>
+      <!--<component id="flag1" type="hidden">=0</component>-->
+    </container>
+    <container uid="container-6dc263704d0d427f917cf48a14eb8a32" type="table" layout="fit" cols="4" id="container-6dc263704d0d427f917cf48a14eb8a32">
+      <component type="label" for="dwyjce">单位月缴存额：</component>
+      <component id="dwyjce" type="input" subtype="money" maxlength="18" fromdic="true" datatype="money" declen="2" readonly="1">=dwyjce</component>
+      <component type="label" for="gryjce">个人月缴存额：</component>
+      <component id="gryjce" type="input" subtype="money" maxlength="18" fromdic="true" datatype="money" declen="2" readonly="1">=gryjce</component>
+      <component type="label" for="yjcze">月缴存总额：</component>
+      <component id="yjcze" type="input" subtype="money" readonly="1" datatype="money" declen="2" fromdic="false">=yjcze</component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+  </containers>
+  <container uid="container-36fb3e98db224afdb922f144ea93e223" type="box" layout="tips" id="ct_tips">
+    <component id="info" keep="true" type="plain"><![CDATA[<b style="color:#F00;font-size:120%;">※温馨提示：</b><ol><li style="color:#F00;font-size:120%;">如提交没有跳转下一页面，请将鼠标移至录入项标有颜色处查看出错原因。</li></ol>]]></component>
+  </container>
+  <ajax>
+      <query id="ajax1" desc="" trigger="" message="">
+        <sql datasource="ds_biz">="select nvl(sum(payvouamt),0.00) as dwyjce, nvl(sum(amt2),0.00) as gryjce, nvl(sum(amt1), 0.00) as yjcze from dp077 where instance = '"+ _IS +"'"</sql>
+        <target id="dwyjce" label="=dwyjce" value="=dwyjce"/>
+        <target id="gryjce" label="=gryjce" value="=gryjce"/>
+        <target id="yjcze" label="=yjcze" value="=yjcze"/>
+      </query>
+    </ajax>
+</page>

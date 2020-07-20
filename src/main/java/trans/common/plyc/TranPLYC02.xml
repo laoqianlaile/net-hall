@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranPLYC02" tranName="批量异常获取">
+        <comps>
+        	<comp compCode="CompPLYC02" compName="批量异常获取" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="flag" paramName="标志1同步2异步" paramType="string(0,-1)" paramValue="flag"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

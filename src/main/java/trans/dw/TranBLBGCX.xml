@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranBLBGCX" tranName="比例变更查询">
+        <comps>
+            <comp compCode="CompBatchGetTransaction" compName="比例变更查询" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getDWZGXXCX"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="比例变更查询"/>
+                    <inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant"
+                             paramValue="unitaccnum1:unitaccnum1,unitaccname2:unitaccname2,unitaccname1:unitaccname1,unitaccnum2:unitaccnum2,accnum1:accnum1,accnum2:accnum2,accname1:accname1"/>
+                    <inParam ignoreNull="1" paramCode="fileField" paramName="上传文件字段名" paramType="constant"
+                             paramValue="file"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

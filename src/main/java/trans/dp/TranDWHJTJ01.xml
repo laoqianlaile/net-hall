@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWHJTJ01" tranName="单位汇缴提交">
+        <comps>
+        	<comp compCode="CompDWHJTJ01" compName="单位汇缴提交" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="jzny" paramName="缴至年月" paramType="string(0,-1)" paramValue="jzny"/>
+                    <inParam ignoreNull="0" paramCode="zchkyye" paramName="暂存户可用余额" paramType="string(0,-1)" paramValue="zchkyye"/>
+                    <inParam ignoreNull="0" paramCode="ksny" paramName="开始年月" paramType="string(0,7)" paramValue="ksny"/>
+                    <inParam ignoreNull="0" paramCode="zzny" paramName="终止年月" paramType="string(0,7)" paramValue="zzny"/>
+                    <inParam ignoreNull="0" paramCode="hjrs" paramName="汇缴人数" paramType="string(0,-1)" paramValue="hjrs"/>
+                    <inParam ignoreNull="0" paramCode="hjys" paramName="汇缴月数" paramType="string(0,-1)" paramValue="hjys"/>
+                    <inParam ignoreNull="0" paramCode="yjje" paramName="应缴金额" paramType="string(0,-1)" paramValue="yjje"/>
+                    <inParam ignoreNull="0" paramCode="sjje" paramName="实缴金额" paramType="string(0,-1)" paramValue="sjje"/>
+                    <inParam ignoreNull="0" paramCode="jkfs" paramName="缴款方式" paramType="string(0,-1)" paramValue="jkfs"/>
+                    <inParam ignoreNull="0" paramCode="fkyhmc" paramName="付款银行名称" paramType="string(0,-1)" paramValue="fkyhmc"/>
+                    <inParam ignoreNull="0" paramCode="fkzh" paramName="付款账号" paramType="string(0,-1)" paramValue="fkzh"/>
+                    <inParam ignoreNull="0" paramCode="fkzhm" paramName="付款银行户名" paramType="string(0,-1)" paramValue="fkzhm"/>
+                    <inParam ignoreNull="1" paramCode="zchzcje" paramName="暂存户转出金额" paramType="string(0,-1)" paramValue="zchzcje"/>
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="0" paramCode="skyhzh" paramName="收款银行账号" paramType="string(0,-1)" paramValue="skyhzh"/>
+                    <outParam ignoreNull="0" paramCode="skyhmc" paramName="收款银行名称" paramType="string(0,-1)" paramValue="skyhmc"/>
+                    <outParam ignoreNull="0" paramCode="jbjg" paramName="经办机构" paramType="string(0,-1)" paramValue="jbjg"/>
+                    <outParam ignoreNull="0" paramCode="dwhjje" paramName="单位汇缴金额" paramType="string(0,-1)" paramValue="dwhjje"/>
+                    <outParam ignoreNull="0" paramCode="grhjje" paramName="个人汇缴金额" paramType="string(0,-1)" paramValue="grhjje"/>
+                    <outParam ignoreNull="0" paramCode="jclx" paramName="缴存类型" paramType="string(0,-1)" paramValue="jclx"/>
+                    <outParam ignoreNull="0" paramCode="rzlsh" paramName="入账流水号" paramType="string(0,-1)" paramValue="rzlsh"/>
+              		 <!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

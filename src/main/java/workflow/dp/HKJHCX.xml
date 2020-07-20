@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="HKJHCX" desc="还款计划查询" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+    <config>
+        <flowvars>
+            <flowvar name="ym01" desc="还款计划查询">dp_hkjhcx_01.ydpx</flowvar>
+        </flowvars>
+        <buttons>
+            <button id="A" text="返回首页" icon="home" url="/home"/> <!-- 可以改变系统提供的按钮上的文字和图标 -->
+        </buttons>
+        <title>=pagetit</title>
+    </config>
+    <step id="step1" url="=_flowvar_ym01" desc="还款计划查询" appflag="X" buttonflag="A" in="0" out="1">
+        <init>
+            <setvar name="pagetit">=_STEPNAME</setvar>
+        </init>
+    </step>
+</flow>

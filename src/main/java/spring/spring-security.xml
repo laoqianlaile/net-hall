@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-4.0.xsd
+        http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+	
+	<!-- 配置不过滤的资源（静态资源及登录相关） -->  
+	<sec:http pattern="/**/*.css" security="none"></sec:http>
+	<sec:http pattern="/**/*.js" security="none"></sec:http>
+	<sec:http pattern="/**/*.jpg" security="none"></sec:http>
+	<sec:http pattern="/**/*.jpeg" security="none"></sec:http>
+	<sec:http pattern="/**/*.gif" security="none"></sec:http>
+	<sec:http pattern="/**/*.png" security="none"></sec:http>
+	<sec:http pattern="/**/*.ico" security="none"></sec:http>
+	<sec:http pattern="/**/*.json" security="none"></sec:http>
+	<sec:http pattern="/**/*.html" security="none"></sec:http>
+	<sec:http pattern="/**/*.woff" security="none"></sec:http>
+	<sec:http pattern="/**/*.woff2" security="none"></sec:http>
+	<sec:http pattern="/**/*.eot" security="none"></sec:http>
+	<sec:http pattern="/**/*.svg" security="none"></sec:http>
+	<sec:http pattern="/**/*.ttf" security="none"></sec:http>
+	<sec:http pattern="/resources/**" security="none"></sec:http>
+	<sec:http pattern="/index.jsp" security="none"></sec:http>
+	<sec:http pattern="/error.jsp" security="none"></sec:http>
+	<sec:http pattern="/flow/ssomenu/*" security="none"></sec:http>
+
+	<sec:http use-expressions="true" access-decision-manager-ref="urlAccessDecisionManager" 
+			  entry-point-ref="loginAuthenticationEntryPoint">
+		<sec:csrf disabled="true" />
+		
+		<sec:access-denied-handler ref="accessDeniedHandler" />
+		<!-- session管理
+		<sec:session-management
+			session-authentication-strategy-ref="concurrentSessionControlStrategy" /> -->
+		<!-- 允许同源iFrame -->
+		<sec:headers>
+			<sec:frame-options policy="SAMEORIGIN"/>
+		</sec:headers>
+		<!-- 权限加载 -->
+		<sec:custom-filter ref="filterSecurityInterceptor"	before="FILTER_SECURITY_INTERCEPTOR"  />
+		<!-- 登录控制 -->
+		<sec:custom-filter ref="loginAuthenticationFilter" position="FORM_LOGIN_FILTER" />
+		<!-- session过滤器 -->
+		<!-- <sec:custom-filter ref="concurrencyFilter" position="CONCURRENT_SESSION_FILTER" /> -->
+	</sec:http>
+	
+	<!-- 自定义权限不足处理程序 -->
+	<bean id="accessDeniedHandler"
+		class="com.yd.org.security.handler.AccessDeniedHandlerImpl">
+		<property name="errorPage" value="/error.jsp"></property>
+		<!-- <property name="accessDenieFormAjaxHandler" ref="accessDenieFormAjaxHandler"></property> -->
+	</bean>
+	
+	<!-- METHOD-权限对应关系加载和验证 -->
+	<bean id="methodSecurityInterceptor"
+		class="org.springframework.security.access.intercept.aopalliance.MethodSecurityInterceptor">
+		<property name="accessDecisionManager" ref="methodAccessDecisionManager" />
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="securityMetadataSource" ref="methodSecurityMetadataSource" />
+	</bean>
+	<bean id="methodSecurityMetadataSource"
+		class="com.yd.org.security.source.MethodSecurityMetadataSource">
+		<!-- <property name="resourceAuthorityLoader" ref="resourceAuthorityLoader"></property> -->
+	</bean>
+	<aop:config>
+		<aop:pointcut id="sevicePointcut"
+			expression="execution(* com.yd.org.service.mybatis.*.*(..))" />
+		<aop:advisor advice-ref="methodSecurityInterceptor"
+			pointcut-ref="sevicePointcut" order="1" />
+	</aop:config>
+	
+	<!-- URL-权限对应关系加载和验证 
+	com.yd.org.security.filter.CustomAuthenticationFilter
+	-->
+	<bean id="filterSecurityInterceptor"
+		class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<property name="accessDecisionManager" ref="urlAccessDecisionManager" />
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="securityMetadataSource" ref="urlSecurityMetadataSource" />
+	</bean>
+	<bean id="urlSecurityMetadataSource"
+		class="com.yd.org.security.source.URLSecurityMetadataSource">
+		<!-- <property name="resourceAuthorityLoader" ref="resourceAuthorityLoader"></property> -->
+	</bean>
+
+	<!-- 登录验证类 -->
+	<bean id="loginAuthenticationFilter"
+		class="com.yd.org.security.filter.LoginAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="authenticationFailureHandler" ref="authenticationFailureHandler" />
+		<property name="authenticationSuccessHandler" ref="authenticationSuccessHandler" />
+		<property name="filterProcessesUrl" value="/home" />
+		<!-- <property name="usernameParameter" value="zdyyhm"></property>
+		<property name="passwordParameter" value="dlmm"></property> -->
+		<!-- <property name="usernameParameter" value="unitaccnum"></property>
+		<property name="passwordParameter" value="password"></property> -->
+		<!-- <property name="sessionAuthenticationStrategy" ref="concurrentSessionControlStrategy" /> -->
+	</bean>
+	<!-- 登录成功后的处理 -->
+	<bean id="authenticationSuccessHandler"
+		class="com.yd.org.security.handler.LoginSuccessHandler">
+		<property name="defaultTargetUrl" value="/home"></property>
+		<property name="forwardToDestination" value="true"></property>
+	</bean>
+	<!-- 登录失败后的处理类 -->
+	<bean id="authenticationFailureHandler"
+		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/error.jsp" />
+	</bean>
+
+	<!-- method决策管理器 -->
+	<bean id="methodAccessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<constructor-arg name="decisionVoters">
+			<list>
+				<ref bean="roleVoter" />
+				<ref bean="authenticatedVoter" />
+				<ref bean="methodAdviceVoter" />
+			</list>
+		</constructor-arg>
+		<property name="messageSource" ref="messageSource"></property>
+	</bean>
+	
+	<!-- URL决策管理器 -->
+	<!-- AffirmativeBased 一票通过，只要有一个投票器通过就允许访问
+		 ConsensusBased 有一半以上投票器通过才允许访问资源
+		 UnanimousBased 所有投票器都通过才允许访问 -->
+	<bean id="urlAccessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<constructor-arg name="decisionVoters">
+			<list>
+				<ref bean="roleVoter" />
+				<ref bean="authenticatedVoter" />
+				<ref bean="webExpressionVoter" />
+			</list>
+		</constructor-arg>
+		<!-- <property name="allowIfAllAbstainDecisions" value="true"></property> -->
+		<property name="messageSource" ref="messageSource"></property>
+	</bean>
+	<bean id="expressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"  >
+		<property name="defaultRolePrefix" value=""></property>
+	</bean>
+	<!-- 自定义权限检查，以AUTH_开头 -->
+	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+		<property name="rolePrefix" value="AUTH_"></property>
+	</bean>
+	<!--用户登录状态权限检查：IS_AUTHENTICATED_FULLY——允许提供完整的用户名和密码的用户访问； IS_AUTHENTICATED_REMEMBERED——如果用户是通过remember 
+		me功能认证的则允许访问； IS_AUTHENTICATED_ANONYMOUSLY——允许匿名用户访问 -->
+	<bean id="authenticatedVoter"
+		class="org.springframework.security.access.vote.AuthenticatedVoter" />
+	<!-- 支持方法验证权限：hasIpAddress(ipAddress)用于匹配一个请求的 IP 地址或一个地址的网络掩码（仅对URL可用）；hasRole(role)用于匹配一个使用GrantedAuthority 
+		的角色（类似于RoleVoter）；hasAnyRole(role)用于匹配一个使用GrantedAuthority 的角色列表。用户匹配其中的任何一个均可放行；permitAll任何用户均可访问；denyAll任何用户均不可访问；anonymous匿名用户可访问；authenticated检查用户是否认证过；rememberMe；检查用户是否通过remember 
+		me 功能认证的； fullyAuthenticated检查用户是否通过提供完整的凭证信息来认证的 -->
+	<bean id="webExpressionVoter"
+		class="org.springframework.security.web.access.expression.WebExpressionVoter">
+		<property name="expressionHandler" ref="expressionHandler" /> 
+	</bean>
+	<bean id="methodAdviceVoter"
+		class="org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter">
+		<constructor-arg name="pre">
+			<bean
+				class="org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice">
+				<!-- <property name="expressionHandler" ref="methodSecurityExpressionHandler" 
+					/> -->
+			</bean>
+		</constructor-arg>
+	</bean>
+	
+	
+	
+	<bean id="loginAuthenticationEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<constructor-arg value="/error.jsp"></constructor-arg>
+	</bean>
+	
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider ref="authenticationProvider" />
+	</sec:authentication-manager>
+	
+	<!-- 用户验证和权限加载 -->
+	<bean id="authenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="hideUserNotFoundExceptions" value="false" />
+		<property name="userDetailsService" ref="userDetailsService" />
+		<!-- <property name="userCache" ref="userCache" /> -->
+		<property name="messageSource" ref="messageSource" />
+		<property name="passwordEncoder" ref="passwordEncode" />
+		<!-- <property name="saltSource" ref="saltSource" /> -->
+	</bean>
+	
+	<!-- 通过用户名加载用户信息和用户权限 -->
+	<bean id="userDetailsService"
+		class="com.yd.org.security.services.UserDetailsServiceImpl">
+	</bean>
+	
+	<!-- 启用用户的缓存功能
+	<bean id="userCache"
+		class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">
+		<property name="cache" ref="userEhCache" />
+	</bean> -->
+	<!-- 用户信息缓存
+	<bean id="userEhCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheName" value="userCache" />
+		<property name="cacheManager" ref="cacheManager" />
+	</bean>
+	<bean id="cacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml" />
+	</bean> -->
+	
+	<!-- 定义上下文返回的消息的国际化 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:/config/messages_zh_CN" />
+	</bean>
+	
+	<!-- 密码加密类 -->
+	<!-- <bean id="passwordEncode" class="com.yd.org.security.util.MyPasswordEncoder"></bean> -->
+	
+	
+	
+	<!-- SESSION过滤
+	<bean id="concurrencyFilter"
+		class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+		<constructor-arg name="expiredUrl" value="/login.html?timeout" />
+	</bean> -->
+	<!-- 可多个session处理类
+	<bean id="concurrentSessionControlStrategy"
+		class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy">
+		<constructor-arg name="delegateStrategies">
+			<list>
+				<ref bean="concurrentSessionControlAuthenticationStrategy" />
+				<ref bean="registerSessionAuthenticationStrategy" />
+			</list>
+		</constructor-arg>
+	</bean> -->
+	<!-- 保存session
+	<bean id="registerSessionAuthenticationStrategy"
+		class="org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy">
+		<constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+	</bean> -->
+	<!-- 检查session唯一性
+	<bean id="concurrentSessionControlAuthenticationStrategy"
+		class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
+		<constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+		<property name="maximumSessions" value="1"></property>
+		<property name="exceptionIfMaximumExceeded" value="true"></property>
+	</bean> -->
+	<!-- session维护类，可用于管理登录用户
+	<bean id="sessionRegistry"
+		class="org.springframework.security.core.session.SessionRegistryImpl" /> -->
+</beans>

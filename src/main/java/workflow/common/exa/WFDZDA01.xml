@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFDZDA01" desc="电子档案示例流程1" startPage="step1" endmessage=""><!-- menu_gen_inst="1" -->
+	<config>
+		<flowvars>
+			<flowvar name="ym01" desc="信息录入页面">common_exa_dzda_01.ydpx</flowvar>
+		</flowvars>
+		<title>=pagetit</title>
+	</config>
+	<step id="step1" url="=_flowvar_ym01" desc="信息录入" appflag="X" buttonflag="a,h" in="0" out="0">
+	
+		<init>
+			<setvar name="rw">w</setvar>
+		    <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		</init>
+	</step>
+</flow>

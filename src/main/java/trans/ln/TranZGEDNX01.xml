@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranZGEDNX01" tranName="获取最高贷款额度年限参数">
+        <comps>
+            <comp compCode="CompZGEDNX01" compName="获取最高贷款额度年限参数" expression="">
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="zgdkedfirst" paramName="最高贷款额度(一手房)" paramType="string(0,-1)" paramValue="zgdkedfirst"/>
+                	<outParam ignoreNull="1" paramCode="zgdkedsecond" paramName="最高贷款额度(二手房)" paramType="string(0,-1)" paramValue="zgdkedsecond"/>
+                	<outParam ignoreNull="1" paramCode="zgdknx" paramName="最高贷款年限" paramType="string(0,-1)" paramValue="zgdknx"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

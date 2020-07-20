@@ -1,0 +1,32 @@
+.introjs-helperNumberLayer {
+  	width: 30px;
+  	height:30px;
+}
+.bg-warning{
+	background: #b3c2d8
+}
+.introjs-tooltip {
+	width: 110px;
+	color: #333333;
+	background-color: #fff4cd;
+	border-color: #ffa68a;
+}
+.introjs-tooltip .introjs-tooltip-img {
+	width: 21px;
+	height: 21px;
+	background: url(../image/icon-help-21x21.png);
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 10px;
+}
+.introjs-tooltip .introjs-tooltip-title {
+	font-weight: bold;
+	display: inline-block;
+	vertical-align: top;
+}
+.introjs-tooltip .introjs-tooltip-content {
+	display: inline-block;
+	vertical-align: top;
+	word-break: break-all;
+	width: 140px;
+}

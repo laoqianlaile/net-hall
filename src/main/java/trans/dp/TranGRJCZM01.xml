@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRJCZM01" tranName="个人住房公积金缴存证明">
+        <comps>
+            <comp compCode="CompGRJCZM01" compName="获取个人住房公积金缴存证明凭证" expression="">
+            	<inParams>
+            		<inParam paramCode="grzh" ignoreNull="1" paramName="个人账号" paramValue="_OPERID" paramType="string(1,20)"/>
+            	</inParams>
+                <outParams>
+               		<outParam ignoreNull="0" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

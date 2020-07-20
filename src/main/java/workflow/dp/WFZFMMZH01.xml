@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFZFMMZH01" desc="支付密码找回" startPage="step1" flowchart="1"  endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="获取个人信息">dp_zfmmzh_01.ydpx</flowvar> 
+              <flowvar name="ym02" desc="重置支付密码">dp_zfmmzh_02.ydpx</flowvar>  
+          </flowvars>
+          <mudics>
+             <mudic key="ish.gg.user.zjlx" desc="证件类型"></mudic>
+             <mudic key="ish.gg.func.systemtype" desc="子系统"></mudic>
+             <mudic key="ish.gg.other.sf" desc="是否"></mudic>
+              <mudic key="ish.gg.other.dxyzm" desc="短信验证码"></mudic>
+          </mudics>
+          <title>=pagetit</title>
+          <endpage >
+		     <init>		   
+		       <setvar name="_RESULT_PAGE_TITLE"><![CDATA[支付密码找回成功。]]></setvar>
+		     </init>
+		 </endpage>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="获取个人信息" appflag="X" buttonflag="g" in="0" out="1" flowchartkey="1" >
+		    <init>
+		        <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		    </init>
+		</step>
+		<step id="step2" url="=_flowvar_ym02" desc="重置支付密码" appflag="X" buttonflag="fa" in="0" notoid="step1" out="1" flowchartkey="1" >
+		    <init>
+		        <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		    </init>
+		</step>
+</flow>

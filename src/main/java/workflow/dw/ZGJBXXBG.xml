@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="ZGJBXXBG" desc="职工基本信息变更" startPage="step1" flowchart="1" isMenu="0" checksession="0" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars>
+              <flowvar name="ym01" desc="员工基本资料变更">dw_ygjbzlbg_01.ydpx</flowvar>
+              <flowvar name="ym02" desc="个人资料变更回单">dw_ygjbzlbg_02.ydpx</flowvar>
+              <flowvar name="ym03" desc="缴存人缴存信息变更登记表">dw_ygjbzlbg_03.ydpx</flowvar>
+           </flowvars>
+           <mudics>
+                 <mudic key="bsp.pb.zjlx" desc="证件类型"></mudic>
+                 <mudic key="ish.gg.other.dxyzm" desc="短信验证码"></mudic>
+                 <mudic key="ish.gg.func.systemtype" desc="子系统"></mudic>
+                 <mudic key="ish.gg.other.sf" desc="是否"></mudic>
+                 <mudic key="bsp.pb.hyzk" desc="婚姻状况"></mudic>
+                 <mudic key="bsp.pb.xueli" desc="学历"></mudic>
+           </mudics>
+           <title>=pagetit</title>
+           <buttons>
+               <buttons id="A" text="返回首页" icon="home" url="/home"/> <!-- 页面上的按钮id将会为 b_flow_A appvalue="0"  -->
+          </buttons>
+
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="职工基本信息变更" appflag="X" buttonflag="Aa" in="1" out="1" isleaveprompt="1" >
+		    <init>
+		        <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		    </init>
+		</step>
+        <step id="step2" url="=_flowvar_ym02" desc="个人资料变更回单" appflag="X" buttonflag="Aa" in="1" out="1">
+            <init>
+                <setvar name="pagetit">=_STEPNAME</setvar>
+                <setvar name="_prfilename">个人资料变更回单</setvar>
+            </init>
+            <!--<buttons>-->
+                <!--<buttons id="l" text="完成" icon="ok"/>-->
+            <!--</buttons>-->
+        </step>
+        <step id="step3" url="=_flowvar_ym03" desc="缴存人缴存信息变更登记表" appflag="X" buttonflag="l" in="1" out="0">
+            <init>
+                <setvar name="pagetit">=_STEPNAME</setvar>
+                <setvar name="_prfilename">缴存人缴存信息变更登记表</setvar>
+            </init>
+            <buttons>
+                <buttons id="l" text="完成" icon="ok"/>
+            </buttons>
+        </step>
+</flow>

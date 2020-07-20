@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="GRFC" desc="个人封存" startPage="step1" flowchart="1" isMenu="0" checksession="0" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+	<config>
+		<flowvars>
+			<flowvar name="ym01" desc="个人封存">dp_grfc_01.ydpx</flowvar>
+			<flowvar name="ym02" desc="个人封存凭证打印">dp_grfc_02.ydpx</flowvar>
+			<flowvar name="ym03" desc="个人封存凭证打印">dp_grfc_03.ydpx</flowvar>
+		</flowvars>
+		<mudics>
+			<mudic key="bsp.pb.certitype" desc="证件类型"></mudic>
+		</mudics>
+		<buttons>
+			<buttons id="A" text="返回首页" icon="home" url="/home"/> <!-- 页面上的按钮id将会为 b_flow_A appvalue="0"  -->
+		</buttons>
+
+	</config>
+	<step id="step1" type="0" url="=_flowvar_ym01" desc="个人封存" appflag="X" buttonflag="Aa" in="1" out="1" isleaveprompt="1">
+		<init>
+			<setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		</init>
+		<!-- 0预办理 1待办任务 -->
+		<!--
+		<submit>
+			<apply apptitle="职工封存" appOrgType="1" appOrgDesc="=getUserExtInfo('accinstcode')" apptype="1" inCause="true"  isScan="1">
+				<upfile>
+					<upfileDtl tn="DP077"  mappingname="apptest1">
+						<item fdname="seqno" col="1"/>
+						<item fdname="accnum1" col="1"/>
+						<item fdname="accname1" col="1"/>
+						<item fdname="basenum" col="1"/>
+						<item fdname="amt1" col="1"/>
+						<item fdname="dpbusitype" col="0">82</item>
+						<item fdname="certitype" col="1"/>
+						<item fdname="certinum" col="1"/>
+						<item fdname="instance" col="0">=_IS</item>
+						<item fdname="accnum2" col="1"/>
+					</upfileDtl>
+				</upfile>
+			</apply>
+		</submit>
+		-->
+	</step>
+	<step id="step2" url="=_flowvar_ym02" desc="职工封存打印" appflag="X" buttonflag="Aa" in="1" out="1">
+		<init>
+			<setvar name="pagetit">=_STEPNAME</setvar>
+			<setvar name="_prfilename">职工封存打印</setvar>
+		</init>
+	</step>
+	<step id="step3" url="=_flowvar_ym03" desc="汇缴变更清册打印" appflag="X" buttonflag="l" in="1" out="0">
+		<init>
+			<setvar name="pagetit">=_STEPNAME</setvar>
+			<setvar name="_prfilename">汇缴变更清册打印</setvar>
+		</init>
+		<buttons>
+			<buttons id="l" text="完成" icon="ok"/>
+		</buttons>
+	</step>
+</flow>

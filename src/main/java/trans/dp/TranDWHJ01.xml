@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWHJ01" tranName="获取汇缴账户信息">
+        <comps>
+        	<comp compCode="CompDWHJ01" compName="获取汇缴账户信息" expression="">
+                <outParams>
+					<outParam ignoreNull="0" paramCode="jzny" paramName="缴至年月" paramType="string(0,-1)" paramValue="jzny"/>
+					<outParam ignoreNull="0" paramCode="zchkyye" paramName="暂存户可用余额" paramType="string(0,-1)" paramValue="zchkyye"/>
+                    <outParam ignoreNull="0" paramCode="fkyh" paramName="付款银行list" paramType="string(0,-1)" paramValue="fkyh"/>
+                    <outParam ignoreNull="0" paramCode="fkzh" paramName="付款账号" paramType="string(0,-1)" paramValue="fkzh"/>
+                    <outParam ignoreNull="0" paramCode="fkzhm" paramName="付款银行户名" paramType="string(0,-1)" paramValue="fkzhm"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

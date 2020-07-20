@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHomeData" tranName="单位信息查询">
+        <comps>
+            <comp compCode="CompSingleTransaction" compName="单位基本信息查询" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getDWJBXXCX3"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="单位基本信息查询"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

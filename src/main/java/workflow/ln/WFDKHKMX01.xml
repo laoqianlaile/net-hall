@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFDKHKMX01" desc="公积金贷款还款明细" startPage="step1" endurl="" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="公积金贷款还款明细">ln_dkhkmx_01.ydpx</flowvar> 
+          </flowvars>
+          <buttons>
+          	 <buttons id="H" text="返回首页" icon="home" url="/home"/>
+          </buttons>
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="公积金贷款还款明细" appflag="X" buttonflag="H" in="1" out="0">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		</step>
+</flow>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+	<interface id="BSP_DP_GRJCZM_01" tr_code="123456" system="99" des="获取个人住房公积金缴存证明凭证">
+	<up>
+		<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+	</up>
+	<down>
+		<filename des="凭证文件名">=filename</filename>
+	</down>
+</interface>
+	<interface id="BSP_DP_GJJZHMXXX_01" tr_code="123456" system="99" des="公积金账户明细信息查询">
+    <!-- <interface id="BSP_DP_GJJZHMXXX_" tr_code="business/appapi00102.json" system="HTTP_GET_YBMAP2" des="公积金账户明细信息查询"> -->
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<startdate des="开始日期">=startdate</startdate>
+			<enddate des="结束日期">=enddate</enddate>
+			<gjhtqywlx des="归集和提取业务类型">=gjhtqywlx</gjhtqywlx>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<!--个人支付密码找回  -->
+	<interface id="BSP_DP_ZFMMZH_01" tr_code="123456" system="99" des="支付密码找回">
+    <!-- <interface id="BSP_DP_ZFMMZH_01" tr_code="YBMAPZH/appapi50024.json" system="HTTP_GET_YBMAP2" des="支付密码找回"> -->
+		<up>
+			<yzfmm des="原支付密码" jmflag="1">=yzfmm</yzfmm>
+			<xzfmm des="新支付密码" jmflag="1">=xzfmm</xzfmm>
+			<qrxzfmm des="确认新支付密码" jmflag="1">=qrxzfmm</qrxzfmm>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+		</up>
+	</interface>
+	<!--查询密码变更  -->
+	<interface id="BSP_DP_CXMMBG_01" tr_code="123456" system="99" des="查询密码变更">
+    <!-- <interface id="BSP_DP_CXMMBG_01" tr_code="YBMAPZH/appapi50009.json" system="HTTP_GET_YBMAP2" des="查询密码变更"> -->
+		<up>
+			<ycxmm des="原查询密码" jmflag="1">=ycxmm</ycxmm>
+			<xcxmm des="新查询密码" jmflag="1">=xcxmm</xcxmm>
+			<qrxcxmm des="确认新查询密码" jmflag="1">=qrxcxmm</qrxcxmm>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+		</up>
+	</interface>
+	<!--手机号码与公积金账号关联-->
+	<interface id="BSP_DP_SJZHGL_01" tr_code="123456" system="99" des="提交手机号码与公积金账号关联信息">
+    <!-- <interface id="BSP_DP_SJZHGL_01" tr_code="" system="HTTP_GET_YBMAP2" des="提交手机号码与公积金账号关联信息"> -->
+		<up>
+			<grzh des="个人账号" >=getUserExtInfo('grzh')</grzh>
+			<jymm des="个人公积金密码" jmflag="1">=jymm</jymm>
+			<sjhm des="手机号码" >=sjhm</sjhm>
+		</up>
+	</interface>
+	<!--手机号码与公积金账号关联-校验交易密码-->
+	<interface id="BSP_DP_SJZHGL_02" tr_code="123456" system="99" des="获取个人交易密码">
+    <!-- <interface id="BSP_DP_SJZHGL_02" tr_code="" system="HTTP_GET_YBMAP2" des="获取个人交易密码"> -->
+		<up>
+			<grzh des="个人账号" >=getUserExtInfo('grzh')</grzh>
+			<jymm des="交易密码" jmflag="1">=jymm</jymm>
+		</up>
+		<down>
+			<jymmCorrect des="交易密码正确标志">=jymmCorrect</jymmCorrect>
+		</down>
+	</interface>
+	<!--提交个人基本信息  -->
+	<interface id="BSP_DP_GRXXBG_02" tr_code="123456" system="99" des="提交个人基本信息">
+    <!-- <interface id="BSP_DP_GRXXBG_02" tr_code="" system="HTTP_GET_YBMAP2" des="提交个人基本信息"> -->
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<hj des="户籍">=hj</hj>
+			<gddhhm des="固定电话号码">=gddhhm</gddhhm>
+			<zhiye des="职业">=zhiye</zhiye>
+			<zhichen des="职称">=zhichen</zhichen>
+			<zhiwu des="职务">=zhiwu</zhiwu>
+			<xueli des="学历">=xueli</xueli>
+			<yzbm des="邮政编码">=yzbm</yzbm>
+			<jtzz des="家庭住址">=jtzz</jtzz>
+			<jtysr des="家庭月收入">=jtysr</jtysr>
+		</up>
+	</interface>
+	<!--个人结息对账单查询  -->
+	<interface id="BSP_DP_GRJXDZ_02" tr_code="123456" system="99" des="个人结息对账单查询">
+		<up>
+			<grzh des="个人账号">=getUserExtInfo('grzh')</grzh>
+		</up>
+		<down>
+			<qxrq des="起息日期">=qxrq</qxrq>
+			<jxrq des="结息日期">=jxrq</jxrq>
+			<dqrll des="定期日利率">=dqrll</dqrll>
+			<hqrll des="活期日利率">=hqrll</hqrll>
+			<hqbj des="活期本金">=hqbj</hqbj>
+			<dqbj des="定期本金">=dqbj</dqbj>
+			<hqlx des="活期利息">=hqlx</hqlx>
+			<dqlx des="定期利息">=dqlx</dqlx>
+			<zlx des="总利息">=zlx</zlx>
+			<zbj des="总本金">=zbj</zbj>
+			<grzhye des="个人账户余额">=grzhye</grzhye>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+</interfaces>

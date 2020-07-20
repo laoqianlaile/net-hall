@@ -1,0 +1,124 @@
+body, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ul, ol, li, pre, button, input, textarea, th, td,a{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  list-style-type:none;
+  text-decoration: none ;
+  font-family: “Microsoft YaHei”; 
+}
+.frame-main {width: 260px; /* height: 300px; */ padding: 15px 20px; background-color: rgba(0,0,0,0.6);}
+/* 头部 */
+.frame-header {height: 38px;}
+.frame-header-img {width: 32px; height: 37px; background: url(../image/but-bg-32x37x7-h.png) no-repeat; background-position: 0px -37px;float: left;}
+.frame-header-title {width: 218px; height: 36px; margin-left: 10px; border-bottom: 1px solid #68696a;float: left;}
+.frame-header-title span {display: block; font-size: 18px; color: #fff; line-height: 34px; width: 130px; border-bottom: 2px solid #007ed6;}
+/* 表单部分 */
+form {width: 260px; position: relative;}
+form>div {width: 258px; position: relative; margin-bottom: 15px;}
+form>div:first-child {margin-top: 15px;}
+.form-id-layer,
+.form-pass-layer,
+.form-verify input {height: 30px; border: 1px solid #969696; background-color: rgba(0,0,0,0.7);}
+.form-dxyzm input {height: 30px; border: 1px solid #969696; background-color: rgba(0,0,0,0.7);}
+.form-id-layer img,
+.form-pass-layer img {
+    width: 23px;
+    height: 22px;
+    margin-left: 5px;
+    margin-top: 4px;
+    padding-right: 5px;
+    border-right: 1px solid #fff;
+    float: left;
+}
+form>div input {
+    border: 0px;
+    background: none;
+    color: #fff;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+    font-size: 16px;
+}
+/*Internet Explorer 10+*/
+form>div input:-ms-input-placeholder{
+    color:#959595;
+}
+form>div select {
+	background-color: rgba(0,0,0,0.7);
+	border: 0px;
+	color: #ffffff;
+}
+.form-verify input {width: 110px; padding: 0px 0px 0px 5px;}
+.form-verify img {
+    width: 95px;
+    height: 32px;
+    background: #fff;
+    top: 0px;
+    left: 120px;
+    position: absolute;
+}
+.form-verify a {color: #fff;font-size: 12px;line-height: 32px; position: absolute; right: 0px; cursor: pointer;}
+.frame-Prompt{font-size: 12px; color: #ff9c00; margin-bottom:15px;}
+.form-button button{
+    width: 258px;
+	height: 38px;
+    border: 1px solid #969696;
+    background: #007ed6;
+    line-height: 38px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.form-button button:disabled{
+	background: #cccccc;
+	cursor: not-allowed;
+	color: #666;
+}
+.form-dxyzm button{
+    width: 137px;
+	height: 36px;
+    border: 1px solid #969696;
+    background: #ff9600;
+    line-height: 38px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+}
+.form-dxyzm input {width: 110px; padding: 4px 0px 0px 5px;}
+.form-href a {color: #fff; font-size: 14px; border-left: 2px solid #fff; padding-left: 10px; padding-right: 10px;}
+.form-href a:first-child {border-width: 0px; padding-left: 0px;}
+/* 兼容IE8 */
+@media \0screen\,screen\9 {
+    .frame-main {background-color:#000000; filter:Alpha(opacity=60);opacity: 0.6; position:static; *zoom:1; }
+    .form-id-layer,
+    .form-pass-layer,
+    .form-verify input {background-color:#000000; filter:Alpha(opacity=70);opacity: 0.7; position:static; *zoom:1; }
+    .form-dxyzm input {background-color:#000000; filter:Alpha(opacity=70);opacity: 0.7; position:static; *zoom:1; }
+}
+
+/* 刷脸登录 */
+.frame-face .frame-header-img {background-position: -192px -37px;}
+.frame-face .form-2code {height: 156px; width: 260px; background-image: url(../image/bg-wait.png);text-align: center; color: #fff; line-height: 156px;}
+.frame-face .form-2code-img {margin: 15px auto;}
+.frame-face .form-2code-img div {color: #ff9c00;text-align: center; line-height: 2em; font-size: 12px;}
+.frame-face .form-2code-img div.refresh {line-height: 100px;}
+.frame-face .form-2code-img a {cursor: pointer; text-decoration: underline;}
+.frame-face .form-2code-img img {width: 200px; height: 200px; background: url(../../../../common/image/load-running.gif) no-repeat center; display: block; margin: 0 auto; }
+/* 扫码登录 */
+.frame-code .frame-header-img {background-position: -128px -37px;}
+.frame-code .form-2code {height: 156px; width: 260px; background-image: url(../image/bg-wait.png);text-align: center; color: #fff; line-height: 156px;}
+.frame-code .form-2code-img {margin: 15px auto;}
+.frame-code .form-2code-img div {color: #fff;text-align: center; line-height: 2em; font-size: 12px;}
+.frame-code .form-2code-img div.refresh {line-height: 200px;}
+.frame-code .form-2code-img a {cursor: pointer; text-decoration: underline;}
+.frame-code .form-2code-img img {width: 200px; height: 200px; background: url(../../../../common/image/load-running.gif) no-repeat center; display: block; margin: 0 auto; }
+.frame-code .form-info div {color: #fff; line-height: 2em; }
+.frame-code .form-result-icon {text-align: center;font-size: 24px; padding: 20px 0px 10px 0px;}
+.frame-code .form-result-icon span {display: block; width: 70px; height: 52px; margin: 0 auto; background-repeat: no-repeat; background-image: url(../image/icon-ok-70x52.png);}
+.frame-code .form-result-info {text-align: center; font-weight: bold; font-family: Arial; background-color: rgba(0,0,0,0.2);line-height: 45px !important; font-size: 14px; border-top: 1px solid #68696a;border-bottom: 1px solid #68696a;}
+.frame-code .form-result-info span.name {margin-right: 10px;}
+.frame-code .form-result-info span.idcard {}
+.frame-code .form-info-tip {text-align: center;  font-size: 12px; color: #f59703 !important; line-height: 34px !important;}
+.frame-code .form-button button {border-width: 0px;}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0403" version="2.0" formaction="">
+  <info>
+    <description title="单位密码找回"/>
+    <editlogs>
+      <log editor="0000(离线)" edittime="2016-04-12 13:03:49"/>
+      <log editor="Y00585(离线)" edittime="2018-09-12 09:16:31"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script include="/common/script/cst_phone_verification.js"/>
+    <script><![CDATA[//页面加载后执行
+        thisTab.pageOnload = function () {
+        	
+        	//新密码需与确认的密码相同
+			$('#xdlmm').change(function(event) {
+				ydl.validator.clear();
+				if($('#xdlmm').val() != "" && $('#qrxdlmm').val() != ""){
+					if (!ydl.validator('xdlmm', {rule: $('#xdlmm').val() == $('#qrxdlmm').val(), message:"两次输入的密码必须相同"})) return false;
+				}
+			});
+		
+		
+			//确认的密码需与新密码相同
+			$('#qrxdlmm').change(function(event) {
+				ydl.validator.clear();
+				if($('#qrxdlmm').val() != "" && $('#xdlmm').val() != ""){
+					if (!ydl.validator('qrxdlmm', {rule: $('#qrxdlmm').val() == $('#xdlmm').val(), message:"两次输入的密码必须相同"})) return false;
+				}
+			});
+        }
+	
+       
+        //表单提交时执行
+        thisTab.form_validate = function () {
+			if (!ydl.validator('qrxdlmm', {rule: $('#qrxdlmm').val() == $('#xdlmm').val(), message:"两次输入的密码必须相同"})) return false;
+            return true;
+        }
+
+        ]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container uid="container-cff4fcb0b04b4a0b9f14b8ab8e37c2f6" type="table" layout="fit" cols="6" id="container-cff4fcb0b04b4a0b9f14b8ab8e37c2f6" caption="单位密码找回">
+      <component type="label"/>
+      <component type="label" for="dwzh">单位账号：</component>
+      <component id="dwzh" type="input" subtype="text" required="true" datatype="validchar" colspan="2"></component>
+      <component type="blank"/>
+      <component type="blank"/>
+      <component type="blank"/>
+      <component type="label" for="dwmc">单位名称：</component>
+      <component id="dwmc" type="input" subtype="text" datatype="validchar" colspan="2" required="true"/>
+      <component type="blank"/>
+      <component type="blank"/>
+      <component type="blank"/>
+      <component type="label" for="xdlmm">新登录密码：</component>
+      <component id="xdlmm" type="input" subtype="password" colspan="2" datatype="number" maxlength="6" minlength="6" required="true"/>
+      <component type="plain" colspan="2">新密码为6位数字</component>
+      <component type="blank"/>
+      <component type="label" for="qrxdlmm">确认新登录密码：</component>
+      <component id="qrxdlmm" type="input" subtype="password" colspan="2" datatype="number" maxlength="6" minlength="6" required="true"/>
+      <component type="plain" colspan="2">请再次输入新密码</component>
+      <component type="blank" colspan="6"/>
+      <component type="blank" colspan="6"/>
+      <component type="blank" colspan="6"/>
+      <component type="blank" colspan="6"/>
+      <component type="blank" colspan="6"/>
+    </container>
+  </containers>
+</page>

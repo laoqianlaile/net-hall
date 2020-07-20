@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 人脸认证功能示例 workflow -->
+<flow id="WFRLRZ01" desc="人脸认证功能示例" checksession="1" startPage="step1" isMenu="1"
+      endurl="" endmessage="">
+    <config>
+        <flowvars>
+            <flowvar name="page01">common_exa_rlrz_01.ydpx</flowvar>
+        </flowvars>
+        <title>=pagetit</title>
+    </config>
+    <step id="step1" url="=_flowvar_page01" desc="人脸认证" appflag="X" in="0" out="0">
+        <init>
+            <setvar name="pagetit">=_STEPNAME</setvar>
+        </init>
+    </step>
+</flow>

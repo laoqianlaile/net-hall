@@ -1,0 +1,31 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-19</tr_acdt>
+		<tr_time>2017-06-19 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<dwzh des="单位账号">20011822</dwzh>
+		<dwmc des="单位名称">华信永道（北京）科技股份有限公司</dwmc>
+		<wtskxybh des="委托收款协议编号">180619001</wtskxybh>
+		<wtskxyzt des="委托收款协议状态">审核中</wtskxyzt>
+		<fkdwmc des="付款单位名称">黑格科技有限公司</fkdwmc>
+		<fkdwyhmc des="付款单位银行名称">吉林建设银行</fkdwyhmc>
+		<fkdwyhzh des="付款单位银行账号">6222021231001022004</fkdwyhzh>
+		<fkhtcjhh des="付款行同城交换号">622145632243</fkhtcjhh>
+		<tsr des="托收日">14</tsr>
+		<qyjbrq des="签约经办日期">20180614</qyjbrq>
+		<qyjbjg des="签约经办机构">长春信贷机构</qyjbjg>
+		<qyjbr des="签约经办人">黄靖</qyjbr>
+	</body>
+</root>

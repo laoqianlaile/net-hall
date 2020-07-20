@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFDKSQ01" desc="贷款申请" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="贷款申请">ln_dksq_01.ydpx,ln_dksq_02.ydpx,ln_dksq_03.ydpx,ln_dksq_04.ydpx,ln_dksq_05.ydpx,ln_dksq_06.ydpx</flowvar>
+          </flowvars>
+          <endpage buttonflag="o">
+		      <init>		        
+		        <setvar name="_RESULT_PAGE_TITLE"><![CDATA[贷款申请申报信息提交成功！]]></setvar>
+		      </init>
+		  </endpage>
+          <mudics>
+			<mudic key="bsp.ln.loaneetype" desc="借款人类型"></mudic>
+			<mudic key="bsp.ln.cdgx" desc="参贷关系"></mudic>
+			<mudic key="bsp.dp.grzhzt" desc="个人账户状态"></mudic>
+			<mudic key="bsp.pb.zjlx" desc="证件类型"></mudic>
+			<mudic key="bsp.pb.hyzk" desc="婚姻状况"></mudic>
+			<mudic key="bsp.pb.sex" desc="性别"></mudic>
+			<mudic key="bsp.ln.fwxz" desc="房屋性质"></mudic>
+			<mudic key="bsp.ln.dklx" desc="贷款类型"></mudic>
+			<mudic key="bsp.ln.purchasertype" desc="共有权人类型"></mudic>
+			<mudic key="bsp.ln.dkdblx" desc="贷款担保类型"></mudic>
+			<mudic key="ish.gg.user.yhlx" desc="用户类型"></mudic>
+		  </mudics> 
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="贷款申请" appflag="X" buttonflag="a" in="1" out="1" isleaveprompt="1">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		    <!-- 实际项目中调试申报预办理时，取消下面注释 -->
+		    <!-- <submit>
+			<apply apptitle="贷款申请" appOrgType="1" appOrgDesc="" apptype="0" inCause="true">
+				<upfile>
+					<upfileDtl tn="DP077" mappingname="apptest1">
+						<item fdname="ACCNAME1" col="1"/>
+						<item fdname="CERTITYPE" col="1"/>
+						<item fdname="CERTINUM" col="1"/>
+						<item fdname="FUNDSOUFLAG" col="1"/>
+						<item fdname="PROPTYPE" col="1"/>
+						<item fdname="SEX" col="1"/>
+						<item fdname="SJHM" col="1"/>
+						<item fdname="AGENTOP" col="1"/>
+						<item fdname="HYZK" col="1"/>
+						<item fdname="ACCNAME2" col="1"/>
+						<item fdname="ZIP" col="1"/>
+						<item fdname="PAYVOUBANK" col="1"/>
+						<item fdname="ONYM" col="1"/>
+						<item fdname="UNITACCNUM1" col="1"/>
+						<item fdname="JTZZ" col="1"/>
+						<item fdname="UNITACCNAME1" col="1"/>
+						<item fdname="XMQP" col="1"/>
+						<item fdname="ACCNUM1" col="1"/>
+						<item fdname="ACCNUM2" col="1"/>
+						<item fdname="ENDDATE" col="1"/>
+						<item fdname="BEGYM" col="1"/>
+						<item fdname="ENDYM" col="1"/>
+						<item fdname="BASENUM" col="1"/>
+						<item fdname="AMT1" col="1"/>
+						<item fdname="AMT2" col="1"/>
+						<item fdname="FUNDSOUFLAG" col="1"/>
+						<item fdname="PROPTYPE" col="1"/>
+						<item fdname="INSTANCE" col="0">=_IS</item>
+						<item fdname="DPBUSITYPE" col="0">10</item>
+					</upfileDtl>
+					<upfileDtl tn="DP077" mappingname="apptest2">
+						<item fdname="ACCNAME1" col="1"/>
+						<item fdname="CERTITYPE" col="1"/>
+						<item fdname="CERTINUM" col="1"/>
+						<item fdname="FUNDSOUFLAG" col="1"/>
+						<item fdname="PROPTYPE" col="1"/>
+						<item fdname="SEX" col="1"/>
+						<item fdname="SJHM" col="1"/>
+						<item fdname="INSTANCE" col="0">=_IS</item>
+						<item fdname="DPBUSITYPE" col="0">11</item>
+					</upfileDtl>
+					<upfileDtl tn="DP077" mappingname="apptest3">
+						<item fdname="ACCNAME1" col="1"/>
+						<item fdname="CERTITYPE" col="1"/>
+						<item fdname="CERTINUM" col="1"/>
+						<item fdname="UNITACCNAME1" col="1"/>
+						<item fdname="ACCNUM1" col="1"/>
+						<item fdname="SEX" col="1"/>
+						<item fdname="INSTANCE" col="0">=_IS</item>
+						<item fdname="DPBUSITYPE" col="0">12</item>
+					</upfileDtl>
+					<upfileDtl tn="DP077" mappingname="apptest4">
+						<item fdname="FUNDSOUFLAG" col="1"/>
+						<item fdname="PROPTYPE" col="1"/>
+						<item fdname="AMT1" col="1"/>
+						<item fdname="AMT2" col="1"/>
+						<item fdname="ENDDATE" col="1"/>
+						<item fdname="UNITACCNUM1" col="1"/>
+						<item fdname="JTZZ" col="1"/>
+						<item fdname="INSTANCE" col="0">=_IS</item>
+						<item fdname="DPBUSITYPE" col="0">13</item>
+					</upfileDtl>
+					<upfileDtl tn="DP077" mappingname="apptest5">
+						<item fdname="ACCNAME1" col="1"/>
+						<item fdname="CERTITYPE" col="1"/>
+						<item fdname="CERTINUM" col="1"/>
+						<item fdname="ACCNUM1" col="1"/>
+						<item fdname="PROPTYPE" col="1"/>
+						<item fdname="AMT1" col="1"/>
+						<item fdname="SJHM" col="1"/>
+						<item fdname="INSTANCE" col="0">=_IS</item>
+						<item fdname="DPBUSITYPE" col="0">14</item>
+					</upfileDtl>
+				</upfile>
+			</apply>
+		</submit> -->
+		</step>
+</flow>

@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+    <interface id="BSP_LN_KFSXXCX_02" tr_code="123456" system="99" des="查询开发商信息">
+		<up>
+			
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_CXLPXX_03" tr_code="123456" system="99" des="查询楼盘信息">
+		<up>
+			<kfsbh des="开发商编号">=kfsbh</kfsbh>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_FYLPXXCX_01" tr_code="123456" system="99" des="房源楼盘信息查询">
+		<up>
+			<kfsbh des="开发商编号">=kfsbh</kfsbh>
+			<lpbh des="楼盘编号">=lpbh</lpbh>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_ZXXCX_04" tr_code="123456" system="99" des="幢信息查询">
+		<up>
+			<hzlpbh des="楼盘编号">=hzlpbh</hzlpbh>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_GJJDKZHXX_01" tr_code="123456" system="99" des="公积金贷款账户信息查询">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_GETDKXX_01" tr_code="123456" system="99" des="获取贷款详细信息">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+		</up>
+		<down>
+			<jgmc des="机构名称">=jgmc</jgmc>
+			<swtyhmc des="受委托银行名称">=swtyhmc</swtyhmc>
+			<jkrxm des="借款人姓名">=jkrxm</jkrxm>
+			<jkrzjhm des="借款人证件号码">=jkrzjhm</jkrzjhm>
+			<dkffrq des="贷款发放日期">=dkffrq</dkffrq>
+			<dkffe des="贷款发放额">=dkffe</dkffe>
+			<dkqs des="贷款期数">=dkqs</dkqs>
+			<ydhkr des="约定还款日">=ydhkr</ydhkr>
+			<dkhkfs des="贷款还款方式">=dkhkfs</dkhkfs>
+			<yhke des="月还款额">=yhke</yhke>
+			<hkzh des="还款账号">=hkzh</hkzh>
+			<htzt des="合同状态">=htzt</htzt>
+			<dkye des="贷款余额">=dkye</dkye>
+			<dkll des="贷款利率">=dkll</dkll>
+			<sfyq des="是否逾期">=sfyq</sfyq>
+			<yqbjze des="逾期本金总额">=yqbjze</yqbjze>
+			<yqlxze des="逾期利息总额">=yqlxze</yqlxze>
+			<fxze des="罚息总额">=fxze</fxze>
+			<tqhj des="拖欠合计">=tqhj</tqhj>
+			<dqqc des="当前期次">=dqqc</dqqc>
+			<syqs des="剩余期数">=syqs</syqs>
+			<xdqrq des="现到期日期">=xdqrq</xdqrq>
+			<tqqbhkje des="提前全部还款金额">=tqqbhkje</tqqbhkje>
+			<kkrlx des="扣款人类型">=kkrlx</kkrlx>
+			<kkrxm des="扣款人姓名">=kkrxm</kkrxm>
+			<kkrzjhm des="扣款人证件号码">=kkrzjhm</kkrzjhm>
+			<gtjkrxm des="共同借款人姓名">=gtjkrxm</gtjkrxm>
+			<zdhke des="最低还款额">=zdhke</zdhke>
+			<htdkje des="合同贷款金额">=htdkje</htdkje>
+			<dkqs des="贷款期数">=dkqs</dkqs>
+			<dkzxll des="贷款执行利率">=dkzxll</dkzxll>
+			<yddqrq des="约定到期日期">=yddqrq</yddqrq>
+			<yqbj des="逾期本金">=yqbj</yqbj>
+			<yqlx des="逾期利息">=yqlx</yqlx>
+			<whfx des="未还罚息">=whfx</whfx>
+			<yqzje des="逾期总金额">=yqzje</yqzje>
+			<xcslx des="新产生利息">=xcslx</xcslx>
+			<wdqbj des="未到期本金">=wdqbj</wdqbj>
+			<!--ish04新增-->
+			<hsbjze des="回收本金总额">=hsbjze</hsbjze>
+
+		</down>
+	</interface>
+	<interface id="BSP_LN_GETDKZC_01" tr_code="123456" system="99" des="获取贷款政策信息">
+		<down>
+			<grzfdkzged des="个人住房贷款最高额度">=grzfdkzged</grzfdkzged>
+			<fqzfdkzged des="夫妻住房贷款最高额度">=fqzfdkzged</fqzfdkzged>
+			<grzfdkzcnx des="个人住房贷款最长年限">=grzfdkzcnx</grzfdkzcnx>
+			<fqzfdkzcnx des="夫妻住房贷款最长年限">=fqzfdkzcnx</fqzfdkzcnx>
+			<zfgjjdklvwnyn des="住房公积金贷款利率五年以内">=zfgjjdklvwnyn</zfgjjdklvwnyn>
+			<zfgjjdklvwnys des="住房公积金贷款利率五年以上">=zfgjjdklvwnys</zfgjjdklvwnys>
+		</down>
+	</interface>
+	<interface id="BSP_LN_DKSPXX_01" tr_code="123456" system="99" des="个人贷款审批信息查询">
+	<!-- <interface id="BSP_LN_DKSPXX_01" tr_code="business/appapi00210.json" system="HTTP_GET_YBMAP2" des="个人贷款审批信息查询"> -->
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+		</up>
+		<down>
+			<file>=filename</file>
+			<dksqbh des="贷款申请编号">=dksqbh</dksqbh>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<swtyhmc des="受委托银行名称">=swtyhmc</swtyhmc>
+			<htdkje des="合同贷款金额">=htdkje</htdkje>
+			<dkqs des="贷款期数">=dkqs</dkqs>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+			<fwzl des="房屋坐落">=fwzl</fwzl>
+			<dklx des="贷款类型">=dklx</dklx>
+			<fwxz des="房屋性质">=fwxz</fwxz>
+		</down>
+	</interface>
+	<interface id="BSP_LN_HQJKHTBH_01" tr_code="123456" system="99" des="借款合同编号查询">
+	<!-- <interface id="BSP_LN_HQJKHTBH_01" tr_code="business/appapi00205.json" system="HTTP_GET_YBMAP2" des="借款合同编号查询"> -->
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+			<dkzt des="贷款状态">=dkzt</dkzt>
+		</up>
+		<down>
+			<jkhtbh>=jkhtbh</jkhtbh>
+		</down>
+	</interface>
+	<interface id="BSP_LN_GJJDKHKJH_01" tr_code="123456" system="99" des="获取贷款还款计划信息">
+	<!-- <interface id="BSP_LN_GJJDKHKJH_01" tr_code="business/appapi00207.json" system="HTTP_GET_YBMAP2" des="获取贷款还款计划信息"> -->
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<begdate des="计划还款开始日期">=begdate</begdate>
+			<enddate des="计划还款结束日期">=enddate</enddate>
+			<begqs des="计划还款开始期数">=begqs</begqs>
+			<endqs des="计划还款结束期数">=endqs</endqs>
+		</up>
+		<down>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_DKQXBG_01" tr_code="123456" system="99" des="获取调整期限后贷款信息">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<tzhwdqqs des="调整后未到期期数">=tzhwdqqs</tzhwdqqs>
+		</up>
+		<down>
+			<tzhyhke des="调整后月还款额">=tzhyhke</tzhyhke>
+			<tzhdkzqs des="调整后贷款总期数">=tzhdkzqs</tzhdkzqs>
+			<tzhdqrq des="调整后到期日期">=tzhdqrq</tzhdqrq>
+		</down>
+	</interface>
+	<interface id="BSP_LN_DKQXBG_02" tr_code="123456" system="99" des="提交贷款期限变更信息">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<tzhwdqqs des="调整后未到期期数">=tzhwdqqs</tzhwdqqs>
+			<bgyy des="变更原因">=bgyy</bgyy>
+		</up>
+		<down>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<interface id="BSP_LN_DKSS_01" tr_code="123456" system="99" des="还款试算">
+		<up>
+			<sslx des="试算类型">=sslx</sslx>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<dkje des="贷款金额">=dkje</dkje>
+			<dkqx des="贷款期限">=dkqx</dkqx>
+			<dkhkfs des="贷款还款方式">=dkhkfs</dkhkfs>
+			<dklx des="贷款类型">=dklx</dklx>
+			<dntfdk des="第N套房贷款">=dntfdk</dntfdk>
+			<hkr des="还款日">=hkr</hkr>
+			<sydkje des="商业贷款金额">=sydkje</sydkje>
+			<sydkqx des="商业贷款期限">=sydkqx</sydkqx>
+			<sydkll des="商业贷款利率">=sydkll</sydkll>
+			<sydkhkfs des="商业贷款还款方式">=sydkhkfs</sydkhkfs>
+			<syhkr des="还款日">=syhkr</syhkr>
+			<tzhdksyqs des="调整后贷款剩余期数">=tzhdksyqs</tzhdksyqs>
+			<bghdkhkfs des="变更后贷款还款方式">=bghdkhkfs</bghdkhkfs>
+			<dkbgbz des="贷款变更标志">=dkbgbz</dkbgbz>
+			<tqhkzje des="提前还款总金额">=tqhkzje</tqhkzje>
+		</up>
+		<down>
+			<shbj des="实还本金">=shbj</shbj>
+			<shlx des="实还利息">=shlx</shlx>
+			<shfx des="实还罚息">=shfx</shfx>
+			<tqhkbjze des="提前还款本金总额">=tqhkbjze</tqhkbjze>
+			<yhke des="月还款额">=yhke</yhke>
+			<xsyqs des="新剩余期数">=xsyqs</xsyqs>
+			<gjjyhke des="公积金月还款额">=gjjyhke</gjjyhke>
+			<lxhj des="利息合计">=lxhj</lxhj>
+			<hkehj des="还款额合计">=hkehj</hkehj>
+			<syyhke des="商贷月还款额">=syyhke</syyhke>
+			<hkhj des="还款合计">=hkhj</hkhj>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_DKSS_02" tr_code="123456" system="99" des="获取最高贷款额度，最高贷款年限">
+	<!-- <interface id="BSP_LN_DKSS_02" tr_code="business/appapi00208.json" system="HTTP_GET_YBMAP2" des="获取最高贷款额度，最高贷款年限"> -->
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+			<dntfdk des="第N套房贷款">=dntfdk</dntfdk>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+		</up>
+		<down>
+			<zgdked des="最高贷款额度">=zgdked</zgdked>
+			<zgdknx des="最高贷款年限">=zgdknx</zgdknx>
+		</down>
+	</interface>
+	<interface id="BSP_LN_HQDKEDNX_01" tr_code="123456" system="99" des="获取最高贷款额度年限参数">
+		<up>
+
+		</up>
+		<down>
+			<zgdkedfirst des="最高贷款额度(一手房)">=zgdkedfirst</zgdkedfirst>
+			<zgdkedsecond des="最高贷款额度(二手房)">=zgdkedsecond</zgdkedsecond>
+			<zgdknx des="最高贷款年限">=zgdknx</zgdknx>
+		</down>
+	</interface>
+	<interface id="BSP_LN_HKZHBG_01" tr_code="123456" system="99" des="提交还款账户变更信息">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<kkrlx des="新扣款人类型">=kkrlx</kkrlx>
+			<kkrxm des="新扣款人姓名">=kkrxm</kkrxm>
+			<kkrzjhm des="新扣款人证件号码">=kkrzjhm</kkrzjhm>
+			<hkzh des="新还款账号">=hkzh</hkzh>
+		</up>
+		<down>
+		</down>
+	</interface>
+	<interface id="BSP_LN_TQHK_01" tr_code="123456" system="99" des="获取提前还款后信息">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<tqhkzje des="提前还款总金额">=tqhkzje</tqhkzje>
+			<dkbgbz des="贷款变更标志">=dkbgbz</dkbgbz>
+			<hklx des="还款类型">=hklx</hklx>
+		</up>
+		<down>
+			<shbj des="实还本金">=shbj</shbj>
+			<shfx des="实还罚息">=shfx</shfx>
+			<shlx des="实还利息">=shlx</shlx>
+		</down>
+	</interface>
+	<interface id="BSP_LN_TQHK_02" tr_code="123456" system="99" des="提交提前还款信息">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<tqhkzje des="提前还款总金额">=tqhkzje</tqhkzje>
+			<dkbgbz des="贷款变更标志">=dkbgbz</dkbgbz>
+			<hklx des="还款类型">=hklx</hklx>
+			<jsfs des="结算方式">=jsfs</jsfs>
+		</up>
+		<down>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<interface id="BSP_LN_TQHK_03" tr_code="123456" system="99" des="获取公积金还款人信息">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+		</up>
+		<down>
+			<file des="批量文件名">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_TQHK_04" tr_code="123456" system="99" des="根据月数获取提前还月供金额">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<hygqs des="还月供期数">=hygqs</hygqs>
+		</up>
+		<down>
+			<tqhkzje des="提前还款总金额">=tqhkzje</tqhkzje>
+		</down>
+	</interface>
+	<interface id="BSP_LN_HKFSBG_01" tr_code="123456" system="99"   des="还款方式变更">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<xdkhkfs des="新贷款还款方式">=xdkhkfs</xdkhkfs>
+			<bgyy des="变更原因">=bgyy</bgyy>
+		</up>
+		<down>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<interface id="BSP_LN_HQDKLL_01" tr_code="123456" system="99" des="获取贷款利率参数">
+		<up>
+
+		</up>
+		<down>
+			<downFiveRate des="五年以下利率">=downFiveRate</downFiveRate>
+			<upFiveRate des="五年以上利率">=upFiveRate</upFiveRate>
+			<llfdbl des="利率浮动比例">=llfdbl</llfdbl>
+		</down>
+	</interface>
+	<!-- 贷款还款明细查询 -->
+	<interface id="BSP_LN_DKHKMX_01" tr_code="123456" system="99" des="贷款还款明细查询">
+     <!--<interface id="BSP_LN_DKHKMX_01" tr_code="business/appapi00202.json" system="HTTP_GET_YBMAP2" des="贷款还款明细查询">-->
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_GETYHKE_01" tr_code="123456" system="99" des="获取月还款额">
+		<up>
+			<dkje des="贷款金额">=dkje</dkje>
+			<dkqx des="贷款期限">=dkqx</dkqx>
+			<dkhkfs des="贷款还款方式">=dkhkfs</dkhkfs>
+			<dklx des="贷款类型">=dklx</dklx>
+			<dntfdk des="第N套房贷款">=dntfdk</dntfdk>
+		</up>
+		<down>
+			<yhke des="月还款额">=yhke</yhke>
+		</down>
+	</interface>
+	<interface id="BSP_LN_GETZHIHANG_01" tr_code="123456" system="99" des="获取全部支行">
+		<up>
+		
+		</up>
+		<down>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
+	<interface  id="BSP_LN_DKSQ_01" tr_code="123456" system="99" des="提交贷款申请">
+		<up>
+			<fwxz des="房屋性质">=fwxz</fwxz>
+			<dntfdk des="第N套房贷款">=dntfdk</dntfdk>
+			<kfsmc des="开发商名称">=kfsmc</kfsmc>
+			<xmmc des="项目名称">=xmmc</xmmc>
+			<gfdz des="购房地址">=gfdz</gfdz>
+			<ldbh des="楼栋编号">=ldbh</ldbh>
+			<dyh des="单元号">=dyh</dyh>
+			<mph des="门牌号">=mph</mph>
+			<fwjzmj des="房屋建筑面积">=fwjzmj</fwjzmj>
+			<fwtnmj des="房屋套内面积">=fwtnmj</fwtnmj>
+			<fwdj des="房屋单价">=fwdj</fwdj>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+			<fwyt des="开发商房屋用途">=fwyt</fwyt>
+			<sffq des="是否付清">=sffq</sffq>
+			<gfsfk des="购房首付款">=gfsfk</gfsfk>
+			<gfrq des="购房日期">=gfrq</gfrq>
+			<jfrq des="交房日期">=jfrq</jfrq>
+			<gflx des="现房/期房">=gflx</gflx>
+			<gfhtbh des="购房合同编号">=gfhtbh</gfhtbh>
+			<gytdsyz des="国有土地使用证">=gytdsyz</gytdsyz>
+			<jsghxkz des="建设规划许可证">=jsghxkz</jsghxkz>
+			<jsydxkz des="建设用地许可证">=jsydxkz</jsydxkz>
+			<gtspd des="国土审批单">=gtspd</gtspd>
+			<jttdsyz des="集体土地使用证">=jttdsyz</jttdsyz>
+			<dklx des="贷款类型">=dklx</dklx>
+			<dkdblx des="贷款担保类型">=dkdblx</dkdblx>
+			<dkhkfs des="贷款还款方式">=dkhkfs</dkhkfs>
+			<swtyhmc des="受委托银行名称">=swtyhmc</swtyhmc>
+			<sqje des="申请金额">=sqje</sqje>
+			<sqqx des="申请期限">=sqqx</sqqx>
+			<jtysr des="家庭月收入">=jtysr</jtysr>
+			<skrlx des="收款人类型">=skrlx</skrlx>
+			<skrzhmc des="收款账号名称">=skrzhmc</skrzhmc>
+			<skrkhyhmc des="收款人开户银行名称">=skrkhyhmc</skrkhyhmc>
+			<sfkrzhhm des="收款人账户号码">=sfkrzhhm</sfkrzhhm>
+			<file>=filename</file>
+		</up>
+	</interface>
+	<interface id="BSP_LN_HQJKRXX_01" tr_code="123456" system="99" des="获取借款人信息">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+		</up>
+		<down>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_TJWTKHXX_01" tr_code="123456" system="99" des="提交委托扣划信息">
+		<up>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<file des="文件名称">=filename</file>
+		</up>
+		<down>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<interface id="BSP_LN_GETKFSXX_01" tr_code="123456" system="99" des="获取开发商信息">
+		<up>
+			<kfsdjh des="开发商登记号">=getRealUserExtInfo("kfsdjh")</kfsdjh>
+		</up>
+		<down>
+			<kfsmc des="开发商名称">=kfsmc</kfsmc>
+			<dwlx des="单位类型">=dwlx</dwlx>
+			<zcdz des="注册地址">=zcdz</zcdz>
+			<bgdz des="办公地址">=bgdz</bgdz>
+			<dwfrdbxm des="单位法人代表姓名">=dwfrdbxm</dwfrdbxm>
+			<dwfrdbzjlx des="单位法人代表证件类型">=dwfrdbzjlx</dwfrdbzjlx>
+			<dwfrdbzjhm des="单位法人代表证件号码">=dwfrdbzjhm</dwfrdbzjhm>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<dwdh des="单位电话">=dwdh</dwdh>
+			<zczb des="注册资本">=zczb</zczb>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<kfzz des="开发资质">=kfzz</kfzz>
+			<tyshxydm des="统一社会信用代码">=tyshxydm</tyshxydm>
+			<jgxydm des="机构信用代码">=jgxydm</jgxydm>
+			<sfsqbzj des="是否收取保证金">=sfsqbzj</sfsqbzj>
+			<bzjbl des="保证金比例">=bzjbl</bzjbl>
+			<jyfw des="经营范围">=jyfw</jyfw>
+		</down>
+	</interface>
+	<interface id="BSP_LN_HQXYYXSJ_01" tr_code="123456" system="99" des="获取协议有效时间参数">
+		<up>
+		</up>
+		<down>
+			<yxsj des="有效时间（年）">=yxsj</yxsj>
+		</down>
+	</interface>
+	<interface id="BSP_LN_TJXQXX_01" tr_code="123456" system="99" des="提交开发商项目新签信息">
+		<up>
+			<kfsdjh des="开发商登记号">=getRealUserExtInfo("kfsdjh")</kfsdjh>
+			<xmmc des="项目名称">=xmmc</xmmc>
+			<lpqymc des="楼盘区域名称">=lpqymc</lpqymc>
+			<xmwz des="项目位置">=xmwz</xmwz>
+			<xykssj des="协议开始日期">=xykssj</xykssj>
+			<xyjssj des="协议结束日期">=xyjssj</xyjssj>
+			<lpmj des="楼盘面积">=lpmj</lpmj>
+			<lpjj des="楼盘均价">=lpjj</lpjj>
+			<lpzts des="楼盘总套数">=lpzts</lpzts>
+			<lpzzs des="楼盘总幢数">=lpzzs</lpzzs>
+			<yssj des="预售时间">=yssj</yssj>
+			<jgsj des="竣工时间">=jgsj</jgsj>
+			<syqlx des="使用权类型">=syqlx</syqlx>
+			<syqzzrq des="使用权终止日期">=syqzzrq</syqzzrq>
+			<tdzfzjg des="土地证发证机关">=tdzfzjg</tdzfzjg>
+			<jsydghydmj des="建设用地规划用地面积">=jsydghydmj</jsydghydmj>
+			<jsydghjsgm des="保证金建设用地规划建设规模">=jsydghjsgm</jsydghjsgm>
+			<jsydghydxz des="建设用地规划用地性质">=jsydghydxz</jsydghydxz>
+			<tdzbh des="土地证编号">=tdzbh</tdzbh>
+			<jsgcsgxkz des="建筑工程施工许可证">=jsgcsgxkz</jsgcsgxkz>
+			<jzgcghxkz des="建筑工程规划许可证">=jzgcghxkz</jzgcghxkz>
+			<jsydghxkz des="建设用地规划许可证">=jsydghxkz</jsydghxkz>
+			<bzjkhyh des="保证金开户银行">=bzjkhyh</bzjkhyh>
+			<bzjzhmc des="保证金账户名称">=bzjzhmc</bzjzhmc>
+			<bzjzhhm des="保证金账户号码">=bzjzhhm</bzjzhhm>
+			<jyfw des="经营范围">=jyfw</jyfw>
+			<file des="上传文件">=filename</file>
+		</up>
+		<down>
+
+		</down>
+	</interface>
+	<interface id="BSP_LN_GETXMXX_01" tr_code="123456" system="99" des="获取项目信息列表">
+		<up>
+			<kfsdjh des="开发商登记号">=getRealUserExtInfo("kfsdjh")</kfsdjh>
+			<xmxyh des="项目协议号">=xmxyh</xmxyh>
+			<zt des="状态">=zt</zt>
+		</up>
+		<down>
+			<file des="下传文件">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_GETXMLPXX_01" tr_code="123456" system="99" des="获取项目、楼栋、楼盘信息">
+		<up>
+			<xmzyh des="项目协议号">=xmxyh</xmzyh>
+		</up>
+		<down>
+			<xmmc des="项目名称">=xmmc</xmmc>
+			<lpqymc des="楼盘区域名称">=lpqymc</lpqymc>
+			<xmwz des="项目位置">=xmwz</xmwz>
+			<xykssj des="协议开始日期">=xykssj</xykssj>
+			<xyjssj des="协议结束日期">=xyjssj</xyjssj>
+			<lpmj des="楼盘面积">=lpmj</lpmj>
+			<lpjj des="楼盘均价">=lpjj</lpjj>
+			<lpzts des="楼盘总套数">=lpzts</lpzts>
+			<lpzzs des="楼盘总幢数">=lpzzs</lpzzs>
+			<yssj des="预售时间">=yssj</yssj>
+			<jgsj des="竣工时间">=jgsj</jgsj>
+			<syqlx des="使用权类型">=syqlx</syqlx>
+			<syqzzrq des="使用权终止日期">=syqzzrq</syqzzrq>
+			<tdzfzjg des="土地证发证机关">=tdzfzjg</tdzfzjg>
+			<jsydghydmj des="建设用地规划用地面积">=jsydghydmj</jsydghydmj>
+			<jsydghjsgm des="保证金建设用地规划建设规模">=jsydghjsgm</jsydghjsgm>
+			<jsydghydxz des="建设用地规划用地性质">=jsydghydxz</jsydghydxz>
+			<tdzbh des="土地证编号">=tdzbh</tdzbh>
+			<jsgcsgxkz des="建筑工程施工许可证">=jsgcsgxkz</jsgcsgxkz>
+			<jzgcghxkz des="建筑工程规划许可证">=jzgcghxkz</jzgcghxkz>
+			<jsydghxkz des="建设用地规划许可证">=jsydghxkz</jsydghxkz>
+			<bzjkhyh des="保证金开户银行">=bzjkhyh</bzjkhyh>
+			<bzjzhmc des="保证金账户名称">=bzjzhmc</bzjzhmc>
+			<bzjzhhm des="保证金账户号码">=bzjzhhm</bzjzhhm>
+			<file des="上传文件">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_LN_TJWHXX_01" tr_code="123456" system="99" des="提交开发商项目维护信息">
+		<up>
+			<kfsdjh des="开发商登记号">=getRealUserExtInfo("kfsdjh")</kfsdjh>
+			<xmmc des="项目名称">=xmmc</xmmc>
+			<lpqymc des="楼盘区域名称">=lpqymc</lpqymc>
+			<xmwz des="项目位置">=xmwz</xmwz>
+			<xykssj des="协议开始日期">=xykssj</xykssj>
+			<xyjssj des="协议结束日期">=xyjssj</xyjssj>
+			<lpmj des="楼盘面积">=lpmj</lpmj>
+			<lpjj des="楼盘均价">=lpjj</lpjj>
+			<lpzts des="楼盘总套数">=lpzts</lpzts>
+			<lpzzs des="楼盘总幢数">=lpzzs</lpzzs>
+			<yssj des="预售时间">=yssj</yssj>
+			<jgsj des="竣工时间">=jgsj</jgsj>
+			<syqlx des="使用权类型">=syqlx</syqlx>
+			<syqzzrq des="使用权终止日期">=syqzzrq</syqzzrq>
+			<tdzfzjg des="土地证发证机关">=tdzfzjg</tdzfzjg>
+			<jsydghydmj des="建设用地规划用地面积">=jsydghydmj</jsydghydmj>
+			<jsydghjsgm des="保证金建设用地规划建设规模">=jsydghjsgm</jsydghjsgm>
+			<jsydghydxz des="建设用地规划用地性质">=jsydghydxz</jsydghydxz>
+			<tdzbh des="土地证编号">=tdzbh</tdzbh>
+			<jsgcsgxkz des="建筑工程施工许可证">=jsgcsgxkz</jsgcsgxkz>
+			<jzgcghxkz des="建筑工程规划许可证">=jzgcghxkz</jzgcghxkz>
+			<jsydghxkz des="建设用地规划许可证">=jsydghxkz</jsydghxkz>
+			<bzjkhyh des="保证金开户银行">=bzjkhyh</bzjkhyh>
+			<bzjzhmc des="保证金账户名称">=bzjzhmc</bzjzhmc>
+			<bzjzhhm des="保证金账户号码">=bzjzhhm</bzjzhhm>
+			<jyfw des="经营范围">=jyfw</jyfw>
+			<bgdz des="办公地址">=bgdz</bgdz>
+			<dwdh des="单位电话">=dwdh</dwdh>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<file des="上传文件">=filename</file>
+		</up>
+		<down>
+
+		</down>
+	</interface>
+	<interface id="BSP_LN_DLMMXG_01" tr_code="123456" system="99" des="登录密码修改">
+		<up>
+			<ydlmm des="原登录密码" jmflag="1">=ydlmm</ydlmm>
+			<xdlmm des="新登录密码" jmflag="1">=xdlmm</xdlmm>
+			<qrxdlmm des="确认新登录密码" jmflag="1">=qrxdlmm</qrxdlmm>
+			<kfsdjh des="开发商登记号">=getRealUserExtInfo('kfsdjh')</kfsdjh>
+		</up>
+		<down>
+		</down>
+	</interface>
+	<interface id="BSP_LN_DKZZJY_01" tr_code="123456" system="99" des="贷款资质校验">
+		<up>
+			<grzh des="个人账号">=grzh</grzh>
+		</up>
+		<down>
+		</down>
+	</interface>
+	<interface id="BSP_LN_JSDKJENX_01" tr_code="123456" system="99" des="计算贷款金额年限">
+		<up>
+			<dntfdk des="房屋套数">=dntfdk</dntfdk>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+			<file des="借款人文件">=filename</file>
+		</up>
+		<down>
+			<zgdked des="最高贷款额度">=zgdked</zgdked>
+			<zgdknx des="最高贷款年限">=zgdknx</zgdknx>
+		</down>
+	</interface>
+	<interface id="BSP_LN_GETXMDKXX_01" tr_code="123456" system="99" des="查询项目下贷款信息">
+		<up>
+			<xmxyh des="项目协议号">=xmxyh</xmxyh>
+			<jkrxm des="借款人姓名">=jkrxm</jkrxm>
+			<jkrzjlx des="借款人证件类型">=jkrzjlx</jkrzjlx>
+			<jkrzjhm des="借款人证件号码">=jkrzjhm</jkrzjhm>
+			<kssj des="开始时间">=kssj</kssj>
+			<jssj des="结束时间">=jssj</jssj>
+		</up>
+		<down>
+			<file des="下传文件">=filename</file>
+		</down>
+	</interface>
+</interfaces>

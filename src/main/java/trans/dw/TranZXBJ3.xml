@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranZXBJ3" tranName="在线补缴">
+        <comps>
+            <comp compCode="CompBatchPostTransaction" compName="在线补缴" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getBJDJ3"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="在线补缴"/>
+                    <inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant"
+                             paramValue="dp077:dp077,GRZH:unitaccnum1,XINGMING:unitaccname1,ZJHM:unitaccnum2,AMT1:amt1,BEGYM:accnum1,ENDYM:accnum2,DWZH:accname1,TRANSDATE:transdate,AGENTINSTCODE:agentinstcode,AGENTOP:agentop,DPBUSITYPE:dpbusitype,SEQNO:seqno,INSTANCE:instance,FREEUSE1:freeuse1,AMT2:amt2,PAYVOUAMT:payvouamt,REASON:reason"/>
+                    <inParam ignoreNull="1" paramCode="fileField" paramName="上传文件字段名" paramType="constant"
+                             paramValue="file"/>
+                    <inParam ignoreNull="1" paramCode="batchDataListId" paramName="批量列表id" paramType="constant"
+                             paramValue="datalist1"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

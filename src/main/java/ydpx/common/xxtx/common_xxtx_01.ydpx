@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page template="0402" version="1.0" formaction="">
+  <info>
+    <description title="消息查询">消息查询</description>
+    <editlogs>
+      <log editor="Y01026(离线)" edittime="2017-09-11 11:48:49"/>
+    </editlogs>
+  </info>
+  <styles>
+	  <style>
+
+	  </style>
+  </styles>
+  <scripts>
+  <script><![CDATA[// 页面加载后执行
+// var _richText=null;
+	thisTab.pageOnload = function () {
+		
+	    $("#yhdjh").val(poolSelect["_OPERID"]);
+	    
+		ydl.init.list("gglist",{},thisTab).done(function(){
+			//判断列表查询为空时，显示
+			ydl.noResultInfo("gglist", "您当前未有消息提醒！");
+		});
+		
+		$('#b_query').addIcon('search');
+		
+		$('#b_query').click(function(event) {
+			ydl.init.list("gglist",{},thisTab).done(function(){
+				//判断列表查询为空时，显示
+				ydl.noResultInfo("gglist", "您当前未有消息提醒！");
+			});
+	     });
+	     
+		$('#b_clear').click(function(event) {
+	  	  $("#cjsj1").val("");
+	   	  $("#cjsj2").val("");
+	     });
+	     
+	}
+
+	// 表单提交时执行
+	thisTab.form_validate = function () {
+		
+	     return true;
+	}
+	//列表回调函数
+	thisTab.list_callback_gglist=function(rows) {
+
+		$(rows).each(function(i){
+			var xxxh = $(this).data('hidden-xxxh');
+			var url=$(this).data('hidden-xxurl');
+			var xxdqbs=$(this).data('hidden-xxdqbs');
+			if(xxdqbs=='1'){
+				$(this).find(':button').text("已读过了");
+				$(this).find(':button').attr("disabled",true);
+			}
+			
+			$(this).find(':button').click(function(){
+			    //维护消息状态
+				var url = '/message/update';
+		        //发请求解析文件
+		        ydl.ajax(ydl.contexPath + url, {"msgid":xxxh,"_POOLKEY": poolSelect["_POOLKEY"]},
+		        	function (data,code,msg){
+			        	if (code != '00000000') {
+							ydl.alert({'icon':'error', 'message':msg});
+						} else {
+			                ydl.alert("操作成功");
+	        		    	ydl.init.list('gglist', {}, thisTab);
+			            }
+		       	});
+			});
+		});
+	}
+]]></script>
+  </scripts>
+   <dataset>
+  <sql id="ds1" desc="" paging="true" pagesize="5" maxrows="99999999" scopeall="false" datasource="ds_biz">
+     <![CDATA[select xxxh,xxlx,xxnr,fbsj,xxdqbs,xxbt,xxurl from CPL_MESSAGE 
+    	 where yhdjh=#{yhdjh,jdbcType=VARCHAR}
+     	<if test="cjsj1 != null"> 
+     		and to_date(replace(substr(fbsj,1,7),'-',''),'yyyy-mm') >= to_date(#{cjsj1,jdbcType=VARCHAR},'yyyy-mm')
+     	</if>
+     	<if test="cjsj2 != null"> 
+     		and to_date(replace(substr(fbsj,1,7),'-',''),'yyyy-mm') &lt;= to_date(#{cjsj2,jdbcType=VARCHAR},'yyyy-mm')
+     	</if>
+     	order by fbsj desc
+     	]]>
+  </sql>
+</dataset>
+  <ajax/>
+  <containers>
+	  <container caption="" type="table" layout="connect" cols="4" id="container-db5bd874da624ca087aa3d20443468c1">
+	    <component type="label" for="cjsj1">发布时间：</component>
+	    <component type="input" subtype="date" id="cjsj1" fromdic="false" prefix="从" datatype="yyyy-mm" maxlength="7"/>
+	    <component type="label"></component>
+	    <component type="input" subtype="date" id="cjsj2" fromdic="false" prefix="至" datatype="yyyy-mm" maxlength="7"/>
+	  </container>
+	  <container type="box" layout="buttons" id="container-7d8364498432454f8369667e2779f17a">
+	    <component type="button" subtype="button" id="b_query">查询</component>
+	    <component type="button" subtype="button" id="b_clear">清空</component>
+	  </container>
+	  
+	
+      <container uid="container-6f78686ce05144d39ff5a78f35a97" type="list" layout="auto-height" cols="6" id="gglist" dataset="ds1" caption="消息列表">
+      <listhead>
+        <component type="label" width="60px">消息类型</component>
+        <component type="label">消息标题</component>
+        <component type="label">消息内容</component>
+        <component type="label">发布时间</component>
+        <component type="label">读取标志</component>
+        <component type="label">功能操作</component>
+      </listhead>
+      <listbody>
+        <component type="plain">=getMulData("ish.gg.other.xxlx",ds1.xxlx[#])</component>
+        <component id="xxbt" type="plain">=ds1.xxbt[#]</component>
+        <component type="plain">=ds1.xxnr[#]</component>
+        <component type="plain">=ds1.fbsj[#]</component>
+        <component type="plain">=getMulData("ish.gg.other.dqbz",ds1.xxdqbs[#])</component>
+        <component type="button" subtype="button">我知道了</component>
+      </listbody>
+      <hidden>
+      	<component id="xxxh" type="hidden">=ds1.xxxh[#]</component>
+      	<component id="xxurl" type="hidden">=ds1.xxurl[#]</component>
+      	<component id="xxdqbs" type="hidden">=ds1.xxdqbs[#]</component>
+      </hidden>
+    </container>
+	<container type="hidden" id="ct_hidden" uid="ct_hidden">
+    	<component type="hidden" id="yhdjh"></component>
+    </container>
+  </containers>
+</page>

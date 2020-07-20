@@ -1,0 +1,33 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file></file>
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<rzrq des="入账日期">2018-09-06</rzrq>
+		<dwzh des="单位账号">110108010323820</dwzh>
+		<dwmc des="单位名称">华信永道（北京）科技股份有限公司</dwmc>
+		<ksny des="开始年月">201809</ksny>
+		<jsny des="结束年月">201809</jsny>
+		<dwjcje des="单位汇缴金额">1443.00</dwjcje>
+		<grjcje des="个人汇缴金额">1443.00</grjcje>
+		<rzje des="入账金额">2886.00</rzje>
+		<jclx des="缴存类型">1</jclx>
+		<rzyh des="入账银行">中国工商银行</rzyh>
+		<jcrs des="缴存人数">4</jcrs>
+		<jkfs des="缴款方式">6</jkfs>
+		<rzlsh des="入账流水号">201809060327</rzlsh>
+		 <filename>pzwj/dwjcxxpz.pdf</filename>
+	</body>
+</root>

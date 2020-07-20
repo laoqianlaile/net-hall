@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="贷款期限变更"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-10-29 16:05:12"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+var times=0;//查看调整后贷款情况按钮点击次数
+thisTab.pageOnload = function () {
+	//获取借款合同编号
+	getJkhtbh();
+	ydl.attr($('#ct_bgxx .panel-body').find('input, textarea'),'readonly');
+	//借款合同编号change事件，调用交易获取贷款信息
+	$('#jkhtbh').change(function(event) {
+		ydl.validator.clear('jkhtbh');
+		if($('#jkhtbh').val() != ""){
+			getDkxx();
+			ydl.removeAttr($('#ct_bgxx .panel-body').find('input, textarea'),'readonly');
+		}else{
+			$('#ct_dkxx .panel-body').find('p').text("");
+			ydl.attr($('#ct_bgxx .panel-body').find('input, textarea'),'readonly');
+		}
+		$('#ct_bgxx .panel-body').find('input, textarea').val("");
+		$('#ct_bgxx .panel-body').find('p').text("");
+	});
+	if($('#jkhtbh').val()!=""){
+		getDkxx();
+		ydl.removeAttr($('#ct_bgxx .panel-body').find('input, textarea'),'readonly');
+	}
+	//调整后未到期期数change，查看调整后贷款情况按钮点击次数置为0
+	$('#tzhwdqqs').change(function(event) {
+		times=0;
+		$('#tzhyhke').text('');
+		$('#tzhdkzqs').text('');
+		$('#tzhdqrq').text('');
+		if(!formCheck()){
+			return false;
+		}
+	});
+	//查看调整后贷款情况按钮点击事件
+	$('#b_hqtzhxx').click(function(event) {
+		if(!formCheck()){
+			return false;
+		}
+		//获取调整贷款期限变更后贷款情况
+		getBghxx();
+	});
+	
+	//贷款试算按钮点击事件
+	$('#b_calculate').click(function(event) {
+		if(!formCheck()){
+			return false;
+		}
+		if (!ydl.validator('bgyy', {type:'validchar'})) return false;
+		//获取跳转至贷款试算的url
+		ydl.sendCommand('CMD01',{"tzhwdqqs":$('#tzhwdqqs').val(),"jkhtbh":$('#jkhtbh').val()},function(data,code,msg){
+			if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+				//跳转至贷款试算流程
+				location.href=ydl.contexPath+data.url;
+			}
+		})
+	});
+	if(poolSelect['tzhwdqqs'] != "" && poolSelect['tzhwdqqs'] != undefined && poolSelect['bgyy'] != "" && poolSelect['bgyy'] != undefined){
+		//获取调整贷款期限变更后贷款情况
+		getBghxx();
+	}
+}
+
+<!--获得借款合同编号-->
+function getJkhtbh(){
+	var array = poolSelect['jkhtbhsz'].split(",");
+	var items;
+	if(array.length==1){
+		items="<option  value="+array[0]+">"+array[0]+"</option>";
+	}
+	if(array.length > 1){
+		items="<option value=''>请选择</option>";
+		for(var i=0;i<array.length;i++){
+			var jkhtbhval=array[i];
+			var jkhtbhname=array[i];
+			items+="<option value="+jkhtbhval+">"+jkhtbhname+"</option>";
+		}
+	}
+	$('#jkhtbh').append(items);
+	//贷款试算跳转回此流程时，借款合同编号赋值
+	if(poolSelect['jkhtbhtz'] != undefined && poolSelect['jkhtbhtz'] != ""){
+		$('#jkhtbh').val(poolSelect['jkhtbhtz']);
+	}
+}
+
+//校验借款合同编号及调整后未到期期数信息
+function formCheck(){
+	ydl.validator.clear();
+	var tzhwdqqs=$('#tzhwdqqs').val();
+	var dkqs=$('#dkqs').text();
+	var dkqs1=dkqs.substring(0,dkqs.length-2);
+	var dqqc=Number($('#dqqc').text());
+	if (!ydl.validator('jkhtbh', {required: true})) return false;
+	if (!ydl.validator('tzhwdqqs', {required: true})) return false;
+	if (!ydl.validator('tzhwdqqs', {rule:Number(dkqs1)-dqqc>=Number(tzhwdqqs),message:"调整后未到期期数与当前期次相加后不得超过合同约定的还款期限"})) return false;
+	return true;
+}
+
+//获取变更后贷款信息
+function getBghxx(){
+	var tzhwdqqs=$('#tzhwdqqs').val();
+	ydl.sendCommand("hqbghxx",{"tzhwdqqs":tzhwdqqs},function(data,code,msg){
+		if (code != '00000000') {
+			ydl.alert({'code':code, 'message':msg});
+		}else{
+			//按钮点击次数加1
+			times++;
+			$('#date').val(data.tzhdqrq);
+			$('#tzhyhke').text(data.tzhyhke==null?"":data.tzhyhke+" 元");
+			$('#tzhdkzqs').text(data.tzhdkzqs==null?"":data.tzhdkzqs+" 月");
+			$('#tzhdqrq').text(data.tzhdqrq==null?"":data.tzhdqrq);
+		}
+	})  
+}
+
+//获取贷款信息
+function getDkxx(){
+	var jkhtbh = $('#jkhtbh').val();
+	ydl.sendCommand("hqzhxx",{"jkhtbh":jkhtbh},function(data,code,msg){
+		if (code != '00000000') {
+			ydl.alert({'code':code, 'message':msg});
+		}else{
+			$('#loanbal').val(data.dkye);
+			$('#beginintdate').val(data.dkffrq);
+			$('#dkye').text(data.dkye==""?"":ydl.addComma(data.dkye)+" 元");
+			$('#dkffrq').text(data.dkffrq);
+			$('#xsyqs').text(data.syqs==""?"":data.syqs+" 月");
+			$('#xdkzqs').text(data.dkqs==""?"":data.dkqs+" 月");
+			$('#xdqrq').text(data.xdqrq);
+			$('#dqqc').text(data.dqqc);
+			$('#accname1').val(data.jkrxm);
+            $('#loaneecertinum').val(data.jkrzjhm);
+            $('#loanamt').val(data.htdkje);
+            $('#attermdate').val(data.yddqrq);
+            $('#loaneecertinum').val(data.jkrzjhm);
+            $('#htdkje').text(data.htdkje==""?"":ydl.addComma(data.htdkje)+" 元");
+            $('#jkrxm').text(data.jkrxm);
+            $('#jkrzjhm').text(data.jkrzjhm);
+            $('#dkqs').text(data.dkqs==""?"":data.dkqs+" 月");
+            $('#yddqrq').text(data.yddqrq);
+            $('#swtyhmc').text(data.swtyhmc);
+            $('#dkhkfs').text(ydl.mudic.getName('bsp.ln.repaymode.'+data.dkhkfs));
+		}
+	}) 
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+	if(!formCheck()){
+		return false;
+	}
+	if (!ydl.validator('bgyy', {required: true, type:'validchar'})) return false;
+	if(times<1){
+		ydl.alert("请您点击查看调整后贷款情况");
+		return false;
+	}
+	return true;
+}]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form">
+      <component type="label" for="jkhtbh">借款合同编号：</component>
+      <component id="jkhtbh" type="multivalue" subtype="select" fromdic="false" required="true">
+        <sql datasource="workflow.cfg.xml"/>
+      </component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-504ac6a813204354afce826ea0fd2e3e" type="table" layout="fit" cols="4" id="ct_dkxx" caption="贷款合同信息">
+      <component type="label">借款人姓名：</component>
+      <component type="plain" id="jkrxm"/>
+      <component type="label">借款人证件号码：</component>
+      <component type="plain" id="jkrzjhm"/>
+      <component type="label">合同贷款金额：</component>
+      <component type="plain" id="htdkje"/>
+      <component type="label">贷款期数：</component>
+      <component type="plain" id="dkqs"/>
+      <component type="label">贷款发放日期：</component>
+      <component type="plain" id="dkffrq"/>
+      <component type="label">约定到期日期：</component>
+      <component type="plain" id="yddqrq"/>
+      <component type="label">贷款余额：</component>
+      <component type="plain" id="dkye"/>
+      <component type="label">贷款还款方式：</component>
+      <component type="plain" id="dkhkfs"/>
+      <component type="label">当前期次：</component>
+      <component type="plain" id="dqqc"/>
+      <component type="label">受委托银行名称：</component>
+      <component type="plain" id="swtyhmc"/>
+    </container>
+    <container uid="container-3436e18116144cf096fa740491eddf99" type="table" layout="fit" cols="4" id="ct_bgxx" caption="变更信息">
+      <component type="label" for="tzhwdqqs">调整后未到期期数：</component>
+      <component id="tzhwdqqs" type="input" subtype="text" datatype="int" required="true" fromdic="false">=tzhwdqqs</component>
+      <component type="blank"/>
+      <component id="b_calculate" type="button" subtype="button">贷款试算</component>
+      <component type="label" for="bgyy">变更原因：</component>
+      <component id="bgyy" type="input" subtype="text" colspan="2" required="true" fromdic="false" datatype="validchar">=bgyy</component>
+      <component id="b_hqtzhxx" type="button" subtype="button">查看调整后贷款情况</component>
+      <component type="label">现到期日期：</component>
+      <component id="xdqrq" type="plain"/>
+      <component type="label">调整后到期日期：</component>
+      <component id="tzhdqrq" type="plain"/>
+      <component type="label">现贷款总期数：</component>
+      <component id="xdkzqs" type="plain"/>
+      <component type="label">调整后贷款总期数：</component>
+      <component id="tzhdkzqs" type="plain"/>
+      <component type="label">现剩余期数：</component>
+      <component id="xsyqs" type="plain"/>
+      <component type="label">调整后月还款额：</component>
+      <component id="tzhyhke" type="plain"/>
+    </container>
+    <container uid="container-8b1e4e747d4b46f79b5a26f2c36a54f3" type="hidden" id="container-8b1e4e747d4b46f79b5a26f2c36a54f3">
+      <component id="accname1" type="hidden"/>
+      <component id="loaneecertinum" type="hidden"/>
+      <component id="loanamt" type="hidden"/>
+      <component id="loanbal" type="hidden"/>
+      <component id="beginintdate" type="hidden"/>
+      <component id="attermdate" type="hidden"/>
+      <component id="date" type="hidden"/>
+    </container>
+  </containers>
+</page>

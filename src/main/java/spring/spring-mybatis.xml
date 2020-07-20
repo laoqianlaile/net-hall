@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+    
+    <!-- 定时任务 -->
+    <import resource="classpath*:quartz.xml"/>
+    
+    <!-- 自动扫描-默认不扫描Controller -->
+    <context:component-scan base-package="com.yd" >
+    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+   
+    <!-- 引入数据库属性文件 -->
+    <context:property-placeholder location="classpath*:db.properties" />
+
+    <!-- 引入数据源配置文件 -->
+    <!-- <import resource="spring-datasource.xml" /> -->
+    <!-- 平台操作默认的数据源 -->
+    <bean id="ds_plat" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${jdbc_driver}" />
+        <property name="url" value="${jdbc_url_plat}" />
+        <property name="username" value="${jdbc_username_plat}" />
+        <property name="password" value="${jdbc_password_plat}" />
+        <!-- 设置JDBC版本（3.0） -->
+        <property name="connectionProperties" value="useJDBC4ColumnNameAndLabelSemantics=2" />
+        <!-- 配置初始化大小、最小、最大 -->
+      	<property name="initialSize" value="20" />
+      	<property name="minIdle" value="50" />
+      	<property name="maxActive" value="200" />
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="60000" />
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+      	<property name="poolPreparedStatements" value="true" />
+      	<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <!-- 数据库连接测试 -->
+        <!-- <property name="validationQuery" value="SELECT 'x' FROM DUAL" /> -->
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="testWhileIdle" value="true" />
+        
+        <!-- 打开removeAbandoned功能 -->
+        <property name="removeAbandoned" value="true" />
+        <!-- 600秒，也就是10分钟 -->
+        <property name="removeAbandonedTimeout" value="600" />
+        <!-- 关闭abanded连接时输出错误日志 -->
+        <property name="logAbandoned" value="true" />
+        <!-- 监控数据库 -->
+        <!-- <property name="filters" value="stat" /> -->
+        <property name="filters" value="mergeStat" />
+    </bean>
+    
+    <!-- 业务操作默认的数据源 -->
+    <bean id="ds_biz" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${jdbc_driver}" />
+        <property name="url" value="${jdbc_url_biz}" />
+        <property name="username" value="${jdbc_username_biz}" />
+        <property name="password" value="${jdbc_password_biz}" />
+        <!-- 设置JDBC版本（3.0） -->
+        <property name="connectionProperties" value="useJDBC4ColumnNameAndLabelSemantics=2" />
+        <!-- 配置初始化大小、最小、最大 -->
+      	<property name="initialSize" value="20" />
+      	<property name="minIdle" value="50" />
+      	<property name="maxActive" value="200" />
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="60000" />
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+      	<property name="poolPreparedStatements" value="true" />
+      	<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <!-- 数据库连接测试 -->
+        <!-- <property name="validationQuery" value="SELECT 'x' FROM DUAL" /> -->
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="testWhileIdle" value="true" />
+        
+        <!-- 打开removeAbandoned功能 -->
+        <property name="removeAbandoned" value="true" />
+        <!-- 600秒，也就是10分钟 -->
+        <property name="removeAbandonedTimeout" value="600" />
+        <!-- 关闭abanded连接时输出错误日志 -->
+        <property name="logAbandoned" value="true" />
+        <!-- 监控数据库 -->
+        <!-- <property name="filters" value="stat" /> -->
+        <property name="filters" value="mergeStat" />
+    </bean>
+    
+    <!-- 配置动态数据源 -->
+    <bean id="dynamicDataSource" class="com.yd.svrplatform.spring.DynamicDataSource" >
+	    <property name="defaultTargetDataSource" ref="ds_biz" />
+	    <!-- 通过key-value的形式来关联数据源 -->
+	    <property name="targetDataSources">
+	        <map>
+	        	<entry value-ref="ds_biz" key="ds_biz"></entry>
+	            <entry value-ref="ds_plat" key="ds_plat"></entry>
+	        </map>
+	    </property>
+	</bean>
+	
+    <!-- 引入mybatis配置文件 -->
+    <!-- <import resource="spring-mybatis.xml" /> -->
+    <!-- 配置sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<!-- mybatis自己的配置文件 -->
+    	<!-- <property name="configLocation" value="classpath:spring/mybatis-config.xml" /> -->
+        <!-- mybatis默认只处理业务数据，连接业务数据源 -->
+        <property name="dataSource" ref="ds_biz" />
+        <!-- 自动扫描mapping目录下的所有SQL映射的xml文件 -->
+        <property name="mapperLocations">
+            <list>
+                <value>classpath*:spring/mapping/oracle/*.xml</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 配置扫描器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 扫描这个包以及它的子包下的所有映射接口类 -->
+        <property name="basePackage" value="com.yd.*.dao.mybatis,com.yd.*.*.dao.mybatis">
+        </property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+
+    <!-- Spring的事务管理器，默认管理业务数据源 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="ds_biz" />
+    </bean>
+    
+    <!-- Spring的事务管理器，管理平台数据源 -->
+    <bean id="transactionManager_plat" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="ds_plat" />
+    </bean>
+
+    <!-- 注解方式配置事物 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+    <tx:annotation-driven transaction-manager="transactionManager_plat" proxy-target-class="true" />
+
+    <!-- 拦截器方式配置事物 -->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="append*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="modify*" propagation="REQUIRED" />
+            <tx:method name="edit*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="remove*" propagation="REQUIRED" />
+            <tx:method name="repair" propagation="REQUIRED" />
+            <tx:method name="delAndRepair" propagation="REQUIRED" />
+
+            <tx:method name="get*" propagation="SUPPORTS" />
+            <tx:method name="find*" propagation="SUPPORTS" />
+            <tx:method name="load*" propagation="SUPPORTS" />
+            <tx:method name="search*" propagation="SUPPORTS" />
+            <tx:method name="datagrid*" propagation="SUPPORTS" />
+
+            <tx:method name="*" propagation="SUPPORTS" />
+        </tx:attributes>
+    </tx:advice>
+    <!-- 配置druid监控spring jdbc -->
+    <bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+    </bean>
+    <bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
+        <property name="patterns">
+            <list>
+                <value>com.yd.*.service.*</value>
+                <value>com.yd.*.*.service.*</value>
+                <value>com.yd.svrplatform.jdbc.*</value>
+            </list>
+        </property>
+    </bean>
+    <aop:config>
+        <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
+    </aop:config>
+    <aop:config>
+    	<!-- 管理mybatis及所有业务service类的事务操作 -->
+        <aop:pointcut id="transactionPointcut" expression="execution(* com.yd.*.service..*.*(..))  or execution(* com.yd.*.*.service..*.*(..))" />
+        <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
+    </aop:config>
+
+</beans>

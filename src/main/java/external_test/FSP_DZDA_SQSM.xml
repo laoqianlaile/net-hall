@@ -1,0 +1,22 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<returnCode des="返回码">0</returnCode>
+		<message des="返回信息">成功</message>
+		<data des="返回数据"><![CDATA[{"bcfs_in":"0","smlx":"0","tree":[{"cl":[{"clbm":"42","cllx":"","clmc":"借款合同","fygjz":"","fygjzval":"","imageInfo":[],"sfbs":"1","sfbsbds":"","sffy":"1","smsjdbm":"","xstj":"","ywflbm":"","zdsmfs":0,"zxsmfs":0},{"clbm":"43","cllx":"","clmc":"借据","fygjz":"","fygjzval":"","imageInfo":[],"sfbs":"1","sfbsbds":"","sffy":"1","smsjdbm":"","xstj":"","ywflbm":"","zdsmfs":0,"zxsmfs":0},{"clbm":"44","cllx":"","clmc":"共同还款承诺书","fygjz":"","fygjzval":"","imageInfo":[],"sfbs":"1","sfbsbds":"","sffy":"1","smsjdbm":"","xstj":"","ywflbm":"","zdsmfs":0,"zxsmfs":0},{"clbm":"45","cllx":"","clmc":"公积金贷款拨付到个人账户证明","fygjz":"","fygjzval":"","imageInfo":[],"sfbs":"1","sfbsbds":"","sffy":"1","smsjdbm":"","xstj":"","ywflbm":"","zdsmfs":0,"zxsmfs":0},{"clbm":"46","cllx":"","clmc":"XXXX市房屋【在建工程】抵押权登记申请书","fygjz":"","fygjzval":"","imageInfo":[],"sfbs":"1","sfbsbds":"","sffy":"1","smsjdbm":"","xstj":"","ywflbm":"","zdsmfs":0,"zxsmfs":0},{"clbm":"47","cllx":"","clmc":"担保合同","fygjz":"","fygjzval":"","imageInfo":[],"sfbs":"1","sfbsbds":"","sffy":"1","smsjdbm":"","xstj":"","ywflbm":"","zdsmfs":0,"zxsmfs":0},{"clbm":"48","cllx":"","clmc":"XXXX市房屋预告登记申请书","fygjz":"","fygjzval":"","imageInfo":[],"sfbs":"0","sfbsbds":"","sffy":"1","smsjdbm":"","xstj":"","ywflbm":"","zdsmfs":0,"zxsmfs":0},{"clbm":"49","cllx":"","clmc":"XXXX市房屋【预购商品房】抵押权预告登记申请表","fygjz":"","fygjzval":"","imageInfo":[],"sfbs":"0","sfbsbds":"","sffy":"1","smsjdbm":"","xstj":"","ywflbm":"","zdsmfs":0,"zxsmfs":0},{"clbm":"50","cllx":"","clmc":"住房公积金组合贷款","fygjz":"","fygjzval":"","imageInfo":[],"sfbs":"0","sfbsbds":"","sffy":"1","smsjdbm":"","xstj":"","ywflbm":"","zdsmfs":0,"zxsmfs":0}],"dir":[],"jdbm":"3","jdmc":"当前节点材料","sjjdbm":"3","sxh":0,"ywflbm":"340"}]}]]></data>
+	</body>
+</root>

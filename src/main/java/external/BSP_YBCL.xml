@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+    <interface id="BSP_CHANNEL_PLYC" tr_code="TranPLYC01" system="ISH_DOCUMENT" des="批量异常">
+		<up>
+			<details des="异步处理批量数据">=details</details>
+		</up>
+	</interface>
+    <interface id="BSP_CHANNEL_PLYCWJ" tr_code="TranPLYC01" system="ISH_DOCUMENT" des="批量异常-文件传输">
+		<up>
+			<details des="异步处理批量数据">=details</details>
+			<file des="上传的文件">=_filename</file>
+		</up>
+		<down>
+			<returnCode des="返回码">=returnCode</returnCode>
+			<message des="返回信息">=message</message>
+		</down>
+	</interface>
+    <interface id="BSP-YBCL-02" tr_code="BatchSuccessService" system="ISH_DOCUMENT" des="异步处理成功查询">
+		<up>
+			<djh des="登记号">=djh</djh>
+			<mc des="名称">=mc</mc>
+			<details des="异步处理批量数据">=details</details>
+		</up>
+		<down>
+			<lsh des="流水号">=lsh</lsh>
+		</down>
+	</interface>
+</interfaces>

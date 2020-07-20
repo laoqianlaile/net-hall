@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 网厅登录页面相关接口 -->
+<interfaces>
+	<!-- 管理员登入地址，开发过程中不要修改 -->
+    <interface id="BSP-OAPI-100" tr_code="123456"  system="99" des="管理员用户信息">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+		<down>
+		    <managerId des="管理员序号">=managerId</managerId>
+			<managerName des="管理员姓名">=managerName</managerName>
+			<instcode des="机构号">=instcode</instcode>
+			<instname des="机构名">=instname</instname>
+	        <rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<!-- 个人用户登录，开发和生产上修改对应的综服地址 -->
+	<interface id="BSP-OAPI-200"  keepattr1="7001" tr_code="business/appapi110021.json" system="HTTP_POST_YBMAP2" des="用户登录获取个人信息">
+	<up>
+		<pwd des="登录密码">=dlmm</pwd>
+		<certinum des="证件号码">=dlyyh</certinum>
+		<dlfs des="登录方式">02</dlfs>
+		<zjhm des="证件号码">=dlyyh</zjhm>
+		<accnum des="个人账号">=dlyyh</accnum>
+		<zdyyhm des="自定义用户名">=dlyyh</zdyyhm>
+		<dxyzm des="短信验证码"></dxyzm>
+		<ylyhkh des="预留银行卡号"></ylyhkh>
+	</up>
+	<down>
+		<grzh des="个人账号">=grzh</grzh>
+		<xingming des="姓名">=xingming</xingming>
+		<sjhm des="手机号码">=sjhm</sjhm>
+		<zjlx des="证件类型">=zjlx</zjlx>
+		<zjhm des="证件号码">=zjhm</zjhm>
+		<instcode des="单位账号">=dwzh</instcode>
+		<instname des="单位名称">=instname</instname>
+		<rolecode des="角色号">PER01001</rolecode>
+		<recode des="返回结果">=recode</recode>
+		<msg des="返回信息">=msg</msg>
+		<jbjg des="经办机构">=wtinstcode</jbjg>
+		<wtinstcode des="经办机构">=wtinstcode</wtinstcode>
+		<BrcCode des="经办机构">=wtinstcode</BrcCode>
+	</down>
+</interface>
+
+	<interface id="BSP-OAPI-203" tr_code="123456" system="99" des="扫码登录个人用户信息">
+		<up>
+			<sfzh des="身份证号">=sfzh</sfzh>
+			<xingming des="姓名">=xingming</xingming>
+		</up>
+		<down>
+		    <grzh des="个人账号">=grzh</grzh>
+			<xingming des="个人姓名">=xingming</xingming>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<instcode des="机构号">=instcode</instcode>
+			<instname des="机构名">=instname</instname>
+	        <rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-205" tr_code="123456" system="99" des="个人用户信息">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+		</up>
+		<down>
+		    <grzh des="个人账号">=grzh</grzh>
+			<xingming des="姓名">=xingming</xingming>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<instcode des="机构号">=instcode</instcode>
+			<instname des="机构名">=instname</instname>
+	        <rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-300" tr_code="123456" system="99" des="个人临时用户">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+		<down>
+		    <grzh des="个人账号">=grzh</grzh>
+			<xingming des="姓名">=xingming</xingming>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<instcode des="机构号">=instcode</instcode>
+			<instname des="机构名">=instname</instname>
+	        <rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-301" tr_code="123456" system="99" des="个人临时用户">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+		<down>
+		    <grzh des="个人账号">=grzh</grzh>
+			<xingming des="姓名">=xingming</xingming>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<instcode des="机构号">=instcode</instcode>
+			<instname des="机构名">=instname</instname>
+	        <rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-400" tr_code="123456" system="99" des="个人用户信息">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+		<down>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<dwdjh des="单位登记号">=dwdjh</dwdjh>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<instcode des="机构号">=instcode</instcode>
+			<instname des="机构名">=instname</instname>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<shcxdm des="社会诚信代码">=shcxdm</shcxdm>
+	        <rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-401" tr_code="123456" system="99" des="个人用户信息">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+		</up>
+		<down>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<dwdjh des="单位登记号">=dwdjh</dwdjh>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<instcode des="机构号">=instcode</instcode>
+			<instname des="机构名">=instname</instname>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<shcxdm des="社会诚信代码">=shcxdm</shcxdm>
+	        <rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-402" tr_code="123456" system="99" des="单位临时用户信息">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+		<down>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<jbrzjlx des="经办人证件类型">=jbrzjlx</jbrzjlx>
+			<jbrzjhm des="单位经办人证件号码">=jbrzjhm</jbrzjhm>
+			<jbrsjhm des="经办人手机号码">=jbrsjhm</jbrsjhm>
+			<rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-500" tr_code="12345" system="99" des="个人用户验证">
+		<up>
+			<xingming des="姓名">=xingming</xingming>
+  			<zjlx des="证件类型">=zjlx</zjlx>
+ 			<zjhm des="证件号码">=zjhm</zjhm>
+		</up>
+		<down>
+			<isCscxmm des="是否初始查询密码">=isCscxmm</isCscxmm>
+			<isCsjymm des="是否初始交易密码">=isCsjymm</isCsjymm>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-501" tr_code="123456" system="99" des="校验用户银行卡和手机号接口">
+		<up>
+			<xingming des="姓名">=xingming</xingming>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<yh des="选择的银行">=yh</yh>
+			<yhkh des="银行卡号">=yhkh</yhkh>
+			<yhylsjh des="用户预留手机号">=yhylsjh</yhylsjh>
+		</up>
+	</interface>
+	<interface id="BSP-OAPI-502" tr_code="123456" system="99" des="用户注册接口">
+		<up>
+			<xingming des="姓名">=xingming</xingming>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<yh des="选择的银行">=yh</yh>
+			<yhkh des="银行卡号">=yhkh</yhkh>
+			<yhylsjh des="用户预留手机号">=yhylsjh</yhylsjh>
+			<cxmm des="查询密码">=cxmm</cxmm>
+			<jymm des="交易密码">=jymm</jymm>
+		</up>
+	</interface>
+	<interface id="BSP-OAPI-503" tr_code="123456" system="99" des="用户升级接口">
+		<up>
+			<xingming des="姓名">=xingming</xingming>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<yh des="选择的银行">=yh</yh>
+			<yhkh des="银行卡号">=yhkh</yhkh>
+			<yhylsjh des="用户预留手机号">=yhylsjh</yhylsjh>
+			<cxmm des="查询密码">=cxmm</cxmm>
+			<jymm des="交易密码">=jymm</jymm>
+		</up>
+	</interface>
+	<interface id="BSP-OAPI-504" tr_code="123456" system="99" des="忘记密码接口">
+		<up>
+			<xingming des="姓名">=xingming</xingming>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+	</interface>
+	<interface id="BSP-OAPI-505" tr_code="123456" system="99" des="校验个人用户交易密码">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<xingming des="姓名">=getRealUserExtInfo("xingming")</xingming>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<jymm des="交易密码">=jymm</jymm>
+		</up>
+	</interface>
+	<interface id="BSP-OAPI-506" tr_code="123456" system="99" des="单位临时用户注册">
+		<up>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<jbrzjlx des="经办人证件类型">=jbrzjlx</jbrzjlx>
+			<jbrzjhm des="经办人证件号码">=jbrzjhm</jbrzjhm>
+			<jbrsjhm des="经办人手机号码">=jbrsjhm</jbrsjhm>
+			<dlmm des="交易密码">=dlmm</dlmm>
+			<dxyzm des="短信验证码">=dxyzm</dxyzm>
+		</up>
+	</interface>
+	<interface id="BSP-OAPI-507" tr_code="12345" system="99" des="单位临时用户验证">
+		<up>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<jbrzjlx des="经办人证件类型">=jbrzjlx</jbrzjlx>
+			<jbrzjhm des="经办人证件号码">=jbrzjhm</jbrzjhm>
+			<jbrsjhm des="经办人手机号码">=jbrsjhm</jbrsjhm>
+			<dxyzm des="短息验证码">=dxyzm</dxyzm>
+		</up>
+	</interface>
+	<interface id="BSP-OAPI-508" tr_code="123456" system="99" des="忘记密码接口">
+		<up>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<jbrzjlx des="经办人证件类型">=jbrzjlx</jbrzjlx>
+			<jbrzjhm des="经办人证件号码">=jbrzjhm</jbrzjhm>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+	</interface>
+	<interface id="BSP-OAPI-600" tr_code="123456" system="99" des="校验信息并获取经办人手机号">
+		<up>
+			<dlyhm des="登录用户名">=dlyhm</dlyhm>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+		<down>
+			<ylsjh des="预留手机号">=ylsjh</ylsjh>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-601" tr_code="123456" system="99" des="发送验证码">
+		<up>
+			<ylsjh des="预留手机号">=ylsjh</ylsjh>
+			<dlyhm des="登录用户名">=dlyhm</dlyhm>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+	</interface>
+	<interface id="BSP-OAPI-602" tr_code="123456" system="99" des="根据登录账号获取单位信息">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+			<dlmm des="登录密码">=dlmm</dlmm>
+			<sjhm des="预留手机号">=sjhm</sjhm>
+			<yzm des="验证码">=yzm</yzm>
+		</up>
+		<down>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<dwdjh des="单位登记号">=dwdjh</dwdjh>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<instcode des="机构号">=instcode</instcode>
+			<instname des="机构名">=instname</instname>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<shcxdm des="社会诚信代码">=shcxdm</shcxdm>
+	        <rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-700" tr_code="123456" system="99" des="根据登录账号获取开发商信息">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+		<down>
+			<kfsdjh des="开发商登记号">=kfsdjh</kfsdjh>
+			<kfsmc des="开发商名称">=kfsmc</kfsmc>
+			<kfsdz des="开发商地址">=kfsdz</kfsdz>
+			<jbrxm des="经办人姓名">=jbrxm</jbrxm>
+			<yzbm des="邮编">=yzbm</yzbm>
+			<kfsdh des="电话">=kfsdh</kfsdh>
+	        <rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-800" tr_code="123456" system="99" des="校验信息并获取个人手机号">
+		<up>
+			<dlyhm des="登录用户名">=dlyhm</dlyhm>
+			<dlmm des="登录密码">=dlmm</dlmm>
+		</up>
+		<down>
+			<ylsjh des="预留手机号">=ylsjh</ylsjh>
+		</down>
+	</interface>
+	<interface id="BSP-OAPI-801" tr_code="123456" system="99" des="获取个人用户信息">
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+			<dlmm des="登录密码">=dlmm</dlmm>
+			<sjhm des="预留手机号">=sjhm</sjhm>
+			<yzm des="验证码">=yzm</yzm>
+		</up>
+		<down>
+			<grzh des="个人账号">=grzh</grzh>
+			<xingming des="姓名">=xingming</xingming>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<instcode des="机构号">=instcode</instcode>
+			<instname des="机构名">=instname</instname>
+			<rolecode des="角色号">=rolecode</rolecode>
+		</down>
+	</interface>
+	<!--  单位登录  -->
+	<interface id="getDWDL" keepattr1="7059" tr_code="business/appapi110022.json" system="HTTP_POST_YBMAP2" des="单位登录">>
+		<up>
+			<dlyyh des="登录用户号">=dlyyh</dlyyh>
+			<dlmm des="登录密码">=dlmm</dlmm>
+			<dwzh>=dwzh</dwzh>
+			<dlfs>2</dlfs>
+			<opercode>=dlyyh</opercode>
+			<pwd>=dlmm</pwd>
+			<zsbh>=zsbh</zsbh>
+			<dxyzm>=dxyzm</dxyzm>
+		</up>
+		<down>
+			<jbrxm des="经办人姓名">=opname</jbrxm>
+			<dwdjh des="单位登记号">=opercode</dwdjh>
+			<dwzh des="单位登记号">=dwzh</dwzh>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<instcode des="机构号">=dwzh</instcode>
+			<instname des="机构名">=dwmc</instname>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<shcxdm des="社会诚信代码">=shcxdm</shcxdm>
+			<rolecode des="角色号">ORG01001</rolecode>
+			<jbjg des="经办机构">=BrcCode</jbjg>
+
+		</down>
+	</interface>
+</interfaces>

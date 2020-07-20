@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+      <log editor="Y01115(离线)" edittime="2018-08-17 09:19:26"/>
+      <log editor="Y00585(离线)" edittime="2019-04-19 16:42:23"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+  // 开始年月赋值
+  var jzny = $('#jzny').val();
+  jzny = jzny+"-01";
+  //开始年月=缴至年月+1
+  var ksny = ydl.dateAdd(jzny.toDate(), 1, 'm');
+  //年月日2018-08-01 改成年月 2018-08
+  ksny = ksny.slice(0,7);
+  $("#ksny").val(ksny);
+   //监听终止年月变化
+   OnzznyChange();
+   //监听缴款方式变化
+   checkjkfs();
+   //实缴金额
+   $('#yjje').change(function(event) {
+    jszckzcje();
+   });
+   //实缴金额
+   $('#sjje').change(function(event) {
+        var zzny = $('#zzny').val();
+        if (!ydl.validator('zzny', {required:true})) {
+           ydl.setValue('sjje','');
+           return false;
+        }
+        if (!ydl.validator('jkfs', {required:'true'})) return false;
+        var value = this.value;
+        checksjje(value);
+   });
+}
+
+//获取单位缴存信息
+function hqdwjcxx(){
+     //单位账号
+     var dwzh = poolSelect['dwzh'];
+     //单位名称
+     var dwmc = poolSelect['dwmc'];
+     //开始年月
+     var ksny = $('#ksny').val();
+     //结束年月
+     var zzny = $('#zzny').val();
+     ydl.sendCommand('HQDWHJXX',{"dwzh":dwzh,"dwmc":dwmc,"ksny":ksny,"zzny":zzny},function(data,code,msg){
+     	if (code != '00000000') {
+     	    ydl.alert({'code':code, 'message':msg});
+     	}else{
+     	    ydl.validator.clear('yjje');
+            ydl.setValue('yjje', data.yjje);//应缴金额
+     	    $("#hjrs").val(data.hjrs);//汇缴人数
+     	}
+     });
+}
+//监听【终止年月】变化
+function OnzznyChange(){
+     $('#zzny').change(function(event) {
+         var value = this.value;
+         if(value!=""&&value!=null){
+             var ksny = $("#ksny").val().toString()+"-01";
+             var zzny = $("#zzny").val().toString()+"-01";
+             var hjys = ydl.dateDiff(ksny,zzny, 'm')+1;
+             if(zzny !="" && ksny!=""){
+                 if (!ydl.validator('zzny',{silent: true, rule:$('#zzny').val() >= $('#ksny').val(),message:"终止年月不能小于开始年月,请重新输入"})){
+                     $("#hjrs").val("");
+                     $("#hjys").val("");
+                     ydl.setValue("yjje","");
+                     ydl.setValue("sjje","")
+                     return false;
+                  }else{
+                     hqdwjcxx();
+                     $("#hjys").val(hjys);
+                  }
+             }else{
+                 ydl.alert("请输入终止年月!");
+             }
+         }
+     });
+}
+//监听缴款方式变化
+function checkjkfs(){
+    $('#jkfs').change(function(event) {
+    if (!ydl.validator('jkfs', {required:true})) {
+               $('#sjje').val("");
+               ydl.removeAttr('sjje', 'readonly');
+               return false;
+    }
+    ydl.validator.clear('zchkyye');
+    var jkfs = this.value;
+    var zchzc = ydl.mudic.getValByMask('bsp.dp.jkfs','zchzc');//暂存户转出
+    var ssjs = ydl.mudic.getValByMask('bsp.dp.jkfs','ssjs');//实时结算
+    var ts = ydl.mudic.getValByMask('bsp.dp.jkfs','ts');//托收
+    //暂存户可用余额
+    var zchkyye = parseFloat($("#zchkyye").val());
+    //应缴金额
+    var yjje = parseFloat($("#yjje").val());
+    if(jkfs==zchzc){
+        ydl.validator.clear('sjje');
+         ydl.setValue('sjje',0);
+         ydl.attr('sjje', 'readonly');
+        // 若为暂存户转出，不需要提供付款银行信息
+         $('#fkyh').val("");
+         $('#fkzh').val("");
+         $('#fkzhm').val("");
+         ydl.removeAttr('fkyh','required');
+         ydl.removeAttr('fkzh','required');
+         ydl.removeAttr('fkzhm','required');
+         ydl.attr('fkyh','readonly');
+         ydl.attr('fkzh','readonly');
+         ydl.attr('fkzhm','readonly');
+        if(!ydl.validator('zchkyye', {rule:Number(yjje)<=Number(zchkyye),message:"缴款方式为暂存户转出,暂存户可用余额少于应缴金额!"})){
+                    return false;
+        }
+        //计算暂存款转出金额
+
+        ydl.sendCommand('HQZCKZZJE',{"yjje":yjje,"zchkyye":zchkyye},function(data,code,msg){
+            if (code != '00000000') {
+            	ydl.alert({'code':code, 'message':msg});
+            }else{
+                if(!ydl.validator('zchkyye',{required:true,rule:!(data.jg =='1'),message:'暂存户可用余额不足!'})){
+                    return false;
+                };
+                ydl.setValue('zchzcje',data.zchzcje);
+            }
+        });
+    }else if(jkfs==ssjs || jkfs==ts){
+        ydl.removeAttr('sjje', 'readonly');
+        ydl.setValue('sjje','');
+        ydl.setValue('zchzcje',0);
+        var jkfs = this.value;
+        var sjje = $('#sjje').val();
+        if(sjje!=null&&sjje!=""){
+            checksjje(sjje);
+        }
+        // 若为实时结算或托收，付款银行信息反显且不可修改
+        $('#fkyh').val(poolSelect['fkyh']);
+	    $('#fkzh').val(poolSelect['fkzh']);
+	    $('#fkzhm').val(poolSelect['fkzhm']);
+	    ydl.removeAttr('fkyh','required');
+        ydl.removeAttr('fkzh','required');
+        ydl.removeAttr('fkzhm','required');
+	    ydl.attr('fkyh','readonly');
+	    ydl.attr('fkzh','readonly');
+	    ydl.attr('fkzhm','readonly');
+    }else{
+        ydl.removeAttr('sjje', 'readonly');
+        ydl.setValue('sjje','');
+        ydl.setValue('zchzcje',0);
+        var jkfs = this.value;
+        var sjje = $('#sjje').val();
+        if(sjje!=null&&sjje!=""){
+            checksjje(sjje);
+        }
+        // 若为现金或转账，付款银行信息反显可修改
+        $('#fkyh').val(poolSelect['fkyh']);
+	    $('#fkzh').val(poolSelect['fkzh']);
+	    $('#fkzhm').val(poolSelect['fkzhm']);
+	    ydl.removeAttr('fkyh','readonly');
+	    ydl.removeAttr('fkzh','readonly');
+	    ydl.removeAttr('fkzhm','readonly');
+	    ydl.attr('fkyh','required');
+	    ydl.attr('fkzh','required');
+	    ydl.attr('fkzhm','required');
+    }
+    });
+}
+
+function jszckzcje(){
+    var jkfs = $('#jkfs').val();
+    var zchzc = ydl.mudic.getValByMask('bsp.dp.jkfs','zchzc');
+        //暂存户可用余额
+        var zchkyye = parseFloat(ydl.delComma($("#zchkyye").val()));
+        //应缴金额
+        var yjje = parseFloat(ydl.delComma($("#yjje").val()));
+        if(jkfs==zchzc){
+            ydl.validator.clear('sjje');
+            ydl.setValue('sjje',0);
+            ydl.attr('sjje', 'readonly');
+            if(!ydl.validator('zchkyye', {rule:Number(yjje)<=Number(zchkyye),message:"缴款方式为暂存户转出,暂存户可用余额少于应缴金额!"})){
+                        return false;
+            }
+            //计算暂存款转出金额
+            ydl.sendCommand('HQZCKZZJE',{"yjje":yjje,"zchkyye":zchkyye},function(data,code,msg){
+                if (code != '00000000') {
+                	ydl.alert({'code':code, 'message':msg});
+                }else{
+                    if(!ydl.validator('zchkyye',{required:true,rule:!(data.jg =='1'),message:'暂存户可用余额不足!'})){
+                        return false;
+                    };
+                    ydl.setValue('zchzcje',data.zchzcje);
+                }
+            });
+        }else{
+            ydl.removeAttr('sjje', 'readonly');
+            ydl.setValue('sjje','');
+            ydl.setValue('zchzcje','');
+            var jkfs = this.value;
+            var sjje = $('#sjje').val();
+            if(sjje!=null&&sjje!=""){
+                checksjje(sjje);
+            }
+        }
+}
+
+//校验实缴金额
+function checksjje(value){
+    if(value !=""){
+        ydl.validator.clear('sjje');
+        if (!ydl.validator('sjje', {type:'money'})) return false;
+    }
+    //实缴金额
+    var sjje = parseFloat(value);
+    //暂存户可用余额
+    var zchkyye = parseFloat($("#zchkyye").val());
+    //应缴金额
+    var yjje = parseFloat($("#yjje").val());
+    //缴款方式
+    var jkfs = $('#jkfs').val()
+    var xj = ydl.mudic.getValByMask('bsp.dp.jkfs','xj');
+    var zz = ydl.mudic.getValByMask('bsp.dp.jkfs','zz');
+    var ts = ydl.mudic.getValByMask('bsp.dp.jkfs','ts');
+    var zchzc = ydl.mudic.getValByMask('bsp.dp.jkfs','zchzc');
+    //校验缴款方式为托收、转账、现金时，实缴金额必须和应缴金额相等;缴款方式为暂存户转出时没有实缴金额为0.00;
+    if(jkfs != zchzc){
+        if (!ydl.validator('sjje', {rule:Number(sjje)==Number(yjje),message:"缴款方式为现金、转账、托收、实时结算时,应缴金额必须等于实缴金额!"})) return false;
+        ydl.setValue('sjje',sjje);
+        ydl.setValue('zchzcje',0);
+    //缴款方式为暂存款转出
+    }else if(jkfs == zchzc){
+       ydl.setValue('sjje',0);
+       if(!ydl.validator('zchkyye', {rule:Number(yjje)<=Number(zchkyye),message:"缴款方式为暂存户转出,暂存户可用余额少于应缴金额!"})){
+            return false;
+       }
+    }
+
+}
+//补全两位小数点
+function addDecimals(arg){
+    var array = arg.split(".");
+    if(array.length==1){
+        arg+=".00";
+    }
+    return arg;
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+
+    //缴款方式
+    var jkfs = $('#jkfs').val();
+    var sjje = $('#sjje').val();
+    var yjje = $('#yjje').val();
+    var zchkyye = $('#zchkyye').val();
+    var zchzc = ydl.mudic.getValByMask('bsp.dp.jkfs','zchzc');
+    if(jkfs != zchzc){
+        if (!ydl.validator('sjje', {rule:Number(sjje)==Number(yjje),message:"缴款方式为现金、转账、托收、实时结算时,应缴金额必须等于实缴金额!"})) {
+            return false;
+        }
+    //缴款方式为暂存款转出
+    }else if(jkfs == zchzc){
+       if(!ydl.validator('zchkyye', {rule:Number(yjje)<=Number(zchkyye),message:"缴款方式为暂存户转出,暂存户可用余额少于应缴金额!"})){
+            return false;
+       }
+    }
+
+    var ksny = $("#ksny").val().toString()+"-01";
+    var zzny = $("#zzny").val().toString()+"-01";
+    if (!ydl.validator('zzny',{silent: true, rule:$('#zzny').val() >= $('#ksny').val(),message:"终止年月不能小于开始年月,请重新输入"})){
+        return false;
+    }
+	return true;
+}
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container uid="container-975e342d5fbb463387328ba732b602cf" type="table" layout="fit" cols="4" id="container-975e342d5fbb463387328ba732b602cf" caption="账户信息">
+      <component type="label">单位账号：</component>
+      <component type="plain">=getUserExtInfo('dwdjh')</component>
+      <component type="label">单位名称：</component>
+      <component type="plain">=getUserExtInfo('dwmc')</component>
+      <component type="label" for="jzny">缴至年月：</component>
+      <component id="jzny" type="input" subtype="date" maxlength="7" readonly="true" fromdic="false">=jzny</component>
+      <component type="label" for="zchkyye">暂存户可用余额：</component>
+      <component id="zchkyye" type="input" subtype="money" readonly="true" suffix="元" datatype="money" fromdic="false">=zchkyye</component>
+    </container>
+    <container uid="container-05ec06d6da294f719b1b27088ce8e429" type="table" layout="fit" cols="4" id="container-05ec06d6da294f719b1b27088ce8e429" caption="单位汇缴信息录入">
+      <component type="label" for="ksny">开始年月：</component>
+      <component id="ksny" type="input" subtype="date" maxlength="7" readonly="true" fromdic="false">=ksny</component>
+      <component type="label" for="zzny">终止年月：</component>
+      <component id="zzny" type="input" subtype="date" maxlength="7" required="true" fromdic="false">=zzny</component>
+      <component type="label" for="hjrs">汇缴人数：</component>
+      <component id="hjrs" type="input" subtype="text" datatype="validchar" readonly="true" suffix="人" fromdic="false">=hjrs</component>
+      <component type="label" for="hjys">汇缴月数：</component>
+      <component id="hjys" type="input" subtype="text" datatype="validchar" readonly="true" fromdic="false">=hjys</component>
+      <component type="label" for="yjje">应缴金额：</component>
+      <component id="yjje" type="input" subtype="money" readonly="true" required="false" suffix="元" datatype="money" fromdic="false">=yjje</component>
+      <component type="label" for="jkfs">缴款方式：</component>
+      <component id="jkfs" type="multivalue" subtype="select" required="true" fromdic="false" value="=jkfs">
+        <sql datasource="os_mdic">bsp.dp.jkfs</sql>
+        <item label="请选择..."/>
+        <item label="=PARAVAL" value="=PARANAME"/>
+      </component>
+      <component type="label" for="sjje">实缴金额：</component>
+      <component id="sjje" type="input" subtype="money" required="true" suffix="元" datatype="money" fromdic="false">=sjje</component>
+      <component type="label" for="fkyh">付款银行：</component>
+      <component id="fkyh" type="multivalue" subtype="select" required="true" fromdic="false" value="=fkyh">
+        <sql datasource="os_mdic">bsp.dp.fkyh</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="fkzh">付款账号：</component>
+      <component id="fkzh" type="input" subtype="text" datatype="validchar" required="true" fromdic="false">=fkzh</component>
+      <component type="label" for="fkzhm">付款账户名：</component>
+      <component id="fkzhm" type="input" subtype="text" datatype="validchar" required="true" fromdic="false">=fkzhm</component>
+      <component type="label" for="zchzcje">暂存户转出金额：</component>
+      <component id="zchzcje" type="input" subtype="money" datatype="money" readonly="true" suffix="元" fromdic="false">=zchzcje</component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+  </containers>
+</page>

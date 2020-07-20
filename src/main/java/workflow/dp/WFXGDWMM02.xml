@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFXGDWMM02" desc="修改临时单位用户密码" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="修改临时单位用户密码">dp_xgdwmm_02.ydpx</flowvar>
+          </flowvars>
+          <endpage buttonflag="o">
+		      <init>		        
+		        <setvar name="_RESULT_PAGE_TITLE"><![CDATA[登录密码修改成功！]]></setvar>
+		      </init>
+		  </endpage> 
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="修改临时单位用户密码" appflag="X" buttonflag="a" in="0" out="1">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		</step>
+</flow>

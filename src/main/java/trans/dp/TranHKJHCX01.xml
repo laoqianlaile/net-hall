@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHKJHCX" tranName="贷款信息列表查询">
+        <comps>
+            <comp compCode="CompBatchGetTransaction" compName="获取公个人贷款列表" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getggHKJHCX"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="还款计划查询"/>
+                    <inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant"
+                             paramValue="UNITACCNUM1:yhkr,UNITACCNAME1:qs,UNITACCNUM2:dkye,ACCNUM1:yhbj,UNITACCNAME2:yhlx,ACCNUM2:yhke"/>
+                    <inParam ignoreNull="1" paramCode="fileField" paramName="下传文件字段名" paramType="constant" paramValue="file"/>
+                </inParams>
+
+            </comp>
+        </comps>
+    </tran>
+</trans>

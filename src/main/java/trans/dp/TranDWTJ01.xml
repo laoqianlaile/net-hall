@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWTJ01" tranName="退缴">
+        <comps>
+            <comp compCode="CompDWTJ01" compName="校验退缴信息" expression="#flag=='jyxx'">
+                <inParams>
+               		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+            </comp>
+            <comp compCode="CompDWTJ02" compName="提交退缴信息" expression="#flag=='tjxx'">
+                <inParams>
+               		<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+               		<inParam ignoreNull="0" paramCode="operid" paramName="操作员id" paramType="string(1,30)" paramValue="_OPERID"/>
+               		<inParam ignoreNull="0" paramCode="dwzh" paramName="单位账号" paramType="string(1,30)" paramValue="dwzh"/>
+               		<inParam ignoreNull="1" paramCode="tkfs" paramName="退款方式" paramType="string(0,-1)" paramValue="tkfs"/>
+               		<inParam ignoreNull="1" paramCode="skyh" paramName="收款银行" paramType="string(0,-1)" paramValue="skyh"/>
+               		<inParam ignoreNull="1" paramCode="skzhmc" paramName="收款账户名称" paramType="string(0,-1)" paramValue="skzhmc"/>
+               		<inParam ignoreNull="1" paramCode="skzh" paramName="收款账号" paramType="string(0,-1)" paramValue="skzh"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

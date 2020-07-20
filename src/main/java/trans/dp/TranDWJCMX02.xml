@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWJCMX02" tranName="查询个人缴存明细">
+        <comps>
+        	<comp compCode="CompDWJCMX02" compName="查询个人缴存明细" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="djh" paramName="登记号" paramType="string(0,-1)" paramValue="djh"/>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="url" paramName="跳转地址" paramType="string(0,-1)" paramValue="url"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

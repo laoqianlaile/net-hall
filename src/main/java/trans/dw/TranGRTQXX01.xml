@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRTQXX01" tranName="获取个人提取信息">
+        <comps>
+        	<comp compCode="CompGRTQXX01" compName="获取个人提取信息" expression="">
+                <outParams>
+                	<outParam paramCode="grzhzt" ignoreNull="0" paramName="个人账户状态" paramType="string(0,-1)" paramValue="grzhzt"/>
+                	<outParam paramCode="hjbz" ignoreNull="0" paramName="户籍标志" paramType="string(0,-1)" paramValue="hjbz"/>
+                	<outParam paramCode="grzhye" ignoreNull="0" paramName="个人账户余额" paramType="string(0,-1)" paramValue="grzhye"/>
+                	<outParam paramCode="sfydk" ignoreNull="0" paramName="是否有贷款" paramType="string(0,-1)" paramValue="sfydk"/>
+                	<outParam paramCode="ssjg" ignoreNull="0" paramName="所属机构" paramType="string(0,-1)" paramValue="ssjg"/>
+                	<outParam paramCode="xhtqyy" ignoreNull="0" paramName="销户提取原因" paramType="string(0,-1)" paramValue="xhtqyy"/>
+                	<outParam paramCode="sctqrq" ignoreNull="0" paramName="上次提取日期" paramType="string(0,-1)" paramValue="sctqrq"/>
+                	<outParam paramCode="sjhm" ignoreNull="0" paramName="手机号码" paramType="string(0,-1)" paramValue="sjhm"/>
+					<outParam paramCode="djje" ignoreNull="0" paramName="冻结金额" paramType="string(0,-1)" paramValue="djje"/>
+					<outParam paramCode="kyye" ignoreNull="0" paramName="可用余额" paramType="string(0,-1)" paramValue="kyye"/>
+				</outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

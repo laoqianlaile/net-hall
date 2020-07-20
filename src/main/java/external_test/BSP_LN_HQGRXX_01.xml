@@ -1,0 +1,33 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file></file>
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<zjhm des="证件号码">220722199307100443</zjhm>
+		<zjlx des="证件类型">01</zjlx>
+		<xingbie des="性别">1</xingbie>
+		<csrq des="出生日期">1991-01-01</csrq>
+		<hyzk des="婚姻状况">10</hyzk>
+		<zhiye des="职业">11</zhiye>
+		<zhiwu des="职务">211B</zhiwu>
+		<zhichen des="职称">083</zhichen>
+		<xueli des="学历">70</xueli>
+		<sjhm des="手机号码">13115268787</sjhm>
+		<dwdh des="单位电话">85177825</dwdh>
+		<jtzz des="家庭住址">吉林省长春市净月开发区昆玉府</jtzz>
+		<dwmc des="单位名称">华信永道（北京）科技股份有限公司</dwmc>
+		<dwdz des="单位地址">吉林省长春市净月开发区立方大厦</dwdz>
+	</body>
+</root>

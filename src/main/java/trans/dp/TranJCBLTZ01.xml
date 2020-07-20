@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranJCBLTZ01" tranName="缴存比例调整">
+        <comps>
+            <comp compCode="CompJCBLTZ01" compName="缴存比例调整" expression="">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="dwjcbl" paramName="变更后单位缴存比例" paramType="string(0,-1)" paramValue="dwjcbl"/>
+                	<inParam ignoreNull="0" paramCode="grjcbl" paramName="变更后个人缴存比例" paramType="string(0,-1)" paramValue="grjcbl"/>
+                </inParams>
+                <outParams>
+                	<!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

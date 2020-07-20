@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page template="0402" version="1.0" formaction="">
+  <info>
+    <description title="预约凭证补打"/>
+  </info>
+  <styles>
+   	<style>
+		object {
+			margin-left:-60px;
+		}
+   	</style>
+  </styles>
+  <scripts>
+    <script><![CDATA[
+	//页面加载后执行
+	thisTab.pageOnload = function() {
+		// 凭证补打公共方法
+		var options = {
+	        type: 'pdf',//打印文件的类型,必传,例如：word、excel或pdf
+	        id: 'printDiv',//打印文件的显示页面元素id,必传
+	        data: {"yyh":poolSelect['yyh'],"ywmc":"预约业务"},//需要保存的业务关键字最多8个,必传
+	        width: '100%',//打印文件的宽度默认100% 可以是百分数也可以指定大小100px
+	        height: '530px',//打印文件的高度默认100% 可以是百分数也可以指定大小100px
+	        callback:callback,// 回调函数
+	    };
+	    //显示凭证补打信息
+		print.rePrintPage(options);
+		
+	}
+	function callback(){
+		$(".modal-dialog").css("width","1000px");
+	}
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="box" id="printDiv" />
+  </containers>
+</page>

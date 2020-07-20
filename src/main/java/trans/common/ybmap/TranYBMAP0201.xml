@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranYBMAP0201" tranName="综服2.0测试示例接口" extCall="true">
+        <comps>
+        	<comp compCode="CompYBMAP0201" compName="综服2.0测试示例组件" expression="">
+                <inParams>
+                	<inParam ignoreNull="1" paramCode="testIn1" paramName="测试入口参数1" paramValue="testIn1" paramType="String" ></inParam>
+                	<inParam ignoreNull="1" paramCode="testIn2" paramName="测试入口参数2" paramValue="testIn2" paramType="String" ></inParam>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="testOut1" paramName="测试出口参数1" paramValue="11" paramType="String" ></outParam>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

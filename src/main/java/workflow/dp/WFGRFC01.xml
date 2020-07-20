@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFGRFC01" desc="个人封存" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage=""><!-- menu_gen_inst="1" -->
+	<config>
+		<flowvars>
+			<flowvar name="ym01" desc="个人封存">dp_grfc_01.ydpx</flowvar>
+			<flowvar name="ym02" desc="个人封存凭证打印">dp_grfc_02.ydpx</flowvar>
+		</flowvars>
+		<mudics>
+			<mudic key="bsp.pb.certitype" desc="证件类型"></mudic>
+		</mudics>
+		<endpage buttonflag="o">
+			<init>
+				<setvar name="_RESULT_PAGE_TITLE"><![CDATA[恭喜您，个人封存办理完成！]]></setvar>
+			</init>
+		</endpage>
+		<title>=pagetit</title>
+	</config>
+	<step id="step1" type="0" url="=_flowvar_ym01" desc="个人封存" appflag="X" buttonflag="a" in="0" out="1" isleaveprompt="1">
+		<init>
+			<setvar name="_HIDE_PERSON_INFO" desc="控制个人信息隐藏方式">false</setvar><!--true 隐藏 -->
+			<setvar name="pagetit">=_STEPNAME</setvar>
+		</init>
+	</step>
+	<step id="step2" type="0" url="=_flowvar_ym02" desc="个人封存凭证打印" notoid="step1" appflag="X" buttonflag="l" in="1" out="0">
+		<init>
+			<setvar name="_HIDE_PERSON_INFO" desc="控制个人信息隐藏方式">false</setvar><!--true 隐藏 -->
+			<setvar name="pagetit">=_STEPNAME</setvar>
+			<setvar name="_prfilename">个人账户变更业务回单</setvar>
+		</init>
+		<buttons>
+      	 	<buttons id="l" text="完成" icon="ok"/>
+        </buttons>
+	</step>
+</flow>

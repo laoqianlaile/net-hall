@@ -1,0 +1,29 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<jbrxm des="经办人姓名">李四</jbrxm>
+		<dwdjh des="单位登记号">110108010323820</dwdjh>
+		<dwmc des="单位名称">华信永道（北京）科技股份有限公司</dwmc>
+		<instcode des="机构号">9999</instcode>
+		<instname des="机构名">管理部</instname>
+		<dwdz des="单位地址">北京市海淀区北太平庄路18号城建大厦A座</dwdz>
+		<dwslrq des="单位设立日期">2007-08-09</dwslrq>
+		<dwyb des="单位邮编">100010</dwyb>
+		<shcxdm des="社会诚信代码">911101086646328871</shcxdm>
+		<rolecode des="角色号">ORG01001</rolecode>
+	</body>
+</root>

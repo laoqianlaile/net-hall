@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranDLYZ101" tranName="管理员登录验证返回用户信息">
+        <comps>
+        	<comp compCode="CompDLYZ101" compName="管理员登录验证返回用户信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="loginId" paramName="登录id" paramType="string(0,25)" paramValue="loginId"/>
+                    <inParam ignoreNull="0" paramCode="password" paramName="密码" paramType="string(0,-1)" paramValue="password"/>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="managerId" paramName="管理员序号" paramType="string(0,-1)" paramValue="managerId"/>
+                	<outParam ignoreNull="0" paramCode="managerName" paramName="管理员名称" paramType="string(0,-1)" paramValue="managerName"/>
+                	<outParam ignoreNull="0" paramCode="instcode" paramName="机构号" paramType="string(0,-1)" paramValue="instcode"/>
+                	<outParam ignoreNull="0" paramCode="instname" paramName="机构名" paramType="string(0,-1)" paramValue="instname"/>
+                	<outParam ignoreNull="0" paramCode="rolecodes" paramName="角色集合" paramType="string(0,-1)" paramValue="rolecodes"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

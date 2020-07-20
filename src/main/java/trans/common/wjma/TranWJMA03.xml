@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranWJMA03" tranName="单位临时用户忘记密码用户信息验证">
+        <comps>
+        	<comp compCode="CompWJMA03" compName="单位临时用户忘记密码用户信息验证" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="jbrxm" paramName="经办人姓名" paramType="string(0,255)" paramValue="jbrxm"/>
+                    <inParam ignoreNull="0" paramCode="jbrzjlx" paramName="经办人证件类型" paramType="string(0,2)" paramValue="jbrzjlx"/>
+                    <inParam ignoreNull="0" paramCode="jbrzjhm" paramName="经办人证件号码" paramType="string(0,18)" paramValue="jbrzjhm"/>
+                    <inParam ignoreNull="0" paramCode="jbrsjhm" paramName="经办人手机号码" paramType="string(0,11)" paramValue="jbrsjhm"/>
+                    <inParam ignoreNull="0" paramCode="dxyzm" paramName="短信验证码" paramType="string(0,32)" paramValue="dxyzm"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

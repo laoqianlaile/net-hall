@@ -1,0 +1,69 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<pageIndex des="当前页数">1</pageIndex>
+		<pageSize des="每页记录数">3</pageSize>	
+		<total des="总记录数">5</total>
+		<details>
+			<detail>
+        		<ywbh des="预约业务编号">1</ywbh>
+	            <ywmc des="预约业务流程名称">贷款业务01</ywmc>
+	            <ywxsmc des="预约业务显示名称">贷款业务01</ywxsmc>
+	            <ywlch des="预约流程号">WF0001</ywlch>
+	            <khbs des="客户标识">01</khbs>
+	            <yycl des="预约策略">1</yycl>
+	            <yyfs des="预约方式">1</yyfs>
+	            <gnlj des="功能链接"></gnlj>
+	            <qdbs des="渠道标识">NP</qdbs>
+	            <sybz des="使用标志">0</sybz>
+	            <czy des="操作员">kf001</czy>				
+	            <cjsj des="创建时间">2017-10-10</cjsj>				
+	            <xgsj des="修改时间">2017-09-09</xgsj>
+            </detail>
+			<detail>
+        		<ywbh des="预约业务编号">2</ywbh>
+	            <ywmc des="预约业务流程名称">贷款业务02</ywmc>
+	            <ywxsmc des="预约业务显示名称">贷款业务01</ywxsmc>
+	            <ywlch des="预约流程号">WF0001</ywlch>
+	            <khbs des="客户标识">01</khbs>
+	            <yycl des="预约策略">1</yycl>
+	            <yyfs des="预约方式">1</yyfs>
+	            <gnlj des="功能链接"></gnlj>
+	            <qdbs des="渠道标识">NP</qdbs>
+	            <sybz des="使用标志">0</sybz>
+	            <czy des="操作员">kf001</czy>				
+	            <cjsj des="创建时间">2017-10-10</cjsj>				
+	            <xgsj des="修改时间">2017-09-09</xgsj>
+            </detail>
+			<detail>
+        		<ywbh des="预约业务编号">3</ywbh>
+	            <ywmc des="预约业务流程名称">贷款业务03</ywmc>
+	            <ywxsmc des="预约业务显示名称">贷款业务01</ywxsmc>
+	            <ywlch des="预约流程号">WF0001</ywlch>
+	            <khbs des="客户标识">01</khbs>
+	            <yycl des="预约策略">1</yycl>
+	            <yyfs des="预约方式">1</yyfs>
+	            <gnlj des="功能链接"></gnlj>
+	            <qdbs des="渠道标识">NP</qdbs>
+	            <sybz des="使用标志">0</sybz>
+	            <czy des="操作员">kf001</czy>				
+	            <cjsj des="创建时间">2017-10-10</cjsj>				
+	            <xgsj des="修改时间">2017-09-09</xgsj>
+            </detail>
+		</details>
+	</body>
+</root>

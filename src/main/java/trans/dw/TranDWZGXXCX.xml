@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWZGXXCX" tranName="单位职工信息查询">
+        <comps>
+            <comp compCode="CompBatchGetTransaction" compName="单位职工信息查询" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getDWZGXXCX"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="单位职工信息查询"/>
+                    <inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant"
+                             paramValue="unitaccname1:grbh,accname1:xm,certinum:idcard,accnum1:js"/>
+                    <inParam ignoreNull="1" paramCode="fileField" paramName="上传文件字段名" paramType="constant"
+                             paramValue="file"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

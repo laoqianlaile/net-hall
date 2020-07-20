@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDLMMXG01" tranName="登录密码修改">
+        <comps>
+            <comp compCode="CompDLMMXG01" compName="登录密码修改" expression="">
+                <inParams>
+                	<inParam paramCode="ydlmm" ignoreNull="0" paramName="原登录密码" paramValue="ydlmm" paramType="string(0,-1)"/>
+                	<inParam paramCode="xdlmm" ignoreNull="0" paramName="新登录密码" paramValue="xdlmm" paramType="string(0,-1)"/>
+                	<inParam paramCode="qrxdlmm" ignoreNull="0" paramName="确认新登录密码" paramValue="qrxdlmm" paramType="string(0,-1)"/>
+                	<inParam paramCode="kfsdjh" ignoreNull="0" paramName="开发商登记号" paramValue="kfsdjh" paramType="string(1,30)"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

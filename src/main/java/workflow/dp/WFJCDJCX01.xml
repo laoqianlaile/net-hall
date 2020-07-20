@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFJCDJCX01" desc="缴存登记撤销" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="缴存登记撤销">dp_jcdjcx_01.ydpx</flowvar> 
+          </flowvars>
+          <mudics>	
+          </mudics> 
+          <endpage buttonflag="o">
+		      <init>		        
+		        <setvar name="_RESULT_PAGE_TITLE"><![CDATA[缴存登记撤销业务办理成功！]]></setvar>
+		      </init>
+		  </endpage> 
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="缴存登记撤销" appflag="X" buttonflag="a" in="1" out="1">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+		    </init>
+		</step>
+</flow>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRXXBG01" tranName="个人基本信息变更">
+        <comps>
+            <comp compCode="CompGRXXBG01" compName="获取个人基本信息" expression="#flag=='hqgrxx'">
+            	<inParams>
+            		<inParam paramCode="grzh" ignoreNull="1" paramName="个人账号" paramValue="grzh" paramType="string(0,-1)"/>
+            	</inParams>
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="xingbie" paramName="性别" paramType="string(0,-1)" paramValue="xingbie" />
+                	<outParam ignoreNull="1" paramCode="hj" paramName="户籍" paramType="string(0,-1)" paramValue="hj" />
+                	<outParam ignoreNull="1" paramCode="gddhhm" paramName="固定电话号码" paramType="string(0,-1)" paramValue="gddhhm" />
+                	<outParam ignoreNull="1" paramCode="csny" paramName="出生年月" paramType="string(0,-1)" paramValue="csny" />
+                	<outParam ignoreNull="1" paramCode="hyzk" paramName="婚姻状况" paramType="string(0,-1)" paramValue="hyzk" />
+                	<outParam ignoreNull="1" paramCode="zhiye" paramName="职业" paramType="string(0,-1)" paramValue="zhiye" />
+                	<outParam ignoreNull="1" paramCode="zhichen" paramName="职称" paramType="string(0,-1)" paramValue="zhichen" />
+                	<outParam ignoreNull="1" paramCode="zhiwu" paramName="职务" paramType="string(0,-1)" paramValue="zhiwu" />
+                	<outParam ignoreNull="1" paramCode="xueli" paramName="学历" paramType="string(0,-1)" paramValue="xueli" />
+                	<outParam ignoreNull="1" paramCode="yzbm" paramName="邮政编码" paramType="string(0,-1)" paramValue="yzbm" />
+                	<outParam ignoreNull="1" paramCode="jtzz" paramName="家庭住址" paramType="string(0,-1)" paramValue="jtzz" />
+                	<outParam ignoreNull="1" paramCode="jtysr" paramName="家庭月收入" paramType="string(0,-1)" paramValue="jtysr" />
+                	<outParam ignoreNull="1" paramCode="xingming" paramName="姓名" paramType="string(0,-1)" paramValue="xingming" />
+                	<outParam ignoreNull="1" paramCode="zjlx" paramName="证件类型" paramType="string(0,-1)" paramValue="zjlx" />
+                	<outParam ignoreNull="1" paramCode="zjhm" paramName="证件号码" paramType="string(0,-1)" paramValue="zjhm" />
+                	<outParam ignoreNull="1" paramCode="sjhm" paramName="手机号码" paramType="string(0,-1)" paramValue="sjhm" />
+					<!--ish04新增-->
+					<outParam ignoreNull="1" paramCode="grjcjs" paramName="个人缴存基数" paramType="string(0,-1)" paramValue="grjcjs" />
+                </outParams>
+            </comp>
+            <comp compCode="CompGRXXBG02" compName="提交个人基本信息" expression="#flag=='tjgrxx'">
+                <inParams>
+               		<inParam ignoreNull="1" paramCode="grzh" paramName="个人账号" paramType="string(1,30)" paramValue="grzh"/>
+               		<inParam ignoreNull="1" paramCode="hj" paramName="户籍地" paramType="string(0,-1)" paramValue="hj" />
+                	<inParam ignoreNull="1" paramCode="gddhhm" paramName="固定电话号码" paramType="string(0,-1)" paramValue="gddhhm" />
+                	<inParam ignoreNull="1" paramCode="zhiye" paramName="职业" paramType="string(0,-1)" paramValue="zhiye" />
+                	<inParam ignoreNull="1" paramCode="zhichen" paramName="职称" paramType="string(0,-1)" paramValue="zhichen" />
+                	<inParam ignoreNull="1" paramCode="zhiwu" paramName="职务" paramType="string(0,-1)" paramValue="zhiwu" />
+                	<inParam ignoreNull="1" paramCode="xueli" paramName="学历" paramType="string(0,-1)" paramValue="xueli" />
+                	<inParam ignoreNull="1" paramCode="yzbm" paramName="邮政编码" paramType="string(0,-1)" paramValue="yzbm" />
+                	<inParam ignoreNull="1" paramCode="jtzz" paramName="家庭住址" paramType="string(0,-1)" paramValue="jtzz" />
+                	<inParam ignoreNull="1" paramCode="jtysr" paramName="家庭月收入" paramType="string(0,-1)" paramValue="jtysr" />
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranZHMXXX01" tranName="公积金账户明细信息">
+        <comps>
+            <comp compCode="CompBatchGetTransaction" compName="获取公积金账户明细信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getsgGrmxxx"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="个人明细查询"/>
+                    <inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant"
+                             paramValue="seqno:hh,accnum1:jyrq,accname1:grzh,unitaccname2:xm,payvounum:ywlx,unitaccname1:fse,JTZZ:ye,unitaccnum2:ksny,REASON:zzny,AGENTOP:bz,XMQP:rzzt,ACCNUM2:jbr"/>
+                    <inParam ignoreNull="1" paramCode="fileField" paramName="下传文件字段名" paramType="constant" paramValue="file"/>
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="1" paramCode="basenum" paramName="缴存基数" paramType="string(0,-1)"
+                              paramValue="jcjs"/>
+                    <outParam ignoreNull="1" paramCode="iprop" paramName="个人缴存比例" paramType="string(0,-1)"
+                              paramValue="iprop"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

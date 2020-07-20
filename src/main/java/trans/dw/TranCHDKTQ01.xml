@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranCHDKTQ01" tranName="偿还公积金贷款提取提交">
+        <comps>
+            <comp compCode="CompCHDKTQ01" compName="偿还公积金贷款提取提交" expression="">
+            	<inParams>
+            		<inParam paramCode="tqyy" ignoreNull="0" paramName="提取原因" paramValue="tqyy" paramType="string(0,-1)"/>
+            		<inParam paramCode="jkhtbh" ignoreNull="1" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(0,-1)"/>
+            		<inParam paramCode="sdhtbh" ignoreNull="1" paramName="商贷合同编号" paramValue="sdhtbh" paramType="string(0,-1)"/>
+            		<inParam paramCode="wqhtbh" ignoreNull="1" paramName="网签合同编号" paramValue="wqhtbh" paramType="string(0,-1)"/>
+            		<inParam paramCode="dkyh" ignoreNull="0" paramName="贷款银行" paramValue="dkyh" paramType="string(0,-1)"/>
+            		<inParam paramCode="dkye" ignoreNull="0" paramName="贷款余额" paramValue="dkye" paramType="string(0,-1)"/>
+            		<inParam paramCode="jsfs" ignoreNull="0" paramName="结算方式" paramValue="jsfs" paramType="string(0,-1)"/>
+					<inParam paramCode="skrzhmc" ignoreNull="0" paramName="收款人账户名称" paramValue="skrzhmc" paramType="string(1,120)" />
+					<inParam paramCode="skrkhyh" ignoreNull="0" paramName="收款人开户银行" paramValue="skrkhyh" paramType="string(1,20)" />
+					<inParam paramCode="skrzhhm" ignoreNull="0" paramName="收款人账户号码" paramValue="skrzhhm" paramType="string(1,20)" />
+					<inParam paramCode="hklx" ignoreNull="0" paramName="还款类型" paramValue="hklx" paramType="string(0,-1)"/>
+            		<inParam paramCode="tqje" ignoreNull="0" paramName="提取金额" paramValue="tqje" paramType="string(0,-1)"/>
+            		<inParam paramCode="jymm" ignoreNull="0" paramName="交易密码" paramValue="jymm" paramType="string(0,-1)"/>
+            		<inParam paramCode="sjhm" ignoreNull="0" paramName="手机号码" paramValue="sjhm" paramType="string(0,11)"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+				</inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

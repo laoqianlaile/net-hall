@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFYBTJSL02" desc="异步提交示例" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+	<config>
+		<flowvars>
+			<flowvar name="ym01" desc="异步提交信息录入">common_exa_ybtj_0102.ydpx</flowvar>
+			<flowvar name="ym02" desc="异步提交信息确认">common_exa_ybtj_02.ydpx</flowvar>
+			<flowvar name="ym03" desc="异步提交凭证打印">common_exa_ybtj_03.ydpx,common_exa_ybtj_04.ydpx</flowvar>
+		</flowvars>
+		<endpage buttonflag="o">
+			<init>
+				<setvar name="_RESULT_PAGE_TITLE"><![CDATA[恭喜您，操作成功。]]></setvar>
+			</init>
+		</endpage>
+		<buttons>
+           <buttons id="B" text="返回首页" icon="home" url="/home"/>
+           <buttons id="D" text="打印" icon="print"/>
+        </buttons>
+		<title>=pagetit</title>
+	</config>
+	<step id="step1" url="=_flowvar_ym01" desc="异步提交信息录入" appflag="X" buttonflag="g" in="0" out="1">
+		<init>
+			<setvar name="pagetit">=_STEPNAME</setvar>
+		</init>
+	</step>
+    <step id="step2" url="=_flowvar_ym02" desc="异步提交信息确认" appflag="X" buttonflag="g" in="0" out="1" notoid="step1">
+		<!-- 异步处理标签。提示结果（一个流程下只能有一个异步处理节点） -->
+		<sync><![CDATA[恭喜您，数据提交成功。<br/>您可以在【异步结果查询】查看处理结果。并继续进行打印凭证]]></sync>
+		<init>
+			<setvar name="pagetit">=_STEPNAME</setvar>
+		</init>
+	</step>
+	<step id="step3" url="=_flowvar_ym03" desc="异步提交凭证打印" appflag="X" buttonflag="BDja" in="0" out="1" notoid="step2">
+		<init>
+			<setvar name="pagetit">=_STEPNAME</setvar>
+		</init>
+	</step>
+</flow>

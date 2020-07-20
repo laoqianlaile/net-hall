@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0402" version="2.0" formaction="">
+  <info>
+    <description title="贷款详情"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-06-11 11:26:21"/>
+    </editlogs>
+  </info>
+  <styles>
+    <style>object { margin-left:-60px; }</style>
+  </styles>
+  <scripts>
+    <script><![CDATA[
+	//页面加载后执行
+	thisTab.pageOnload = function() {
+        var jkhtbh = poolSelect['type'];
+        ydl.sendCommand('cmdHTXX',{"jkhtbh":jkhtbh},function(data,code,msg){
+                //console.log("dataTest",code != '00000000');
+                if (code != '00000000') {
+                    ydl.alert({'code':code, 'message':msg});
+                }else{
+                    ydl.setValue('jkhtbh',data.jkhtbh);
+                    ydl.setValue('xingming',data.xingming);
+                    ydl.setValue('zjhm',data.zjhm);
+                    ydl.setValue('htdkje',data.htdkje);
+                    ydl.setValue('dkye',data.dkye);
+                    ydl.setValue('dqjhhkje',data.dqjhhkje);
+                    ydl.setValue('dkqs',data.dkqs);
+                    ydl.setValue('dkll',data.dkll);
+                    ydl.setValue('ydfkrq',data.ydfkrq);
+                    ydl.setValue('swtyhmc',data.swtyhmc);
+                    ydl.setValue('hkzh',data.hkzh);
+                    ydl.setValue('yqbjze',data.yqbjze);
+                    ydl.setValue('yqlxze',data.yqlxze);
+                    ydl.setValue('spedealint',data.owepun);
+                }
+         });
+
+	}
+	function callback(){
+		$(".modal-dialog").css("width","1000px");
+	}
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" layout="fit" uid="ct_form" caption="贷款合同基本信息">
+      <component type="label" for="loancontrnum">合同号：</component>
+      <component id="jkhtbh" type="input" subtype="text" readonly="1" width="130" fromdic="false" colspan="3">=jkhtbh</component>
+      <component type="label" for="accname1">借款人姓名：</component>
+      <component id="xingming" type="input" subtype="text" readonly="1" width="130" fromdic="false">=xingming</component>
+      <component type="label">证件号码：</component>
+      <component id="zjhm" type="input" subtype="text" readonly="1" fromdic="false">=zjhm</component>
+      <component type="label" for="loansum">贷款金额：</component>
+      <component id="htdkje" type="input" subtype="money" datatype="money" declen="2" readonly="1" width="130" suffix="（元）" fromdic="false">=htdkje</component>
+      <component type="label" for="curdaybal">贷款余额：</component>
+      <component id="dkye" type="input" subtype="money" datatype="money" declen="2" readonly="1" suffix="（元）" width="130" fromdic="false">=dkye</component>
+      <component type="label">贷款月还款额：</component>
+      <component id="dqjhhkje" type="input" subtype="money" readonly="1" fromdic="false" datatype="money" suffix="（元）">=dqjhhkje</component>
+      <component type="label" for="loanterm">贷款期数：</component>
+      <component id="dkqs" type="input" subtype="money" datatype="int" declen="0" readonly="1" width="130" fromdic="false">=dkqs</component>
+      <component type="label" for="currate">贷款利率：</component>
+      <component id="dkll" type="input" subtype="money" datatype="float" declen="2" readonly="1" suffix="%" width="130" fromdic="false">=dkll</component>
+      <component type="label" for="beginintdate">放款日期：</component>
+      <component id="ydfkrq" type="input" subtype="date" datatype="date" readonly="1" fromdic="false" width="105">=ydfkrq</component>
+      <component type="label">贷款银行名称：</component>
+      <component id="swtyhmc" type="input" subtype="text" readonly="1" fromdic="false">=swtyhmc</component>
+      <component type="label">还款账号：</component>
+      <component id="hkzh" type="input" subtype="text" readonly="1" fromdic="false" maxlength="30">=hkzh</component>
+      <component type="caption">欠还信息</component>
+      <component type="label" for="oweprin">逾期本金总额：</component>
+      <component id="yqbjze" type="input" subtype="money" datatype="money" declen="2" readonly="1" suffix="（元）" width="120" fromdic="false">=yqbjze</component>
+      <component type="label" for="oweint">逾期利息总额：</component>
+      <component id="yqlxze" type="input" subtype="money" datatype="money" declen="2" readonly="1" width="120" suffix="（元）" fromdic="false">=yqlxze</component>
+      <component type="label" for="spedealint">欠还罚息：</component>
+      <component id="spedealint" type="input" subtype="money" datatype="money" declen="2" readonly="1" suffix="（元）" width="120" fromdic="false">=owepun</component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-08f3e4f78b4f47dc99953675f2c24c0b" type="hidden" id="container-08f3e4f78b4f47dc99953675f2c24c0b">
+      <component id="accnum" type="hidden">=_ACCNUM</component>
+      <component id="xingming2" type="hidden">=xingming2</component>
+    </container>
+  </containers>
+</page>

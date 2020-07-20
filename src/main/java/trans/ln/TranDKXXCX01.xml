@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDKXXCX01" tranName="贷款信息查询">
+        <comps>
+            <comp compCode="CompXMCX02" compName="获取项目列表" expression="#flag=='instep1'">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="kfsdjh" paramName="开发商登记号" paramType="string(1,20)" paramValue="kfsdjh"/>
+                    <inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+            </comp>
+            <comp compCode="CompDKXXCX01" compName="获取项目下贷款信息" expression="#flag=='getdkxx'">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="xmxyh" paramName="项目协议号" paramType="string(1,20)" paramValue="xmxyh"/>
+                    <inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

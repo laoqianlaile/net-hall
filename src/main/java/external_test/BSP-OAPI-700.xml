@@ -1,0 +1,26 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<kfsdjh des="开发商登记号">kfs000001</kfsdjh>
+		<kfsmc des="开发商名称">岚山地产</kfsmc>
+		<kfsdz des="开发商地址">吉林省长春市净月开发区生态大街1233号</kfsdz>
+		<jbrxm des="经办人姓名">张亮</jbrxm>
+		<yzbm des="邮编">130117</yzbm>
+		<kfsdh des="电话">88177829</kfsdh>
+		<rolecode des="角色号">DEV01001</rolecode>
+	</body>
+</root>

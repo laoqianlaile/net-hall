@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranGRZC" tranName="个人注册">
+        <comps>
+            <comp compCode="CompGRZC201" compName="用户注册" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="loginId" paramName="登录id" paramType="string(0,25)" paramValue="zjhm"/>
+                    <inParam ignoreNull="0" paramCode="zjhm" paramName="身份证号" paramType="string(0,20)" paramValue="zjhm"/>
+                    <inParam ignoreNull="0" paramCode="sjhm" paramName="身份证号" paramType="string(0,20)" paramValue="sjhm"/>
+                    <inParam ignoreNull="0" paramCode="zdyyhm" paramName="身份证号" paramType="string(0,20)" paramValue="zjhm"/>
+                    <inParam ignoreNull="0" paramCode="xingming" paramName="身份证号" paramType="string(0,20)" paramValue="xingming"/>
+                    <inParam ignoreNull="0" paramCode="zjlx" paramName="身份证号" paramType="string(0,20)" paramValue="zjlx"/>
+                    <inParam ignoreNull="0" paramCode="dxyzm" paramName="身份证号" paramType="string(0,20)" paramValue="yzm"/>
+                    <inParam ignoreNull="0" paramCode="pwd" paramName="身份证号" paramType="string(0,20)" paramValue="gjjmm"/>
+                    <inParam ignoreNull="0" paramCode="password" paramName="姓名" paramType="string(0,32)" paramValue="gjjmm"/>
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="0" paramCode="grzh" paramName="个人账号" paramType="string(0,-1)" paramValue="grzh"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"></description>
+    <editlogs>
+      <log editor="0000(离线)" edittime="2017-09-7 13:46:02"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[
+    //页面加载后执行 
+	thisTab.pageOnload=function() {
+		
+		 $('#b_flow_g').hide();
+	 	 $('#b_query').click();
+	     // 隐藏操作记录列表容器
+		 $('#yyjlList_panel').hide();
+		 // 隐藏取消原因
+		 $('#ct_czbz').hide();
+		 
+		 //设置可选择日期范围
+		 $('#kssj').datepicker({
+		 	forceParse: false,
+			endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+		 });
+		 //设置可选择日期范围
+		 $('#jzsj').datepicker({
+		 	forceParse: false,
+			endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+		 });
+		 //关联两个日期控件的起止范围
+	     $('#kssj').datepicker('changeDate', function(date) {
+	         $('#jzsj').datepicker('setStartDate', date);
+	     });
+	     $('#jzsj').datepicker('changeDate', function(date) {
+	         $('#kssj').datepicker('setEndDate', date);
+	     });
+	 }
+     //查询
+     $('#b_query').addIcon('search').click(function () {
+     	$("#yyh").val($("#c_yyh").val());
+     	$("#yyrq").val($("#c_yyrq").val());
+        ydl.init.list('yylist', {}, thisTab).done(function(){
+			//判断列表查询为空时，显示
+			ydl.noResultInfo("yylist", "无预约申请信息！");
+		});
+     });
+	thisTab.list_callback_yylist=function(rows) {
+	  if(rows.length>0){
+		$(rows).each(function(i){
+			var $tr=$(this);
+			// 添加超链接
+	    	$(this).getCell(0).find('label').html("<a href='javascript:pop_up_window("+$tr.getCell(0).text()+");'>"+$tr.getCell(0).text()+"</a>");
+			// 待受理预约状态
+			var dsl = ydl.mudic.getValByMask("ish.gg.yy.yysqzt","DSL");
+			// 任务类型为预约任务时 状态为未处理 可以点击取消按钮
+			if($tr.data('hidden-hyyzt') != dsl){
+				$tr.getCell(8).find(':button').attr("disabled",true);
+			}
+			// 取消状态
+			var qx = ydl.mudic.getValByMask("ish.gg.yy.yysqzt","YQX");
+			// 驳回状态
+			var bh = ydl.mudic.getValByMask("ish.gg.yy.yysqzt","BH");
+			// 任务类型为取消或驳回 屏蔽打印凭证按钮
+			if($tr.data('hidden-hyyzt') == qx ||$tr.data('hidden-hyyzt') == bh  ){
+				$tr.getCell(9).find(':button').attr("disabled",true);
+			}
+			// 删除
+			$(this).find(':button').eq(0).click(function(){
+				var yyh = $tr.getCell(0).text();
+				$('#ct_czbz').show();
+				var czbzDialog = ydl.makeDialog("ct_czbz",{
+					title:"预约号：" + yyh,
+					width:800,
+					height:300,
+					autoOpen:false,
+					modal:true,
+					buttons:{
+						'确认':function(){
+							ydl.sendCommand('yyywQx',{"yyh":yyh,"czbz":$("#czbz").val()},function(data,code,msg){
+						    	if (code != '00000000') {
+									ydl.alert({'code':code, 'message':msg});
+								} else {
+									ydl.alert("预约申请取消成功!",function (){
+										var currentPage = $('#yylist').data('currentpage');
+										ydl.init.list('yylist', {}, thisTab,currentPage);
+									});
+								}
+						      });
+							  czbzDialog.dialog("close"); 
+							  $("#czbz").val("");
+						},
+						'关闭':function(){
+							czbzDialog.dialog("close");
+							$("#czbz").val("");
+						}
+					},
+					shown:function(){
+						$('#ct_czbz').closest('.modal').prev('.modal').remove();
+					},
+					hidden:function(){
+					}
+				});
+				czbzDialog.dialog("open");
+			});
+			// 凭证补打
+			$(this).find(':button').eq(1).click(function(){
+				var yyh = $tr.getCell(0).text();
+				 // 跳转凭证打印 --弹出
+	     		ydl.subPage('subpage01', {"yyh":yyh,dialogVersion: 'scroll'},[]);
+			});
+		});
+	  }
+	}
+	// 点击超链接查看
+    window.pop_up_window=function (yyh) {
+    		$("#yyh").val(yyh);
+			$('#yyjlList_panel').show();
+			var yyjlDialog = ydl.makeDialog("yyjlList_panel",{
+				title:"预约号：" + yyh,
+				width:800,
+				height:200,
+				autoOpen:false,
+				modal:true,
+				buttons:{
+					'关闭':function(){
+						yyjlDialog.dialog("close");
+					}
+				},
+				shown:function(){
+					$('#yyjlList_panel').closest('.modal').prev('.modal').remove();
+					ydl.init.list('yyjlList', {}, thisTab);
+				},
+				hidden:function(){
+					$('#yyjlList').find('tbody').html('');
+				}
+			});
+			yyjlDialog.dialog("open");
+    };
+//表单提交时执行
+ thisTab.form_validate=function(){
+
+	return true;
+}
+
+]]></script>
+  </scripts>
+  <dataset>
+  	<!--<sql id="yylist" desc="预约申请查询" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="os_external">BSP_CHANNEL_YYSQ_05:to_number(yyh) desc</sql>
+  	<sql id="yyjlList" desc="预约操作记录查询" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="os_external">BSP_CHANNEL_YYSQ_07:to_number(XH) desc</sql>-->
+	<sql id="yylist" desc="预约申请查询" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="os_Paging">="{'trancode':'TranYYSQJK05','order':'to_number(yyh) desc','isPage':'1'}"</sql>
+	<sql id="yyjlList" desc="预约操作记录查询" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="os_Paging">="{'trancode':'TranYYSQJK07','order':'to_number(XH) desc','isPage':'1'}"</sql>
+  </dataset>
+  <ajax/>
+  <containers>
+   <container uid="container-00ec40a599474525ac47f6ff47c1796b" type="table" layout="connect" cols="4" id="ct_query">
+      <component type="label">预约号：</component>
+      <component id="c_yyh" type="input" subtype="text" fromdic="false" />
+      <component type="label">预约日期：</component>
+      <component id="c_yyrq" type="input" subtype="date" fromdic="false" datatype="date" />
+      <component type="label">创建起始时间：</component>
+   	  <component type="input" subtype="date" id="kssj" fromdic="false" prefix="从" datatype="yyyy-mm-dd" maxlength="10" />
+       <component type="label">创建截止时间：</component>
+      <component type="input" subtype="date" id="jzsj" fromdic="false" prefix="至" datatype="yyyy-mm-dd" maxlength="10" />
+    </container>
+    <container uid="container-017083930c79477895ecbdbb5947fd6f" type="box" layout="buttons" id="ct_query_button">
+      <component id="b_query" type="button" subtype="button">查询</component>
+    </container>
+    <container uid="container-1e87aa73a90d4cde809407ef830233ea" type="list" layout="auto-height" cols="10" allowexport="false" id="yylist" dataset="yylist" caption="预约申请信息">
+      <listhead>
+        <component type="label">预约号</component>
+        <component type="label">预约的业务</component>
+        <component type="label">预约的网点</component>
+        <component type="label">预约的渠道</component>
+        <component type="label">预约的日期</component>
+        <component type="label">预约的时间</component>
+        <component type="label">预约状态</component>
+        <component type="label">创建时间</component>
+        <component type="label">取消</component>
+        <component type="label">凭证补打</component>
+      </listhead>
+      <listbody>
+        <component type="label">=yylist.yyh[#]</component>
+        <component type="plain">=yylist.ywxsmc[#]</component>
+        <component type="plain">=yylist.wdmc[#]</component>
+        <component type="plain">=getMulData("ish.gg.wf.qdm",yylist.qdbs[#])</component>
+        <component type="plain">=yylist.yyrq[#]</component>
+        <component type="plain">=yylist.sjd[#]</component>
+        <component type="plain">=getMulData("ish.gg.yy.yysqzt",yylist.yyzt[#])</component>
+        <component type="plain">=yylist.cjsj[#]</component>
+        <component type="button" subtype="button" id="b_qx">取消</component>
+        <component type="button" subtype="button" id="b_pzbd">凭证补打</component>
+      </listbody>
+      <hidden>
+          <component id="hywbh" type="hidden">=yylist.ywbh[#]</component>
+          <component id="hwdbh" type="hidden">=yylist.wdbh[#]</component>
+          <component id="hyyzt" type="hidden">=yylist.yyzt[#]</component>
+      </hidden>
+    </container>
+    <container uid="container-898aad2e70394b20ae0bf6d25844236d" type="list" layout="auto-height" cols="5" id="yyjlList" dataset="yyjlList" caption="预约操作记录" allowprint="false" allowexport="false">
+      <listhead>
+        <component type="label">编号</component>
+        <component type="label">预约状态</component>
+        <component type="label" width="110">操作内容</component>
+        <component type="label">操作时间</component>
+        <component type="label" width="130">备注</component>
+      </listhead>
+      <listbody>
+        <component type="plain">=yyjlList.xh[#]</component>
+        <component type="plain">=getMulData("ish.gg.yy.yysqzt",yyjlList.yyzt[#])</component>
+        <component type="plain">=getMulData("ish.gg.yy.yyczzt",yyjlList.czbs[#])</component>
+        <component type="plain">=yyjlList.czsj[#]</component>
+        <component type="plain">=yyjlList.czbz[#]</component>
+      </listbody>
+      <hidden/>
+    </container>
+    <container uid="container-00ec40a599474525ac47f6ff47c1796b" caption="取消确认" type="table" layout="connect" cols="4" id="ct_czbz">
+      <component type="label" for="czbz">取消原因：</component>
+      <component id="czbz" type="input" subtype="textarea" fromdic="false" maxlength="200" colspan="3"/>
+    </container>
+     <container uid="container-7cbec035706348f0afe24953b4f3c995" type="hidden" id="container-7cbec035706348f0afe24953b4f3c995">
+      <component id="khbs" type="hidden">=getUserExtInfo("khbs")</component>
+      <component id="khdjh" type="hidden">=getRealUserExtInfo("yhdjh")</component>
+      <component id="yyh" type="hidden"></component>
+      <component id="yyrq" type="hidden"></component>
+    </container>
+  </containers>
+</page>

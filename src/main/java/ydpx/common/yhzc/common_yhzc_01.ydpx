@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0403" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+      <log editor="0000(离线)" edittime="2016-04-12 13:03:49"/>
+    </editlogs>
+  </info>
+   <styles>
+   	<style>
+		#pageTabs .form-group{
+			margin:10px 0 10px 0;
+		}
+   	</style>
+  </styles>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+        //var src = ydl.contexPath + '/ranCode.jsp';
+        thisTab.pageOnload = function () {
+            /*console.log("加载验证码信息2");
+            $('#p_yzm').append($('<img id="t_yzm" src="' + src + '" style="cursor:pointer;" />'));
+            $('#t_yzm').click(function () {
+                refresh();
+            });
+            refresh();*/
+            //根据证件号码查询手机号码
+            $("#zjhm").keyup(function(){
+                var zjhmLength = $("#zjhm").val().trim().length;
+                if(zjhmLength == 18){
+                    ydl.sendCommand('cmdGRXX',{"zjhm":$("#zjhm").val().trim()},function(data,code,msg){
+                       if (code != '00000000') {
+                          ydl.alert({'code':code, 'message':msg});
+                       }else{
+                            $("#sjhm").val(data.sjhm);
+                       }
+                    });
+                }
+            });
+            $('#button1').click(function(event) {
+                var sjhm = $("#sjhm").val().trim();
+                if(sjhm == ""){
+                    ydl.alert("请填写手机号码");
+                }else{
+                    if(!(/^1[3456789]\d{9}$/.test(sjhm))){
+                        ydl.alert("手机号码有误，请重填");
+                        return false;
+                    }
+                    $('#button1').prop('disabled',true);
+                    ydl.sendCommand('dxyzm',{"dxtype":"1","sjhm":sjhm},function(data,code,msg){
+                       if (code != '00000000') {
+                          ydl.alert({'code':code, 'message':msg});
+                       }else{
+
+                       }
+                    });
+                    //启动定时器
+                    createClock();
+                }
+
+            });
+        }
+        
+        $("#zjlx").change(function(){
+       	    var zjlx = ydl.mudic.getValByMask("ish.gg.user.zjlx","SFZ");
+            if(zjlx==$(this).val()){
+                $('#zjhm').data('type','idcard');
+            }else{
+                $('#zjhm').data('type','');
+            }
+            ydl.validator.clear();
+        });
+        
+        thisTab.checkForm = function () {
+        	return cmdValidate();
+        }
+        function cmdValidate(){
+        	var result = true;
+            result &= ydl.validator('xingming', { required: true, silent:true });
+           // result &= ydl.validator('zjlx', { required: true, silent:true });
+            result &= ydl.validator('zjhm', { required: true, silent:true });
+            result &=ydl.validator('gjjmm',{
+                rule: /^\d{6,6}$/,
+                message:'密码必须是6位数字'
+            });
+            result &=ydl.validator('gjjmm1',{
+                rule: /^\d{6,6}$/,
+                message:'密码必须是6位数字'
+            });
+            return !!result;
+        }
+        function refresh() {
+            ydl.ajax(src,{},function (data) {
+                if(data["returnCode"]==0){
+                    $$('t_yzm').src=data["image"];
+                    $$('yzmkey').value=data["key"];
+                }
+            })
+        }
+        var clockid = 0;//定时器id
+
+        //创建定时器
+        function createClock(){
+            dropClock();
+            timmer = 60;
+            clockid = setInterval(autoRefreshDo, 1000);
+        }
+        //删除定时器
+        function dropClock(){
+            $('#button1').children().text("获取验证码");
+            if(clockid != 0){
+                clearInterval(clockid);
+                clockid = 0;
+            }
+        }
+
+        //全局自动刷新定时器
+        var timmer = 0 ;
+        function autoRefreshDo(){
+            timmer --;
+            var $getButton = $('#button1');
+            if(timmer == 0){
+                $getButton.text( "重新获取验证码");
+            }else{
+                $getButton.text( "重新获取验证码 ( " + timmer + " )");
+            }
+            if( timmer == 59 ){
+                $('#button1').prop('disabled',true);
+            }
+            if( timmer  == 0 ) {
+                dropClock();
+                $('#button1').prop('disabled',false);
+            }
+        }
+        //表单提交时执行
+        thisTab.form_validate = function () {
+        	var result = cmdValidate();
+        	var gjjmm = $("#gjjmm").val();
+        	var gjjmm1 = $("#gjjmm1").val();
+        	if(gjjmm != gjjmm1){
+        	    ydl.alert("两次输入的密码不一致！");
+        	    return false;
+        	}
+            return !!result;
+        }
+
+        ]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container uid="container-c274fd179f9e45ccb93f93d647427603" caption="个人用户注册信息" type="table" layout="fit" cols="6" id="container-c274fd179f9e45ccb93f93d647427603">
+      <component type="plain"/>
+      <component type="label" for="zjhm">证件号码：</component>
+      <component id="zjhm" type="input" subtype="text" readonly="false" fromdic="false" required="true"  datatype="validchar" colspan="2"/>
+      <component type="plain" colspan="2">请输入您的证件号码。</component>
+
+      <component type="plain"/>
+      <component type="label" for="xingming">个人姓名：</component>
+      <component id="xingming" type="input" subtype="text" readonly="false" fromdic="false" required="true"  datatype="validchar" colspan="2"/>
+      <component type="plain" colspan="2">请输入您的真实姓名。</component>
+
+      <component type="plain"/>
+      <component type="label" for="gjjmm">密码：</component>
+      <component id="gjjmm" type="input" subtype="password" maxlength="6" readonly="false" fromdic="false" required="true"  datatype="validchar" colspan="2"/>
+      <component type="plain" colspan="2">请输入6位数字密码。</component>
+      <component type="plain"/>
+      <component type="label" for="gjjmm1">再次输入密码：</component>
+      <component id="gjjmm1" type="input" subtype="password" maxlength="6" readonly="false" fromdic="false" required="true"  datatype="validchar" colspan="2"/>
+      <component type="plain" colspan="2">请确认密码。</component>
+      <component type="plain"/>
+      <component type="label" for="sjhm">手机号码：</component>
+      <component id="sjhm" type="input" subtype="text" readonly="1" fromdic="false" required="true" maxlength="11"  datatype="phones" colspan="2"/>
+      <component type="plain" colspan="2">请输入您在公积金预留的手机号码。</component>
+      <component type="plain"/>
+      <component type="label" for="dxyzm">短信验证码：</component>
+      <component id="dxyzm" type="input" subtype="text" maxlength="10" fromdic="true" required="1" colspan="2">=dxyzm</component>
+      <component id="button1" type="button" subtype="button" colspan="2">获取验证码</component>
+      <!--<component type="plain"/>
+      <component type="label" for="yzm">随机验证码：</component>
+      <component id="yzm" type="input" subtype="text" required="true" fromdic="false"/>
+      <component id="p_yzm" type="plain" colspan="3"/>-->
+       <component type="blank" colspan="6"/>
+      <component type="blank" colspan="6"/>
+      <component type="blank" colspan="6"/>
+      <component type="blank" colspan="6"/>
+      <component type="blank" colspan="6"/>
+      <component id="dxtype" type="hidden">=2</component>
+    </container>
+    <container type="hidden" id="container-1745d1b198785e1421b8165580983523" uid="container-1745d1b198785e1421b8165580983523">
+      <component id="yzmkey" type="hidden"/>
+    </container>
+  </containers>
+</page>

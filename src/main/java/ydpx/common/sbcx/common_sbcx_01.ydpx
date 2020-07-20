@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+      <log editor="0000(离线)" edittime="2017-09-7 13:46:02"/>
+      <log editor="Y00585(离线)" edittime="2018-11-05 13:18:29"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[
+    //页面加载后执行 
+				var $DialogYw;
+				var $DialogTHYY;
+				var $dialog = ydl.makeDialog('sbmxlist_panel',{
+					title:'申报明细信息',
+					shown: function(){
+						//重新设置列表列宽
+						ydl.listColWidth('sbmxlist');
+					}
+				});
+   
+	thisTab.pageOnload=function() {
+
+	        //设置可选择日期范围
+		   $('#c_cjsj1').datepicker({
+		   	forceParse: false,
+		  	endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+		   });
+		   //设置可选择日期范围
+		   $('#c_cjsj2').datepicker({
+		   	forceParse: false,
+		  	endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+		   });
+
+	     //关联两个日期控件的起止范围
+	     $('#c_cjsj1').datepicker('changeDate', function(date) {
+	         $('#c_cjsj2').datepicker('setStartDate', date);
+	     });
+	     $('#c_cjsj2').datepicker('changeDate', function(date) {
+	         $('#c_cjsj1').datepicker('setEndDate', date);
+	     });
+
+	    // 获得流程列表
+		ydl.sendCommand('getYwlb',{},function(data){
+			// 设置业务流程下拉列表
+			$('#c_ywlc').html(ydl.common.blankOption + ydl.createOptions($.map(data,function(i,v){
+					return {"value":v,"text":i};
+				}))).combobox('refresh');
+    	});
+    	$(".datalist-header").find("th").eq(8).find("label").css({"width":"193px"});
+    	
+    	$DialogYw = ydl.makeDialog("DialogYw",{
+			title:"取消信息",
+			width:600,
+			height:300,
+			autoOpen:false,
+			modal:true,
+			buttons:{
+				'确定':function(){
+				   if (!ydl.validator( 'reason', {required: true})) return false;
+				   var sbh=$("#sbh").val();
+				   var reason=$("#reason").val();
+				   ydl.sendCommand('cmdQX',{sbh:sbh,reason:reason},function(data,code,msg){
+					if (code != '0000') {
+							ydl.alert({'code':code, 'message':msg});
+						} else {
+							ydl.alert("取消成功");
+							$("#reason").val("");
+							$('#b_query').click();
+							$DialogYw.dialog("close");
+						}
+				    });
+				},
+				'取消':function(){
+					ydl.init.dataList({id: 'ywlist'}, 'refresh', thisTab).done(function () {
+						$DialogYw.dialog("close");
+				   });
+				}
+			}
+		});
+		 $DialogTHYY = ydl.makeDialog('DialogTHYY',{
+				    title:"退回信息",
+					width:600,
+					height:300,
+					autoOpen:false,
+					modal:true
+				});
+				
+	 }
+     $('#b_clear').addIcon('remove').click(function () {
+	 	 $("#c_cjsj1").val("");
+	 	 $("#c_cjsj2").val("");
+	 	 $("#c_sbzt").val("");
+	 	 $("#c_ywlc").val("");
+     })
+     //查询
+     $('#b_query').addIcon('search').click(function () {
+      	var ksrq = $("#c_cjsj1").val();
+	 	var jsrq = $("#c_cjsj2").val();
+	 	var sbzt = $("#c_sbzt").val();
+	 	var wtlcbh = $("#c_ywlc").val();
+	 	ydl.listColWidth('sblist');
+        ydl.init.list('sblist', {"ksrq":ksrq,"jsrq":jsrq,"sbzt":sbzt,"wtlcbh":wtlcbh}, thisTab).done(function(){
+			//判断列表查询为空时，显示
+			ydl.noResultInfo("sblist", "无申报信息！");
+		});
+     });
+    
+	thisTab.list_callback_sblist=function(rows) {
+	  if(rows.length>0){
+		$(rows).each(function(i){
+			var $tr=$(this);
+			//返回凭证信息json格式
+			var prtinfo=$tr.data('hidden-prtinfo');
+			//核心实例号
+			var hxslh=$tr.data('hidden-hxslh');
+			//若凭证信息不为空
+			if(prtinfo != ""){
+				//每条申报信息的凭证数量初始化
+				var r=0;
+				//解析循环凭证信息
+				$.map(prtinfo, function (item) {
+					//打印按钮id
+					btnid="b_list_"+r;
+					//列表中拼接打印凭证按钮
+					$tr.getCell(10).find('p').append("<button id='"+btnid+"' class='btn btn-sm btn-primary' value='"+item.prtfilename+"' style='width:80px' type='button'>打印凭证"+(r+1)+"</button>");
+					//按钮间增加空格
+					$tr.getCell(10).find('p').append("&nbsp;&nbsp;");
+					//按钮悬浮凭证名称设置
+					$tr.getCell(10).find(':button').eq(r).tooltip({title:item.prtname,placement:'top'});	
+					//凭证数量加1
+					r++;
+			    })
+			}
+			//若未返回凭证信息
+			else{
+				//只显示一个打印凭证按钮
+				$(this).getCell(10).find('p').append("<button id='b_list_btn' class='btn btn-sm btn-primary' style='width:80px' type='button'>打印</button>");
+			}
+			var sbzt = ydl.mudic.getValByMask("ish.gg.wf.sbzt","WCL");
+			var rwlx = ydl.mudic.getValByMask("ish.gg.wf.rwlx","YYRW");
+			//状态---成功
+			var cgzt = ydl.mudic.getValByMask("ish.gg.wf.sbzt","CG");
+			// 任务类型为预约任务时 状态为未处理 可以点击取消按钮
+			if($tr.data('hidden-hrwlx') == rwlx && $tr.data('hidden-hsbzt') == sbzt){
+				$tr.getCell(8).find(':button').attr("disabled",false);
+			}else{
+				$tr.getCell(8).find(':button').attr("disabled",true);
+			}
+			//若申报状态不是成功，打印按钮不可用
+			if($tr.data('hidden-hsbzt') != cgzt){
+				$tr.getCell(10).find(':button').attr("disabled",true);
+			}
+			var sbh=$tr.getCell(0).text();
+			var flowid=$tr.data('hidden-hwtlcbh');
+			var hsbzt = $tr.data('hidden-hsbzt')
+			// 增加查看超链接
+			$tr.getCell(0).find('label').html("<a href=\"javascript:pop_up_window(\'"+sbh+"\',\'"+flowid+"\',\'"+hxslh+"\',\'"+hsbzt+"\');\">"+sbh+"</a>");
+			// 点击按钮，取消
+			$tr.getCell(8).find(':button').click(function(){
+				$DialogYw.dialog("open");
+				$("#sbh").val($tr.getCell(0).text());
+			});
+			// 点击明细查询
+			$tr.getCell(9).find(':button').click(function(){
+				$("#sbh").val($tr.getCell(0).text());
+			 	ydl.init.list('sbmxlist', {}, thisTab).done(function(){
+                	$dialog.dialog('open');
+                });
+			});
+			// 点击打印
+			$tr.getCell(10).find(':button').click(function(){
+				//获取文件名称
+				var filename=$(this).val();
+				//sendCommand调用打印方法
+			 	ydl.sendCommand('cmdPrt',{filename:filename},function(data,code,msg){
+					if (code != '00000000') {
+						ydl.alert({'code':code, 'message':msg});
+					}else{
+						//弹出子页面
+					 	ydl.subPage('subpage01', {"pdfKey":data.pdfKey, dialogVersion: 'scroll'},[]);
+					}
+			 	})
+			});
+		});
+	  }
+	}
+	thisTab.list_callback_sbmxlist=function(rows) {
+		  if(rows.length>0){
+			$(rows).each(function(i){
+				var $tr=$(this);
+				var reason_th = $tr.getCell(6).text();
+				
+				// 增加查看退回原因超链接
+				//$tr.getCell(6).find('p').html("<a href=\"javascript:pop_up_window_thyy(\'"+reason_th+"\');\">"+reason_th+"</a>");
+				$tr.getCell(6).find('p').html("<a href=\"javascript:void(0);\">"+reason_th+"</a>");
+				if(reason_th != null && reason_th != ""){
+					$tr.getCell(6).find('p').click(function(){
+						$("#reason_th").html(reason_th);
+						$DialogTHYY.dialog('open');
+					
+					})
+				}
+			});
+		}
+	}
+	window.pop_up_window_thyy = function (reason_th) {
+		$("#reason_th").html(reason_th);
+		$DialogTHYY.dialog('open');
+		
+	 };
+	window.pop_up_window = function (sbh,flowid,hxslh,sbzt) {
+	    ydl.sendCommand('cmdCK',{sbh:sbh,flowid:flowid,hxslh:hxslh,sbzt:sbzt},function(data,code,msg){
+	    	if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+			 	ydl.go(ydl.contexPath+data.url);
+			}
+	    });
+	 };
+	//点击查看按钮事件
+	function goFlow(flowid) {
+	    ydl.go(ydl.contexPath+"/flow/menu/"+flowid);
+	 };
+//表单提交时执行
+ thisTab.form_validate=function(){
+
+	return true;
+}
+
+]]></script>
+  </scripts>
+  <dataset>
+    <sql id="ds1" desc="查询申报列表" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="os_external">DECLARE_02</sql>
+    <sql id="ds2" desc="查询申报明细列表" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="os_external">DECLARE_06</sql>
+  </dataset>
+  <ajax/>
+  <containers>
+    <container uid="container-1e87aa73a90d4cde809407ef830233ea" type="list" layout="auto-height" cols="8" id="sbmxlist" dataset="ds2" caption="申报明细信息">
+      <listhead>
+        <component type="label">序号</component>
+        <component type="label" width="120">申报号</component>
+        <component type="label">实例号</component>
+        <component type="label">操作员账号</component>
+        <component type="label">操作员姓名</component>
+        <component type="label">申报状态</component>
+        <component type="label" width="120">退回原因</component>
+        <component type="label">建立时间</component>
+      </listhead>
+      <listbody>
+        <component type="plain">=ds2.xh[#]</component>
+        <component type="plain">=ds2.sbh[#]</component>
+        <component type="plain">=ds2.slh[#]</component>
+        <component type="plain">=ds2.czyzh[#]</component>
+        <component type="plain">=ds2.czyxm[#]</component>
+        <component type="plain">=getMulData("ish.gg.wf.sbzt",ds2.sbzt[#])</component>
+        <component type="plain">=ds2.reason[#]</component>
+        <component type="plain">=ds2.cjsj[#]</component>
+      </listbody>
+      <hidden/>
+    </container>
+    <container uid="container-00ec40a599474525ac47f6ff47c1796b" type="table" layout="connect" cols="4" id="ct_query">
+      <component type="label" form="c_ywlc">业务名称：</component>
+      <component id="c_ywlc" type="multivalue" subtype="combo" combobutton="true" combofuzzy="true" combomark="false" combodirty="false" fromdic="false">
+        <sql datasource="workflow.cfg.xml"/>
+      </component>
+      <component type="label">申报状态：</component>
+      <component id="c_sbzt" type="multivalue" subtype="select" value="=c_sbzt" fromdic="false">
+        <sql datasource="os_mdic">ish.gg.wf.sbzt</sql>
+        <item label="请选择..."/>
+        <item label="=PARAVAL" value="=PARANAME"/>
+      </component>
+      <component type="label" for="c_cjsj1">创建时间：</component>
+      <component type="input" subtype="date" id="c_cjsj1" fromdic="false" prefix="从" datatype="yyyy-mm-dd" maxlength="10"/>
+      <component type="label"/>
+      <component type="input" subtype="date" id="c_cjsj2" fromdic="false" prefix="至" datatype="yyyy-mm-dd" maxlength="10"/>
+    </container>
+    <container uid="container-017083930c79477895ecbdbb5947fd6f" type="box" layout="buttons" id="ct_query_button">
+      <component id="b_query" type="button" subtype="button">查询</component>
+      <component id="b_clear" type="button" subtype="button">清空</component>
+    </container>
+    <container uid="container-1e87aa73a90d4cde809407ef810233ea" type="list" layout="auto-height" cols="11" id="sblist" dataset="ds1" caption="申报信息">
+      <listhead>
+        <component type="label">申报号</component>
+        <component type="label">标题</component>
+        <component type="label">业务名称</component>
+        <component type="label">机构类型</component>
+        <component type="label">指定机构名称</component>
+        <component type="label">任务类型</component>
+        <component type="label">申报状态</component>
+        <component type="label">建立时间</component>
+        <component type="label">取消</component>
+        <component type="label">明细查询</component>
+        <component type="label">打印</component>
+      </listhead>
+      <listbody>
+        <component type="label">=ds1.sbh[#]</component>
+        <component type="plain">=ds1.title[#]</component>
+        <component type="plain">=ds1.wtlcmc[#]</component>
+        <component type="plain">=getMulData("ish.gg.wf.jglx",ds1.jglx[#])</component>
+        <component type="plain">=ds1.zdjgmc[#]</component>
+        <component type="plain">=getMulData("ish.gg.wf.rwlx",ds1.rwlx[#])</component>
+        <component type="plain">=getMulData("ish.gg.wf.sbzt",ds1.sbzt[#])</component>
+        <component type="plain">=ds1.cjsj[#]</component>
+        <component type="button" subtype="button">取消</component>
+        <component type="button" subtype="button">明细查询</component>
+        <component type="plain"/>
+      </listbody>
+      <hidden>
+        <component id="hrwlx" type="hidden">=ds1.rwlx[#]</component>
+        <component id="hsbzt" type="hidden">=ds1.sbzt[#]</component>
+        <component id="hwtlcbh" type="hidden">=ds1.wtlcbh[#]</component>
+        <component id="prtinfo" type="hidden">=ds1.prtinfo[#]</component>
+        <component id="wtslh" type="hidden">=ds1.wtslh[#]</component>
+        <component id="hxslh" type="hidden">=ds1.hxslh[#]</component>
+      </hidden>
+    </container>
+    <container uid="container-6f266ee647e6407ab535453bde9101a7" type="table" layout="fit" cols="4" id="DialogYw">
+      <component type="label" for="reason">取消原因：</component>
+      <component id="reason" type="input" subtype="textarea" fromdic="false" required="true" colspan="3"/>
+    </container>
+    <container uid="container-6f266ee647e6407ab535453bde9101a8" type="table" layout="fit" cols="4" id="DialogTHYY">
+      <component type="label" for="reason_th">退回原因：</component>
+      <component id="reason_th" type="input" subtype="textarea" fromdic="false" colspan="3" height="1000" readonly="true"/>
+    </container>
+    <container uid="container-1a3ab3917dfc434289700d0bbd1531b6" type="box" layout="tips" id="tr_info">
+      <component id="info" keep="true" type="plain"><![CDATA[
+        <b>※任务类型解释：</b>
+          <ol>  
+            <li>预办理任务：需要客户携带相关材料去网点办理。</li>
+            <li>待办理任务：需要客户正确上传相关材料，柜员在线审批，无需去网点办理。</li>
+          </ol>]]></component>
+    </container>
+    <container type="hidden" id="aa" uid="container-481154b6c25721119e65495b6a588460">
+      <component id="sbrzh" type="hidden">=_OPERID</component>
+      <component id="yhbs" type="hidden">=getUserExtInfo("khbs")</component>
+      <component id="sbh" type="hidden"/>
+    </container>
+  </containers>
+</page>

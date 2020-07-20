@@ -1,0 +1,30 @@
+/* 附件上传 */
+.flow_attachment { border: 1px solid #D0D0D0; margin-bottom: 10px; padding: 0; font-family: "Microsoft Yahei", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.flow_attachment h3 { color: #0084bb; font-size: 16px; line-height: 36px; margin: 0; background: #f4f4f7 url(../image/bg_files_header.png) repeat-x; height: 38px; border-bottom: 1px solid #dedede; }
+.flow_attachment h3 span { display: inline-block; height: 37px; width: 200px; text-align: center; background: #f0f0f3 url(../image/bg_files_header.png) repeat-x 0 -38px; border-right: 1px solid #f1f1f2;}
+.flow_attachment h3 i { float:right; font-style:normal; font-size: 12px; margin-right: 15px; color: #aaa; }
+.flow_attachment .items { min-height: 300px; margin: 0; overflow-y: auto; background-color: #fff;}
+.flow_attachment .nav-tabs { width: 200px; height: 100%; border-right: 1px solid #DEDEDE; border-bottom: 0; padding: 0; background-color: #f1f1f1; float: left; margin-bottom: 0; }
+.flow_attachment .nav-tabs .badge { margin-left: 5px; background-color: #f40f0f; }
+.flow_attachment .nav-tabs li, .flow_attachment .nav-tabs li.active { width: 100%; margin: 0; padding: 0;}
+.flow_attachment .nav-tabs li a { padding: 5px 10px; font-size: 16px; height: 58px; margin: 0; border-style: solid; border-width: 1px; border-radius: 0; border-color: transparent transparent #dedede transparent; }
+.flow_attachment .nav-tabs li.active a { border-color: transparent #fff #dedede transparent; background-color: #fff; margin-right: -1px;}
+.flow_attachment .nav-tabs li:first-child.active a { border-top-color: #fff; }
+.flow_attachment .tab-content { background-color: #fff; height: 100%; }
+.flow_attachment .tab-pane { height: 100%; padding: 15px; margin-left: 200px; }
+.flow_attachment .tab-pane li { position: relative; float: left; border: 3px solid #c6c6c6; height: 172px; width: 132px; margin: 15px; }
+.flow_attachment .tab-pane button { visibility: hidden; position: relative; left: -3px; }
+.flow_attachment .tab-pane li:hover button { visibility: visible; }
+.flow_attachment .tab-pane a { display: block; width: 54px; height: 64px; background: url(../image/ico_files.png) no-repeat; margin: 30px auto 0; cursor: pointer; }
+.flow_attachment a._jpg, .flow_attachment a._png, .flow_attachment a._gif { background-position: -216px 0; }
+.flow_attachment a._doc, .flow_attachment a._docx { background-position: -54px 0; }
+.flow_attachment a._xls, .flow_attachment a._xlsx { background-position: -108px 0; }
+.flow_attachment a._ppt, .flow_attachment a._pptx { background-position: -324px 0; }
+.flow_attachment a._pdf { background-position: -162px 0; }
+.flow_attachment a._rar, .flow_attachment a._zip, .flow_attachment a._7z { background-position: -270px 0; }
+.flow_attachment a._mp3, .flow_attachment a._wav, .flow_attachment a._wma { background-position: -378px 0; }
+.flow_attachment a._mp4, .flow_attachment a._avi, .flow_attachment a._wmv, .flow_attachment a._rmvb, .flow_attachment a._mkv { background-position: -432px 0; }
+.flow_attachment a.add { background-position: -486px 0; }
+.flow_attachment .tab-pane li p * { position: absolute; width: 100%; height: 50px; resize:none; bottom: 0; border-style: solid; border-width: 1px 0 0; border-color: #D1D1D1; text-align: center; padding: 5px; word-break: break-all; }
+.flow_attachment .tab-pane li p textarea:focus, .flow_attachment .tab-pane li p textarea:hover { color: #5e5e5e; background-color: #ffd; }
+.flow_attachment .tab-pane li p span { color: #888; cursor: default; overflow-y: auto; }

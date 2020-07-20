@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHQTQJE01" tranName="获取提取金额">
+        <comps>
+            <comp compCode="CompHQTQJE01" compName="获取提取金额" expression="">
+            	<inParams>
+            		<inParam paramCode="tqyy" ignoreNull="0" paramName="提取原因" paramValue="tqyy" paramType="string(0,-1)"/>
+                    <inParam paramCode="jkhtbh" ignoreNull="1" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(0,-1)"/>
+                    <inParam paramCode="sdhtbh" ignoreNull="1" paramName="商贷合同编号" paramValue="sdhtbh" paramType="string(0,-1)"/>
+            		<inParam paramCode="hklx" ignoreNull="0" paramName="还款类型" paramValue="hklx" paramType="string(0,-1)"/>
+            	</inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="tqje" paramName="提取金额" paramType="string(0,-1)" paramValue="tqje"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

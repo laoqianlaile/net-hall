@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="contexPath" content="${CONTEXT_PATH}">
+<meta name="ydpxTemplate" content="0401">
+<meta name="cssTemplate" content="ish02">
+<meta http-equiv="Pragma" content="no-cache">
+<title></title>
+<script type="text/javascript">
+var pageData = ${PAGE_DATA};//PAGE_DATA_END
+var ydpxData = ${YDPX_DATA};//YDPX_DATA_END
+var ydpxScript = ${YDPX_SCRIPT};//YDPX_SCRIPT_END
+</script>
+<link rel="shortcut icon" href="${CONTEXT_PATH}/template/ish02/image/favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="stylesheet" href="${CONTEXT_PATH}/common/lib/css/bootstrap.min.css">
+<link rel="stylesheet" href="${CONTEXT_PATH}/common/lib/css/viewer.min.css">
+<link rel="stylesheet" href="${CONTEXT_PATH}/template/ish02/css/ydl-common-1c8f97c42a.min.css">
+<link rel="stylesheet" href="${CONTEXT_PATH}/template/ish02/css/ydl-theme1-8e35ef0cda.min.css">
+<link rel="stylesheet" href="${CONTEXT_PATH}/template/ish02/custom/custom.css">
+${YDPX_STYLE_INCLUDE}
+</head>
+<body class="line-spacing-S">
+
+<!-- 中间框架 -->
+<div id="page_wrap" class="container-fluid">
+  <div class="page-main-content">
+    <div class="sys-corner">
+      <div class="sys-help">
+        <a href="javascript:void(0)"><img src="${CONTEXT_PATH}/template/ish02/image/icon-help.png" alt="">帮助</a>
+      </div>
+      <div class="sys-kefu">
+        <a href="javascript:void(0)"><img src="${CONTEXT_PATH}/template/ish02/image/icon-kefu.png" alt="">客服</a>
+      </div>
+    </div>
+  <!-- 交易页面 -->
+    <div id="pageMain" class=""></div>
+  </div><!-- .page-main-content end -->
+</div><!-- #page_wrap end -->
+
+<script type="text/template" id="tabsTemplate">
+  <form action="" method="post">
+    <div class="wrap">
+      <div id="pageTabs">
+        <ul class="nav nav-tabs"></ul>
+        <div class="tab-content">
+          <$ for (var i = 0, tab; tab = tabs[i], i < tabs.length; i++) { $>
+          <div class="tab-pane ydpx-page fade<$- i ? "" : " in active"$>" id="pageTab<$=i$>" data-pageid="<$=tab.id$>" data-pagename="<$=tab.name$>">
+            <$- tab.panel $>
+          </div>
+          <$ } $>
+        </div>
+      </div>
+      <!-- 流程附件 -->
+      <div id="flowAttachment" class="container-fluid hidden">
+        <h3><span>附件管理</span><i>点击图标可下载附件文件</i></h3>
+        <div class="row items">
+          <ul class="nav nav-tabs list-group"></ul>
+          <div class="tab-content"></div>
+        </div>
+      </div>
+      <!-- 电子档案 -->
+      <div id="e_record" class="container-fluid hidden">
+        <h3><span>电子档案</span><!-- <i>点击缩略图可查看电子档案文件</i> -->
+          <div id="eFileBase" class="hidden">
+            <input id="eFile" name="e_record_file" type="file" accept="image/jpeg,image/jpg"/>
+            <div class="addFile" >点击加号上传文件</div>
+            <div id="eFileText"></div>
+          </div>
+        </h3>
+        <div class="row items">
+          <ul class="nav nav-tabs list-group"></ul>
+          <div class="tab-content"></div>
+        </div>
+        <div id="eRecCover" class="hidden"></div>
+      </div>
+      <!-- 批量错误 -->
+      <div id="flowBatchError"></div>
+      <!-- 审批意见 -->
+      <$- apply $>
+      <div id="pageFlowButtons"></div>
+    </div>
+  </form>
+  <!-- 附件上传表单 -->
+  <form id="attachment_form" action="" enctype="multipart/form-data" method="post" class="hidden">
+    <input name="attachment_file" type="file" multiple />
+  </form>
+</script>
+<script type="text/template" id="applyTemplate">
+  <div id="approveBox" class="panel">
+    <div class="panel-heading"><span></span>审批意见</div>
+      <div class="panel-body">
+      <div id="approveList" class="collapse">
+        <$ for (var i = 0, rec; rec = applyInfo[i], i < applyInfo.length; i++) { $>
+        <dl>
+          <dt><span></span></dt>
+          <dd><$= rec.operName $></dd>
+          <dd class="apply-result"><$= rec.apply $></dd>
+          <dd><$= rec.time $></dd>
+          <dd><$= rec.memo $></dd>
+        </dl>
+        <$ } $>
+      </div>
+      <a role="button" data-toggle="collapse" href="#approveList" aria-expanded="false" data-length="1">点击展开 <$= applyInfo.length $> 条审批历史记录</a>
+      <dl class="last">
+        <dt><span></span></dt>
+        <dd><$= poolSelect._OPERNAME $></dd>
+        <dd><$= pageData.serverTime $></dd>
+        <dd class="memo"><textarea id="_APPLYMEMO" name="_APPLYMEMO" class="form-control" placeholder="请在这里填写您的审批意见"></textarea></dd>
+      </dl>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</script>
+<script src="${CONTEXT_PATH}/common/lib/js/jquery-3.3.1-with-migrate-3.0.0.min.js"></script>
+<script src="${CONTEXT_PATH}/common/lib/js/viewer.min.js"></script>
+<script src="${CONTEXT_PATH}/template/ish02/js/lib-base-558f3b0385.min.js"></script>
+<script src="${CONTEXT_PATH}/template/ish02/js/lib-plugins-291eaa4c2e.min.js"></script>
+<script src="${CONTEXT_PATH}/template/ish02/js/ydl-common-b174bf16ae.min.js"></script>
+<script src="${CONTEXT_PATH}/template/ish02/js/ydl-0401-468e680459.min.js"></script>
+<script src="${CONTEXT_PATH}/template/ish02/custom/custom.js"></script>
+${HTML_VARIABLE_SCRIPT}
+${YDPX_SCRIPT_INCLUDE}
+</body>
+</html>

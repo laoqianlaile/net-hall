@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFYYSL01" desc="预约跳转示例流程" startPage="step1" isMenu="0" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+	<!-- isMenu="0" 配置此标签，防止预约跳转示例未配置权限访问不到，正常不加此标签   2081-1-9 zhc -->
+	<config>
+		<flowvars>
+			<flowvar name="ym01" desc="信息录入页面">common_exa_yy_01.ydpx</flowvar>
+		</flowvars>
+		<title>=pagetit</title>
+		<buttons>
+	       <button id="T" text="提交" icon="ok"/>
+	    </buttons>
+	</config>
+	<step id="step1" url="=_flowvar_ym01" desc="信息录入" appflag="X" buttonflag="T" in="0" out="0" flowchartkey="1">
+	
+		<init>
+		    <setvar name="pagetit">=_STEPNAME</setvar>
+		</init>
+	</step>
+</flow>

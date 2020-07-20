@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFXMCX01" desc="开发商项目查询" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="开发商项目查询">ln_xmcx_05.ydpx</flowvar>
+			  <flowvar name="ym02" desc="项目详细信息查询">ln_xmcx_02.ydpx,ln_xmcx_03.ydpx,ln_xmcx_04.ydpx</flowvar>
+          </flowvars>
+          <mudics>
+			<mudic key="ish.gg.other.sf" desc="是否"></mudic>
+		  </mudics>
+			<buttons>
+				<button id="H" text="返回首页" icon="home" url="/home"/>
+			</buttons>
+          <title>=pagetit</title>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="开发商项目查询" inCause="getPoolValue('a','NO')=='NO'" appflag="X" buttonflag="H" in="1" out="0">
+		    <init>
+		        <setvar name="pagetit">=_STEPNAME</setvar>
+				<setvar name="rw">r</setvar>
+		    </init>
+		</step>
+		<step id="step2" url="=_flowvar_ym02" desc="项目详细信息查询" appflag="X" buttonflag="f" in="1" out="1" inCause="a=='1'" notoid="step1">
+			<init>
+				<setvar name="pagetit">=_STEPNAME</setvar>
+				<setvar name="rw">r</setvar>
+			</init>
+		</step>
+</flow>

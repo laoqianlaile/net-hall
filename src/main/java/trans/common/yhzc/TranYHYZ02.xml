@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranYHYZ02" tranName="用户银行卡信息和手机号验证">
+        <comps>
+        	<comp compCode="CompYHYZ02" compName="用户银行卡信息和手机号验证" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="xingming" paramName="姓名" paramType="string(0,-1)" paramValue="xingming"/>
+                    <inParam ignoreNull="0" paramCode="zjlx" paramName="证件类型" paramType="string(0,2)" paramValue="zjlx"/>
+                    <inParam ignoreNull="0" paramCode="zjhm" paramName="证件号码" paramType="string(0,-1)" paramValue="zjhm"/>
+                    <inParam ignoreNull="0" paramCode="yh" paramName="选择的银行" paramType="string(0,-1)" paramValue="yh"/>
+                    <inParam ignoreNull="0" paramCode="yhkh" paramName="银行卡号" paramType="string(0,-1)" paramValue="yhkh"/>
+                    <inParam ignoreNull="0" paramCode="yhylsjh" paramName="用户预留手机号" paramType="string(0,-1)" paramValue="yhylsjh"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

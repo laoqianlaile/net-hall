@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWHJ02" tranName="获取单位汇缴信息">
+        <comps>
+        	<comp compCode="CompDWHJ02" compName="获取单位汇缴信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="ksny" paramName="开始年月" paramType="string(0,7)" paramValue="ksny"/>
+                    <inParam ignoreNull="0" paramCode="zzny" paramName="终止年月" paramType="string(0,7)" paramValue="zzny"/>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="yjje" paramName="应缴金额" paramType="string(0,-1)" paramValue="yjje"/>
+					<outParam ignoreNull="0" paramCode="hjrs" paramName="汇缴人数" paramType="string(0,-1)" paramValue="hjrs"/>
+					<outParam ignoreNull="0" paramCode="hjys" paramName="汇缴月数" paramType="string(0,-1)" paramValue="hjys"/>
+					<outParam ignoreNull="0" paramCode="jkfs" paramName="缴款方式" paramType="string(0,-1)" paramValue="jkfs"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

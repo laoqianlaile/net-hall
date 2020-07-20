@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWHJ03" tranName="计算暂存户转出金额">
+        <comps>
+        	<comp compCode="CompDWHJ03" compName="计算暂存户转出金额" expression="">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="yjje" paramName="应缴金额" paramType="string(0,-1)" paramValue="yjje"/>
+                    <inParam ignoreNull="0" paramCode="zchkyye" paramName="暂存户可用余额" paramType="string(0,-1)" paramValue="zchkyye"/>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="zchzcje" paramName="暂存户转出金额" paramType="string(0,-1)" paramValue="zchzcje"/>
+					<outParam ignoreNull="0" paramCode="jg" paramName="计算结果" paramType="string(0,-1)" paramValue="jg"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

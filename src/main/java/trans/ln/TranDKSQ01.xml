@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDKSQ01" tranName="贷款申请">
+        <comps>
+            <comp compCode="CompDKSQ01" compName="获取登录人的个人信息" expression="#flag=='instep1'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompDKSQ02" compName="查询并展示当前所选行的信息" expression="#flag=='hqdqhxx'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            		<inParam ignoreNull="1" paramCode="seqno" paramName="序号" paramType="int" paramValue="seqno"/>
+            		<inParam ignoreNull="1" paramCode="dpbusitype" paramName="类型" paramType="string(1,2)" paramValue="dpbusitype"/>
+            	</inParams>
+            	<outParams>
+            		<outParam paramCode="jkrxm" ignoreNull="1" paramName="借款人姓名" paramValue="jkrxm" paramType="string(0,120)"/>
+            		<outParam paramCode="xingbie" ignoreNull="1" paramName="性别" paramValue="xingbie" paramType="string(0,1)"/>
+            		<outParam paramCode="hyzk" ignoreNull="1" paramName="婚姻状况" paramValue="hyzk" paramType="string(0,120)"/>
+            		<outParam paramCode="jtzz" ignoreNull="1" paramName="家庭住址" paramValue="jtzz" paramType="string(0,255)"/>
+            		<outParam paramCode="csny" ignoreNull="1" paramName="出生年月" paramValue="csny" paramType="string(0,6)"/>
+            		<outParam paramCode="dwmc" ignoreNull="1" paramName="单位名称" paramValue="dwmc" paramType="string(0,255)"/>
+            		<outParam paramCode="sjhm" ignoreNull="1" paramName="手机号码" paramValue="sjhm" paramType="string(0,11)"/>
+            		<outParam paramCode="dwdh" ignoreNull="1" paramName="单位电话" paramValue="dwdh" paramType="string(0,20)"/>
+            		<outParam paramCode="dwdz" ignoreNull="1" paramName="单位地址" paramValue="dwdz" paramType="string(0,255)"/>
+            		<outParam paramCode="grzh" ignoreNull="1" paramName="个人账户" paramValue="grzh" paramType="string(0,20)"/>
+            		<outParam paramCode="zhiye" ignoreNull="1" paramName="职业" paramValue="zhiye" paramType="string(0,5)"/>
+            		<outParam paramCode="khrq" ignoreNull="1" paramName="开户日期" paramValue="khrq" paramType="string(0,10)"/>
+            		<outParam paramCode="qshjny" ignoreNull="1" paramName="起始汇缴年月" paramValue="qshjny" paramType="string(0,6)"/>
+            		<outParam paramCode="zhhjny" ignoreNull="1" paramName="终止汇缴年月" paramValue="zhhjny" paramType="string(0,6)"/>
+            		<outParam paramCode="grjcjs" ignoreNull="1" paramName="个人缴存基数" paramValue="grjcjs" paramType="double(18,2)"/>
+            		<outParam paramCode="yjcehj" ignoreNull="1" paramName="月缴存额" paramValue="yjcehj" paramType="double(18,2)"/>
+            		<outParam paramCode="grzhye" ignoreNull="1" paramName="个人账户余额" paramValue="grzhye" paramType="double(18,2)"/>
+            		<outParam paramCode="jkrzjhm" ignoreNull="1" paramName="借款人证件号码" paramValue="jkrzjhm" paramType="string(0,20)"/>
+            		<outParam paramCode="jkrzjlx" ignoreNull="1" paramName="借款人证件类型" paramValue="jkrzjlx" paramType="string(0,2)"/>
+            		<outParam paramCode="zhiwu" ignoreNull="1" paramName="职务" paramValue="zhiwu" paramType="string(0,5)"/>
+            		<outParam paramCode="zhichen" ignoreNull="1" paramName="职称" paramValue="zhichen" paramType="string(0,5)"/>
+            		<outParam paramCode="xueli" ignoreNull="1" paramName="学历" paramValue="xueli" paramType="string(0,5)"/>
+            		<outParam paramCode="grzhzt" ignoreNull="1" paramName="个人账户状态" paramValue="grzhzt" paramType="string(0,2)"/>
+            		<outParam paramCode="jkrlx" ignoreNull="1" paramName="借款人类型" paramValue="jkrlx" paramType="string(0,1)"/>
+            		<outParam paramCode="cdgx" ignoreNull="1" paramName="参贷关系" paramValue="cdgx" paramType="string(0,1)"/>
+            	</outParams>
+            </comp>
+            <comp compCode="CompDKSQ03" compName="根据类型和序号删除相应信息" expression="#flag=='delete'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            		<inParam ignoreNull="1" paramCode="seqno" paramName="序号" paramType="int" paramValue="seqno"/>
+            		<inParam ignoreNull="1" paramCode="dpbusitype" paramName="类型" paramType="string(1,2)" paramValue="dpbusitype"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompDKSQ04" compName="添加借款人" expression="#flag=='add'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            		<inParam ignoreNull="1" paramCode="jkrlx" paramName="借款人类型" paramType="string(1,1)" paramValue="jkrlx"/>
+            		<inParam ignoreNull="1" paramCode="cdgx" paramName="参贷关系" paramType="string(1,1)" paramValue="cdgx"/>
+            		<inParam ignoreNull="1" paramCode="jkrxm" paramName="借款人姓名" paramType="string(1,120)" paramValue="jkrxm"/>
+            		<inParam ignoreNull="1" paramCode="xingbie" paramName="性别" paramType="string(1,1)" paramValue="xingbie"/>
+            		<inParam ignoreNull="1" paramCode="jkrzjlx" paramName="借款人证件类型" paramType="string(1,2)" paramValue="jkrzjlx"/>
+            		<inParam ignoreNull="1" paramCode="jkrzjhm" paramName="借款人证件号码" paramType="string(1,20)" paramValue="jkrzjhm"/>
+            		<inParam ignoreNull="1" paramCode="csny" paramName="出生年月" paramType="string(1,6)" paramValue="csny"/>
+            		<inParam ignoreNull="1" paramCode="hyzk" paramName="婚姻状况" paramType="string(1,2)" paramValue="hyzk"/>
+            		<inParam ignoreNull="1" paramCode="zhiye" paramName="职业" paramType="string(0,2)" paramValue="zhiye"/>
+            		<inParam ignoreNull="1" paramCode="zhiwu" paramName="职务" paramType="string(0,4)" paramValue="zhiwu"/>
+            		<inParam ignoreNull="1" paramCode="zhichen" paramName="职称" paramType="string(0,3)" paramValue="zhichen"/>
+            		<inParam ignoreNull="1" paramCode="xueli" paramName="学历" paramType="string(0,2)" paramValue="xueli"/>
+            		<inParam ignoreNull="1" paramCode="sjhm" paramName="手机号码" paramType="string(0,11)" paramValue="sjhm"/>
+            		<inParam ignoreNull="1" paramCode="dwdh" paramName="单位电话" paramType="string(0,20)" paramValue="dwdh"/>
+            		<inParam ignoreNull="1" paramCode="jtzz" paramName="家庭住址" paramType="string(0,255)" paramValue="jtzz"/>
+            		<inParam ignoreNull="1" paramCode="dwmc" paramName="单位名称" paramType="string(0,255)" paramValue="dwmc"/>
+            		<inParam ignoreNull="1" paramCode="dwdz" paramName="单位地址" paramType="string(0,255)" paramValue="dwdz"/>
+            		<inParam ignoreNull="1" paramCode="grzh" paramName="个人账号" paramType="string(0,20)" paramValue="grzh"/>
+            		<inParam ignoreNull="1" paramCode="grzhzt" paramName="个人账户状态" paramType="string(0,-1)" paramValue="grzhzt"/>
+            		<inParam ignoreNull="1" paramCode="khrq" paramName="开户日期" paramType="string(0,-1)" paramValue="khrq"/>
+            		<inParam ignoreNull="1" paramCode="qshjny" paramName="起始汇缴年月" paramType="string(0,-1)" paramValue="qshjny"/>
+            		<inParam ignoreNull="1" paramCode="jzny" paramName="缴至年月" paramType="string(0,-1)" paramValue="jzny"/>
+            		<inParam ignoreNull="1" paramCode="grjcjs" paramName="个人缴存基数" paramType="string(0,-1)" paramValue="grjcjs"/>
+            		<inParam ignoreNull="1" paramCode="yjce" paramName="月缴存额" paramType="string(0,-1)" paramValue="yjce"/>
+            		<inParam ignoreNull="1" paramCode="grzhye" paramName="个人账户余额" paramType="string(0,-1)" paramValue="grzhye"/>
+            		<inParam ignoreNull="1" paramCode="seqno" paramName="序号" paramType="int" paramValue="seqno"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompDKSQ05" compName="获取贷款利率参数" expression="#flag=='instep1'">
+            	<outParams>
+            		<outParam ignoreNull="1" paramCode="downFiveRate" paramName="五年以下利率" paramType="string(0,-1)" paramValue="downFiveRate"/>
+            		<outParam ignoreNull="1" paramCode="upFiveRate" paramName="五年以上利率" paramType="string(0,-1)" paramValue="upFiveRate"/>
+            		<outParam ignoreNull="1" paramCode="llfdbl" paramName="利率浮动比例" paramType="string(0,-1)" paramValue="llfdbl"/>
+            	</outParams>
+            </comp>
+            <comp compCode="CompDKSQ06" compName="获取月还款额" expression="#flag=='getyhke'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="dkje" paramName="贷款金额" paramType="double(18,2)" paramValue="dkje"/>
+            		<inParam ignoreNull="1" paramCode="dkqx" paramName="贷款期限" paramType="int" paramValue="dkqx"/>
+            		<inParam ignoreNull="1" paramCode="dkhkfs" paramName="贷款还款方式" paramType="string(1,2)" paramValue="dkhkfs"/>
+            		<inParam ignoreNull="1" paramCode="dklx" paramName="贷款类型" paramType="string(1,2)" paramValue="dklx"/>
+            		<inParam ignoreNull="1" paramCode="dntfdk" paramName="第N套房贷款" paramType="string(1,2)" paramValue="dntfdk"/>
+            	</inParams>
+            	<outParams>
+            		<outParam ignoreNull="1" paramCode="yhke" paramName="月还款额" paramType="string(0,-1)" paramValue="yhke"/>
+                </outParams>
+            </comp>
+            <comp compCode="CompDKSQ07" compName="获取全部支行" expression="#flag=='instep1'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompDKSQ08" compName="共有产权人信息检查" expression="#flag=='checkgycqr'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompDKSQ09" compName="复制借款人" expression="#flag=='copyjkr'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            		<inParam ignoreNull="1" paramCode="dpbusitype" paramName="类型" paramType="string(1,2)" paramValue="dpbusitype"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompDKSQ10" compName="提交前对信息进行校验" expression="#flag=='outstep1'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompDKSQ11" compName="抵押信息检查" expression="#flag=='checkdyxx'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompDKSQ12" compName="保证信息检查" expression="#flag=='checkbzxx'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            	</inParams>
+            </comp>
+            <comp compCode="CompDKSQ13" compName="提交贷款申请" expression="#flag=='tjxx'">
+            	<inParams>
+            		<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            		<inParam ignoreNull="0" paramCode="fwxz" paramName="房屋性质" paramType="string(1,2)" paramValue="fwxz"/>
+            		<inParam ignoreNull="0" paramCode="dntfdk" paramName="第N套房贷款" paramType="string(1,2)" paramValue="dntfdk"/>
+            		<inParam ignoreNull="1" paramCode="kfsmc" paramName="开发商名称" paramType="string(0,-1)" paramValue="kfsmc"/>
+            		<inParam ignoreNull="1" paramCode="xmmc" paramName="项目名称" paramType="string(0,-1)" paramValue="xmmc"/>
+            		<inParam ignoreNull="0" paramCode="gfdz" paramName="购房地址" paramType="string(1,255)" paramValue="gfdz"/>
+            		<inParam ignoreNull="0" paramCode="fwjzmj" paramName="房屋建筑面积" paramType="double(10,4)" paramValue="fwjzmj"/>
+            		<inParam ignoreNull="0" paramCode="fwtnmj" paramName="房屋套内面积" paramType="double(10,4)" paramValue="fwtnmj"/>
+            		<inParam ignoreNull="0" paramCode="fwdj" paramName="房屋单价" paramType="double(18,2)" paramValue="fwdj"/>
+            		<inParam ignoreNull="0" paramCode="fwzj" paramName="房屋总价" paramType="double(18,2)" paramValue="fwzj"/>
+            		<inParam ignoreNull="1" paramCode="fwyt" paramName="开发商房屋用途" paramType="string(0,-1)" paramValue="fwyt"/>
+            		<inParam ignoreNull="0" paramCode="sffq" paramName="是否付清" paramType="string(1,2)" paramValue="sffq"/>
+            		<inParam ignoreNull="0" paramCode="gfsfk" paramName="购房首付款" paramType="double(18,2)" paramValue="gfsfk"/>
+            		<inParam ignoreNull="0" paramCode="gfrq" paramName="购房日期" paramType="string(1,10)" paramValue="gfrq"/>
+            		<inParam ignoreNull="0" paramCode="jfrq" paramName="交房日期" paramType="string(1,10)" paramValue="jfrq"/>
+            		<inParam ignoreNull="0" paramCode="gflx" paramName="现房/期房" paramType="string(1,2)" paramValue="gflx"/>
+            		<inParam ignoreNull="0" paramCode="gfhtbh" paramName="购房合同编号" paramType="string(1,20)" paramValue="gfhtbh"/>
+            		<inParam ignoreNull="1" paramCode="gytdsyz" paramName="国有土地使用证" paramType="string(0,-1)" paramValue="gytdsyz"/>
+            		<inParam ignoreNull="1" paramCode="jsghxkz" paramName="建设规划许可证" paramType="string(0,-1)" paramValue="jsghxkz"/>
+            		<inParam ignoreNull="1" paramCode="jsydxkz" paramName="建设用地许可证" paramType="string(0,-1)" paramValue="jsydxkz"/>
+            		<inParam ignoreNull="1" paramCode="gtspd" paramName="国土审批单" paramType="string(0,-1)" paramValue="gtspd"/>
+            		<inParam ignoreNull="1" paramCode="jttdsyz" paramName="集体土地使用证" paramType="string(0,-1)" paramValue="jttdsyz"/>
+            		<inParam ignoreNull="0" paramCode="dklx" paramName="贷款类型" paramType="string(1,2)" paramValue="dklx"/>
+            		<inParam ignoreNull="0" paramCode="dkdblx" paramName="贷款担保类型" paramType="string(1,2)" paramValue="dkdblx"/>
+            		<inParam ignoreNull="0" paramCode="dkhkfs" paramName="贷款还款方式" paramType="string(1,2)" paramValue="dkhkfs"/>
+            		<inParam ignoreNull="0" paramCode="swtyhmc" paramName="受委托银行名称" paramType="string(1,20)" paramValue="swtyhmc"/>
+            		<inParam ignoreNull="0" paramCode="sqje" paramName="申请金额" paramType="double(18,2)" paramValue="sqje"/>
+            		<inParam ignoreNull="0" paramCode="sqqx" paramName="申请期限" paramType="int" paramValue="sqqx"/>
+            		<inParam ignoreNull="0" paramCode="jtysr" paramName="家庭月收入" paramType="double(18,2)" paramValue="jtysr"/>
+            		<inParam ignoreNull="1" paramCode="skrlx" paramName="收款人类型" paramType="string(0,2)" paramValue="skrlx"/>
+            		<inParam ignoreNull="1" paramCode="skrzhmc" paramName="收款账号名称" paramType="string(0,255)" paramValue="skrzhmc"/>
+            		<inParam ignoreNull="1" paramCode="skrkhyhmc" paramName="收款人开户银行名称" paramType="string(0,20)" paramValue="skrkhyhmc"/>
+            		<inParam ignoreNull="1" paramCode="sfkrzhhm" paramName="收款人账户号码" paramType="string(0,30)" paramValue="sfkrzhhm"/>
+            	</inParams>
+            </comp>
+			<comp compCode="CompDKSQ14" compName="计算最高贷款额度年限" expression="#flag=='jsdked'">
+				<inParams>
+					<inParam ignoreNull="1" paramCode="dntfdk" paramName="第N套房贷款" paramType="string(1,2)" paramValue="dntfdk"/>
+					<inParam ignoreNull="1" paramCode="fwzj" paramName="房屋总价" paramType="double(18,2)" paramValue="fwzj"/>
+					<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+				</inParams>
+				<outParams>
+					<outParam ignoreNull="1" paramCode="zgdked" paramName="最高贷款额度" paramType="string(0,-1)" paramValue="zgdked"/>
+					<outParam ignoreNull="1" paramCode="zgdknx" paramName="最高贷款年限" paramType="string(0,-1)" paramValue="zgdknx"/>
+				</outParams>
+			</comp>
+        </comps>
+    </tran>
+</trans>

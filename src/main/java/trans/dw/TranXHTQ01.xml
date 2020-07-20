@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranXHTQ01" tranName="销户提取">
+        <comps>
+            <comp compCode="CompXHTQ01" compName="计算提取金额" expression="#flag=='jstqje'">
+                <inParams>
+                    <inParam paramCode="grzh" ignoreNull="0" paramName="个人账号" paramValue="#getUserExtInfo('grzh')" paramType="string(1,20)"/>
+                    <inParam paramCode="tqyy" ignoreNull="1" paramName="提取原因" paramValue="tqyy" paramType="string(0,-1)"/>
+                </inParams>
+                <outParams>
+                    <outParam paramCode="tqlx" ignoreNull="1" paramName="提取利息" paramValue="tqlx" paramType="double(18,2)"/>
+                    <outParam paramCode="tqje" ignoreNull="1" paramName="提取金额" paramValue="tqje" paramType="double(18,2)"/>
+                </outParams>
+            </comp>
+        	<comp compCode="CompXHTQ02" compName="销户提取提交" expression="#flag=='tjxx'">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="grzh" paramName="个人账号" paramType="string(0,-1)" paramValue="grzh"/>
+                    <inParam ignoreNull="0" paramCode="grzhzt" paramName="个人账户状态" paramType="string(0,-1)" paramValue="grzhzt"/>
+                    <inParam ignoreNull="0" paramCode="hjbz" paramName="户籍标志" paramType="string(0,-1)" paramValue="hjbz"/>
+                    <inParam ignoreNull="0" paramCode="zhye" paramName="账户余额" paramType="string(0,-1)" paramValue="zhye"/>
+                    <inParam ignoreNull="0" paramCode="sjhm" paramName="手机号码" paramType="string(0,-1)" paramValue="sjhm"/>
+                    <inParam ignoreNull="0" paramCode="sfydk" paramName="是否有贷款" paramType="string(0,-1)" paramValue="sfydk"/>
+                    <inParam ignoreNull="0" paramCode="ssjg" paramName="所属机构" paramType="string(0,-1)" paramValue="ssjg"/>
+                    <inParam ignoreNull="0" paramCode="dwzh" paramName="单位账号" paramType="string(0,-1)" paramValue="dwzh"/>
+                    <inParam ignoreNull="0" paramCode="dwmc" paramName="单位名称" paramType="string(0,-1)" paramValue="dwmc"/>
+                    <inParam ignoreNull="0" paramCode="tqyy" paramName="提取原因" paramType="string(0,-1)" paramValue="tqyy"/>
+                    <inParam ignoreNull="0" paramCode="sctqrq" paramName="上次提取日期" paramType="string(0,-1)" paramValue="sctqrq"/>
+                    <inParam ignoreNull="0" paramCode="jsfs" paramName="结算方式" paramType="string(0,-1)" paramValue="jsfs"/>
+                    <inParam ignoreNull="0" paramCode="skrkhyh" paramName="收款人开户银行" paramType="string(0,-1)" paramValue="skrkhyh"/>
+                    <inParam ignoreNull="0" paramCode="skryhzh" paramName="收款人银行账号" paramType="string(0,-1)" paramValue="skryhzh"/>
+                    <inParam ignoreNull="0" paramCode="skrzhmc" paramName="收款人账户名称" paramType="string(0,-1)" paramValue="skrzhmc"/>
+                    <inParam ignoreNull="0" paramCode="tqje" paramName="提取金额" paramValue="tqje" paramType="double(18,2)" />
+                    <inParam ignoreNull="0" paramCode="jymm" paramName="交易密码" paramType="string(0,-1)" paramValue="jymm"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

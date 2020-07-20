@@ -1,0 +1,42 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2018-5-30</tr_acdt>
+		<tr_time>2018-5-30 16:47:07</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<!-- <particular_code>E01010</particular_code>
+        <particular_info>批量数据错误！</particular_info> -->
+		<file>=filename</file>
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+			<dwzh des="单位账号">110108010323820</dwzh>
+			<dwmc des="单位名称">华信永道（北京）科技股份有限公司</dwmc>
+			<tyshxydm des="统一社会信用代码">12345678</tyshxydm>
+			<zzjgdm des="组织机构代码">1234567890</zzjgdm>
+			<dwdz des="单位地址">长春市南关区生态广场以东,证大立方大厦</dwdz>
+			<dwfrdbxm des="单位法人代表姓名">***</dwfrdbxm>
+			<dwfrdbzjlx des="单位法人代表证件类型">01</dwfrdbzjlx>
+			<dwfrdbzjhm des="单位法人代表证件号码">220110196709128313</dwfrdbzjhm>
+			<dwfrlxdh des="单位法人联系电话">18666666666</dwfrlxdh>
+			<dwsbzh des="单位社保账号">104836345</dwsbzh>
+			<gszch des="工商注册号">Z88974732</gszch>
+			<dwsshy des="单位所属行业">I</dwsshy>
+			<dwxz des="单位性质">9</dwxz>
+			<dwlsgx des="单位隶属关系">40</dwlsgx>
+			<dwjjlx des="单位经济类型">10</dwjjlx>
+			<dwyb des="单位邮编">130500</dwyb>
+			<dwdzxx des="单位电子信箱">dw@yondervision.com.cn</dwdzxx>
+			<dwslrq des="单位设立日期">2008-06-04</dwslrq>
+			<dwfxr des="单位发薪日">07</dwfxr>
+			<zgbm des="主管部门">长春市工商局</zgbm>
+			<sftsba des="是否托收备案">1</sftsba>
+	</body>
+</root>

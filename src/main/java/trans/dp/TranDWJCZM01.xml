@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWJCZM01" tranName="获取单位缴存证明信息">
+        <comps>
+            <comp compCode="CompDWJCZM01" compName="获取单位缴存证明信息" expression="">
+                <outParams>
+                    <outParam ignoreNull="0" paramCode="khrq" paramName="开户日期" paramType="String(0,-1)" paramValue="khrq"/>
+                    <outParam ignoreNull="0" paramCode="dwzhzt" paramName="单位账户状态" paramType="String(0,-1)" paramValue="dwzhzt"/>
+                    <outParam ignoreNull="0" paramCode="zhjg" paramName="账户机构" paramType="String(0,-1)" paramValue="zhjg"/>
+                    <outParam ignoreNull="0" paramCode="dwjcbl" paramName="单位缴存比例" paramType="String(0,-1)" paramValue="dwjcbl"/>
+                    <outParam ignoreNull="0" paramCode="grjcbl" paramName="个人缴存比例" paramType="String(0,-1)" paramValue="grjcbl"/>
+                    <outParam ignoreNull="0" paramCode="jcqsny" paramName="缴存起始年月" paramType="String(0,-1)" paramValue="jcqsny"/>
+                    <outParam ignoreNull="0" paramCode="jzny" paramName="缴至年月" paramType="String(0,-1)" paramValue="jzny"/>
+                    <outParam ignoreNull="0" paramCode="zjly" paramName="资金来源" paramType="String(0,-1)" paramValue="zjly"/>
+                    <outParam ignoreNull="0" paramCode="zhye" paramName="账户余额" paramType="String(0,-1)" paramValue="zhye"/>
+                    <outParam ignoreNull="0" paramCode="fcrs" paramName="封存人数" paramType="String(0,-1)" paramValue="fcrs"/>
+                    <outParam ignoreNull="0" paramCode="zcrs" paramName="正常人数" paramType="String(0,-1)" paramValue="zcrs"/>
+             	 	<!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

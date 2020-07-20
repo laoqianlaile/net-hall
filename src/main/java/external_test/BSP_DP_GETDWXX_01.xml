@@ -1,0 +1,61 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2018-05-29</tr_acdt>
+		<tr_time>2018-05-29 13:54:20</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file>dwjbrxx02.txt</file>
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+			<dwjcbl des="单位缴存比例">8</dwjcbl>
+			<grjcbl des="个人缴存比例">8</grjcbl>
+			<dwfcrs des="单位封存人数">10</dwfcrs>
+			<tyshxydm des="统一社会信用代码">1084717461284</tyshxydm>
+			<zzjgdm des="组织机构代码">12383232</zzjgdm>
+			<dwdz des="单位地址">长春市净月开发区生态广场南环城路7888号 长春证大立方大厦6层</dwdz>
+			<dwfrdbxm des="单位法人代表姓名">张成玉</dwfrdbxm>
+			<dwfrdbzjlx des="单位法人代表证件类型">01</dwfrdbzjlx>
+			<dwfrdbzjhm des="单位法人代表证件号码">220181196708119837</dwfrdbzjhm>
+			<dwfrlxdh des="单位法人联系电话">18888888888</dwfrlxdh>
+			<dwsbzh des="单位社保账号">2840278674</dwsbzh>
+			<gszch des="工商注册号">yd10000</gszch>
+			<dwsshy des="单位所属行业">I</dwsshy>
+			<dwxz des="单位性质">9</dwxz>
+			<dwlsgx des="单位隶属关系">40</dwlsgx>
+			<dwjjlx des="单位经济类型">10</dwjjlx>
+			<sbjczrs des="社保缴存总人数">500</sbjczrs>
+			<sbjczjs des="社保缴存总基数">6000.00</sbjczjs>
+			<dwjb des="单位级别">一级</dwjb>
+			<sjdwmc des="上级单位名称">华信永道</sjdwmc>
+			<sjdwzh des="上级单位账号">10348373</sjdwzh>
+			<dwyb des="单位邮编">130000</dwyb>
+			<dwdzxx des="单位电子信箱">aa@yondervision.com.cn</dwdzxx>
+			<dwslrq des="单位设立日期">2007-07-10</dwslrq>
+			<dwfxr des="单位发薪日">07</dwfxr>
+			<zgbm des="主管部门">工商局</zgbm>
+			<sftsba des="是否托收备案">1</sftsba>
+			<dwxxhdnf des="单位信息核对年份">2008</dwxxhdnf>
+			<szqy des="所在区域">长春市</szqy>
+			<szxz des="所在乡镇（街道）">净月开发区生态广场南环城路7888号 </szxz>
+			<yhmc des="银行名称">交通银行</yhmc>
+			<wdmc des="网点名称">长春市交通银行</wdmc>
+			<jjr des="缴交日">15</jjr>
+			<jcqsny des="缴存起始年月">2007-07</jcqsny>
+			<jzny des="缴至年月">2018-06</jzny>
+			<dwzhzt des="单位账户状态">01</dwzhzt>
+			<dwhjzt des="单位缓缴状态">正常</dwhjzt>
+			<dwqjzt des="单位欠缴状态">正常</dwqjzt>
+			<yjrs des="应缴人数">500</yjrs>
+			<yjje des="应缴金额">500.00</yjje>
+			<zckye des="暂存款余额">1000000.00</zckye>
+			<filename>dwjbrxx02.txt</filename>
+	</body>
+</root>

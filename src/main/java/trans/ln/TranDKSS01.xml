@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDKSS01" tranName="公积金贷款试算">
+        <comps>
+            <comp compCode="CompDKSS01" compName="公积金贷款试算" expression="#flag=='dkss'">
+            	<inParams>
+            		<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+            		<inParam ignoreNull="0" paramCode="sslx" paramName="试算类型" paramType="string(1,2)" paramValue="sslx"/>
+            		<inParam ignoreNull="1" paramCode="jkhtbh" paramName="借款合同编号" paramType="string(0,30)" paramValue="jkhtbh"/>
+            		<inParam ignoreNull="1" paramCode="dkje" paramName="贷款金额" paramType="string(0,-1)" paramValue="dkje"/>
+            		<inParam ignoreNull="1" paramCode="dkqx" paramName="贷款期限" paramType="string(0,-1)" paramValue="dkqx"/>
+            		<inParam ignoreNull="1" paramCode="dkhkfs" paramName="贷款还款方式" paramType="string(0,-1)" paramValue="dkhkfs"/>
+            		<inParam ignoreNull="1" paramCode="dklx" paramName="贷款类型" paramType="string(0,-1)" paramValue="dklx"/>
+            		<inParam ignoreNull="1" paramCode="dntfdk" paramName="第N套房贷款" paramType="string(0,-1)" paramValue="dntfdk"/>
+            		<inParam ignoreNull="1" paramCode="hkr" paramName="还款日" paramType="string(0,-1)" paramValue="hkr"/>
+            		<inParam ignoreNull="1" paramCode="sydkje" paramName="商业贷款金额" paramType="string(0,-1)" paramValue="sydkje"/>
+            		<inParam ignoreNull="1" paramCode="sydkqx" paramName="商业贷款期限" paramType="string(0,-1)" paramValue="sydkqx"/>
+            		<inParam ignoreNull="1" paramCode="sydkll" paramName="商业贷款利率" paramType="string(0,-1)" paramValue="sydkll"/>
+            		<inParam ignoreNull="1" paramCode="sydkhkfs" paramName="商业贷款还款方式" paramType="string(0,-1)" paramValue="sydkhkfs"/>
+            		<inParam ignoreNull="1" paramCode="syhkr" paramName="还款日" paramType="string(0,-1)" paramValue="syhkr"/>
+            		<inParam ignoreNull="1" paramCode="tzhdksyqs" paramName="调整后贷款剩余期数" paramType="string(0,-1)" paramValue="tzhdksyqs"/>
+            		<inParam ignoreNull="1" paramCode="tzhdkdqrq" paramName="调整后贷款到期日期" paramType="string(0,-1)" paramValue="tzhdkdqrq"/>
+            		<inParam ignoreNull="1" paramCode="bghdkhkfs" paramName="变更后贷款还款方式" paramType="string(0,-1)" paramValue="bghdkhkfs"/>
+            		<inParam ignoreNull="1" paramCode="dkbgbz" paramName="贷款变更标志" paramType="string(0,-1)" paramValue="dkbgbz"/>
+            		<inParam ignoreNull="1" paramCode="tqhkzje" paramName="提前还款总金额" paramType="string(0,-1)" paramValue="tqhkzje"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+            	</inParams>
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="shbj" paramName="实还本金" paramType="string(0,-1)" paramValue="shbj"/>
+                	<outParam ignoreNull="1" paramCode="shlx" paramName="实还利息" paramType="string(0,-1)" paramValue="shlx"/>
+                	<outParam ignoreNull="1" paramCode="shfx" paramName="实还罚息" paramType="string(0,-1)" paramValue="shfx"/>
+                	<outParam ignoreNull="1" paramCode="tqhkbjze" paramName="提前还款本金总额" paramType="string(0,-1)" paramValue="tqhkbjze"/>
+                	<outParam ignoreNull="1" paramCode="yhke" paramName="月还款额" paramType="string(0,-1)" paramValue="yhke"/>
+                	<outParam ignoreNull="1" paramCode="xsyqs" paramName="新剩余期数" paramType="string(0,-1)" paramValue="xsyqs"/>
+                	<outParam ignoreNull="1" paramCode="gjjyhke" paramName="公积金月还款额" paramType="string(0,-1)" paramValue="gjjyhke"/>
+                	<outParam ignoreNull="1" paramCode="lxhj" paramName="利息合计" paramType="string(0,-1)" paramValue="lxhj"/>
+                	<outParam ignoreNull="1" paramCode="hkehj" paramName="还款额合计" paramType="string(0,-1)" paramValue="hkehj"/>
+                	<outParam ignoreNull="1" paramCode="syyhke" paramName="商贷月还款额" paramType="string(0,-1)" paramValue="syyhke"/>
+                	<outParam ignoreNull="1" paramCode="hkhj" paramName="还款合计" paramType="string(0,-1)" paramValue="hkhj"/>
+                </outParams>
+            </comp>
+            <comp compCode="CompDKSS02" compName="计算最高贷款额度年限" expression="#flag=='jsdked'">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="dntfdk" paramName="第N套房贷款" paramType="string(1,2)" paramValue="dntfdk"/>
+            		<inParam ignoreNull="1" paramCode="fwzj" paramName="房屋总价" paramType="double(18,2)" paramValue="fwzj"/>
+            	</inParams>
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="zgdked" paramName="最高贷款额度" paramType="string(0,-1)" paramValue="zgdked"/>
+                	<outParam ignoreNull="1" paramCode="zgdknx" paramName="最高贷款年限" paramType="string(0,-1)" paramValue="zgdknx"/>
+                </outParams>
+            </comp>
+			<comp compCode="CompDKSS03" compName="获取调整后的到期日期" expression="#flag=='getdqrq'">
+				<inParams>
+					<inParam ignoreNull="0" paramCode="jkhtbh" paramName="借款合同编号" paramType="string(1,30)" paramValue="jkhtbh"/>
+					<inParam ignoreNull="0" paramCode="tzhdksyqs" paramName="调整后贷款剩余期数" paramType="int" paramValue="tzhdksyqs"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+				</inParams>
+				<outParams>
+					<outParam ignoreNull="1" paramCode="tzhdqrq" paramName="调整后到期日期" paramType="string(0,-1)" paramValue="tzhdqrq"/>
+				</outParams>
+			</comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,149 @@
+/*********************\ 
+ * Description:鐢ㄦ埛娉ㄥ唽CSS
+ * Author: zhc 
+ * Date: 2018-01-22* \
+ ************************/
+.yyyw-title {
+	font-size: 1.15em;
+	width: 100%;
+	border-bottom: 1px solid #D3D3D3;
+	padding: 10px 20px;
+}
+
+.yyyw-cards {
+	min-height: 300px;
+	width: 721px;
+	border-right: 1px solid #D3D3D3;
+	padding: 15px 0 15px 15px;
+}
+
+.yyyw-info {
+	text-align: center;
+	width: 257px;
+}
+
+.card {
+	width: 220px;
+	height: 80px;
+	margin: 0 15px 15px 0;
+	border: 1px solid #CACACA;
+	border-radius: 5px;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	padding: 10px 15px;
+}
+
+.card:hover {
+	border: 1px solid #4DA8EC;
+	background-color: #E5F4FF;
+}
+
+.card .card-ywmc {
+	font-size: 1.4em;
+	color: #238dc0;
+	margin: 5px 0 6px 0;
+}
+
+.card .card-yycl {
+	font-size: 1.15em;
+	color: #9E9E9E;
+}
+
+.selected {
+	border: 1px solid #4DA8EC;
+	background-color: #E5F4FF;
+	position: relative;
+}
+
+.select-img {
+	width: 26px;
+	height: 26px;
+	background: url('../../common/image/bg-select.png');
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.default-img {
+	width: 95px;
+	height: 95px;
+	display: block;
+	background: url('../../common/image/bg-default.png');
+	margin: 85px 0 25px 80px;
+}
+
+.default-title {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #A4A4A4;
+	margin-bottom: 10px;
+}
+
+.default-info {
+	font-size: 1.1em;
+	color: #A4A4A4;
+}
+
+.tip {
+	margin: 30px 18px;
+	width: 220px;
+	border: 1px solid #FFC4AB;
+	background-color: #FFF4CD;
+	color: red;
+	text-align: left;
+	border-radius: 5px;
+	padding: 15px;
+	display: none;
+}
+
+.tip-title {
+	border-bottom: 1px solid #E4DAB7;
+	margin-bottom: 15px;
+}
+
+.tip-img {
+	font-size: 20px;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.tip-title-info {
+	font-size: 1.1em;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+.tip-title-desc {
+	margin: 5px 0 15px 30px;
+}
+/*鏃ュ巻鏍峰紡  */
+.calendar { width: 420px;}
+.calendar .calendar-title { height: 30px; line-height: 30px; padding: 10px 0; color: #337AB7; text-align: center; }
+.calendar .calendar-title .title { display: inline-block; font-size: 1.8em; }
+.calendar .calendar-title .arrow { display: inline-block; color: #ccc; font-size: 1.8em; cursor: pointer; }
+.calendar .calendar-title .arrow.arrow-prev { float: left; }
+.calendar .calendar-title .arrow.arrow-next { float: right; }
+.calendar .calendar-title .arrow:hover { color: #888; }
+.calendar .calendar-table { margin-top: 20px; border: 0!important; }
+.calendar .calendar-week,.calendar-date { overflow: hidden; }
+.calendar .calendar-week .item,.calendar-date .item { text-align: center; }
+.calendar .calendar-week { padding-bottom: 6px; font-weight: bold; font-size: 1.2em; background-color: #337AB7; color: #fff; }
+.calendar .calendar-week .item { border: 0!important; }
+.calendar .calendar-date .item { cursor: pointer; padding: 3px; }
+.calendar .calendar-date .item .item-day { font-weight: bold; font-size: 1.1em; }
+.calendar .calendar-date .item .item-counts { height: 16px; line-height: 16px; color: red; font-size: 0.9em; }
+.calendar .calendar-date .item-notMonth { color: #ccc; background-color: #eee; }
+.calendar .calendar-date .item-notMonth:hover { cursor: not-allowed; }
+.calendar .calendar-date .item-curMonth { color: #333; }
+.calendar .calendar-date .item-curDay { color: #fff; background-color: rgb(255, 128, 142); }
+.calendar .calendar-date .item-curMonth:hover { color: #fff; background-color: #62B7FD; }
+.calendar .calendar-date .item-curMonth.item-select { color: #fff; background-color: #62B7FD; }
+#rqxz_label { margin-top: 30px; font-size: 1.1em; }
+#yyrq_info b { color:red }
+/* 鎺у埗寮瑰嚭鐨勬棩鍘嗗搴� */
+.modal-content { width:485px }
+/* 鎺у埗鏃堕棿娈靛瓧鐨勯鑹� */
+#group_sjdbh label { color:#000000;margin-left:8px; margin-top:5px;}
+#group_sjdbh b { color:red }
+#group_sjdbh font {width:100px;display:inline-block;text-align:left; margin-left:20px;}

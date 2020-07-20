@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranBYRYXX01" tranName="获取单位下本月人员信息">
+        <comps>
+        	<comp compCode="CompBYRYXX01" compName="获取单位下本月人员信息" expression="">
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="zrs" paramName="总人数" paramType="string(0,-1)" paramValue="zrs"/>
+                    <outParam ignoreNull="0" paramCode="zrrs" paramName="转入人数" paramType="string(0,-1)" paramValue="zrrs"/>
+					<outParam ignoreNull="0" paramCode="zcrs" paramName="转出人数" paramType="string(0,-1)" paramValue="zcrs"/>
+					<outParam ignoreNull="0" paramCode="fcrs" paramName="封存人数" paramType="string(0,-1)" paramValue="fcrs"/>
+                    <outParam ignoreNull="0" paramCode="qfrs" paramName="启封人数" paramType="string(0,-1)" paramValue="qfrs"/>
+                    <outParam ignoreNull="0" paramCode="khrs" paramName="开户人数" paramType="string(0,-1)" paramValue="khrs"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

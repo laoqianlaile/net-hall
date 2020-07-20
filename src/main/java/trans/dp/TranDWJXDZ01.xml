@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWJXDZ01" tranName="单位结息对账单查询">
+        <comps>
+            <comp compCode="CompDWJXDZ01" compName="单位结息对账单查询" expression="">
+                 <outParams>
+                	<outParam ignoreNull="0" paramCode="qxrq" paramName="起息日期" paramType="string(0,-1)" paramValue="qxrq" />
+                	<outParam ignoreNull="0" paramCode="jxrq" paramName="结息日期" paramType="string(0,-1)" paramValue="jxrq" />
+                	<outParam ignoreNull="0" paramCode="hqrll" paramName="活期日利率" paramType="string(0,-1)" paramValue="hqrll" />
+                	<outParam ignoreNull="0" paramCode="dqrll" paramName="定期日利率" paramType="string(0,-1)" paramValue="dqrll" />
+               		<outParam ignoreNull="0" paramCode="hqbj" paramName="活期本金" paramType="string(0,-1)" paramValue="hqbj" />
+                	<outParam ignoreNull="0" paramCode="dqbj" paramName="定期本金" paramType="string(0,-1)" paramValue="dqbj" />
+                	<outParam ignoreNull="0" paramCode="hqlx" paramName="活期利息" paramType="string(0,-1)" paramValue="hqlx" />
+                	<outParam ignoreNull="0" paramCode="dqlx" paramName="定期利息" paramType="string(0,-1)" paramValue="dqlx" />
+                	<outParam ignoreNull="0" paramCode="lxhj" paramName="利息合计" paramType="string(0,-1)" paramValue="lxhj" />
+                	<outParam ignoreNull="0" paramCode="dwzhye" paramName="单位账户余额" paramType="string(0,-1)" paramValue="dwzhye" />
+                	<!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

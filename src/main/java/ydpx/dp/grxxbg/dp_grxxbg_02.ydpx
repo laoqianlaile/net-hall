@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="单位下个人信息变更"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-10-10 15:00:35"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {	
+	//列表个人账号change事件
+	$('#datalist1_editor_grzh').change(function(event) {
+		var grzh = $('#datalist1_editor_grzh').val();
+		if(grzh != ""){
+			if (!ydl.validator('datalist1_editor_grzh',{type:'validchar'})) return false;
+			//根据个人账号获取个人信息
+			ydl.sendCommand('CMD01',{"grzh":grzh},function(data, code, msg){
+				if (code != '00000000') {
+					ydl.alert({'code':code, 'message':msg});
+				}else{
+					$('#datalist1_editor_xingming').val(data.xingming);
+					$('#datalist1_editor_zjlx').val(data.zjlx);
+					$('#datalist1_editor_zjhm').val(data.zjhm);
+					$('#datalist1_editor_bgqzy').val(data.zhiye);
+					$('#datalist1_editor_bgqzc').val(data.zhichen);
+					$('#datalist1_editor_bgqzw').val(data.zhiwu);
+					$('#datalist1_editor_bgqxl').val(data.xueli);
+					$('#datalist1_editor_bgqjtzz').val(data.jtzz);
+					$('#datalist1_editor_bgqsjhm').val(data.sjhm);
+				}
+			});
+		}
+		
+	})
+}
+
+//每次打开对话框时会执行
+thisTab.datalist_dialogopen_datalist1=function($editor, isAdd) {
+	//获取到的信息添加只读属性
+	ydl.attr('datalist1_editor_xingming','readonly');
+	ydl.attr('datalist1_editor_zjlx','readonly');
+	ydl.attr('datalist1_editor_zjhm','readonly');
+	ydl.attr('datalist1_editor_bgqzy','readonly');
+	ydl.attr('datalist1_editor_bgqzc','readonly');
+	ydl.attr('datalist1_editor_bgqzw','readonly');
+	ydl.attr('datalist1_editor_bgqxl','readonly');
+	ydl.attr('datalist1_editor_bgqsjhm','readonly');
+	ydl.attr('datalist1_editor_bgqjtzz','readonly');
+	
+}
+
+//校验列表grkhlist的编辑对话框时执行
+thisTab.datalist_validate_datalist1=function(inputs,rows) {
+	var bghzy = $('#datalist1_editor_bghzy').val();
+	var bghzc = $('#datalist1_editor_bghzc').val();
+	var bghzw = $('#datalist1_editor_bghzw').val();
+	var bghxl = $('#datalist1_editor_bghxl').val();
+	var bghsjhm = $('#datalist1_editor_bghsjhm').val();
+	var bghjtzz = $('#datalist1_editor_bghjtzz').val();
+	if(bghzy == "" && bghzc == "" && bghzw == "" && bghxl == "" && bghsjhm == "" && bghjtzz == ""){
+		ydl.alert("信息未变更,不能进行保存");
+		return false;
+	}
+	return true;
+}
+
+//表单提交时执行
+thisTab.form_validate = function () {
+	if($('#datalist1 tbody tr').length==0){
+		alert("请至少添加一条个人变更信息！");
+		return false;
+	}
+	//校验批量信息
+	var d1 = ydl.sendCommand('CMD02', {}, function (data,code,msg) {
+		if (code != '00000000') {
+			ydl.alert({'code':code, 'message':msg});
+		}
+    }); 
+	return d1;
+}
+
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form">
+      <component type="label">单位账号：</component>
+      <component type="plain">=getUserExtInfo('dwdjh')</component>
+      <component type="label">单位名称：</component>
+      <component type="plain">=getUserExtInfo('dwmc')</component>
+    </container>
+    <container uid="container-8af12caf5b48423680d47abaa971ea12" type="box" layout="auto-height" id="container-8af12caf5b48423680d47abaa971ea12">
+      <component id="datalist1" type="datalist" paging="true" layout="fit" caption="个人信息变更列表" allowinsert="true" allowdelete="true" allowupdate="true" allowprint="false" allowimport="true" allowexport="false" pagesize="10" version="1" searchbox="false" compatible="0" showrowid="true" dialogedit="2" saveimportfile="false" clearbeforeimport="true" template="false">
+        <columns>
+          <col id="seqno" desc="序号" coltype="3" hidden="true" required="false" ischar="false" dict="none" sort="false" negative="false"/>
+          <col id="grzh" desc="个人账号" coltype="2" hidden="false" required="true" ischar="true" maxlength="20" datatype="validchar" dict="none" importcol="0" sort="false" negative="false"/>
+          <col id="xingming" desc="姓名" coltype="2" hidden="false" required="false" ischar="true" dict="none" importcol="1" sort="false" negative="false"/>
+          <col id="zjlx" desc="证件类型" coltype="2" hidden="false" required="false" ischar="true" dict="dynamic" datasource="os_mdic" importcol="2" sort="false" negative="false">bsp.pb.certitype</col>
+          <col id="zjhm" desc="证件号码" coltype="2" hidden="false" required="false" ischar="true" dict="none" importcol="3" sort="false" negative="false"/>
+          <col id="bgqjtzz" desc="变更前家庭住址" coltype="2" hidden="false" required="false" ischar="true" dict="none" importcol="4" sort="false" negative="false"/>
+          <col id="bghjtzz" desc="变更后家庭住址" coltype="2" hidden="false" required="false" ischar="true" maxlength="255" datatype="validchar" dict="none" importcol="5" sort="false" negative="false"/>
+          <col id="bgqsjhm" desc="变更前手机号码" coltype="2" hidden="false" required="false" ischar="true" dict="none" importcol="6" sort="false" negative="false"/>
+          <col id="bghsjhm" desc="变更后手机号码" coltype="2" hidden="false" required="false" ischar="true" maxlength="11" datatype="mobile" dict="none" importcol="7" sort="false" negative="false"/>
+          <col id="bgqzy" desc="变更前职业" coltype="2" hidden="false" required="false" ischar="true" dict="dynamic" datasource="os_mdic" importcol="8" sort="false" negative="false">bsp.pb.occupation</col>
+          <col id="bghzy" desc="变更后职业" coltype="2" hidden="false" required="false" ischar="true" dict="dynamic" datasource="os_mdic" importcol="9" sort="false" negative="false">bsp.pb.occupation</col>
+          <col id="bgqzw" desc="变更前职务" coltype="2" hidden="false" required="false" ischar="true" dict="dynamic" datasource="os_mdic" importcol="10" sort="false" negative="false">bsp.pb.headship</col>
+          <col id="bghzw" desc="变更后职务" coltype="2" hidden="false" required="false" ischar="true" dict="dynamic" datasource="os_mdic" importcol="11" sort="false" negative="false">bsp.pb.headship</col>
+          <col id="bgqzc" desc="变更前职称" coltype="2" hidden="false" required="false" ischar="true" dict="dynamic" datasource="os_mdic" importcol="12" sort="false" negative="false">bsp.pb.techpost</col>
+          <col id="bghzc" desc="变更后职称" coltype="2" hidden="false" required="false" ischar="true" dict="dynamic" datasource="os_mdic" importcol="13" sort="false" negative="false">bsp.pb.techpost</col>
+          <col id="bgqxl" desc="变更前学历" coltype="2" hidden="false" required="false" ischar="true" dict="dynamic" datasource="os_mdic" importcol="14" sort="false" negative="false">bsp.pb.eduexp</col>
+          <col id="bghxl" desc="变更后学历" coltype="2" hidden="false" required="false" ischar="true" dict="dynamic" datasource="os_mdic" importcol="15" sort="false" negative="false">bsp.pb.eduexp</col>
+        </columns>
+        <sqls datasource="ds_biz">
+          <sql type="insert">insert into dp077(seqno, dpbusitype, unitaccnum1, accname1, certitype, certinum, jtzz, xmqp, sjhm, accnum2, endym, begym, accnum1, unitaccnum2, unitaccname1, unitaccname2, payvounum, zip, instance) values((select NVL(max(t.seqno),0)+1 from dp077 t where t.INSTANCE=#{_IS,jdbcType=INTEGER}), '30', #{grzh,jdbcType=VARCHAR}, #{xingming,jdbcType=VARCHAR}, #{zjlx,jdbcType=VARCHAR}, #{zjhm,jdbcType=VARCHAR}, #{bgqjtzz,jdbcType=VARCHAR}, #{bghjtzz,jdbcType=VARCHAR}, #{bgqsjhm,jdbcType=VARCHAR}, #{bghsjhm,jdbcType=VARCHAR}, #{bgqzy,jdbcType=VARCHAR}, #{bghzy,jdbcType=VARCHAR}, #{bgqzw,jdbcType=VARCHAR}, #{bghzw,jdbcType=VARCHAR}, #{bgqzc,jdbcType=VARCHAR}, #{bghzc,jdbcType=VARCHAR}, #{bgqxl,jdbcType=VARCHAR}, #{bghxl,jdbcType=VARCHAR}, #{_IS,jdbcType=INTEGER})</sql>
+          <sql type="select">select seqno, unitaccnum1 as grzh, accname1 as xingming, certitype as zjlx, certinum as zjhm, jtzz as bgqjtzz, xmqp as bghjtzz, sjhm as bgqsjhm, accnum2 as bghsjhm, endym as bgqzy, begym as bghzy, accnum1 as bgqzw, unitaccnum2 as bghzw, unitaccname1 as bgqzc, unitaccname2 as bghzc, payvounum as bgqxl, zip as bghxl from dp077 where instance=#{_IS,jdbcType=INTEGER} and dpbusitype='30'</sql>
+          <sql type="update">update dp077 set unitaccnum1=#{grzh,jdbcType=VARCHAR}, accname1=#{xingming,jdbcType=VARCHAR}, certitype=#{zjlx,jdbcType=VARCHAR}, certinum=#{zjhm,jdbcType=VARCHAR}, jtzz=#{bgqjtzz,jdbcType=VARCHAR}, xmqp=#{bghjtzz,jdbcType=VARCHAR}, sjhm=#{bgqsjhm,jdbcType=VARCHAR}, accnum2=#{bghsjhm,jdbcType=VARCHAR}, endym=#{bgqzy,jdbcType=VARCHAR}, begym=#{bghzy,jdbcType=VARCHAR}, accnum1=#{bgqzw,jdbcType=VARCHAR}, unitaccnum2=#{bghzw,jdbcType=VARCHAR}, unitaccname1=#{bgqzc,jdbcType=VARCHAR}, unitaccname2=#{bghzc,jdbcType=VARCHAR}, payvounum=#{bgqxl,jdbcType=VARCHAR}, zip=#{bghxl,jdbcType=VARCHAR} where instance=#{_IS,jdbcType=INTEGER} and seqno=#{seqno,jdbcType=INTEGER}</sql>
+          <sql type="delete">delete from dp077 where instance=#{_IS,jdbcType=INTEGER} and seqno=#{seqno,jdbcType=INTEGER}</sql>
+        </sqls>
+      </component>
+    </container>
+  </containers>
+</page>

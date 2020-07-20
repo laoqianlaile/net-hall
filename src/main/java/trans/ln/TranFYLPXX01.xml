@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranFYLPXX01" tranName="房源楼盘信息查询">
+        <comps>
+            <comp compCode="CompFYLPXX01" compName="获取开发商信息" expression="#flag=='hqkfs'">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+            </comp>
+            <comp compCode="CompFYLPXX02" compName="根据开发商获取楼盘信息" expression="#flag=='hqlp'">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                    <inParam ignoreNull="0" paramCode="kfsbh" paramName="开发商编号" paramType="string(1,30)" paramValue="kfsbh"/>
+                </inParams>
+            </comp>
+            <comp compCode="CompFYLPXX03" compName="获取房源楼盘信息" expression="#flag=='hqfylp'">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                    <inParam ignoreNull="1" paramCode="kfsbh" paramName="开发商编号" paramType="string(0,-1)" paramValue="kfsbh"/>
+                    <inParam ignoreNull="1" paramCode="lpbh" paramName="楼盘编号" paramType="string(0,-1)" paramValue="lpbh"/>
+                </inParams>
+            </comp>
+            <comp compCode="CompFYLPXX04" compName="获取幢信息" expression="#flag=='hqzxx'">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                    <inParam ignoreNull="0" paramCode="hzlpbh" paramName="合作楼盘编号" paramType="string(1,30)" paramValue="hzlpbh"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

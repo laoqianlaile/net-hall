@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+      <log editor="王赫" edittime="2018-5-23 15:14:28"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	
+		//动态列表行编辑change事件绑定
+		$('#grfcList').on('change','input[name=grzh]',function(){
+				var $current = $(this);
+				var grzh = $(this).val();
+				var $row = $(this).closest('tr');
+				if(grzh!=''){
+				if (!ydl.validator($(this),{type:'validchar'})) return false;
+				ydl.sendCommand('queryGRJCXX',{"grzh":grzh},function(data,code,msg){
+			        if (code != '00000000') {
+					    ydl.alert({'icon':'error', 'message':msg});
+					} else {
+					    console.log(data);
+						//姓名
+						var xingming = data.xingming;
+						//个人缴存基数
+						var grjcjs = data.grjcjs;
+						//月缴存额
+						var yjce = data.yjce;
+						//证件号码
+						var zjhm = data.zjhm;
+						//证件类型
+						var zjlx = data.zjlx;
+						var jzrq = data.JZNY;
+						$row.getCell(5).find('input').val(xingming);
+						$row.getCell(5).find('input').attr("readonly",true);
+						$row.getCell(6).find('input').val(zjhm);
+                        $row.getCell(6).find('input').attr("readonly",true);
+
+                        var jzny = data.jzny;
+                        $row.getCell(7).find('input').val(jzny);
+                        $row.getCell(7).find('input').attr("readonly",true);
+                        var dwzh = data.dwzh;
+                        $row.getCell(8).find('input').val(dwzh);
+                        $row.getCell(8).find('input').attr("readonly",true);
+                        $row.getCell(9).find('input').val(ydl.getValue("wtinstcode"));
+                        $row.getCell(9).find('input').attr("readonly",true);
+
+                        $row.getCell(10).find('input').val("82");
+                        $row.getCell(10).find('input').attr("readonly",true);
+                        $row.getCell(11).find('input').val("9999");
+                        $row.getCell(11).find('input').attr("readonly",true);
+
+                        //交易日期
+                        var dd = getNowFormatDate();
+                        $row.getCell(12).find('input').val(dd);
+                        $row.getCell(12).find('input').attr("readonly",true);
+
+                        var dwyjce = data.dwyjce;
+						$row.getCell(13).find('input').val(dwyjce);
+						$row.getCell(13).find('input').attr("readonly",true);
+						var gryjce = data.gryjce;
+						$row.getCell(14).find('input').val(gryjce);
+						$row.getCell(14).find('input').attr("readonly",true);
+						var zjce = (parseFloat(gryjce)+parseFloat(dwyjce)).toFixed(2);
+						$row.getCell(15).find('input').val(zjce);
+						$row.getCell(15).find('input').attr("readonly",true);
+						var ye = data.grzhye;
+						$row.getCell(16).find('input').val(ye);
+						$row.getCell(16).find('input').attr("readonly",true);
+
+				    }
+			    });
+		}
+
+	});
+}
+
+//动态列表回调函数
+	thisTab.datalist_callback_grfcList=function(rows) {
+		$(rows).each(function(i){
+			//设置只读属性
+			ydl.attr($(this).getCell(5).find('input'),'readonly');
+            ydl.attr($(this).getCell(6).find('input'),'readonly');
+            ydl.attr($(this).getCell(7).find('input'),'readonly');
+            ydl.attr($(this).getCell(8).find('input'),'readonly');
+            ydl.attr($(this).getCell(9).find('input'),'readonly');
+            ydl.attr($(this).getCell(10).find('input'),'readonly');
+            ydl.attr($(this).getCell(11).find('input'),'readonly');
+            ydl.attr($(this).getCell(12).find('input'),'readonly');
+            ydl.attr($(this).getCell(13).find('input'),'readonly');
+            ydl.attr($(this).getCell(14).find('input'),'readonly');
+            ydl.attr($(this).getCell(15).find('input'),'readonly');
+            ydl.attr($(this).getCell(16).find('input'),'readonly');
+		});
+	}
+
+function getNowFormatDate() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+       month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+       strDate = "0" + strDate;
+    }
+    var currentdate = year + seperator1 + month + seperator1 + strDate;
+    return currentdate;
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+    if($('#grfcList tbody tr').length==0){
+		ydl.alert("至少录入一条个人封存信息！");
+		return false;
+	}
+
+	return true;
+}
+
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container caption="单位基本信息" type="table" id="ct_form" cols="4" uid="ct_form">
+      <component type="label">单位账号：</component>
+      <component id="dwzh" type="plain" subtype="text" readonly="true" fromdic="false">=getUserExtInfo('dwdjh')</component>
+      <component type="label">单位名称：</component>
+      <component id="dwmc" type="plain" subtype="text" readonly="true" fromdic="false">=getUserExtInfo('dwmc')</component>
+      <component id="wtinstcode" type="hidden">=wtinstcode</component>
+    </container>
+    <container uid="grfc1" type="box" layout="auto-height" id="grfc1">
+    <component caption="个人封存" id="grfcList" type="datalist" paging="true" layout="fit" allowinsert="true" allowdelete="true" allowupdate="true" allowprint="false" allowimport="true" allowexport="true" pagesize="10" version="2" searchbox="false" compatible="0" showrowid="true" dialogedit="0" saveimportfile="false" clearbeforeimport="true" template="true">
+        <columns>
+          <col id="xh" desc="行号" coltype="3" hidden="true" required="true" ischar="false" datatype="int" dict="none" sort="false" negative="false"/>
+          <col id="grzh" desc="个人账号" coltype="2" hidden="false" required="true" ischar="false" datatype="validchar" importcol="0" exportcol="0" dict="none" sort="false" negative="false"/>
+          <col id="fcyy" desc="封存原因" coltype="2" importcol="2"  exportcol="2" readonly="true" hidden="false" required="true" ischar="false" datatype="validchar" dict="dynamic" datasource="os_mdic" negative="false">bsp.pb.fcyy</col>
+          <col id="xingming" desc="姓名" coltype="2" hidden="false" required="false" ischar="false" importcol="1" exportcol="1" dict="none" sort="false" negative="false"/>
+          <col id="zjhm" desc="证件号码" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="false" required="false" ischar="false"  dict="none" negative="false"/>
+          <col id="jzny" desc="记账年月" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="false" required="false" ischar="false"  dict="none" negative="false" datatype="validchar"/>
+          <col id="dwzh" desc="单位账号" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="true" required="false" ischar="false"  dict="none" negative="false" datatype="validchar"/>
+          <col id="jghm" desc="机构号码" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="true" required="false" ischar="false"  dict="none" negative="false" datatype="validchar"/>
+          <col id="gjywlx" desc="归集业务类型" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="true" required="false" ischar="false"  dict="none" negative="false" datatype="validchar"/>
+          <col id="jbgy" desc="经办柜员" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="true" required="false" ischar="false"  dict="none" negative="false" datatype="validchar"/>
+          <col id="trandate" desc="交易日期" coltype="2" hidden="true" required="false" ischar="false" importcol="1" exportcol="1" dict="none" sort="false" negative="false" datatype="validchar"/>
+          <col id="dwyjce" desc="单位月缴存额" maxlength="18" declen="2" coltype="2" hidden="false" required="false" ischar="false" datatype="money" importcol="4" exportcol="4" dict="none" sort="false" negative="false"/>
+          <col id="gryjce" desc="个人月缴存额" maxlength="18" declen="2" coltype="2" hidden="false" required="false" ischar="false" datatype="money" importcol="5" exportcol="5" dict="none" sort="false" negative="false"/>
+          <col id="yjcze" desc="月缴存总额" maxlength="18" declen="2" coltype="2" hidden="false" required="false" ischar="false" datatype="money" importcol="5" exportcol="5" dict="none" sort="false" negative="false"/>
+          <col id="ye" desc="余额" maxlength="18" declen="2" coltype="2" hidden="false" required="false" ischar="false" datatype="money" importcol="5" exportcol="5" dict="none" sort="false" negative="false"/>
+
+          </columns>
+        <sqls datasource="ds_biz">
+          <sql type="insert">insert into dp077 (seqno,accnum1,accname1,accnum2,amt1,amt2,UNITPROP,FREEUSE1,FREEUSE2,instance,DPBUSITYPE,UNITACCNUM1,TRANSDATE,UNITACCNAME1,UNITACCNAME2,PAYVOUNUM) values ((select NVL(max(t.seqno),0)+1 from dp077 t where t.instance=#{_IS,jdbcType=INTEGER} and dpbusitype='82'),#{grzh,jdbcType=VARCHAR},#{xingming,jdbcType=VARCHAR},#{zjhm,jdbcType=VARCHAR},#{gryjce,jdbcType=VARCHAR},#{dwyjce,jdbcType=VARCHAR},#{ye,jdbcType=VARCHAR},#{jzny,jdbcType=VARCHAR},#{yjcze,jdbcType=VARCHAR},#{_IS,jdbcType=VARCHAR},'82',#{dwzh,jdbcType=VARCHAR},#{trandate,jdbcType=VARCHAR},#{jghm,jdbcType=VARCHAR},'9999',#{fcyy,jdbcType=VARCHAR})</sql>
+          <sql type="select">select seqno xh,accnum1 grzh,accname1 xingming,accnum2 zjhm,amt1 gryjce,amt2 dwyjce,UNITPROP ye,FREEUSE1 jzny,FREEUSE2 yjcze,instance ,DPBUSITYPE gjywlx,UNITACCNUM1 dwzh,TRANSDATE trandate,UNITACCNAME1 jgbh,UNITACCNAME2 jbgy,PAYVOUNUM fcyy from dp077 where instance=#{_IS,jdbcType=INTEGER}</sql>
+          <sql type="update">update dp077 set accnum1 =#{grzh,jdbcType=VARCHAR},accnum1 =#{fcyy,jdbcType=VARCHAR}, accname1 =#{xingming,jdbcType=VARCHAR}, basenum =#{grjcjs,jdbcType=VARCHAR}, amt1 =#{yjce,jdbcType=VARCHAR} ,certitype =#{zjlx,jdbcType=VARCHAR},certinum =#{zjhm,jdbcType=VARCHAR} where seqno=#{xh,jdbcType=INTEGER} and instance=#{_IS,jdbcType=INTEGER}</sql>
+          <sql type="delete">delete from dp077 where seqno=#{xh,jdbcType=INTEGER} and instance=#{_IS,jdbcType=VARCHAR}</sql>
+        </sqls>
+      </component>
+    </container>
+    <container type="hidden" id="ct_form1" cols="4" uid="ct_form1">
+        <component id="flowids" type="input" >349,292,308,294</component>
+    </container>
+  </containers>
+</page>

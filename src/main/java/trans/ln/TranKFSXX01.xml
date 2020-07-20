@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranKFSXX01" tranName="获取开发商信息">
+        <comps>
+            <comp compCode="CompXMXQ01" compName="获取开发商信息" expression="">
+            	<inParams>
+            		<inParam ignoreNull="1" paramCode="kfsdjh" paramName="开发商登记号" paramType="string(1,20)" paramValue="kfsdjh"/>
+            	</inParams>
+				<outParams>
+					<outParam ignoreNull="1" paramCode="kfsmc" paramName="开发商名称" paramType="string(0,-1)" paramValue="kfsmc"/>
+					<outParam ignoreNull="1" paramCode="dwlx" paramName="单位类型" paramType="string(0,-1)" paramValue="dwlx"/>
+					<outParam ignoreNull="1" paramCode="zcdz" paramName="注册地址" paramType="string(0,-1)" paramValue="zcdz"/>
+					<outParam ignoreNull="1" paramCode="bgdz" paramName="办公地址" paramType="string(0,-1)" paramValue="bgdz"/>
+					<outParam ignoreNull="1" paramCode="dwfrdbxm" paramName="单位法人代表姓名" paramType="string(0,-1)" paramValue="dwfrdbxm"/>
+					<outParam ignoreNull="1" paramCode="dwfrdbzjlx" paramName="单位法人代表证件类型" paramType="string(0,-1)" paramValue="dwfrdbzjlx"/>
+					<outParam ignoreNull="1" paramCode="dwfrdbzjhm" paramName="单位法人代表证件号码" paramType="string(0,-1)" paramValue="dwfrdbzjhm"/>
+					<outParam ignoreNull="1" paramCode="sjhm" paramName="手机号码" paramType="string(0,-1)" paramValue="sjhm"/>
+					<outParam ignoreNull="1" paramCode="dwdh" paramName="单位电话" paramType="string(0,-1)" paramValue="dwdh"/>
+					<outParam ignoreNull="1" paramCode="zczb" paramName="注册资本" paramType="string(0,-1)" paramValue="zczb"/>
+					<outParam ignoreNull="1" paramCode="dwslrq" paramName="单位设立日期" paramType="string(0,-1)" paramValue="dwslrq"/>
+					<outParam ignoreNull="1" paramCode="kfzz" paramName="开发资质" paramType="string(0,-1)" paramValue="kfzz"/>
+					<outParam ignoreNull="1" paramCode="tyshxydm" paramName="统一社会信用代码" paramType="string(0,-1)" paramValue="tyshxydm"/>
+					<outParam ignoreNull="1" paramCode="jgxydm" paramName="机构信用代码" paramType="string(0,-1)" paramValue="jgxydm"/>
+					<outParam ignoreNull="1" paramCode="sfsqbzj" paramName="是否收取保证金" paramType="string(0,-1)" paramValue="sfsqbzj"/>
+					<outParam ignoreNull="1" paramCode="bzjbl" paramName="保证金比例" paramType="string(0,-1)" paramValue="bzjbl"/>
+					<outParam ignoreNull="1" paramCode="jyfw" paramName="经营范围" paramType="string(0,-1)" paramValue="jyfw"/>
+				</outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

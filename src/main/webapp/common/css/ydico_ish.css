@@ -1,0 +1,145 @@
+
+/**
+ * 永道字体图标库 ydico-ish
+ * 2020-1-16 4:13:03 PM
+ */
+ @font-face {
+  font-family: 'ydico-ish';
+  src: url('../../template/ish04/fonts/ydico-ish.eot'); /* IE9 Compat Modes */
+  src: url('../../template/ish04/fonts/ydico-ish.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../../template/ish04/fonts/ydico-ish.woff') format('woff'), /* Modern Browsers */
+    url('../../template/ish04/fonts/ydico-ish.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../../template/ish04/fonts/ydico-ish.svg#ydico-ish') format('svg'); /* Legacy iOS */
+}
+.ydico-ish {
+  font-family: 'ydico-ish';
+  position: relative;
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ydico-ish-D01_01_dwjcmxcx:before { content: "\e001"; }
+.ydico-ish-D01_02_dwtsxxcx:before { content: "\e002"; }
+.ydico-ish-D01_03_dwgzxxcx:before { content: "\e003"; }
+.ydico-ish-D01_04_dwmxzcx:before { content: "\e004"; }
+.ydico-ish-D01_05_dwjbxxcx:before { content: "\e005"; }
+.ydico-ish-D01_06_dwjxdzdcxx:before { content: "\e006"; }
+.ydico-ish-wdzh:before { content: "\e007"; }
+.ydico-ish-D02_01_dwxgrjbxxcx:before { content: "\e008"; }
+.ydico-ish-D02_03_dwxgrhjbjxxcx:before { content: "\e009"; }
+.ydico-ish-D02_04_dwxgrmxzcx:before { content: "\e00a"; }
+.ydico-ish-D02_04_dwjcmxcx:before { content: "\e00b"; }
+.ydico-ish-D02_05_dwxgrjxdzdcx:before { content: "\e00c"; }
+.ydico-ish-find-some3:before { content: "\e00d"; }
+.ydico-ish-journal1:before { content: "\e00e"; }
+.ydico-ish-add3:before { content: "\e00f"; }
+.ydico-ish-D03_02_grfc:before { content: "\e010"; }
+.ydico-ish-D03_03_grqf:before { content: "\e011"; }
+.ydico-ish-D03_04_grqf:before { content: "\e012"; }
+.ydico-ish-D03_05_xgdlmm:before { content: "\e013"; }
+.ydico-ish-D03_05_dwxxbg:before { content: "\e014"; }
+.ydico-ish-D03_06_wsywpzcd:before { content: "\e015"; }
+.ydico-ish-D03_07_dwzfgjjjcqk:before { content: "\e016"; }
+.ydico-ish-D03_11_jcbltz:before { content: "\e017"; }
+.ydico-ish-D03_12_jstz:before { content: "\e018"; }
+.ydico-ish-D03_13_dwxgrxxbg:before { content: "\e019"; }
+.ydico-ish-modify1:before { content: "\e01a"; }
+.ydico-ish-D04_01_hj:before { content: "\e01b"; }
+.ydico-ish-D04_02_bj:before { content: "\e01c"; }
+.ydico-ish-D04_03_jcdjcx:before { content: "\e01d"; }
+.ydico-ish-D04_03_tj:before { content: "\e01e"; }
+.ydico-ish-payment3:before { content: "\e01f"; }
+.ydico-ish-D06_00_wdsb:before { content: "\e020"; }
+.ydico-ish-D06_01_sbcx:before { content: "\e021"; }
+.ydico-ish-D07_00_ggyw:before { content: "\e022"; }
+.ydico-ish-D07_01_pldrmbxz:before { content: "\e023"; }
+.ydico-ish-D07_02_yhscxz:before { content: "\e024"; }
+.ydico-ish-G01_00_wdgjj:before { content: "\e025"; }
+.ydico-ish-G01_01_grzhjbxx:before { content: "\e026"; }
+.ydico-ish-G01_03grjxdzd:before { content: "\e027"; }
+.ydico-ish-zcxw:before { content: "\e028"; }
+.ydico-ish-G02_01_hdtq:before { content: "\e029"; }
+.ydico-ish-G02_02_zftq:before { content: "\e02a"; }
+.ydico-ish-G02_03_gmzzzftq:before { content: "\e02b"; }
+.ydico-ish-G02_05_wyftq:before { content: "\e02c"; }
+.ydico-ish-G02_07_xsdbtq:before { content: "\e02d"; }
+.ydico-ish-G02_08_xhtq:before { content: "\e02e"; }
+.ydico-ish-modify7:before { content: "\e02f"; }
+.ydico-ish-wybj:before { content: "\e030"; }
+.ydico-ish-apply5:before { content: "\e031"; }
+.ydico-ish-extract2:before { content: "\e032"; }
+.ydico-ish-G03_01_gjjdkss:before { content: "\e033"; }
+.ydico-ish-G03_02_gjjdksq:before { content: "\e034"; }
+.ydico-ish-G03_03_tqhk:before { content: "\e035"; }
+.ydico-ish-G03_04_dkqxbg:before { content: "\e036"; }
+.ydico-ish-G03_05_hkfsbg:before { content: "\e037"; }
+.ydico-ish-G03_06_hkzhbg:before { content: "\e038"; }
+.ydico-ish-G03_07_wtkhqygl:before { content: "\e039"; }
+.ydico-ish-G03_09_grdkjd:before { content: "\e03a"; }
+.ydico-ish-G03_10_gjjdkzhxx:before { content: "\e03b"; }
+.ydico-ish-G03_12_gjjdkhkjh:before { content: "\e03c"; }
+.ydico-ish-wydk:before { content: "\e03d"; }
+.ydico-ish-approval1:before { content: "\e03e"; }
+.ydico-ish-G04_01_yysq:before { content: "\e03f"; }
+.ydico-ish-G04_02_yycx:before { content: "\e040"; }
+.ydico-ish-find3:before { content: "\e041"; }
+.ydico-ish-G05_01_xtgg:before { content: "\e042"; }
+.ydico-ish-G05_02_yhscxz:before { content: "\e043"; }
+.ydico-ish-G06_02_zfmmzh:before { content: "\e044"; }
+.ydico-ish-G06_03_zfmmbg:before { content: "\e045"; }
+.ydico-ish-G06_04_grjbxxbg:before { content: "\e046"; }
+.ydico-ish-G06_05_sjhmygjjzhgl:before { content: "\e047"; }
+.ydico-ish-G06_06_grjczmdy:before { content: "\e048"; }
+.ydico-ish-G06_07_jxdzddy:before { content: "\e049"; }
+.ydico-ish-G06_08_wsywpzdy:before { content: "\e04a"; }
+.ydico-ish-lock3:before { content: "\e04b"; }
+.ydico-ish-modify5:before { content: "\e04c"; }
+.ydico-ish-bespeak5:before { content: "\e04d"; }
+.ydico-ish-G07_01_sbcx:before { content: "\e04e"; }
+.ydico-ish-count5:before { content: "\e04f"; }
+.ydico-ish-print4:before { content: "\e050"; }
+.ydico-ish-T01_01_xtcd:before { content: "\e051"; }
+.ydico-ish-T01_02_czjl:before { content: "\e052"; }
+.ydico-ish-T01_03_nknybl:before { content: "\e053"; }
+.ydico-ish-T01_04_aqsz:before { content: "\e054"; }
+.ydico-ish-T01_07_xssj:before { content: "\e055"; }
+.ydico-ish-T01_08_ycsj:before { content: "\e056"; }
+.ydico-ish-T01_09_bjsj:before { content: "\e057"; }
+.ydico-ish-T01_10_zczt:before { content: "\e058"; }
+.ydico-ish-change2:before { content: "\e059"; }
+.ydico-ish-T02_01_sy:before { content: "\e05a"; }
+.ydico-ish-T02_02_rw:before { content: "\e05b"; }
+.ydico-ish-T02_04_kf:before { content: "\e05c"; }
+.ydico-ish-T02_05APP_app:before { content: "\e05d"; }
+.ydico-ish-T02_06_cx:before { content: "\e05e"; }
+.ydico-ish-T02_07_tz:before { content: "\e05f"; }
+.ydico-ish-T02_08_wx:before { content: "\e060"; }
+.ydico-ish-T02_09_bz:before { content: "\e061"; }
+.ydico-ish-T02_10_wb:before { content: "\e062"; }
+.ydico-ish-find-some1:before { content: "\e063"; }
+.ydico-ish-T03_01_sjt:before { content: "\e064"; }
+.ydico-ish-T03_02_xjt:before { content: "\e065"; }
+.ydico-ish-T03_02_hjxx:before { content: "\e066"; }
+.ydico-ish-T03_03_zjt:before { content: "\e067"; }
+.ydico-ish-T03_04_yjt:before { content: "\e068"; }
+.ydico-ish-T03_05_gb:before { content: "\e069"; }
+.ydico-ish-T03_05_tc:before { content: "\e06a"; }
+.ydico-ish-T03_06_zhy:before { content: "\e06b"; }
+.ydico-ish-T03_06_dyy:before { content: "\e06c"; }
+
+.icon-font-selector {position: relative; display: inline-block;}
+.icon-font-selector-current {cursor: pointer;}
+.icon-font-selector-current span {display: inline-block; font-size: 32px;}
+.icon-font-selector-current span.empty {line-height: 32px;}
+.icon-font-selector-current span.empty:before {content: '请选择...'; font-size: 1rem; color: #ccc;}
+.icon-font-selector-options {position: absolute; width: 310px; z-index:9999;background:#FFF;top:-150px;
+  max-height: 162px; overflow: auto; border: 1px solid #ccc; box-shadow: 2px 2px 8px rgba(0,0,0,.3);}
+.icon-font-selector-options h3 {font-size: 14px; padding: 2px 10px; margin: 0; background: #ccc;}
+.icon-font-selector-options span {display: inline-block; font-size: 32px; margin: 4px; cursor: pointer;}
+.icon-font-selector-options span.selected {color: #00f;}
+.icon-font-selector-options a {position: absolute; font-size: 1rem; right: 2px; top: 0; cursor: pointer;}
+.icon-font-selector-options a.clear {right: 40px;}
+.icon-font-selector-options a:hover {color: #00f;}

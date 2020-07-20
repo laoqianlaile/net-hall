@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranPLYC01" tranName="批量异常接口" extCall="true">
+        <comps>
+        	<comp compCode="CompPLYC01" compName="批量异常接口" expression="">
+                <inParams>
+                	<inParam ignoreNull="1" paramCode="details" paramName="业务明细" paramValue="details" paramType="String" ></inParam>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="file" paramName="返回错误文件" paramValue="file" paramType="file" ></outParam>
+                	<outParam ignoreNull="1" paramCode="returnCode" paramName="返回码" paramValue="returnCode" paramType="String" ></outParam>
+                	<outParam ignoreNull="1" paramCode="message" paramName="返回信息" paramValue="message" paramType="String" ></outParam>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

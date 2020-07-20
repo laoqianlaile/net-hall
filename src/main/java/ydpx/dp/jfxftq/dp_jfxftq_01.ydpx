@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="建房翻建房大修房提取"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-09-19 15:41:02"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script include="/common/script/cst_phone_verification.js"/>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+    ydl.attr("relation1","hidden");
+    //提取原因
+    var tqyjhParams = {"tqyy":"02","dwbusitype":"1"};
+    ydl.setValue('jsfs',"5");
+    //获取提取依据号
+    ydl.sendCommand('getTqyjh',tqyjhParams,function(data,code,msg){
+        if (code != '00000000') {
+            ydl.alert({'code':code, 'message':msg});
+        }else {
+            //获取存入dp077表中的提取依据号
+            ydl.init.ajax('htbhcx',{},function(data){
+
+            });
+        }
+    });
+
+    //依据提取依据号查询购房信息
+    $("#tqyjh").change(function(){
+       var index = $(this).prop("selectedIndex");
+       console.log(index);
+       $("#relation1 option").each(function(index1,ele){
+          if(index != 0 && index == index1){
+               console.log($(this).val());
+               var relation = $(this).val();
+               //01(本人)、配偶(02)、03(父母)、04(子女)、10(共有权人)
+               if(relation == "03" || relation == "04"){
+                   ydl.alert("除大病、低保外的部分提取，本人、配偶、共有人之外关系提取请到柜台办理。");
+               }else{
+                   var procode = ydl.getValue("tqyjh");
+                   var gfxxParams = {"procode":procode,"dwbusitype":"1"};
+                   ydl.sendCommand('getGfxx',gfxxParams,function(data,code,msg){
+                          if (code != '00000000') {
+                          ydl.alert({'code':code, 'message':msg});
+                      }else {
+                           ydl.setValue("fwxz",data.fwxz);
+                           ydl.setValue("dwbusitype",data.dwbusitype);
+                           ydl.setValue("fwzl",data.fwzl);
+                           ydl.setValue("realdpayamt",data.realdpayamt);
+                           ydl.setValue("crefiledate",data.crefiledate);
+                           ydl.setValue("dqrq",data.dqrq);
+
+                           var jsParams = {
+                               "fwxz":data.fwxz,"gfsfk":data.gfsfk,"paymentmode":data.paymentmode,"fwzl":data.fwzl,"dqrq":data.dqrq,
+                               "recordbackdate":data.recordbackdate,"housetype":data.housetype,"drawreasoncode1":data.drawreasoncode1,"tqyy":"02",
+                               "procode":ydl.getValue("tqyjh"),"dwbusitype":"1"};
+                           //获取金额计算
+                           ydl.sendCommand('jejs',jsParams,function(data,code,msg){
+                              if (code != '00000000') {
+                                  ydl.alert({'code':code, 'message':msg});
+                              }else {
+                                   //获取金额计算
+                                   ydl.setValue("drawreasonsum",data.drawreasonsum);
+                                   ydl.setValue("remnsum",data.remnsum);
+                                   ydl.setValue("remnamt",data.remnamt);
+                                   ydl.setValue("drawamt",data.drawamt);
+                                   //金额计算
+                                   var grzhye = poolSelect["grzhye"];
+                                   var drawamt = data.drawamt;
+                                   var grzhye1 = grzhye-drawamt;
+                                   ydl.setValue("grzhye1",grzhye1.toFixed(2));
+                                   ydl.setValue("remark",data.remark);
+                              }
+                           });
+                      }
+                   });
+               }
+          }
+       });
+
+    });
+    $('#button1').click(function(event) {
+        $('#button1').prop('disabled',true);
+        ydl.sendCommand('dxyzm',{"dxtype":"1"},function(data,code,msg){
+           if (code != '00000000') {
+              ydl.alert({'code':code, 'message':msg});
+           }else{
+
+           }
+        });
+        //启动定时器
+        createClock();
+    });
+}
+// 页面校验
+thisTab.checkForm = function () {
+	return cmdValidate();
+}
+var clockid = 0;//定时器id
+
+//创建定时器
+function createClock(){
+	dropClock();
+	timmer = 60;
+	clockid = setInterval(autoRefreshDo, 1000);
+}
+//删除定时器
+function dropClock(){
+	$('#button1').children().text("获取验证码");
+	if(clockid != 0){
+		clearInterval(clockid);
+		clockid = 0;
+	}
+}
+
+//全局自动刷新定时器
+var timmer = 0 ;
+function autoRefreshDo(){
+	timmer --;
+	var $getButton = $('#button1');
+	if(timmer == 0){
+	    $getButton.text( "重新获取验证码");
+	}else{
+	    $getButton.text( "重新获取验证码 ( " + timmer + " )");
+	}
+	if( timmer == 59 ){
+		$('#button1').prop('disabled',true);
+	}
+	if( timmer  == 0 ) {
+		dropClock();
+		$('#button1').prop('disabled',false);
+	}
+}
+// 校验页面必输信息
+function cmdValidate(){
+	var result = ydl.validator('jymm', { required: true, silent:true});
+	return !!result;
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+	//校验证件号码和提取金额
+	var tqje=$('#drawamt').val();
+	if(ydl.mudic.getValByMask("bsp.pb.zjlx","01")==$('#zjlx').val()){
+		if (!ydl.validator('gfrzjhm', {required: true, type: 'idcard'})) return false;
+	}
+	//if (!ydl.validator('tqje', {rule:Number(tqje)<=Number($('#fwzj').val()) && Number(tqje)<=Number(poolSelect['kyye']),message:'提取金额不能大于购房总价'+ydl.addComma($('#fwzj').val())+'元，且不能大于个人账户可用余额'+ydl.addComma(poolSelect['kyye']+'元')})) return false;
+	return true;
+}]]></script>
+  </scripts>
+  <dataset/>
+  <ajax>
+    <query id="htbhcx" desc="获取提取依据号列表" trigger="" message="">
+             <sql datasource="ds_biz">="select UNITACCNAME1 tqyjh,UNITACCNAME2 relation1,ACCNAME1 dwbusitype1 from dp077 where instance = '"+ _IS +"' and ACCNAME1 = '1'" } </sql>
+             <target id="tqyjh" label="=tqyjh" value="=tqyjh"/>
+             <target id="relation1" label="=relation1" value="=relation1"/>
+    </query>
+  </ajax>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form" caption="提取依据号">
+        <component type="label" for="tqyjh">提取依据号获取：</component>
+        <component id="tqyjh" type="multivalue" subtype="select" fromdic="false" required="true">
+          <sql datasource="os_biz"></sql>
+          <item label="请选择..."/>
+          <item label="=paraval" value="=paraname"/>
+        </component>
+        <component id="relation1" type="multivalue" subtype="select"  fromdic="false">
+          <sql datasource="os_biz"></sql>
+          <item label="请选择..."/>
+          <item label="=paraval" value="=paraname"/>
+        </component>
+    </container>
+    <container uid="container-e3872ad4836b4b32ad54b4450bd8dd75" type="table" layout="fit" cols="4" id="container-e3872ad4836b4b32ad54b4450bd8dd75" caption="购房信息">
+        <component type="label" for="fwxz">房屋性质：</component>
+        <component id="fwxz" type="multivalue" subtype="select" readonly="1" required="true">
+            <sql datasource="os_mdic">bsp.cm.fwxz</sql>
+            <item label="请选择..."/>
+            <item label="=PARAVAL" value="=PARANAME"/>
+         </component>
+        <component type="label" for="dwbusitype">房屋提取类型：</component>
+        <component id="dwbusitype" type="multivalue" subtype="select" readonly="1" required="true">
+            <sql datasource="os_mdic">bsp.cm.dwbusitype</sql>
+            <item label="请选择..."/>
+            <item label="=PARAVAL" value="=PARANAME"/>
+         </component>
+        <component type="label" for="gfrxm">地址：</component>
+        <component id="fwzl" type="input" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar" readonly="true">=fwzl</component>
+        <component type="label" for="gfrxm">实际付款金额：</component>
+        <component id="realdpayamt" type="input" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar" readonly="true">=realdpayamt</component>
+        <component type="label" for="gfrxm">准建证日期：</component>
+        <component id="crefiledate" type="input" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar" readonly="true">=crefiledate</component>
+        <component type="label" for="gfrxm">结束日期：</component>
+        <component id="dqrq" type="input" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar" readonly="true">=gfsfk</component>
+    </container>
+    <container uid="container-8cbb592be3d84f7cb822d5165fe0e198" type="table" layout="fit" cols="4" id="container-8cbb592be3d84f7cb822d5165fe0e198" caption="提取信息">
+        <component type="label" for="gfrxm">提取总金额：</component>
+        <component id="drawreasonsum" type="input" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar" readonly="true">=drawreasonsum</component>
+        <component type="label" for="gfrxm">已提取金额：</component>
+        <component id="remnsum" type="input" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar" readonly="true">=remnsum</component>
+        <component type="label" for="gfrxm">剩余提取金额：</component>
+        <component id="remnamt" type="input" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar" readonly="true">=remnamt</component>
+        <component type="label" for="gfrxm">本次提取金额：</component>
+        <component id="drawamt" type="input" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar" readonly="true">=drawamt</component>
+        <component type="label" for="gfrxm">本次提取之后账户剩余金额：</component>
+        <component id="grzhye1" type="input" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar" readonly="true"></component>
+
+        <component id="tqyy" type="hidden" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar">02</component>
+
+    </container>
+    <container uid="container-8cbb592be3d84f7cb822d5165fe0e199" type="table" layout="fit" cols="4" id="container-8cbb592be3d84f7cb822d5165fe0e199" caption="银行信息">
+        <component type="label" for="gfrxm">收款人银行名称：</component>
+        <component id="payeebankname" type="multivalue" subtype="select" required="true" fromdic="false" value="=fkyh">
+            <sql datasource="os_mdic">bsp.dp.fkyh</sql>
+            <item label="请选择..."/>
+            <item label="=PARAVAL" value="=PARANAME"/>
+        </component>
+        <component type="label" for="gfrxm">收款人银行卡号：</component>
+        <component id="payeebankacc0" type="input" subtype="text" required="true" fromdic="false" maxlength="120" datatype="validchar" readonly="false"></component>
+        <component type="label" for="jsfs">结算方式：</component>
+          <component id="jsfs" type="multivalue" subtype="select" value="=jsfs" readonly="1" required="true" fromdic="false">
+            <sql datasource="os_mdic"></sql>
+            <item label="请选择..."/>
+            <item label="电子结算" value="5"/>
+        </component>
+        <component type="label" for="gfrxm">备注：</component>
+        <component id="remark" type="input" subtype="text" required="false" fromdic="false" maxlength="120" datatype="validchar" readonly="false"></component>
+        <component type="label" for="sjhm">手机号码：</component>
+        <component id="sjhm" type="input" subtype="text" maxlength="11" fromdic="true" readonly="1">=sjhm</component>
+        <component type="blank"/>
+        <component type="blank"/>
+        <component type="label" for="dxyzm">短信验证码：</component>
+        <component id="dxyzm" type="input" subtype="text" maxlength="10" fromdic="true" required="1">=dxyzm</component>
+        <component id="button1" type="button" subtype="button" colspan="2">获取验证码</component>
+        <component id="dxtype" type="hidden">=2</component>
+        <component id="stepseqno" type="hidden">=1</component>
+    </container>
+
+  </containers>
+</page>

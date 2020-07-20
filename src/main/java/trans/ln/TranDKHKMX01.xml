@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDKHKMX01" tranName="公积金贷款还款明细查询">
+        <comps>
+            <comp compCode="CompDKHKMX01" compName="获取公积金贷款还款明细批量信息" expression="">
+                <inParams>
+                	<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

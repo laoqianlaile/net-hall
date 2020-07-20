@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+      <log editor="王赫" edittime="2018-5-23 15:14:28"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+    //刷新列表
+    $("#list_grqfList_buttons_refresh").click();
+
+    var grjcbl = $("#grjcbl").val().substring(0,2);
+    $("#grjcbl").val(grjcbl);
+    var dwjcbl = $("#dwjcbl").val().substring(0,2);
+    $("#dwjcbl").val(dwjcbl);
+    //查询按钮
+    $('#query').click(function(event) {
+        var dwzh = $("#dwzh").val();
+        var dwjcbl = $("#dwjcbl").val()/100;
+        var grjcbl = $("#grjcbl").val()/100;
+        ydl.sendCommand('QFCX',{"dwzh":dwzh,"grzhzt":"02","type":"1","dwjcbl":dwjcbl,"grjcbl":grjcbl},function(data,code,msg){
+           if (code != '00000000') {
+               ydl.alert({'code':code, 'message':msg});
+           }else{
+               ydl.init.dataList({id: 'JSBGList'}, 'refresh', thisTab);
+           }
+        });
+    });
+}
+function initRow(row) {
+    //获取文本框，并设置只读
+    var $xingming = ydl.attr($(row).getCell('xingming', 'input'), 'readonly');
+    var $zjhm = ydl.attr($(row).getCell('zjhm', 'input'), 'readonly');
+    //var $grjcjs = ydl.attr($(row).getCell('grjcjs', 'input'), 'readonly');
+    var $amt1 = ydl.attr($(row).getCell('amt1', 'input'), 'readonly');
+    var $amt2 = ydl.attr($(row).getCell('amt2', 'input'), 'readonly');
+    var $freeuse2 = ydl.attr($(row).getCell('freeuse2', 'input'), 'readonly');
+
+    //异步ajax提交获取单位账号下的相关信息
+    $(row).getCell('grzh', 'input').change(function() {
+         var grzh = $(row).getCell('grzh', 'input').val();
+         ydl.sendCommand('cmdGRXXCX',{"grzh":grzh},function(data,code,msg){
+            if (code != '00000000') {
+                ydl.alert({'code':code, 'message':msg});
+            }else{
+                if(data){
+                    var dwzh = data.dwzh;
+                    console.log("dwzh",dwzh);
+                    if ( dwzh != $$('dwzh').value ){
+                        ydl.alert('个人账户非该单位下的账户！');
+                        $(row).getCell('grzh', 'input').val('');
+                        $(row).getCell('xingming', 'input').val('');
+                        //$(row).getCell('zjhm', 'input').val('');
+                        $(row).getCell('grjcjs', 'input').val('');
+                        $(row).getCell('amt1', 'input').val('');
+                        $(row).getCell('amt2', 'input').val('');
+                        $(row).getCell('freeuse2', 'input').val('');
+                        return false;
+                    }else if(data.grzhzt!="02"){
+                        ydl.alert("个人账户非封存账户！");
+                        $(row).getCell('grzh', 'input').val('');
+                        $(row).getCell('xingming', 'input').val('');
+                        //$(row).getCell('zjhm', 'input').val('');
+                        $(row).getCell('grjcjs', 'input').val('');
+                        $(row).getCell('amt1', 'input').val('');
+                        $(row).getCell('amt2', 'input').val('');
+                        $(row).getCell('freeuse2', 'input').val('');
+                        return false;
+                    }
+                    $(row).getCell('xingming', 'input').val(data.xingming);
+                    //$(row).getCell('zjhm', 'input').val(data.zjhm);
+                    $(row).getCell('grjcjs', 'input').val(data.grjcjs);
+                    var grjcbl = $("#grjcbl").val();
+                    $(row).getCell('amt1', 'input').val(parseFloat(data.grjcjs*grjcbl/100).toFixed(0));
+                    var dwjcbl = $("#dwjcbl").val();
+                    $(row).getCell('amt2', 'input').val(parseFloat(data.grjcjs*dwjcbl/100).toFixed(0));
+                    var grjce=Math.round(data.grjcjs*grjcbl/100);
+                    var dwjce=Math.round(data.grjcjs*dwjcbl/100);
+                    $(row).getCell('freeuse2', 'input').val((grjce+dwjce).toFixed(2));
+                    $(row).getCell('dwzh', 'input').val(data.dwzh);
+                    var jyrq = getNowFormatDate();
+                    $(row).getCell('jyrq', 'input').val(jyrq);
+                }else{
+                    $(row).getCell('grzh', 'input').val("");
+                }
+            }
+         });
+    });
+    $(row).getCell('grjcjs', 'input').change(function(){
+        if( $(row).getCell('grjcjs', 'input').val() != '' ) {
+            var num = $(row).getCell('grjcjs', 'input').val();
+            var unitprop = parseInt($$('dwjcbl').value)/100;
+            var indiprop = parseInt($$('grjcbl').value)/100;
+            var amt2 = Math.round(parseFloat((num * indiprop)));
+            var amt1 = Math.round( parseFloat((num * unitprop)));
+            var amt = parseFloat((parseInt(amt1)+parseInt(amt2))).toFixed(2);
+            var payamt = (Math.round(Math.round(amt1)+Math.round(amt2)));
+            $(row).getCell('freeuse2', 'input').val(parseFloat(Math.round(payamt)).toFixed(2));
+            $(row).getCell('amt2','input').val(ydl.addComma(amt2));
+            $(row).getCell('amt1','input').val(ydl.addComma(amt1));
+            $(row).getCell('freeuse2', 'input').val(ydl.addComma(amt));
+        }
+    });
+}
+//列表新增的时候执行
+thisTab.datalist_add_grqfList = function (row) {
+    initRow(row);
+
+};
+//列表datalist1初始化、翻页、保存、新增等动作完成后执行
+thisTab.datalist_callback_grqfList=function(rows) {
+	$(rows).each(function () {
+        initRow(this);
+    });
+    //变更前月缴存总额和变更后单位月缴存总额的动态刷新
+    /*ydl.init.ajax("ajax1",{},function(data){
+        $('#dwyjce').val(data[0].dwyjce);
+        $('#dwyjce').blur();
+        $('#gryjce').val(data[0].gryjce);
+        $('#gryjce').blur();
+        $('#yjcze').val(data[0].yjcze);
+        $('#yjcze').blur();
+    });*/
+}
+function getNowFormatDate() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+       month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+       strDate = "0" + strDate;
+    }
+    var currentdate = year + seperator1 + month + seperator1 + strDate;
+    return currentdate;
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+
+	return true;
+}
+
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax>
+
+  </ajax>
+  <containers>
+    <container caption="职工启封" type="table" id="ct_form" cols="4" uid="ct_form">
+      <component type="label">单位账号：</component>
+      <component id="dwzh" type="input" subtype="text" readonly="true" fromdic="false">=getUserExtInfo('dwzh')</component>
+      <component type="label">单位名称：</component>
+      <component id="dwmc" type="input" subtype="text" readonly="true" fromdic="false">=getUserExtInfo('dwmc')</component>
+      <component type="label">单位缴存比例：</component>
+      <component id="dwjcbl" type="input" subtype="text" readonly="true" fromdic="false" suffix="%">=unitprop</component>
+      <component type="label">个人缴存比例：</component>
+      <component id="grjcbl" type="input" subtype="text" readonly="true" fromdic="false" suffix="%">=indinorprop</component>
+    </container>
+    <container uid="grqf1" type="box" layout="auto-height" id="grqf1">
+    <component caption="个人启封信息" id="grqfList" type="datalist" paging="true" layout="fit" allowinsert="true" allowdelete="true" allowupdate="true" allowprint="false" allowimport="true" allowexport="true" pagesize="10" version="2" searchbox="false" compatible="0" showrowid="true" dialogedit="0" saveimportfile="false" clearbeforeimport="true" template="true">
+        <columns>
+          <col id="xh" desc="行号" coltype="3" hidden="true" required="true" ischar="false" datatype="int" dict="none" sort="false" negative="false"/>
+          <col id="grzh" desc="个人账号" coltype="2" hidden="false" required="true" ischar="false" datatype="validchar" importcol="0" exportcol="0" dict="none" sort="false" negative="false"/>
+          <col id="xingming" desc="姓名" coltype="2" hidden="false" required="false" ischar="false" importcol="1" exportcol="1" dict="none" sort="false" negative="false"/>
+          <col id="grjcjs" desc="缴存基数(元)" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="false" required="false" ischar="false"  dict="none" negative="false"/>
+          <col id="amt1" desc="单位月缴额(元)" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="false" required="false" ischar="false"  dict="none" negative="false" datatype="validchar"/>
+          <col id="amt2" desc="个人月缴额(元)" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="false" required="false" ischar="false"  dict="none" negative="false" datatype="validchar"/>
+          <col id="freeuse2" desc="合计(元)" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="false" required="false" ischar="false"  dict="none" negative="false" datatype="validchar"/>
+          <col id="dwzh" desc="单位账号" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="true" required="false" ischar="false"  dict="none" negative="false" datatype="validchar"/>
+          <col id="jyrq" desc="记账日期" coltype="2" importcol="3" exportcol="3" readonly="true" hidden="true" required="false" ischar="false"  dict="none" negative="false" datatype="validchar"/>
+        </columns>
+        <sqls datasource="ds_biz">
+          <sql type="insert">="insert into dp077(UNITACCNUM1,UNITACCNAME1,AMT1,SEQNO,UNITPROP,INDIPROP,AMT2,INSTANCE,UNITACCNUM2,FREEUSE1,AGENTINSTCODE,AGENTOP,DPBUSITYPE) values('"+grzh[#]+"','"+xingming[#]+"','"+grjcjs[#]+"',(select NVL(max(t.seqno),0)+1 from dp077 t where t.instance="+_IS+" and dpbusitype='83'),'"+amt2[#]+"','"+amt1[#]+"','"+freeuse2[#]+"','"+_IS+"','"+dwzh[#]+"','"+jyrq[#]+"','07750011','9999','83')"</sql>
+          <sql type="select">="select seqno, unitaccnum1 as grzh,unitaccname1 as xingming,amt1 as grjcjs,unitprop as amt1,indiprop as amt2,amt2 as freeuse2,unitaccnum2 as dwzh,freeuse1 as jyrq from dp077 where instance="+_IS+" order by grzh"</sql>
+          <sql type="update">="update dp077 set unitaccnum1='"+grzh[#]+"',unitaccname1='"+xingming[#]+"', accnum1="+grjcjs[#]+",accname2="+amt1[#]+", freeuse1="+amt2[#]+",AMT2="+freeuse2[#]+",UNITACCNUM2="+dwzh[#]+",FREEUSE1="+jyrq[#]+" where instance="+_IS+" and seqno="+seqno[#]</sql>
+          <sql type="delete">="delete from dp077 where instance="+_IS+" and seqno="+seqno[#]</sql>
+        </sqls>
+      </component>
+    </container>
+
+    <container type="hidden" id="ct_form1" cols="4" uid="ct_form1">
+        <component id="flowids" type="input" >349,292,308,294</component>
+    </container>
+  </containers>
+</page>

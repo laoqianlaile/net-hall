@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="房屋信息"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-09-25 15:05:34"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+    // 若为开发商登录
+    if($('#khbs').val()==ydl.mudic.getValByMask("ish.gg.user.yhlx","KFSYH")){
+        ydl.setValue('kfsmc',$('#kfsdjh').val());
+        getXmlb();
+        // 期房
+        $('#gflx').val(ydl.mudic.getValByMask("bsp.ln.buyhousekind","2"));
+        // 开发商
+        $('#skrlx').val(ydl.mudic.getValByMask("bsp.ln.loanpayeetype","1"));
+        // 收款人账号名称
+        $('#skrzhmc').val($('#kfsmc1').val());
+        ydl.attr('kfsmc','readonly');
+        ydl.attr('skrzhmc','readonly');
+        ydl.attr('gflx','readonly');
+        ydl.attr('skrlx','readonly');
+        // 开发商用户房屋性质中去掉二手房
+        $('#fwxz').empty();
+         // 按照层级显示多级字典
+         ydl.mudic.getList("bsp.ln.fwxz|3",function(data){
+         	htmlary=[];
+         	htmlary.push("<option value=''>请选择...</option>")
+         	for(var i=0;i<data.length;i++){
+         		var tdata=data[i];
+         		htmlary.push("<option value='"+tdata[0]+"'>"+tdata[1]+"</option>")
+         	}
+         	$("[name='fwxz']").html(htmlary.join(""));
+         });
+    }
+    // 个人用户房屋性质中增加二手房
+    else if($('#khbs').val()==ydl.mudic.getValByMask("ish.gg.user.yhlx","GRYH")){
+        $('#fwxz').empty();
+        // 按照层级显示多级字典
+        ydl.mudic.getList("bsp.ln.fwxz|2",function(data){
+         	htmlary=[];
+         	htmlary.push("<option value=''>请选择...</option>")
+         	for(var i=0;i<data.length;i++){
+         		var tdata=data[i];
+         		htmlary.push("<option value='"+tdata[0]+"'>"+tdata[1]+"</option>")
+         	}
+         	$("[name='fwxz']").html(htmlary.join(""));
+        });
+    }
+	//开发商名称change事件
+	$('#kfsmc').change(function(event) {
+	    clear();
+		if($('#kfsmc').val() != ""){
+            getXmlb();
+		}
+	});
+	
+	//校验房屋建筑面积和房屋套内面积大小关系
+	$('#fwjzmj').change(function(event) {
+		ydl.validator.clear('fwzjmj');
+        if (!ydl.validator('fwjzmj', {rule:Number($('#fwjzmj').val())>0,message:"房屋建筑面积需大于0"})) return false;
+		if($('#fwjzmj').val() != "" && $('#fwtnmj').val() != ""){
+		    ydl.validator.clear('fwtnmj');
+		    if (!ydl.validator('fwtnmj', {rule:Number($('#fwtnmj').val())>0,message:"房屋套内面积需大于0"})) return false;
+			if (!ydl.validator('fwjzmj', {rule:Number($('#fwjzmj').val())>=Number($('#fwtnmj').val()),message:"房屋建筑面积不能小于房屋套内面积"})) return false;
+		}
+		//根据房屋单价，房屋建筑面积计算房屋总价
+		if($('#fwjzmj').val() !="" && $('#fwdj').val() !=""){
+		    ydl.validator.clear('fwdj');
+		    if (!ydl.validator('fwdj', {rule:Number($('#fwdj').val())>0,message:"房屋单价需大于0"})) return false;
+			ydl.setValue('fwzj',Number($('#fwjzmj').val())*Number($('#fwdj').val()));
+		}
+	});
+	
+	//校验房屋建筑面积和房屋套内面积大小关系
+	$('#fwtnmj').change(function(event) {
+		ydl.validator.clear('fwtnmj');
+		if (!ydl.validator('fwtnmj', {rule:Number($('#fwtnmj').val())>0,message:"房屋套内面积需大于0"})) return false;
+		if($('#fwjzmj').val() != "" && $('#fwtnmj').val() != ""){
+		    ydl.validator.clear('fwzjmj');
+		    if (!ydl.validator('fwjzmj', {rule:Number($('#fwjzmj').val())>0,message:"房屋建筑面积需大于0"})) return false;
+			if (!ydl.validator('fwtnmj', {rule:Number($('#fwjzmj').val())>=Number($('#fwtnmj').val()),message:"房屋套内面积需大于0且不能大于房屋建筑面积"})) return false;
+		}
+	});
+	
+	//根据房屋单价，房屋建筑面积计算房屋总价
+	$('#fwdj').change(function(event) {
+	    if($('#fwdj').val() !=""){
+	        if (!ydl.validator('fwdj', {rule:Number($('#fwdj').val())>0,message:"房屋单价需大于0"})) return false;
+		    if($('#fwjzmj').val() !=""){
+		        if (!ydl.validator('fwjzmj', {rule:Number($('#fwjzmj').val())>0,message:"房屋建筑面积需大于0"})) return false;
+			    ydl.setValue('fwzj',Number($('#fwjzmj').val())*Number($('#fwdj').val()));
+			}
+		}
+	});
+
+    //房屋总价计算
+	$('#fwzj').change(function(event) {
+	    if($('#fwzj').val() !=""){
+	        if (!ydl.validator('fwzj', {rule:Number($('#fwzj').val())>0,message:"房屋总价需大于0"})) return false;
+		}
+	});
+	
+	//房屋性质change事件
+	$('#fwxz').change(function(event) {
+		//房屋性质为二手房时，开发商名称、项目名称非必填
+		if(ydl.mudic.getMask("bsp.ln.fwxz."+$('#fwxz').val())=='09'){
+			ydl.removeAttr('kfsmc','required');
+			ydl.removeAttr('xmmc','required');
+		}else{
+			//其他情况开发商名称、项目名称必填
+			ydl.attr('kfsmc','required');
+			ydl.attr('xmmc','required');
+		}
+	});
+
+	//项目名称change事件
+    $('#xmmc').change(function(event) {
+        clear();
+    	if($('#xmmc').val() != ""){
+            var xmmc = $('#xmmc').val();
+            //根据项目编号获取项目信息
+            ydl.sendCommand('CMD11',{"xmxyh":xmmc},function(data,code,msg){
+                ydl.validator.clear('xmmc');
+                if (code != '00000000') {
+                	ydl.alert({'code':code, 'message':msg});
+                }else{
+                    if(data.xmwz != ""){
+                        $('#gfdz').val(data.xmwz);
+                        ydl.validator.clear('gfdz');
+                    }
+                	$('#gytdsyz').val(data.tdzbh);
+                	$('#jsghxkz').val(data.jzgcghxkz);
+                	$('#jsydxkz').val(data.jsydghxkz);
+                	ydl.init.ajax('ajax2',{},function(data){
+                		$('#ldbh')
+                		//更新选项
+                		.html(ydl.common.blankOption + ydl.createOptions(data, 'accnum1', 'accnum1'));
+                	});
+                }
+            });
+    	}
+    });
+    //根据楼盘信息获取房屋金额、面积信息
+    $('#kfsmc,#xmmc,#ldbh,#dyh,#mph').change(function(event) {
+        var xmmc = $('#xmmc').val();
+        var kfsmc = $('#kfsmc').val();
+        var ldbh = $('#ldbh').val();
+        var dyh = $('#dyh').val();
+        var mph = $('#mph').val();
+        var r = true;
+        r &= ydl.validator('ldbh', {type: 'validchar'});
+        r &= ydl.validator('dyh', {type: 'validchar'});
+        r &= ydl.validator('mph', {type: 'validchar'});
+        if(!!r && xmmc != "" && kfsmc != "" && ldbh != "" && dyh != "" && mph != ""){
+            ydl.init.ajax('ajax3',{ldbh:ldbh,mph:mph,dyh:dyh});
+        }
+    });
+
+    //房屋套数、房屋总价change事件
+    $('#dntfdk,#fwzj').change(function(event) {
+        ydl.setValue('kdje',0);
+        ydl.setValue('kdqx',0);
+        ydl.setValue('sqje',0);
+        ydl.setValue('sqqx',0);
+    });
+
+}
+//隐式提交后给项目名称赋值
+thisTab.ajax_complete_ajax1 = function (data) {
+	ydl.selectByValue('xmmc', poolSelect['xmmc']);
+}
+//隐式提交后给面积、金额信息赋值
+thisTab.ajax_after_ajax3 = function (data) {
+    ydl.validator.clear('fwjzmj','fwtnmj','fwdj','fwzj');
+    ydl.validator.clear('fwtnmj');
+    ydl.validator.clear('fwdj');
+    ydl.validator.clear('fwzj');
+	ydl.setValue('fwjzmj', data[0].unitprop);
+	ydl.setValue('fwtnmj', data[0].indiprop);
+	ydl.setValue('fwdj', data[0].amt1);
+	ydl.setValue('fwzj', data[0].amt2);
+}
+function getXmlb(){
+    var kfsbh = $('#kfsmc').val();
+	//根据开发商编号获取项目名称
+	ydl.sendCommand('CMD04',{"kfsbh":kfsbh},function(data,code,msg){
+	    if (code != '00000000') {
+			ydl.alert({'code':code, 'message':msg});
+		}else{
+			ydl.init.ajax('ajax1',{},function(data){
+			    $('#xmmc')
+			    //更新选项
+			    .html(ydl.common.blankOption + ydl.createOptions(data, 'unitaccname2', 'unitaccnum2'))
+			    //刷新组合框
+			    .combobox('refresh');
+		    });
+	    }
+	 });
+}
+//清空页面信息
+function clear(){
+    $('#gfdz').val("");
+    $('#gytdsyz').val("");
+    $('#jsghxkz').val("");
+    $('#jsydxkz').val("");
+    $('#ldbh').val("");
+    $('#dyh').val("");
+    $('#mph').val("");
+    ydl.setValue('fwjzmj', "");
+    ydl.setValue('fwtnmj', "");
+    ydl.setValue('fwdj', "");
+    ydl.setValue('fwzj', "");
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+    if (!ydl.validator('fwtnmj', {rule:Number($('#fwtnmj').val())>0,message:"房屋套内面积需大于0"})) return false;
+    if (!ydl.validator('fwjzmj', {rule:Number($('#fwjzmj').val())>0,message:"房屋建筑面积需大于0"})) return false;
+	if (!ydl.validator('fwtnmj', {rule:Number($('#fwjzmj').val())>=Number($('#fwtnmj').val()),message:"房屋套内面积不能大于房屋建筑面积"})) return false;
+    if (!ydl.validator('fwdj', {rule:Number($('#fwdj').val())>0,message:"房屋单价需大于0"})) return false;
+    if (!ydl.validator('fwzj', {rule:Number($('#fwzj').val())>0,message:"房屋总价需大于0"})) return false;
+	return true;
+}
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax>
+    <query id="ajax1" desc="根据开发商信息获取项目信息" trigger="" message="">
+      <sql datasource="ds_biz">select unitaccname2, unitaccnum2 from dp077 where instance= #{_IS, jdbcType=INTEGER} and dpbusitype='02'</sql>
+      <target id="xmmc" label="=unitaccname2" value="=unitaccnum2"/>
+    </query>
+    <query id="ajax2" desc="根据项目信息获取楼栋信息" trigger="" message="">
+      <sql datasource="ds_biz">select accnum1 from dp077 where instance= #{_IS, jdbcType=INTEGER} and dpbusitype='03' order by seqno</sql>
+      <target id="xmmc" label="=unitaccname2" value="=unitaccnum2"/>
+    </query>
+    <query id="ajax3" desc="根据门牌号等获取房屋信息" trigger="" message="">
+       <sql datasource="ds_biz">select unitprop,indiprop,amt1,amt2 from dp077 where instance= #{_IS, jdbcType=INTEGER} and dpbusitype='04' and accnum1=#{ldbh,jdbcType=VARCHAR}
+        and unitaccnum1=#{dyh,jdbcType=VARCHAR}  and unitaccname1=#{mph,jdbcType=VARCHAR}</sql>
+    </query>
+  </ajax>
+  <containers>
+    <container type="table" id="ct_fwxx" cols="4" uid="ct_form">
+      <component type="label" for="fwxz">房屋性质：</component>
+      <component id="fwxz" type="multivalue" subtype="select" fromdic="false" value="=fwxz" required="true">
+        <sql datasource="os_mdic">bsp.ln.fwxz</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="dntfdk">第N套房贷款：</component>
+      <component id="dntfdk" type="multivalue" subtype="select" fromdic="false" value="=dntfdk" required="true">
+        <sql datasource="os_mdic">bsp.ln.loanhousenum</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="kfsmc">开发商名称：</component>
+      <component id="kfsmc" type="multivalue" subtype="combo" value="=kfsmc" combobutton="true" combofuzzy="true" combomark="false" combodirty="false" required="true" fromdic="false">
+        <sql datasource="ds_biz">select unitaccnum1, unitaccname1 from dp077 where instance= #{_IS, jdbcType=INTEGER} and dpbusitype='01'</sql>
+        <item label="请选择..."/>
+        <item label="=unitaccname1" value="=unitaccnum1"/>
+      </component>
+      <component type="label" for="xmmc">项目名称：</component>
+      <component id="xmmc" type="multivalue" subtype="combo" combobutton="true" combofuzzy="true" combomark="false" combodirty="false" fromdic="false" value="=xmmc" required="true">
+        <sql datasource="ds_biz">select unitaccname2, unitaccnum2 from dp077 where instance= #{_IS, jdbcType=INTEGER} and dpbusitype='02'</sql>
+        <item label="请选择..."/>
+        <item label="=unitaccname2" value="=unitaccnum2"/>
+      </component>
+      <component type="label" for="gfdz">购房地址：</component>
+      <component id="gfdz" type="input" subtype="text" colspan="3" fromdic="false" maxlength="255" required="true" datatype="validchar">=gfdz</component>
+      <component type="label" for="ldbh">楼栋编号：</component>
+      <component id="ldbh" type="multivalue" subtype="select" fromdic="false" value="=ldbh" required="true">
+      <sql datasource="ds_biz">select accnum1 from dp077 where instance= #{_IS, jdbcType=INTEGER} and dpbusitype='03'</sql>
+      <item label="请选择..."/>
+      <item label="=accnum1" value="=accnum1"/>
+      </component>
+      <component type="label" for="dyh">单元号：</component>
+      <component id="dyh" type="input" subtype="text" fromdic="false" maxlength="120" required="true" datatype="validchar">=dyh</component>
+      <component type="label" for="mph">门牌号：</component>
+      <component id="mph" type="input" subtype="text"  fromdic="false" maxlength="120" required="true" datatype="validchar">=mph</component>
+      <component type="label" for="fwjzmj">房屋建筑面积：</component>
+      <component id="fwjzmj" type="input" subtype="text" fromdic="false" datatype="float" required="true" suffix="m²">=fwjzmj</component>
+      <component type="label" for="fwtnmj">房屋套内面积：</component>
+      <component id="fwtnmj" type="input" subtype="text" fromdic="false" required="true" suffix="m²" datatype="float">=fwtnmj</component>
+      <component type="label" for="fwdj">房屋单价：</component>
+      <component id="fwdj" type="input" subtype="money" fromdic="false" datatype="money" maxlength="18" declen="2" suffix="元" required="true">=fwdj</component>
+      <component type="label" for="fwzj">房屋总价：</component>
+      <component id="fwzj" type="input" subtype="money" fromdic="false" datatype="money" maxlength="18" declen="2" suffix="元" required="true">=fwzj</component>
+      <component type="label" for="fwyt">开发商房屋用途：</component>
+      <component id="fwyt" type="multivalue" subtype="select" fromdic="false" value="=fwyt">
+        <sql datasource="os_mdic">bsp.ln.prohouseusage</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="sffq">是否付清：</component>
+      <component id="sffq" type="multivalue" subtype="select" fromdic="false" value="=sffq" required="true">
+        <sql datasource="os_mdic">bsp.pb.validflag</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="gfsfk">购房首付款：</component>
+      <component id="gfsfk" type="input" subtype="money" fromdic="false" datatype="money" maxlength="18" declen="2" suffix="元" required="true">=gfsfk</component>
+      <component type="label" for="gfrq">购房日期：</component>
+      <component id="gfrq" type="input" subtype="date" datatype="date" fromdic="false" required="true">=gfrq</component>
+      <component type="label" for="jfrq">交房日期：</component>
+      <component id="jfrq" type="input" subtype="date" datatype="date" fromdic="false" required="true">=jfrq</component>
+      <component type="label" for="gflx">现房/期房：</component>
+      <component id="gflx" type="multivalue" subtype="select" fromdic="false" value="=gflx" required="true">
+        <sql datasource="os_mdic">bsp.ln.buyhousekind</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="gfhtbh">购房合同编号：</component>
+      <component id="gfhtbh" type="input" subtype="text" fromdic="false" required="true" datatype="validchar">=gfhtbh</component>
+      <component type="label" for="gytdsyz">国有土地使用证：</component>
+      <component id="gytdsyz" type="input" subtype="text" fromdic="false" datatype="validchar">=gytdsyz</component>
+      <component type="label" for="jsghxkz">建设规划许可证：</component>
+      <component id="jsghxkz" type="input" subtype="text" fromdic="false" datatype="validchar">=jsghxkz</component>
+      <component type="label" for="jsydxkz">建设用地许可证：</component>
+      <component id="jsydxkz" type="input" subtype="text" fromdic="false" datatype="validchar">=jsydxkz</component>
+      <component type="label" for="gtspd">国土审批单：</component>
+      <component id="gtspd" type="input" subtype="text" fromdic="false" datatype="validchar">=gtspd</component>
+      <component type="label" for="jttdsyz">集体土地使用证：</component>
+      <component id="jttdsyz" type="input" subtype="text" fromdic="false" datatype="validchar">=jttdsyz</component>
+      <component type="label" for="skrlx">收款人类型：</component>
+      <component id="skrlx" type="multivalue" subtype="select" fromdic="false" value="=skrlx">
+        <sql datasource="os_mdic">bsp.ln.loanpayeetype</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="skrzhmc">收款账号名称：</component>
+      <component id="skrzhmc" type="input" subtype="text" fromdic="false" datatype="validchar">=skrzhmc</component>
+      <component type="label" for="skrkhyhmc">收款人开户银行名称：</component>
+      <component id="skrkhyhmc" type="multivalue" subtype="select" fromdic="false" value="=skrkhyhmc">
+        <sql datasource="ds_biz">select unitaccnum1, unitaccname1 from dp077 where instance= #{_IS, jdbcType=INTEGER} and dpbusitype='00'</sql>
+        <item label="请选择..."/>
+        <item label="=unitaccname1" value="=unitaccnum1"/>
+      </component>
+      <component type="label" for="sfkrzhhm">收款人账户号码：</component>
+      <component id="sfkrzhhm" type="input" subtype="text" fromdic="false" datatype="validchar">=sfkrzhhm</component>
+    </container>
+    <container type="hidden" id="aa" uid="container-481154b6c25721119e65495b6a588460">
+      <component id="khbs" type="hidden">=getUserExtInfo("khbs")</component>
+      <component id="kfsdjh" type="hidden">=getRealUserExtInfo("kfsdjh")</component>
+      <component id="kfsmc1" type="hidden">=getRealUserExtInfo("kfsmc")</component>
+    </container>
+  </containers>
+</page>

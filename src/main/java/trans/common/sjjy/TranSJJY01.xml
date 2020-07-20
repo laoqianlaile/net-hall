@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranSJJY01" tranName="DP077表包含某个数据校验">
+        <comps>
+            <comp compCode="CompSJJY01" compName="DP077表包含某个数据校验" expression="">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                    <inParam ignoreNull="0" paramCode="checkValue" paramName="校验的数据值" paramType="string(0,-1)" paramValue="checkValue"/>
+                    <inParam ignoreNull="0" paramCode="entityName" paramName="DP077实体属性名称" paramType="string(0,-1)" paramValue="entityName"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="个人账户基本信息查询"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-06-14 15:54:45"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	/*$('#grjcjs').text(ydl.addComma(poolSelect['grjcjs']) + " 元");
+	$('#gryjce').text(ydl.addComma(poolSelect['gryjce']) + " 元");
+	$('#grzhye').text(ydl.addComma(poolSelect['grzhye']) + " 元");
+	$('#yjce').text(ydl.addComma(poolSelect['yjce']) + " 元");
+	$('#dwyjce').text(ydl.addComma(poolSelect['dwyjce']) + " 元");*/
+    var dwbl = parseFloat($("#unitprop").val()).toFixed(0);
+    var grbl = parseFloat($("#indiprop").val()).toFixed(0);
+    $("#unitprop").val(dwbl);
+    $("#indiprop").val(grbl);
+}
+
+//表单提交时执行
+thisTab.form_validate = function () {
+	return true;
+}
+
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form">
+      <component type="label">个人账号：</component>
+      <component id="cocietycode" type="input" subtype="text" fromdic="true" readonly="1">=grzh</component>
+      <component type="label">姓名：</component>
+      <component id="xingming" type="input" subtype="text" fromdic="true" readonly="1">=xingming</component>
+      <component type="label">证件号码：</component>
+      <component id="zjhm" type="input" subtype="text" fromdic="true" readonly="1">=zjhm</component>
+      <component type="label">账户状态：</component>
+      <component id="grzhzt" type="input" subtype="text" fromdic="true" readonly="1">=getMulData("bsp.dp.grzhzt",grzhzt)</component>
+      <component type="label">余额：</component>
+      <component id="grzhye" type="input" subtype="text" fromdic="true" readonly="1">=grzhye</component>
+      <component type="label">开户日期：</component>
+      <component id="khrq" type="input" subtype="text" fromdic="true" readonly="1">=khrq</component>
+      <component type="label">单位比例：</component>
+      <component id="unitprop" type="input" subtype="text" fromdic="true" readonly="1" suffix="%">=unitprop</component>
+      <component type="label">个人比例：</component>
+      <component id="indiprop" type="input" subtype="text" fromdic="true" readonly="1" suffix="%">=indiprop</component>
+      <component type="label">个人缴存基数：</component>
+      <component id="grjcjs" type="input" subtype="text" fromdic="true" readonly="1" suffix="元">=grjcjs</component>
+      <component type="label">月缴存额：</component>
+      <component id="yjce" type="input" subtype="text" fromdic="true" readonly="1" suffix="元">=yjce</component>
+      <component type="label">单位月缴存额：</component>
+      <component id="dwyjce" type="input" subtype="text" fromdic="true" readonly="1" suffix="元">=dwyjce</component>
+      <component type="label">个人月缴存额：</component>
+      <component id="gryjce" type="input" subtype="text" fromdic="true" readonly="1" suffix="元">=gryjce</component>
+      <component type="label">缴至年月：</component>
+      <component id="jzny" type="input" subtype="text" fromdic="true" readonly="1">=jzny</component>
+      <component type="label">单位账号：</component>
+      <component id="dwzh" type="input" subtype="text" fromdic="true" readonly="1">=dwzh</component>
+      <component type="label">单位名称：</component>
+      <component id="dwmc" type="input" subtype="text" colspan="3" fromdic="true" readonly="1">=unitaccname</component>
+      <component type="label">是否贷款：</component>
+      <component id="isloanflag" type="input" subtype="text" fromdic="true" readonly="1">=getMulData("bsp.ln.isloanflag",isloanflag)</component>
+      <component type="label">是否为共同借款人：</component>
+      <component id="flag" type="input" subtype="text" fromdic="true" readonly="1">=getMulData("bsp.ln.isloanflag",flag)</component>
+      <component type="label">冲还贷标志：</component>
+      <component id="useflag" type="input" subtype="text" fromdic="true" readonly="1">=useflag</component>
+      <component type="label">联名卡号：</component>
+      <component id="cardno" type="input" subtype="text" fromdic="true" readonly="1">=cardno</component>
+      <component type="label">借款合同号：</component>
+      <component id="jkhth" type="input" subtype="text" fromdic="true" readonly="1">=jkhth</component>
+      <component type="label">手机号码：</component>
+      <component id="sjhm" type="input" subtype="text" fromdic="true" readonly="1">=sjhm</component>
+      <component type="label">是否冻结：</component>
+      <component id="frzflag" type="input" subtype="text" fromdic="true" readonly="1">=getMulData("bsp.cm.frzflag",frzflag)</component>
+
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+  </containers>
+</page>

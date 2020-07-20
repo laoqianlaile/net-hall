@@ -1,0 +1,25 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2018-5-24</tr_acdt>
+		<tr_time>2018-5-24 15:22:14</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file />
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<djh des="登记号">20180806009834</djh>
+		<djrq des="登记日期">2018-08-06</djrq>
+		<jclx des="缴存类型">1</jclx>
+		<fkyh des="付款银行">中国工商银行支行</fkyh>
+		<jkje des="缴款金额">3400.00</jkje>
+		<jkfs des="缴款方式">6</jkfs>
+	</body>
+</root>

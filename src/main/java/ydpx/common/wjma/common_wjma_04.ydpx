@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0403" version="2.0" formaction="">
+    <info>
+        <description title="=pagetit"/>
+        <editlogs>
+            <log editor="0000(离线)" edittime="2018-01-11 13:03:49"/>
+        </editlogs>
+    </info>
+    <scripts>
+        <script include="/common/script/aes.js"/>
+        <script include="/common/script/my-aes-crypto.js"/>
+        <script><![CDATA[
+        //页面加载后执行
+        thisTab.pageOnload = function () {
+            //设置所有校验后均不改变焦点
+            ydl.validator.setDefault({focus: false});
+            $('#jbrzjlx').text(ydl.mudic.getName("bsp.pb.zjlx." + poolSelect['jbrzjlx']));
+            // 为证件号码添加掩码
+            $('#jbrzjhm').text($('#jbrzjhm').text().replace(/^(\d{6})\d{9}(\d{3})$/, '$1*******$2'));
+            var dlmm_tips = $('#dlmm_tips').text();
+            var qrdlmm_tips = $('#qrdlmm_tips').text();
+
+            //【登陆密码】失去焦点事件
+            $("#dlmm").blur(function () {
+                var dlmm = $('#dlmm').val().trim();
+                if (dlmm != "") {
+                    if (ydl.validator('dlmm', {required: true, silent: true, type: 'number', length: 6})) {
+                        $('#dlmm_tips').text("");
+                        addTP('dlmm');
+                        checkDLMM();
+                    } else {
+                        $('#dlmm_tips').text(dlmm_tips);
+                    }
+                } else {
+                    $('#dlmm_tips').text(dlmm_tips);
+                }
+            });
+            //【确认登陆密码】失去焦点事件
+            $("#qrdlmm").blur(function () {
+                checkDLMM();
+            });
+        }
+
+        function cmdValidate() {
+            var dlmm = $('#dlmm').val().trim();
+            var qrdlmm = $('#qrdlmm').val().trim();
+            var result = true;
+            result &= ydl.validator('dlmm', {required: true, silent: true, type: 'number', length: 6});
+            result &= ydl.validator('qrdlmm', {required: true, silent: true, type: 'number', length: 6});
+            result &= ydl.validator('qrdlmm', {rule: dlmm == qrdlmm, message: '两次新密码输入不一致，请重新输入!'});
+            return !!result;
+        }
+
+        //验证两次输入的密码是否一致
+        function checkDLMM() {
+            var dlmm = $('#dlmm').val().trim();
+            var qrdlmm = $('#qrdlmm').val().trim();
+            ydl.validator('dlmm', {required: true});
+            if (qrdlmm != "") {
+                if (ydl.validator('qrdlmm', {rule: dlmm == qrdlmm, message: '两次新密码输入不一致，请重新输入!'})) {
+                    $('#qrdlmm_tips').text("");
+                    addTP('qrdlmm');
+                } else {
+                    $('#qrdlmm_tips').text("请再次输入登陆密码。");
+                }
+            } else {
+                $('#qrdlmm_tips').text("请再次输入登陆密码。");
+            }
+        }
+
+        function addTP(id) {
+            $('#' + id + '_tips').append("<img id='" + id + "_tp' height='20' width='20' src='/ish/ydpx/ish01/yhzc_05/tg.png'  alt='通过' />");
+        }
+
+        //表单提交时执行
+        thisTab.form_validate = function () {
+            var result = true;
+            result = cmdValidate();
+            if (result) {
+                var dlmm = $('#dlmm').val();
+                var token = $('#token').val();
+                $("#hdlmm").val(encrypt(dlmm, token));
+                $('#dlmm').removeAttr("name");
+                $('#qrdlmm').removeAttr("name");
+            } else {
+                $("#hdlmm").val("");
+                $('#dlmm').attr('name', 'dlmm');
+                $('#qrdlmm').attr('name', 'qrdlmm');
+            }
+            return !!result;
+        }
+
+        ]]></script>
+    </scripts>
+    <dataset/>
+    <ajax/>
+    <containers>
+        <container uid="container-cff4fcb0b04b4a0b9f14b8ab8e37c2f6" type="table" layout="fit" cols="6"
+                   id="container-cff4fcb0b04b4a0b9f14b8ab8e37c2f6" caption="基本信息">
+            <component type="label" for="jbrxm">经办人姓名：</component>
+            <component id="jbrxm" type="plain">=jbrxm</component>
+            <component type="label">经办人证件类型：</component>
+            <component id="jbrzjlx" type="plain">=jbrzjlx</component>
+            <component type="label">经办人证件号码：</component>
+            <component id="jbrzjhm" type="plain">=jbrzjhm</component>
+        </container>
+        <container uid="container-fec46e4d1a3b49b8bd7b83c392a4de1b" type="table" layout="fit" cols="6" caption="重置登录密码"
+                   id="container-cx">
+            <component type="plain"/>
+            <component type="label" for="dlmm">新登录密码：</component>
+            <component id="dlmm" type="input" subtype="password" datatype="number" minlength="6" maxlength="6"
+                       fromdic="false" colspan="2"/>
+            <component id="dlmm_tips" type="plain" colspan="2">请设置您的登录密码，密码为6位数字。</component>
+            <component type="plain"/>
+            <component type="label" for="qrdlmm">确认登录密码：</component>
+            <component id="qrdlmm" type="input" subtype="password" datatype="number" minlength="6" maxlength="6"
+                       fromdic="false" colspan="2"/>
+            <component id="qrdlmm_tips" type="plain" colspan="2">请再次输入您的登录密码。</component>
+        </container>
+        <container type="hidden" id="container-wjmm04" uid="container-wjmm04">
+            <component id="hdlmm" type="hidden"/>
+            <component id="token" type="hidden">=token</component>
+        </container>
+    </containers>
+</page>

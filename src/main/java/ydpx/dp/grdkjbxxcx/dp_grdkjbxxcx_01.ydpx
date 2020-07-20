@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="个人贷款信息查询"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-09-29 11:30:55"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+     $('#datalist1').addClass('nowrap');
+     console.log("zjhm: "+poolSelect['zjhm']);
+     ydl.sendCommand('dklb',{"zjhm":poolSelect['zjhm']},function(data,code,msg){
+            //console.log("dataTest",code != '00000000');
+            if (code != '00000000') {
+                ydl.alert({'code':code, 'message':msg});
+            }else{
+                ydl.init.list('datalist1', {}, thisTab);
+
+            }
+     });
+     //点击合同编号操作
+     $("#jkhtbh").click(function(e){
+        alert("2222");
+     });
+
+}
+//列表回调函数
+thisTab.list_callback_datalist1 = function(rows) {
+
+	if(rows.length > 0){
+		$(rows).each(function(i){
+            var type = $(this).getCell(2).text();
+            $(this).find(':button').eq(0).click(function(){
+                ydl.subPage('subpage_dkxq', {"type":type},[]);
+            });
+        });
+	}
+}
+
+//表单提交时校验
+thisTab.form_validate = function () {
+	return true;
+}
+]]></script>
+  </scripts>
+  <dataset>
+    <sql id="ds1" desc="个人账户明细查询" paging="true" pagesize="10" maxrows="99999999" scopeall="true" datasource="ds_biz"><![CDATA[
+         select FREEUSE4,UNITACCNUM1 grzh,UNITACCNAME1 jkhtbh,UNITACCNUM2 clearstate,ACCNUM1 loancontrstate,UNITACCNAME2 agentbankcode,ACCNUM2 htdkje,ACCNAME1 dPrin,ACCNAME2 dInt,CERTINUM dPun,BASENUM dRepaySum,UNITPROP dBal,PAYVOUNUM transdate from dp077 where 1=1
+         <if test="_IS != null">
+                 and  instance= #{_IS, jdbcType=INTEGER}
+         </if>
+         order by PAYVOUNUM
+    ]]></sql>
+  </dataset>
+  <ajax/>
+  <containers>
+    <container uid="container-0c90afcf7b3b45b18d3bab9ec6d0be56" type="list" layout="auto-height no-result-info" cols="8" id="datalist1" dataset="ds1" caption="个人贷款信息列表" allowexport="false" allowprint="false">
+          <listhead>
+            <component type="label">序号</component>
+            <component type="label">个人账号</component>
+            <component type="label">合同编号</component>
+            <component type="label">合同状态</component>
+            <component type="label">贷款经办银行</component>
+            <component type="label">贷款金额</component>
+            <component type="label">本金金额</component>
+            <component type="label">借款日期</component>
+          </listhead>
+          <listbody>
+            <component id="mhbh" type="plain">=ds1._xh[#]</component>
+            <component id="grzh" type="plain">=ds1.grzh[#]</component>
+            <component id="jkhtbh" type="button" subtype="button">=ds1.jkhtbh[#]</component>
+            <component id="htzt" type="plain" hidden="false">=getMulData("bsp.ln.loancontrstate",ds1.loancontrstate[#])</component>
+            <component id="dkjbyh" type="plain" >=ds1.agentbankcode[#]</component>
+            <component id="dkje" type="plain" datatype="money">=ds1.htdkje[#]</component>
+            <component id="bjje" type="plain" datatype="money">=ds1.dprin[#]</component>
+            <component id="dkrq" type="plain">=ds1.transdate[#]</component>
+          </listbody>
+          <hidden/>
+        </container>
+
+  </containers>
+</page>

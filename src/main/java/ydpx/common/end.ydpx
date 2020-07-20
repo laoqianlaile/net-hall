@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page template="=(getPoolValue('_OPERID','') == '' || (getPoolValue('isLogout','')) == 'true') ? '0403' : '0401')" version="1.0" formaction="">
+  <info>
+    <description title="结果页"/>
+  </info>
+  <styles>
+    <style include="/template/ish01/css/result-page.css" />
+  </styles>
+  <scripts>
+    <script include="/template/ish01/js/result-page.js?V=1.00" />
+    <script>
+    thisTab.pageOnload = function () {
+    	initPage();
+    };
+    </script>
+  </scripts>
+  <dataset/>
+  <ajax>
+  </ajax>
+  <containers>   
+  </containers>
+  <frame><![CDATA[
+	<div id="resultInfo">
+		<div class="result-top">
+			<div class="result-type"></div>
+			<div class="result-right">
+				<div class="result-title"></div>
+				<div class="result-content"></div>
+				<div class="result-buttons"></div>
+			</div>
+		</div>
+		<div class="container result-links">
+			<div class="row">
+				<div class="col-md-4 result-link result-recent hidden">
+					<div class="resule-link-title">
+						<span class="title-img img-recent"></span>
+						<span>您最近操作的业务</span>
+					</div>
+				</div>
+				<div class="col-md-4 result-link result-prev hidden">
+					<div class="resule-link-title">
+						<span class="title-img img-prev"></span>
+						<span>已办理业务</span>
+					</div>
+				</div>
+				<div class="col-md-4 result-link result-next hidden">
+					<div class="resule-link-title">
+						<span class="title-img img-next"></span>
+						<span>可办理业务</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+]]></frame>
+</page>

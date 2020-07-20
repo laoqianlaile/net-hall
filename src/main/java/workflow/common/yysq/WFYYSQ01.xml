@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFYYSQ01" desc="预约申请" startPage="step1" flowchart="1" endmessage="">
+    <config>
+        <flowvars>
+            <flowvar name="yysq01" desc="预约业务选择">common_yysq_01.ydpx</flowvar>
+            <flowvar name="yysq02" desc="预约网点选择">common_yysq_02.ydpx</flowvar>
+            <flowvar name="yysq03" desc="预约信息确认">common_yysq_03.ydpx</flowvar>
+            <flowvar name="yysq04" desc="预约凭证打印">common_yysq_04.ydpx</flowvar>
+        </flowvars>
+		<mudics>
+          	<mudic key="ish.gg.yy.yyggcs" desc="预约公共参数"></mudic>
+          	<mudic key="ish.gg.yy.yyywblcl" desc="预约策略"></mudic>
+          	<mudic key="ish.gg.wf.qdm" desc="预约申请渠道"></mudic>
+          	<mudic key="ish.gg.yy.yysqzt" desc="预约状态"></mudic>
+          	<mudic key="ish.gg.yy.yyczzt" desc="预约操作状态"></mudic>
+          	<mudic key="ish.gg.other.sf" desc="是否"></mudic>
+          	<!-- <mudic key="kf.ish.yysq.yydxmb" desc="预约短信模板"></mudic>
+          	<mudic key="kf.ish.yysq.yyywbh" desc="发送短信微信等信息时使用的业务编号"></mudic>
+          	<mudic key="kf.ish.yysq.yydsrwzt" desc="预约定时任务执行状态"></mudic> -->
+          	<mudic key="ish.gg.yy.rqlx" desc="工作日类型（首信）"></mudic>
+        </mudics>
+        <buttons>
+           <buttons id="A" text="发送预约信息短信" icon="log-out" inCause="" cmdtask="sendMsg" succmsg="短信发送成功，请注意查收。"/><!--   appvalue="0"  -->
+           <buttons id="H" text="发送微信消息" icon="phone" inCause="" cmdtask="sendWeChat" succmsg="已经将二维码发送至您的微信账号。"/>
+           <buttons id="C" text="取消" icon="remove-sign"/>
+           <buttons id="B" text="返回首页" icon="home" url="/home"/>
+           <buttons id="D" text="打印" icon="print"/>
+           <buttons id="G" text="下一步" icon="chevron-right"/>
+        </buttons>
+    </config>
+    <step id="step1" url="=_flowvar_yysq01" desc="预约业务选择" inCause="getPoolValue('flowFlag','NO')=='NO' || flowFlag=='0'" appflag="X"  buttonflag="CGg" in="1" out="0" flowchartkey="1" isleaveprompt="1">
+        <init>
+            <setvar name="rw">w</setvar>
+            <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+        </init>
+    </step>
+    <step id="step2" url="=_flowvar_yysq02" desc="预约网点选择" inCause="" notoid="step1" appflag="X"  buttonflag="fg" in="1" out="1" flowchartkey="1" isleaveprompt="1">
+        <init>
+            <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+        </init>
+    </step>
+    <step id="step3" url="=_flowvar_yysq03" desc="预约信息确认" notoid="step2" appflag="X"  buttonflag="fg" in="0" out="1" flowchartkey="1" isleaveprompt="1">
+        <init>
+            <!--<setvar name="rw">w</setvar>-->
+            <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+        </init>
+    </step>
+    <step id="step4" url="=_flowvar_yysq04" desc="预约凭证打印" notoid="step3" appflag="X"  buttonflag="AHB" in="1" out="0" flowchartkey="1" >
+        <init>
+        	<setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		 </init>
+    </step>
+</flow>

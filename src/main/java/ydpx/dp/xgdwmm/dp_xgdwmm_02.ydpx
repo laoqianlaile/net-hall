@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="修改登录密码"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-06-13 11:03:01"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+    thisTab.pageOnload = function () {
+        //修改后的密码不能与原密码相同
+        $('#xdlmm').change(function(event) {
+            ydl.validator.clear();
+            if($('#xdlmm').val() != ""){
+                if (!ydl.validator('xdlmm', {rule: $('#ydlmm').val() != $('#xdlmm').val(), message:"修改后密码不能与原密码相同"})) return false;
+                if($('#qrxdlmm').val() != ""){
+                    if (!ydl.validator('qrxdlmm', {rule: $('#qrxdlmm').val() == $('#xdlmm').val(), message:"两次输入的密码必须相同"})) return false;
+                }
+            }
+        });
+        //修改后的密码不能与原密码相同
+        $('#ydlmm').change(function(event) {
+            ydl.validator.clear('xdlmm');
+            if($('#xdlmm').val() != ""){
+                if (!ydl.validator('xdlmm', {rule: $('#ydlmm').val() != $('#xdlmm').val(), message:"修改后密码不能与原密码相同"})) return false;
+            }
+        });
+        //确认的密码需与新密码相同
+        $('#qrxdlmm').change(function(event) {
+            ydl.validator.clear('qrxdlmm');
+            if($('#qrxdlmm').val() != "" && $('#xdlmm').val() != ""){
+                if (!ydl.validator('qrxdlmm', {rule: $('#qrxdlmm').val() == $('#xdlmm').val(), message:"两次输入的密码必须相同"})) return false;
+            }
+        });
+    }
+
+    //表单提交时执行
+    thisTab.form_validate = function () {
+        if (!ydl.validator('xdlmm', {rule: $('#ydlmm').val() != $('#xdlmm').val(), message:"修改后密码不能与原密码相同"})) return false;
+        if (!ydl.validator('qrxdlmm', {rule: $('#qrxdlmm').val() == $('#xdlmm').val(), message:"两次输入的密码必须相同"})) return false;
+        return true;
+    }
+    ]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="8" uid="ct_form" layout="connect" caption="单位信息">
+      <component type="label"/>
+      <component type="label" for="jbrxm" colspan="2">经办人姓名：</component>
+      <component id="jbrxm" type="plain" colspan="5">=getUserExtInfo('jbrxm')</component>
+      <component type="blank"/>
+      <component type="label" for="jbrzjlx" colspan="2">经办人证件类型：</component>
+      <component id="jbrzjlx" type="plain" colspan="5">=getMulData("bsp.pb.zjlx",getUserExtInfo('jbrzjlx'))</component>
+      <component type="blank"/>
+      <component type="label" for="jbrzjhm" colspan="2">经办人证件号码：</component>
+      <component id="jbrzjhm" type="plain" colspan="5">=getUserExtInfo('jbrzjhm')</component>
+    </container>
+    <container uid="container-ced91a2d5e474bfd9d08ff040bc9caa3" type="table" layout="connect" cols="8" id="container-ced91a2d5e474bfd9d08ff040bc9caa3" caption="密码修改">
+      <component type="blank"/>
+      <component type="label" for="ydlmm" colspan="2">原登录密码：</component>
+      <component id="ydlmm" type="input" subtype="password" datatype="number" maxlength="6" minlength="6" required="true"  fromdic="false" colspan="2">=ydlmm</component>
+      <component type="plain" colspan="3">请输入原登录密码</component>
+      <component type="blank"/>
+      <component type="label" for="xdlmm" colspan="2">新登录密码：</component>
+      <component id="xdlmm" type="input" subtype="password" datatype="number" maxlength="6" minlength="6" required="true"  fromdic="false" colspan="2">=xdlmm</component>
+      <component type="plain" colspan="3">新密码为6位数字</component>
+      <component type="blank"/>
+      <component type="label" for="qrdlmm" colspan="2">确认新登录密码：</component>
+      <component id="qrxdlmm" type="input" subtype="password" datatype="number" maxlength="6" minlength="6" required="true" fromdic="false" colspan="2">=qrxdlmm</component>
+      <component type="plain" colspan="3">请再次输入新密码</component>
+    </container>
+  </containers>
+</page>

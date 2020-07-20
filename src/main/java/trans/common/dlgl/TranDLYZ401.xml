@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranDLYZ401" tranName="单位用户登录验证返回用户信息">
+        <comps>
+        	<comp compCode="CompDLYZ401" compName="单位用户登录验证返回用户信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="loginId" paramName="登录id" paramType="string(0,25)" paramValue="loginId"/>
+                    <inParam ignoreNull="0" paramCode="password" paramName="密码" paramType="string(0,-1)" paramValue="password"/>
+                </inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="jbrxm" paramName="经办人姓名" paramType="string(0,-1)" paramValue="jbrxm"/>
+                	<outParam ignoreNull="0" paramCode="dwdjh" paramName="单位登记号" paramType="string(0,-1)" paramValue="dwdjh"/>
+                	<outParam ignoreNull="0" paramCode="dwmc" paramName="单位名称" paramType="string(0,-1)" paramValue="dwmc"/>
+                	<outParam ignoreNull="0" paramCode="instcode" paramName="机构号" paramType="string(0,-1)" paramValue="instcode"/>
+                	<outParam ignoreNull="0" paramCode="instname" paramName="机构名" paramType="string(0,-1)" paramValue="instname"/>
+                	<outParam ignoreNull="0" paramCode="dwdz" paramName="单位地址" paramType="string(0,-1)" paramValue="dwdz"/>
+                	<outParam ignoreNull="0" paramCode="dwslrq" paramName="单位设立日期" paramType="string(0,-1)" paramValue="dwslrq"/>
+                	<outParam ignoreNull="0" paramCode="dwyb" paramName="单位邮编" paramType="string(0,-1)" paramValue="dwyb"/>
+                	<outParam ignoreNull="0" paramCode="shcxdm" paramName="社会诚信代码" paramType="string(0,-1)" paramValue="shcxdm"/>
+                	<outParam ignoreNull="0" paramCode="rolecodes" paramName="角色集合" paramType="string(0,-1)" paramValue="rolecodes"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0402" version="2.0" formaction="">
+  <info>
+    <description title="凭证补打"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-06-11 11:26:21"/>
+    </editlogs>
+  </info>
+  <styles>
+    <style>object { margin-left:-60px; }</style>
+  </styles>
+  <scripts>
+    <script><![CDATA[
+	//页面加载后执行
+	thisTab.pageOnload = function() {
+		// 凭证补打公共方法
+		var options = {
+	        type: poolSelect['type'],//打印文件的类型,必传,例如：word、excel或pdf
+	        id: 'printDiv',//打印文件的显示页面元素id,必传
+			fileid: poolSelect['fileid'],
+			data:"",
+	        width: '100%',//打印文件的宽度默认100% 可以是百分数也可以指定大小100px
+	        height: '530px',//打印文件的高度默认100% 可以是百分数也可以指定大小100px
+	        callback:callback,// 回调函数
+	    };
+	    //显示凭证补打信息
+		print.rePrintPage(options);
+		
+	}
+	function callback(){
+		$(".modal-dialog").css("width","1000px");
+	}
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container uid="container-8cf94ac031014a98a6d001ad93ed8404" type="box" id="printDiv"/>
+  </containers>
+</page>

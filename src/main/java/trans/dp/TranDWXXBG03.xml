@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWXXBG03" tranName="校验经办人信息">
+        <comps>
+        	<comp compCode="CompDWXXBG03" compName="校验经办人信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="filename" paramName="经办人信息下传文件名称" paramType="string(0,-1)" paramValue="filename"/>
+                    <inParam ignoreNull="0" paramCode="changeflag" paramName="对比列表修改标识" paramType="string(1,5)" paramValue="changeflag"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

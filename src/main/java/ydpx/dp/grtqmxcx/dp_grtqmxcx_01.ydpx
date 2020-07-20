@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="个人提取明细查询"/>
+    <editlogs>
+      <log editor="ypf" edittime="2020-04-14"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	//校验开始日期结束日期大小关系
+	$('#c_rzksrq').change(function(event) {
+		ydl.validator.clear();
+		if($('#c_rzrzksrq').val() !="" && $('#c_rzjsrq').val()!=""){
+			if (!ydl.validator('c_rzksrq',{silent: true, rule:$('#c_rzjsrq').val() >= $('#c_rzksrq').val(),message:"开始日期不能大于结束日期！请重新输入"})) return false;
+		}
+	});
+	$('#c_rzjsrq').change(function(event) {
+		ydl.validator.clear();
+		if($('#c_rzjsrq').val() !="" && $('#c_rzksrq').val()!=""){
+			if (!ydl.validator('c_rzjsrq',{silent: true, rule:$('#c_rzjsrq').val() >= $('#c_rzksrq').val(),message:"结束日期不能小于开始日期！请重新输入"})) return false;
+		}
+	});
+	 //设置可选择日期范围
+	$('#c_rzksrq').datepicker({
+		forceParse: false,
+		endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+	});
+	//设置可选择日期范围
+	$('#c_rzjsrq').datepicker({
+		forceParse: false,
+		endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+	});
+	//关联两个日期控件的起止范围
+	$('#c_rzksrq').datepicker('changeDate', function(date) {
+	    $('#c_rzjsrq').datepicker('setStartDate', date);
+	});
+	$('#c_rzjsrq').datepicker('changeDate', function(date) {
+	    $('#c_rzksrq').datepicker('setEndDate', date);
+	});
+
+	//点击查询按钮，获取批量数据，刷新列表
+	$('#b_query').addIcon('search').click(function(event) {
+		if($('#c_rzksrq').val() !="" && $('#c_rzjsrq').val()!=""){
+			if (!ydl.validator('c_rzksrq',{silent: true, rule:$('#c_rzjsrq').val() >= $('#c_rzksrq').val(),message:"开始日期不能大于结束日期！请重新输入"})) return false;
+		}
+		var startDate = $('#c_rzksrq').val();
+		var endDate = $('#c_rzjsrq').val();
+		ydl.sendCommand('grtqmxcx',{"begdate":startDate,"enddate":endDate},function(data,code,msg){
+	    	if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+			 	ydl.init.list('grtqmx', {}, thisTab);
+			}
+	    });
+	});
+}
+
+//表单提交时执行
+thisTab.form_validate = function () {
+	return true;
+}]]></script>
+  </scripts>
+  <dataset>
+    <sql id="ds1" desc="提取明细查询列表数据" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="ds_biz"><![CDATA[
+    select FREEUSE4 iCount,UNITACCNUM1 sqrq,UNITACCNAME1 jyrq,UNITACCNUM2 grxm,REASON tqyy,UNITACCNAME2 tqje,AGENTINSTCODE skyhmc,ACCNUM2 skzh,ACCNAME1 jbr,ACCNUM1 jsfs,ACCNAME2 zt,PAYVOUNUM bldd from dp077 where 1=1
+			<if test="_IS != null">
+          	  and instance= #{_IS, jdbcType=INTEGER}
+			</if>
+			]]></sql>
+  </dataset>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form" layout="connect">
+      <component type="label">开始日期：</component>
+      <component id="c_rzksrq" type="input" subtype="date" fromdic="false" datatype="yyyy-mm-dd">=rzksrq</component>
+      <component type="label">结束日期：</component>
+      <component id="c_rzjsrq" type="input" subtype="date" fromdic="false" datatype="yyyy-mm-dd">=rzjsrq</component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-c26495d672124a0880602dfe2be17737" type="box" layout="buttons" id="container-c26495d672124a0880602dfe2be17737">
+      <component id="b_query" type="button" subtype="button">查询</component>
+    </container>
+    <container uid="container-0c90afcf7b3b45b18d3bab9ec6d0be56" type="list" layout="auto-height no-result-info" allowexport="true" allowprint="true" cols="10" id="grtqmx" dataset="ds1" caption="个人提取明细">
+      <listhead>
+        <component type="label">序号</component>
+        <component type="label">申请日期</component>
+        <component type="label">交易日期</component>
+        <component type="label">个人姓名</component>
+        <component type="label">提取原因</component>
+        <component type="label">提取金额</component>
+        <component type="label">收款账号</component>
+        <component type="label">经办人</component>
+        <component type="label">结算方式</component>
+        <component type="label">状态</component>
+      </listhead>
+      <listbody>
+        <component type="plain" >=ds1._xh[#]</component>
+        <component type="plain">=ds1.sqrq[#]</component>
+        <component type="plain">=ds1.jyrq[#]</component>
+        <component type="plain">=ds1.grxm[#]</component>
+        <component type="plain">=ds1.tqyy[#]</component>
+        <component type="plain">=ds1.tqje[#]</component>
+        <component type="plain">=ds1.skzh[#]</component>
+        <component type="plain" >=ds1.jbr[#]</component>
+        <component type="plain">=ds1.jsfs[#]</component>
+        <component type="plain" >=ds1.zt[#]</component>
+      </listbody>
+    </container>
+  </containers>
+</page>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHKMXCX" tranName="还款明细查询">
+        <comps>
+            <comp compCode="CompBatchGetTransaction" compName="还款明细查询" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getHKMXCX"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="还款明细查询"/>
+                    <inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant"
+                             paramValue="FREEUSE1:iCount,XMQP:jzrq,ACCNAME1:acmonth,ACCNAME2:summarycode,AGENTOP:hkje,AGENTINSTCODE:bjje,PAYVOUNUM:lxje,ACCNUM1:fxje,ACCNUM2:dkye"/>
+                    <inParam ignoreNull="1" paramCode="fileField" paramName="下传文件字段名" paramType="constant" paramValue="file"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,58 @@
+<root>
+	<head>
+		<reqflag>1</reqflag>
+		<tr_code />
+		<sys_no>88</sys_no>
+		<corp_no>100</corp_no>
+		<oreq_no>dd96dd90-4c17-11e7-80bb-f48c50309cc5</oreq_no>
+		<tr_acdt>2017-06-08</tr_acdt>
+		<tr_time>2017-06-08 14:55:37</tr_time>
+		<ans_code>0</ans_code>
+		<ans_info>成功</ans_info>
+		<particular_code>0000</particular_code>
+		<particular_info>操作成功！</particular_info>
+		<file></file>
+		<reserved>保留字段</reserved>
+	</head>
+	<body>
+		<jgmc des="机构名称">朝阳管理部</jgmc>
+		<swtyhmc des="受委托银行名称">中国工商银行</swtyhmc>
+		<jkrxm des="借款人姓名">杨红敏</jkrxm>
+		<jkrzjhm des="借款人证件号码">2207221993010100443</jkrzjhm>
+		<dkffrq des="贷款发放日期">2017-09-09</dkffrq>
+		<dkffe des="贷款发放额">400000.00</dkffe>
+		<dkqs des="贷款期数">290</dkqs>
+		<ydhkr des="约定还款日">7</ydhkr>
+		<dkhkfs des="贷款还款方式">01</dkhkfs>
+		<yhke des="月还款额">3000.00</yhke>
+		<hkzh des="还款账号">622200022022700274</hkzh>
+		<htzt des="合同状态">01</htzt>
+		<dkye des="贷款余额">300000.00</dkye>
+		<dkll des="贷款利率">3.75</dkll>
+		<sfyq des="是否逾期">1</sfyq>
+		<yqbjze des="逾期本金总额">1000.00</yqbjze>
+		<yqlxze des="逾期利息总额">40.00</yqlxze>
+		<fxze des="罚息总额">5.00</fxze>
+		<tqhj des="拖欠合计">1045.00</tqhj>
+		<dqqc des="当前期次">30</dqqc>
+		<yddqrq des="约定到期日期">2047-09-09</yddqrq>
+		<syqs des="剩余期数">270</syqs>
+		<xdqrq des="现到期日期">2041-11-09</xdqrq>
+		<tqqbhkje des="提前全部还款金额">400000.00</tqqbhkje>
+		<kkrlx des="扣款人类型">0</kkrlx>
+		<kkrxm des="扣款人姓名">杨红敏</kkrxm>
+		<kkrzjhm des="扣款人证件号码">2207221993010100443</kkrzjhm>
+		<gtjkrxm des="共同借款人姓名">李四,王一</gtjkrxm>
+		<zdhke des="最低还款额">2000.00</zdhke>
+		<yqbj des="逾期本金">2000.00</yqbj>
+		<yqlx des="逾期利息">200.00</yqlx>
+		<whfx des="未还罚息">20.00</whfx>
+		<yqzje des="逾期总金额">2220.00</yqzje>
+		<xcslx des="新产生利息">30000.00</xcslx>
+		<wdqbj des="未到期本金">200000.00</wdqbj>
+		<htdkje des="合同贷款金额">400000.00</htdkje>
+		<dkzxll des="贷款执行利率">3.75</dkzxll>
+		<!--ish04新增-->
+		<hsbjze des="回收本金总额">100000.00</hsbjze>
+	</body>
+</root>

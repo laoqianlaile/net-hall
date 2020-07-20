@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWGZCX01" tranName="单位挂账信息查询">
+        <comps>
+            <comp compCode="CompDWGZCX01" compName="获取单位挂账查询批量信息" expression="">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

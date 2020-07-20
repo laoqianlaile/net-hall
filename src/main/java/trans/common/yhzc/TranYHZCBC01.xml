@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranYHZCBC01" tranName="个人用户注册保存信息">
+        <comps>
+        	<comp compCode="CompYHZCBC01" compName="个人用户注册保存信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="xingming" paramName="姓名" paramType="string(0,-1)" paramValue="xingming"/>
+                    <inParam ignoreNull="0" paramCode="zjlx" paramName="证件类型" paramType="string(0,2)" paramValue="zjlx"/>
+                    <inParam ignoreNull="0" paramCode="zjhm" paramName="证件号码" paramType="string(0,-1)" paramValue="zjhm"/>
+                    <inParam ignoreNull="0" paramCode="yh" paramName="选择的银行" paramType="string(0,-1)" paramValue="yh"/>
+                    <inParam ignoreNull="0" paramCode="yhkh" paramName="银行卡号" paramType="string(0,-1)" paramValue="yhkh"/>
+                    <inParam ignoreNull="0" paramCode="yhylsjh" paramName="用户预留手机号" paramType="string(0,-1)" paramValue="yhylsjh"/>
+                    <inParam ignoreNull="1" paramCode="cxmm" paramName="查询密码" paramType="string(0,-1)" paramValue="cxmm"/>
+                    <inParam ignoreNull="1" paramCode="jymm" paramName="交易密码" paramType="string(0,-1)" paramValue="jymm"/>
+               </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

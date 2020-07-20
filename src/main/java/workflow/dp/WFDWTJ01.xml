@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFDWTJ01" desc="退缴" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage=""><!-- menu_gen_inst="1" -->
+	<config>
+		<flowvars>
+			<flowvar name="ym01" desc="退缴">dp_dwtj_01.ydpx</flowvar>
+		</flowvars>
+		<mudics>
+			<mudic key="bsp.dp.tkfs" desc="退款方式"></mudic>
+		</mudics>
+		<endpage buttonflag="o">
+			<init>
+				<setvar name="_RESULT_PAGE_TITLE"><![CDATA[退缴业务办理完成！]]></setvar>
+			</init>
+		</endpage>
+		<title>=pagetit</title>
+	</config>
+	<step id="step1" type="0" url="=_flowvar_ym01" desc="退缴" appflag="X" buttonflag="a" in="1" out="1" isleaveprompt="1">
+		<init>
+			<setvar name="_HIDE_PERSON_INFO" desc="控制个人信息隐藏方式">false</setvar><!--true 隐藏 -->
+			<setvar name="pagetit">=_STEPNAME</setvar>
+		</init>
+	</step>
+</flow>

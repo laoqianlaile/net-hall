@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+      <log editor="Y01115(离线)" edittime="2019-10-25 09:56:56"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+
+    thisTab.pageOnload = function () {
+        //申报js代码start
+        //输入框只读
+        if(poolSelect["rw"]=='r'){
+            $(":input").attr("readonly",true);
+        }
+        //返回标记不为1时隐藏返回按钮
+        if(poolSelect["fhFlag"] != '1'){
+            ydl.attr('b_flow_i','hidden');
+        }
+        //申报js代码end
+
+        $('#dwfrdbzjlx').change(function(){
+            var dwfrdbzjlx = $('#dwfrdbzjlx').val();
+            if("01"==dwfrdbzjlx){
+                $('#dwfrdbzjhm').data("type","idcard");
+                ydl.validator('dwfrdbzjhm',{type:'idcard'});
+            }else {
+                $('#dwfrdbzjhm').data("type", "");
+                ydl.validator.clear('dwfrdbzjhm');
+            }
+        });
+
+        $('#jbrzjlx').change(function(){
+            var jbrzjlx = $('#jbrzjlx').val();
+            if("01"==jbrzjlx){
+                $('#jbrzjlx').data("type","idcard");
+                ydl.validator('jbrzjlx',{type:'idcard'});
+            }else {
+                $('#jbrzjlx').data("type", "");
+                ydl.validator.clear('jbrzjlx');
+            }
+        });
+    }
+    //表单提交时执行
+    thisTab.form_validate = function () {
+
+        /*var result = true;
+        return !!result;
+        */
+        return true;
+    }
+
+    ]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container uid="container-66dbde81833e4553a5631df66fada475" type="table" layout="fit" cols="4" id="dwkh_form">
+      <component id="dwjbxx" type="caption">单位基本信息</component>
+      <component type="label">单位名称:</component>
+      <component id="dwmc" type="input" subtype="text" required="true" colspan="3" fromdic="false"/>
+      <component type="label">单位地址:</component>
+      <component id="dwdz" type="input" subtype="text" colspan="3" required="true" fromdic="false"/>
+      <component type="label">单位邮编:</component>
+      <component id="dwyb" type="input" subtype="text" required="true" fromdic="false" datatype="zipcode"/>
+      <component type="label">单位电子信箱:</component>
+      <component id="dwdzxx" type="input" subtype="text" required="true" fromdic="false" datatype="email"/>
+      <component type="label">组织机构代码:</component>
+      <component id="zzjgdm" type="input" subtype="text" fromdic="false"/>
+      <component type="label">统一社会信用代码:</component>
+      <component id="tyshxydm" type="input" subtype="text" required="true" fromdic="false"/>
+      <component type="label">单位所属行业:</component>
+      <component id="dwsshy" type="multivalue" subtype="select" required="true" fromdic="false">
+        <sql datasource="os_mdic">bsp.cm.tradetype</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label">单位性质:</component>
+      <component id="dwxz" type="multivalue" subtype="select" required="true" fromdic="false">
+        <sql datasource="os_mdic">bsp.cm.unitkind</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label">单位隶属关系:</component>
+      <component id="dwlsgx" type="multivalue" subtype="select" required="true" fromdic="false">
+        <sql datasource="os_mdic">bsp.cm.supsubrelation</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label">单位经济类型:</component>
+      <component id="dwjjlx" type="multivalue" subtype="select" required="true" fromdic="false">
+        <sql datasource="os_mdic">bsp.cm.dwjjlx</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label">单位法人代表姓名:</component>
+      <component id="dwfrdbxm" type="input" subtype="text" required="true" fromdic="false"/>
+      <component type="label">单位法人代表证件类型:</component>
+      <component id="dwfrdbzjlx" type="multivalue" subtype="select" required="true" fromdic="false">
+        <sql datasource="os_mdic">bsp.pb.zjlx</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label">单位法人代表证件号码:</component>
+      <component id="dwfrdbzjhm" type="input" subtype="text" required="true" fromdic="false"/>
+      <component type="blank"/>
+      <component type="blank"/>
+      <component id="dwzhxx" type="caption">单位账户信息</component>
+      <component type="label">单位设立日期:</component>
+      <component id="dwslrq" type="input" subtype="date" datatype="date" required="true" fromdic="false"/>
+      <component type="label">单位发薪日:</component>
+      <component id="dwfxr" type="input" subtype="text" datatype="day" required="true" fromdic="false" suffix="日"/>
+      <component type="label">单位缴存比例:</component>
+      <component id="dwjcbl" type="input" subtype="text" required="true" datatype="number" suffix="%"/>
+      <component type="label">个人缴存比例:</component>
+      <component id="grjcbl" type="input" subtype="text" required="true" datatype="number" suffix="%"/>
+      <component type="label">受托银行代码:</component>
+      <component id="styhdm" type="multivalue" subtype="select">
+        <sql datasource="os_mdic">bsp.dp.bankcode</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label">受托银行名称:</component>
+      <component id="styhmc" type="input" subtype="text"/>
+      <component id="dwjbrxx" type="caption">单位经办人信息</component>
+      <component type="label">经办人姓名:</component>
+      <component id="jbrxx" type="input" subtype="text" required="true" readonly="true">=getRealUserExtInfo('jbrxm')</component>
+      <component type="label">经办人固定电话号码:</component>
+      <component id="jbrgddhhm" type="input" subtype="text" required="true" datatype="phone"/>
+      <component type="label">经办人手机号码:</component>
+      <component id="jbrsjhm" type="input" subtype="text" required="true" readonly="true" datatype="mobile">=getRealUserExtInfo('jbrsjhm')</component>
+      <component type="label">经办人证件类型:</component>
+      <component id="jbrzjlx" type="multivalue" subtype="select" value="01" required="true" readonly="true">
+        <sql datasource="os_mdic">bsp.pb.zjlx</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label">经办人证件号码:</component>
+      <component id="jbrzjhm" type="input" subtype="text" required="true" readonly="true" datatype="idcard">=getRealUserExtInfo('jbrzjhm')</component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-ff54d7d3f960444b99f1d876f111bd17" type="hidden" id="container-ff54d7d3f960444b99f1d876f111bd17">
+      <!--调用申报接口用-->
+      <component id="sbrzjhm" type="hidden">=getRealUserExtInfo('jbrzjhm')</component>
+    </container>
+  </containers>
+</page>

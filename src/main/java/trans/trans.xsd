@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="trans">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tran"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tran">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="comps"/>
+      </xs:sequence>
+      <xs:attribute name="extCall" use="optional" type="xs:string"/>
+      <xs:attribute name="tranCode" use="required" type="xs:string"/>
+      <xs:attribute name="tranName" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="comps">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="comp"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="comp">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="sql"/>
+        <xs:element minOccurs="0" ref="inParams"/>
+        <xs:element minOccurs="0" ref="outParams"/>
+      </xs:sequence>
+      <xs:attribute name="compCode" use="required" type="xs:string"/>
+      <xs:attribute name="compName" use="required" type="xs:string"/>
+      <xs:attribute name="expression" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sql">
+    <xs:complexType mixed="true">
+      <xs:attribute name="id" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inParams">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="inParam"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inParam">
+    <xs:complexType>
+      <xs:attribute name="ignoreNull" use="required" type="xs:integer"/>
+      <xs:attribute name="paramCode" use="required" type="xs:string"/>
+      <xs:attribute name="paramName" use="required" type="xs:string"/>
+      <xs:attribute name="paramType" use="required" type="xs:string"/>
+      <xs:attribute name="paramValue" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="outParams">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="outParam"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="outParam">
+    <xs:complexType>
+      <xs:attribute name="ignoreNull" use="required" type="xs:integer"/>
+      <xs:attribute name="paramCode" use="required" type="xs:string"/>
+      <xs:attribute name="paramName" use="required" type="xs:string"/>
+      <xs:attribute name="paramType" use="required" type="xs:string"/>
+      <xs:attribute name="paramValue" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

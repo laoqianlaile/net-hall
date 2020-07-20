@@ -1,0 +1,884 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+	<!-- <interface id="BSP_DP_GETGRXX_01" tr_code="business/appapi00104.json" system="HTTP_GET_YBMAP2" des="获取个人信息"> -->
+	<interface id="BSP_DP_GETGRXX_01" tr_code="123456" system="99" des="获取个人信息">
+		<up>
+			<grzh des="个人账号">=grzh</grzh>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<xingming des="姓名">=xingming</xingming>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<jcbllx des="缴存比例类型">=jcbllx</jcbllx>
+			<grjcjs des="个人缴存基数">=grjcjs</grjcjs>
+			<dwyjce des="单位月缴存额">=dwyjce</dwyjce>
+			<gryjce des="个人月缴存额">=gryjce</gryjce>
+			<yjce des="月缴存额">=yjce</yjce>
+			<grzh des="个人账号">=grzh</grzh>
+			<sfsmrz des="是否实名认证">=sfsmrz</sfsmrz>
+			<xingbie des="性别">=xingbie</xingbie>
+			<hj des="户籍">=hj</hj>
+			<gddhhm des="固定电话号码">=gddhhm</gddhhm>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<csny des="出生年月">=csny</csny>
+			<hyzk des="婚姻状况">=hyzk</hyzk>
+			<zhiye des="职业">=zhiye</zhiye>
+			<zhichen des="职称">=zhichen</zhichen>
+			<zhiwu des="职务">=zhiwu</zhiwu>
+			<xueli des="学历">=xueli</xueli>
+			<yzbm des="邮政编码">=yzbm</yzbm>
+			<jtzz des="家庭住址">=jtzz</jtzz>
+			<jtysr des="家庭月收入">=jtysr</jtysr>
+			<khyhmc des="开户银行名称">=khyhmc</khyhmc>
+			<khyhzh des="开户银行账号">=khyhzh</khyhzh>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<dwjcbl des="单位缴存比例">=dwjcbl</dwjcbl>
+			<grjcbl des="个人缴存比例">=grjcbl</grjcbl>
+			<grzhye des="个人账户余额">=grzhye</grzhye>
+			<qshjny des="起始汇缴年月">=qshjny</qshjny>
+			<jzny des="缴至年月">=jzny</jzny>
+			<khrq des="开户日期">=khrq</khrq>
+			<grzhzt des="个人账户状态">=grzhzt</grzhzt>
+			<grdjbz des="个人冻结标志">=grdjbz</grdjbz>
+			<djje des="冻结金额">=djje</djje>
+			<kyye des="可用余额">=kyye</kyye>
+			<zhjg des="账户机构">=zhjg</zhjg>
+			<zjjcrq des="最近缴存日期">=zjjcrq</zjjcrq>
+			<zjtqrq des="最近提取日期">=zjtqrq</zjtqrq>
+			<tqcs des="提取次数">=tqcs</tqcs>
+			<dkcs des="贷款次数">=dkcs</dkcs>
+			<dwdh des="单位电话">=dwdh</dwdh>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<jcyh des="缴存银行">=jcyh</jcyh>
+			<glyh des="关联银行">=glyh</glyh>
+			<glyhkh des="关联银行卡号">=glyhkh</glyhkh>
+			<!--ish04新增字段-->
+			<!--<sfydk des="是否有未还清贷款">=sfydk</sfydk>-->
+			<dkzt des="贷款状态">=dkzt</dkzt><!--//0-无未还清的贷款；1-申请中的贷款；2-已放款未还清的贷款-->
+			<sfblgwtkh des="是否办理过委托扣划">=sfblgwtkh</sfblgwtkh>
+			<sfmzltxtq des="是否满足离退休提取">=sfmzltxtq</sfmzltxtq>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+		</down>
+	</interface>
+	<!-- <interface id="BSP_DP_GETDWXX_01" tr_code="businessCompany/appapi20101.json" system="HTTP_GET_YBMAP2" des="获取单位信息"> -->
+	<interface id="BSP_DP_GETDWXX_01" tr_code="123456" system="99" des="获取单位信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<dwjcbl des="单位缴存比例">=dwjcbl</dwjcbl>
+			<grjcbl des ="个人缴存比例">=grjcbl</grjcbl>
+			<dwfcrs des="单位封存人数">=dwfcrs</dwfcrs>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<tyshxydm des="统一社会信用代码">=tyshxydm</tyshxydm>
+			<zzjgdm des="组织机构代码">=zzjgdm</zzjgdm>
+			<dwdz des="单位地址">=dwdz</dwdz>
+			<dwfrdbxm des="单位法人代表姓名">=dwfrdbxm</dwfrdbxm>
+			<dwfrdbzjlx des="单位法人代表证件类型">=dwfrdbzjlx</dwfrdbzjlx>
+			<dwfrdbzjhm des="单位法人代表证件号码">=dwfrdbzjhm</dwfrdbzjhm>
+			<dwfrlxdh des="单位法人联系电话">=dwfrlxdh</dwfrlxdh>
+			<dwsbzh des="单位社保账号">=dwsbzh</dwsbzh>
+			<gszch des="工商注册号">=gszch</gszch>
+			<dwsshy des="单位所属行业">=dwsshy</dwsshy>
+			<dwxz des="单位性质">=dwxz</dwxz>
+			<sbjczrs des="社保缴存总人数">=sbjczrs</sbjczrs>
+			<sbjczjs des="社保缴存总基数">=sbjczjs</sbjczjs>
+			<dwjb des="单位级别">=dwjb</dwjb>
+			<sjdwmc des="上级单位名称">=sjdwmc</sjdwmc>
+			<sjdwzh des="上级单位账号">=sjdwzh</sjdwzh>
+			<dwlsgx des="单位隶属关系">=dwlsgx</dwlsgx>
+			<dwjjlx des="单位经济类型">=dwjjlx</dwjjlx>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<dwdzxx des="单位电子信箱">=dwdzxx</dwdzxx>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<dwfxr des="单位发薪日">=dwfxr</dwfxr>
+			<zgbm des="主管部门">=zgbm</zgbm>
+			<sftsba des="是否托收备案">=sftsba</sftsba>
+			<dwxxhdnf des="单位信息核对年份">=dwxxhdnf</dwxxhdnf>
+			<szqy des="所在区域">=szqy</szqy>
+			<szxz des="所在乡镇（街道）">=szxz</szxz>
+			<yhmc des="银行名称">=yhmc</yhmc>
+			<wdmc des="网点名称">=wdmc</wdmc>
+			<jjr des="缴交日">=jjr</jjr>
+			<jcqsny des="缴存起始年月">=jcqsny</jcqsny>
+			<jzny des="缴至年月">=jzny</jzny>
+			<dwzhzt des="单位账户状态">=dwzhzt</dwzhzt>
+			<dwhjzt des="单位缓缴状态">=dwhjzt</dwhjzt>
+			<dwqjzt des="单位欠缴状态">=dwqjzt</dwqjzt>
+			<yjrs des="应缴人数">=yjrs</yjrs>
+			<yjje des="应缴金额">=yjje</yjje>
+			<zckye des="暂存款余额">=zckye</zckye>
+			<file des="经办人信息文件">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_DW_GETGRTQXX_01" tr_code="123456" system="99" des="获取个人提取信息">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+		</up>
+		<down>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<grzhzt des="个人账户状态">=grzhzt</grzhzt>
+			<hjbz des="户籍标志">=hjbz</hjbz>
+			<grzhye des="个人账户余额">=grzhye</grzhye>
+			<sfydk des="是否有贷款">=sfydk</sfydk>
+			<ssjg des="所属机构">=ssjg</ssjg>
+			<xhtqyy des="销户提取原因">=xhtqyy</xhtqyy>
+			<sctqrq des="上次提取日期">=sctqrq</sctqrq>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<djje des="冻结金额">=djje</djje>
+			<kyye des="可用余额">=kyye</kyye>
+		</down>
+	</interface>
+	<interface id="BSP_GG_HQSBJG_01" tr_code="123456" system="99" des="查询申报机构">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<ywbh des="业务编号">=ywbh</ywbh>
+			<qdbh des="渠道编号">=qdbh</qdbh>
+		</up>
+		<down>
+			<zdjg des="指定机构">=zdjg</zdjg>
+		</down>
+	</interface>
+	<!-- 网厅个人信息查询 未开发完成-->
+	<interface id="getGrjbxxcx"  keepattr1="7001" tr_code="business/appapi110.json" system="HTTP_POST_YBMAP2" des="用户登录获取个人信息">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+			<accnum des="个人账号">=getRealUserExtInfo('grzh')</accnum>
+		</up>
+		<down>
+			<grzh des="个人账号">=grzh</grzh>
+			<xingming des="姓名">=xingming</xingming>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<instcode des="单位账号">=dwzh</instcode>
+			<instname des="单位名称">=instname</instname>
+			<rolecode des="角色号">PER01001</rolecode>
+			<recode des="返回结果">=recode</recode>
+			<msg des="返回信息">=msg</msg>
+			<jbjg des="经办机构">=BrcCode</jbjg>
+		</down>
+	</interface>
+	<!-- 个人明细查询 -->
+	<interface id="getsgGrmxxx" keepattr1="7003" tr_code="businessCompany/appapi115303.json" system="HTTP_POST_YBMAP2" des="个人明细查询">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+			<begdate des="开始时间">=startdate</begdate>
+			<grzh des="个人账户">=getRealUserExtInfo('grzh')</grzh>
+			<enddate des="结束时间">=enddate</enddate>
+		</up>
+		<down>
+			<file des="文件名">=filename</file>
+		</down>
+	</interface>
+	<!-- 个人贷款列表信息查询 -->
+	<interface id="getggGrdklbcx" keepattr1="7004" tr_code="businessCompany/appapi128188.json" system="HTTP_POST_YBMAP2" des="个人贷款列表信息查询">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<enddate des="开始时间">=enddate</enddate>
+			<begdate des="结束时间">=begdate</begdate>
+		</up>
+		<down>
+			<file des="文件名">=filename</file>
+		</down>
+	</interface>
+	<!-- 贷款合同详细信息 -->
+	<interface id="getHTXX" keepattr1="7038" tr_code="business/appapi128187.json" system="HTTP_POST_YBMAP2" des="查询申报机构">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+		</up>
+		<down>
+			<dkll desc="贷款利率">=dkll</dkll>
+			<dkye desc="贷款余额">=dkye</dkye>
+			<ydfkrq	desc="约定放款日期">=ydfkrq</ydfkrq>
+			<ydhkr desc="约定还款日">=ydhkr</ydhkr>
+			<dkqs desc="贷款期数">=dkqs</dkqs>
+			<yqbjze	desc="逾期本金总额">=yqbjze</yqbjze>
+			<yqlxze	desc="逾期利息总额">=yqlxze</yqlxze>
+			<owepun	desc="未还罚息">=owepun</owepun>
+			<hkzh desc="还款账号">=hkzh</hkzh>
+			<xingming desc="姓名">=xingming</xingming>
+			<zjhm desc="证件号码">=zjhm</zjhm>
+			<swtyhmc desc="受委托银行名称">=swtyhmc</swtyhmc>
+			<htdkje	desc="合同贷款金额">=htdkje</htdkje>
+			<jkhtbh	desc="借款合同编号">=jkhtbh</jkhtbh>
+			<dqjhhkje desc="当期计划还款金额">=dqjhhkje</dqjhhkje>
+		</down>
+	</interface>
+
+	<!-- 个人密码变更 -->
+	<interface id="grMMBG" keepattr1="7058" tr_code="business/appapi110023.json" system="HTTP_POST_YBMAP2" des="个人密码变更">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<dxyzm des="短信验证码">=dxyzm</dxyzm>
+			<zdyyhm des="自定义用户名">=zdyyhm</zdyyhm>
+			<confirmpwd des="确认密码">=qrxdlmm</confirmpwd>
+			<newpwd des="新密码">=xdlmm</newpwd>
+			<oldpwd des="旧密码">=ydlmm</oldpwd>
+		</up>
+	</interface>
+	<!-- 贷款进度查询 -->
+	<interface id="getDKJDCX" keepattr1="7040" tr_code="businessCompany/appapi128189.json" system="HTTP_POST_YBMAP2" des="贷款进度查询">
+		<up>
+			<zjhm des="个人账号">=getRealUserExtInfo("zjhm")</zjhm>
+		</up>
+		<down>
+			<file des="文件名">=filename</file>
+		</down>
+	</interface>
+
+	<!-- 贷款还款计划查询 -->
+	<interface id="getggHKJHCX" keepattr1="7036" tr_code="businessCompany/appapi128185.json" system="HTTP_POST_YBMAP2" des="贷款还款计划查询">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<jkhtbh des="开始时间">=jkhtbh</jkhtbh>
+			<enddate des="开始时间">=enddate</enddate>
+			<begdate des="结束时间">=begdate</begdate>
+		</up>
+		<down>
+			<file des="文件名">=filename</file>
+		</down>
+	</interface>
+	<!-- 个人提取明细查询 -->
+	<interface id="getggGrtqmxcx" keepattr1="7021" tr_code="business/appapi115005.json" system="HTTP_POST_YBMAP2" des="个人提取明细">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<enddate des="开始时间">=enddate</enddate>
+			<begdate des="结束时间">=begdate</begdate>
+		</up>
+		<down>
+			<file des="文件名">=filename</file>
+		</down>
+	</interface>
+
+	<!-- 网点查询 -->
+	<interface id="getWDCX" keepattr1="5101" tr_code="appapi10101.json" system="HTTP_POST_YBMAP2" des="网点查询">
+		<up>
+
+		</up>
+		<down>
+			<recode des="文件名">=recode</recode>
+			<msg des="文件名">=msg</msg>
+			<result des="返回结果"></result>
+		</down>
+	</interface>
+	<!-- 销户提取 -->
+	<interface id="getXXHTQ" keepattr1="7047" tr_code="business/appapi154010.json" system="HTTP_POST_YBMAP2" des="销户提取">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<tqyy des="提取原因">03</tqyy>
+			<flag des="标志">1</flag><!--0 离退休提取检查，1 数据处理-->
+			<xingming des="姓名">=getRealUserExtInfo('xingming')</xingming>
+			<payeebankname des="收款开户银行">=payeebankname</payeebankname>
+			<cardno des="卡号">=cardno</cardno>
+		</up>
+		<down>
+			<intamt des="利息">=intamt</intamt>
+			<drawamt des="提取金额">=drawamt</drawamt>
+		</down>
+	</interface>
+	<!-- 网厅公贷提取 -->
+	<interface id="getGJJDKHKTQ" keepattr1="7050" tr_code="business/appapi154017.json" system="HTTP_POST_YBMAP2" des="公积金贷款提取">
+		<up>
+			<payeebankname des="收款开户银行">=payeebankname</payeebankname>
+			<drawreasoncode des="提取依据号码">=drawreasoncode</drawreasoncode>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<cardno des="卡号">=cardno</cardno>
+			<xingming des="姓名">=getRealUserExtInfo('xingming')</xingming>
+			<!-- 			<procode des="提取依据编码">=procode</procode> -->
+			<procode des="提取依据编码">=drawreasoncode</procode>
+			<tqyy des="提取 原因">=tqyy</tqyy>
+			<drawamt des="提取金额">=amt3</drawamt>
+			<flag des="标识">=flag</flag>
+		</up>
+		<down>
+			<drawamt des="提取金额">=drawamt</drawamt>
+		</down>
+	</interface>
+	<!-- 网厅贷款额度试算 -->
+	<interface id="getDKEDSS" keepattr1="7041" tr_code="business/appapi128191.json" system="HTTP_POST_YBMAP2" des="网贷额度试算">
+		<up>
+			<gtjkrzjhm des="共同借款人证件号码">=gtjkrzjhm</gtjkrzjhm>
+			<gjzqqms des="国家债券 期末数">=gjzqqms</gjzqqms>
+			<dkqs des="贷款期数">=dkqs</dkqs>
+			<comcialflag des="公转商标志">=comcialflag</comcialflag>
+			<dkhkfs des="贷款还款方式">=dkhkfs</dkhkfs>
+			<zk des="公转商利率折扣">=zk</zk>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+			<monthinc des="月收入">=monthinc</monthinc>
+			<lncrelevel des="信用等级">=lncrelevel</lncrelevel>
+			<llfdbl des="利率浮动比例">=llfdbl</llfdbl>
+		</up>
+		<down>
+			<sdll des="商贷利率">=sdll</sdll>
+			<zxll des="公转商执行利率">=zxll</zxll>
+			<loanamt des="贷款金额">=loanamt</loanamt>
+		</down>
+	</interface>
+	<!-- 网厅还贷提取获取个人信息及提取依据号 -->
+	<interface id="getTQJYBM" keepattr1="7048" tr_code="business/appapi154013.json" system="HTTP_POST_YBMAP2" des="提取依据号获取">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+		</up>
+		<down>
+			<grzhzt des="个人账户状态">=grzhzt</grzhzt>
+			<drawreasoncode1 des="提取依据号码1">=drawreasoncode1</drawreasoncode1>
+		</down>
+	</interface>
+	<!-- 网厅还贷提取金额计算 -->
+	<interface id="getHDTQJESS" keepattr1="7049" tr_code="business/appapi154015.json" system="HTTP_POST_YBMAP2" des="网贷额度试算">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<!--<tqyy des="提取原因">83</tqyy>-->
+			<tqyy des="提取原因">24</tqyy><!--06偿还购房贷款本息提取,24网厅还贷提取-->
+			<drawreasoncode des="提取依据号码">=drawreasoncode</drawreasoncode>
+
+		</up>
+		<down>
+			<drawamt des="提取金额">=drawamt</drawamt>
+			<jkrxm des="借款人姓名">=jkrxm</jkrxm>
+			<usebal des="可用余额">=usebal</usebal>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<grzhye des="个人账户余额">=grzhye</grzhye>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<payeebankname des="收款开户银行">=payeebankname</payeebankname>
+			<cardno des="卡号">=cardno</cardno>
+			<amt2 des="金额2">=amt2</amt2>
+			<amt3 des="金额3">=amt3</amt3>
+			<address des="房屋地址">=address</address>
+			<amt1 des="金额1">=amt1</amt1>
+			<owncertinum1 des="共有权人一证件号码">=owncertinum1</owncertinum1>
+			<owncertinum2 des="共有权人二证件号码">=owncertinum2</owncertinum2>
+			<matename des="配偶姓名">=matename</matename>
+			<ownname1 des="共有权人一姓名">=ownname1</ownname1>
+			<ownname2 des="共有权人二姓名">=ownname2</ownname2>
+			<ownname3 des="共有权人三姓名">=ownname3</ownname3>
+			<matecertinum des="配偶证件号码">=matecertinum</matecertinum>
+			<owncertinum3 des="共有权人三证件号码">=owncertinum3</owncertinum3>
+			<skipflag des="跳过标志">=skipflag</skipflag>
+		</down>
+	</interface>
+	<!-- 网厅个人信息查询 -->
+	<interface id="getGRXXCX" keepattr1="7020" tr_code="business/appapi115001.json" system="HTTP_POST_YBMAP2" des="网厅个人信息查询">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+			<grzh des="个人账号">=grzh</grzh>
+		</up>
+		<down>
+			<jtysr des="家庭月收入">=jtysr</jtysr>
+			<zhiye des="职业">=zhiye</zhiye>
+			<smrzbs des="通过实名认证验证标识">=smrzbs</smrzbs>
+			<gddhhm des="固定电话号码">=gddhhm</gddhhm>
+			<lastdrawdate des="上笔提取日期">=lastdrawdate</lastdrawdate>
+			<csny des="出生年月">=csny</csny>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<xingbie des="性别">=xingbie</xingbie>
+			<jzny des="缴至年月">=jzny</jzny>
+			<grzhye des="个人账户余额">=grzhye</grzhye>
+			<grjcjs des="个人缴存基数">=grjcjs</grjcjs>
+			<jkhth des="借款合同编号">=jkhth</jkhth>
+			<jtzz des="家庭住址">=jtzz</jtzz>
+			<yzbm des="邮政编码">=amt1</yzbm>
+			<ydrawamt des="年提取额">=ydrawamt</ydrawamt>
+			<unitaccname des="单位名称">=unitaccname</unitaccname>
+			<hyzk des="婚姻状况">=hyzk</hyzk>
+			<zhichen des="职称">=zhichen</zhichen>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<grzh des="个人账号">=grzh</grzh>
+			<khrq des="开户日期">=khrq</khrq>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<indiprop des="个人缴存比例">=indiprop</indiprop>
+
+
+			<frzflag des="冻结标志">=frzflag</frzflag>
+			<unitprop des="单位比例">=unitprop</unitprop>
+			<zhiwu des="职务">=zhiwu</zhiwu>
+			<isloanflag des="是否有贷款">=isloanflag</isloanflag>
+			<flag des="标志">=flag</flag>
+
+			<useflag des="使用标志">=useflag</useflag>
+			<cardno des="卡号">=cardno</cardno>
+			<grzhzt des="个人账户状态">=grzhzt</grzhzt>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<flag des="标志">=flag</flag>
+
+			<dwyjce des="单位月缴存额">=dwyjce</dwyjce>
+			<yjce des="月缴额">=yjce</yjce>
+			<xingming des="姓名">=xingming</xingming>
+			<gryjce des="个人月缴存额">=gryjce</gryjce>
+			<sealtype des="封存类型">=sealtype</sealtype>
+		</down>
+	</interface>
+	<!-- 提前还款计算 -->
+	<interface id="getTQHKJS" keepattr1="7050" tr_code="business/appapi154017.json" system="HTTP_POST_YBMAP2" des="提前还款计算">
+		<up>
+			<payeebankname des="收款开户银行">=payeebankname</payeebankname>
+			<drawreasoncode des="提取依据号码">=drawreasoncode</drawreasoncode>
+			<grzh des="个人账号">=grzh</grzh>
+			<cardno des="卡号">=cardno</cardno>
+			<xingming des="姓名">=xingming</xingming>
+			<procode des="提取依据编码">=procode</procode>
+			<tqyy des="提取 原因">=tqyy</tqyy>
+			<drawamt des="提取金额">=drawamt</drawamt>
+			<flag des="标识">=flag</flag>
+		</up>
+		<down>
+			<drawamt des="提取金额">=drawamt</drawamt>
+		</down>
+	</interface>
+	<!-- 贷款信息 -->
+	<interface id="getDKJBXX" keepattr1="7042" tr_code="business/appapi129976.json" system="HTTP_POST_YBMAP2" des="贷款基本信息">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+			<loancontrnum	des="贷款编号">=jkhtbh</loancontrnum>
+			<repaydate	des="还款日期">=repaydate</repaydate>
+			<loancontrcode	des="合同代码">=loancontrcode</loancontrcode>
+		</up>
+		<down>
+			<fkyhdm	des="付款银行代码">=fkyhdm</fkyhdm>
+			<fkzhhm	des="付款账户号码">=fkzhhm</fkzhhm>
+			<fkzhmc	des="付款账户名称">=fkzhmc</fkzhmc>
+			<loanamt des="贷款金额">=loanamt</loanamt>
+			<loandate des="放款日期">=loandate</loandate>
+			<loaneecertinum	des="借款人证件号码">=loaneecertinum</loaneecertinum>
+			<loaneename	des="借款人姓名">=loaneename</loaneename>
+			<loantype des="贷款类型">=loantype</loantype>
+			<remainterm	des="剩余期限（月）">=remainterm</remainterm>
+			<remainterms des="剩余未还期次">=remainterms</remainterms>
+			<repayenddate des="还款终止日期">=repayenddate</repayenddate>
+			<repaymode des="还款方式">=repaymode</repaymode>
+			<undueprin des="未到期本金">=undueprin</undueprin>
+			<owepun	des="未还罚息">=owepun</owepun>
+			<agentbankcode des="经办银行">=agentbankcode</agentbankcode>
+			<newint	des="新产生利息">=newint</newint>
+			<oweint	des="应还未还利息">=oweint</oweint>
+			<oweprin des="应还未还本金">=oweprin</oweprin>
+			<ahdrepaylowamt	des="提前还款最低限额">=ahdrepaylowamt</ahdrepaylowamt>
+			<certitype des="证件类型">=certitype</certitype>
+			<currenddate des="当期终止日期">=currenddate</currenddate>
+			<hisapprnum des="装修房屋历史贷款编号">=hisapprnum</hisapprnum>
+			<housetype des="房屋类型">=housetype</housetype>
+			<loanterm des="贷款期限">=loanterm</loanterm>
+			<loanbal des="贷款余额">=loanbal</loanbal>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<oenddate des="原到期日期">=oenddate</oenddate>
+			<bankname des="银行名称">=bankname</bankname>
+		</down>
+	</interface>
+	<!-- 提前还款 -->
+	<interface id="getTQHK" keepattr1="7043" tr_code="business/appapi129978.json" system="HTTP_POST_YBMAP2" des="提前还款">
+		<up>
+			<isreserverepay des="预约还款">=isreserverepay</isreserverepay>
+			<loancontrnum des="借款合同号">=loancontrnum</loancontrnum>
+			<newloanterm des="新贷款期限">=newloanterm</newloanterm>
+			<newrepaymode des="新还款方式">=newrepaymode</newrepaymode>
+			<ischeck des="是否检查">0</ischeck>
+			<isrehouserepay des="退房还款">=isrehouserepay</isrehouserepay>
+			<payerbankacc des="付款人账户">=payerbankacc</payerbankacc>
+			<payerbankaccnm des="付款人户名">=payerbankaccnm</payerbankaccnm>
+			<ahdrepayamt des="提前还本金">=ahdrepayamt</ahdrepayamt>
+			<cashsum des="现金总额">=cashsum</cashsum>
+			<payerbankcode des="付款银行">=payerbankcode</payerbankcode>
+			<payercertinum des="付款人证件号码">=payercertinum</payercertinum>
+			<payercertitype des="付款人证件类型">=payercertitype</payercertitype>
+			<payertype des="付款人类型">=payertype</payertype>
+			<repayorder des="贷款的还款顺序">=repayorder</repayorder>
+			<repaytolamt des="还款总金额">=repaytolamt</repaytolamt>
+			<repaytype des="还款类型">=repaytype</repaytype >
+			<resrepaydate des="预约还款日期">=resrepaydate</resrepaydate >
+			<settlemode des="结算方式">=settlemode</settlemode>
+			<shttermflag des="贷款缩期标志">=shttermflag</shttermflag>
+			<stepseqno des="步骤号">=stepseqno</stepseqno>
+			<transfsum des="转账总额">=transfsum</transfsum>
+			<validflag des="有效标志">=validflag</validflag>
+			<bankcode des="银行代码">=bankcode</bankcode>
+		</up>
+		<down>
+			<actmp100 des="字符串临时变量100位长">=actmp100</actmp100>
+			<actmp1024 des="字符串临时变量1024位长">=actmp1024</actmp1024>
+			<loanterm des="贷款期限">=loanterm</loanterm>
+			<oldapprnum	des="原贷款受理编号">=oldapprnum</oldapprnum>
+			<operid	des="柜员代码">=operid</operid>
+			<apprnum des="贷款受理编号">=apprnum</apprnum>
+			<curbal	des="当前余额">=curbal</curbal>
+			<isauth	des="是否授权">=isauth</isauth>
+			<repayint des="实还利息">=repayint</repayint>
+			<repayprin des="实还本金">=repayprin</repayprin>
+			<repaypun des="实还罚息">=repaypun</repaypun>
+			<datetmp des="日期型临时变量">=datetmp</datetmp>
+			<hostsernum	des="主机流水号">=hostsernum</hostsernum>
+			<repayoverdueprin des="实还逾期本金">=repayoverdueprin</repayoverdueprin>
+			<bankcode des="银行代码">=bankcode</bankcode>
+		</down>
+	</interface>
+	<!-- 提取依据号获取 -->
+	<interface id="getTYJH" keepattr1="7048" tr_code="business/appapi153011.json" system="HTTP_POST_YBMAP2" des="购房提取依据号获取">
+		<up>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+		</up>
+		<down>
+			<file des="提取依据号文件">=filename</file>
+		</down>
+	</interface>
+	<!-- 购房提取房屋信息获取 -->
+	<interface id="getGFTQFWXX" keepattr1="7048" tr_code="business/appapi153012.json" system="HTTP_POST_YBMAP2" des="购房提取房屋信息获取">
+		<up>
+			<instance des="实例号">=instance</instance>
+			<grzh des="个人账号">=getRealUserExtInfo('grzh')</grzh>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+			<procode des="提取依据编码">=procode</procode>
+		</up>
+		<down>
+			<referamt des="封顶金额"></referamt>
+			<housetype des="房屋类型"></housetype>
+			<fwxz des="房屋性质"></fwxz>
+			<dwbusitype des="提取的操作类型"></dwbusitype>
+			<tqyy des="提取原因"></tqyy>
+			<rentmonths des="租房月数"></rentmonths>
+			<fwzj des="房屋总价"></fwzj>
+			<gfsfk des="购房首付款"></gfsfk>
+			<rentdate des="租房起始日期"></rentdate>
+			<begdate des="开始日期"></begdate>
+			<dbfilenum des="低保文号/证件号"></dbfilenum>
+			<noinaccamt des="提取依据审批未入账金额"></noinaccamt>
+			<housejddate des="房屋鉴定日期"></housejddate>
+			<fwzl des="房屋坐落"></fwzl>
+			<cerrightnum des="产权证号"></cerrightnum>
+			<crefiledate des="准建证日期"></crefiledate>
+			<ownamt des="自费金额"></ownamt>
+			<zxcondate des="装修合同日期"></zxcondate>
+			<realdpayamt des="实际付款金额"></realdpayamt>
+			<owncertinum des="所有权人证件号码"></owncertinum>
+			<dqrq des="到期日期"></dqrq>
+			<dwhousearea des="房屋面积"></dwhousearea>
+			<paymentmode des="购房付款方式"></paymentmode>
+			<enddate des="终止日期"></enddate>
+			<drawreasoncode1 des="提取依据号码1"></drawreasoncode1>
+			<nohousenum	des="无房证明编号"></nohousenum>
+			<houseridate des="取得产权日期"></houseridate>
+			<housepayamt des="房屋补偿款"></housepayamt>
+			<htdkje	des="合同贷款金额"></htdkje>
+			<hyzk des="婚姻状况"></hyzk>
+			<maxfdamt des="参考金额"></maxfdamt>
+			<buyhousetype des="购房类型"></buyhousetype>
+			<lastdrawdate des="上笔提取日期"></lastdrawdate>
+			<rentamt des="月房租"></rentamt>
+			<recordbackdate des="备案日期"></recordbackdate>
+		</down>
+	</interface>
+	<!-- 个人用户注册 -->
+	<interface id="getGRZC" keepattr1="7061" tr_code="business/appapi168011.json" system="HTTP_POST_YBMAP2" des="个人用户注册">
+		<up>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<zdyyhm des="自定义用户名">=zdyyhm</zdyyhm>
+			<xingming des="姓名">=xingming</xingming>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<pwd des="密码">=gjjmm</pwd>
+			<password des="客户密码">=gjjmm</password>
+			<dxyzm des="验证码">=yzm</dxyzm>
+		</up>
+		<down>
+
+		</down>
+	</interface>
+	<!-- 网厅还款明细查询 -->
+	<interface id="getHKMXCX" keepattr1="7037" tr_code="business/appapi128186.json" system="HTTP_POST_YBMAP2" des="网厅还款明细查询">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<enddate des="开始时间">=enddate</enddate>
+			<begdate des="结束时间">=begdate</begdate>
+			<jkhtbh des="借款合同编号">=jkhtbh</jkhtbh>
+		</up>
+		<down>
+			<file des="文件名">=filename</file>
+		</down>
+	</interface>
+	<!-- 贷款进度查询 -->
+	<interface id="getDXYZM" keepattr1="7062" tr_code="business/appapi149008.json" system="HTTP_POST_YBMAP2" des="短信接口">
+		<up>
+			<type des="业务类型">=dxtype</type>
+			<sjhm des="手机号码">=getRealUserExtInfo("sjhm")</sjhm>
+			<smstmplcode des="业务编码">0502</smstmplcode>
+			<dxyzm des="短信验证码">=dxyzm</dxyzm>
+		</up>
+		<down>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<smstmplcode des="业务编码">=smstmplcode</smstmplcode>
+			<dxyzm des="短信验证码">=dxyzm</dxyzm>
+		</down>
+	</interface>
+	<!-- 新增六个提取提取依据号查询 -->
+	<interface id="getTQYJH" keepattr1="7045" tr_code="business/appapi153011.json" system="HTTP_POST_YBMAP2" des="六个提取提取依据号查询">
+		<up>
+			<tqyy des="手机号码">=tqyy</tqyy>
+			<grzh des="手机号码">=getRealUserExtInfo("grzh")</grzh>
+			<dwbusitype des="办理类型">=dwbusitype</dwbusitype>
+		</up>
+		<down>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
+	<!-- 购房信息 -->
+	<interface id="getGFXX" keepattr1="7046" tr_code="business/appapi153012.json" system="HTTP_POST_YBMAP2" des="购房信息">
+		<up>
+			<instance des="实例号">=_IS</instance>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<procode des="提取依据编码">=procode</procode>
+			<dwbusitype des="办理类型">=dwbusitype</dwbusitype>
+		</up>
+		<down>
+			<referamt des="封顶金额">=referamt</referamt>
+			<housetype des="房屋类型">=housetype</housetype>
+			<fwxz des="房屋性质">=fwxz</fwxz>
+			<dwbusitype des="提取的操作类型">=dwbusitype</dwbusitype>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<rentmonths des="租房月数">=rentmonths</rentmonths>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+			<gfsfk des="购房首付款">=gfsfk</gfsfk>
+			<rentdate des="租房起始日期">=rentdate</rentdate>
+			<begdate des="开始日期">=begdate</begdate>
+			<dbfilenum des="低保文号/证件号">=dbfilenum</dbfilenum>
+			<noinaccamt des="提取依据审批未入账金额">=noinaccamt</noinaccamt>
+			<housejddate des="房屋鉴定日期">=housejddate</housejddate>
+			<fwzl des="房屋坐落">=fwzl</fwzl>
+			<cerrightnum des="产权证号">=cerrightnum</cerrightnum>
+			<crefiledate des="准建证日期">=crefiledate</crefiledate>
+			<ownamt des="自费金额">=ownamt</ownamt>
+			<zxcondate des="装修合同日期">=zxcondate</zxcondate>
+			<realdpayamt des="实际付款金额">=realdpayamt</realdpayamt>
+			<owncertinum des="所有权人证件号码">=owncertinum</owncertinum>
+			<dqrq des="到期日期">=dqrq</dqrq>
+			<dwhousearea des="房屋面积">=dwhousearea</dwhousearea>
+			<paymentmode des="购房付款方式">=paymentmode</paymentmode>
+			<enddate des="终止日期">=enddate</enddate>
+			<drawreasoncode1 des="提取依据号码1">=drawreasoncode1</drawreasoncode1>
+			<nohousenum des="无房证明编号">=nohousenum</nohousenum>
+			<houseridate des="取得产权日期">=houseridate</houseridate>
+			<housepayamt des="房屋补偿款">=housepayamt</housepayamt>
+			<htdkje des="合同贷款金额">=htdkje</htdkje>
+			<hyzk des="婚姻状况">=hyzk</hyzk>
+			<maxfdamt des="参考金额">=maxfdamt</maxfdamt>
+			<buyhousetype des="购房类型">=buyhousetype</buyhousetype>
+			<lastdrawdate des="上笔提取日期">=lastdrawdate</lastdrawdate>
+			<rentamt des="月房租">=rentamt</rentamt>
+			<recordbackdate des="备案日期">=recordbackdate</recordbackdate>
+		</down>
+	</interface>
+	<!-- 金额计算 -->
+	<interface id="getJEJS" keepattr1="7063" tr_code="business/appapi153013.json" system="HTTP_POST_YBMAP2" des="金额计算">
+		<up>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<zjlx des="证件类型">=getRealUserExtInfo("zjlx")</zjlx>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<relation des="关系">=relation</relation>
+			<fwxz des="房屋性质">=fwxz</fwxz>
+			<gfsfk des="购房首付款">=gfsfk</gfsfk>
+			<housejddate des="房屋鉴定日期">=housejddate</housejddate>
+			<cerrightnum des="产权证号">=cerrightnum</cerrightnum>
+			<owncertinum des="所有权人证件号码">=owncertinum</owncertinum>
+			<firstflag des="提取依据是否首次办理">=firstflag</firstflag>
+			<paymentmode des="购房付款方式">=paymentmode</paymentmode>
+			<housepayamt des="房屋补偿款">=housepayamt</housepayamt>
+			<procode des="提取依据编码">=procode</procode>
+			<recordbackdate des="备案日期">=recordbackdate</recordbackdate>
+			<dwbusitype des="提取的操作类型">=dwbusitype</dwbusitype>
+			<dwhousearea des="房屋面积">=dwhousearea</dwhousearea>
+			<fwzl des="房屋坐落">=fwzl</fwzl>
+			<houseridate des="取得产权日期">=houseridate</houseridate>
+			<crefiledate des="准建证日期">=crefiledate</crefiledate>
+			<enddate des="终止日期">=enddate</enddate>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+			<drawreasoncode1 des="提取依据号码1">=drawreasoncode1</drawreasoncode1>
+			<housetype des="房屋类型">=housetype</housetype>
+			<htdkje des="合同贷款金额">=htdkje</htdkje>
+			<hyzk des="婚姻状况">=hyzk</hyzk>
+			<referamt des="封顶金额">=referamt</referamt>
+			<maxfdamt des="参考金额">=maxfdamt</maxfdamt>
+			<ownamt des="自费金额">=ownamt</ownamt>
+			<rentamt des="月房租">=rentamt</rentamt>
+			<rentdate des="租房起始日期">=rentdate</rentdate>
+			<rentmonths des="租房月数">=rentmonths</rentmonths>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<zxcondate des="装修合同日期">=zxcondate</zxcondate>
+			<realdpayamt des="实际付款金额">=realdpayamt</realdpayamt>
+			<grzhye des="个人账户余额">=grzhye</grzhye>
+			<begdate des="开始日期">=begdate</begdate>
+			<instance des="实例号">=_IS</instance>
+			<dbfilenum des="低保文号/证件号">=dbfilenum</dbfilenum>
+			<dqrq des="到期日期">=dqrq</dqrq>
+			<lastdrawdate des="上笔提取日期">=lastdrawdate</lastdrawdate>
+		</up>
+		<down>
+			<remnamt des="上次提取后的剩余依据金额">=remnamt</remnamt>
+			<remnsum des="提取依据的剩余总金额">=remnsum</remnsum>
+			<noinaccamt des="提取依据审批未入账金额">=noinaccamt</noinaccamt>
+			<drawreasonsum des="提取依据总金额">=drawreasonsum</drawreasonsum>
+			<drawamt des="提取金额">=drawamt</drawamt>
+		</down>
+	</interface>
+	<!-- 购房提取提交 -->
+	<interface id="getGFTQ" keepattr1="7064" tr_code="business/appapi153014.json" system="HTTP_POST_YBMAP2" des="金额计算">
+		<up>
+			<nohousenum des="无房证明编号">=nohousenum</nohousenum>
+			<ownamt des="自费金额">=ownamt</ownamt>
+			<realdpayamt des="实际付款金额">=realdpayamt</realdpayamt>
+			<owncertinum des="所有权人证件号码">=owncertinum</owncertinum>
+			<drawreasonsum des="提取依据总金额">=drawreasonsum</drawreasonsum>
+			<gfsfk des="购房首付款">=gfsfk</gfsfk>
+			<cerrightnum des="产权证号">=cerrightnum</cerrightnum>
+			<grzh des="个人账号">=getRealUserExtInfo("grzh")</grzh>
+			<housejddate des="房屋鉴定日期">=housejddate</housejddate>
+			<zxcondate des="装修合同日期">=zxcondate</zxcondate>
+			<dwbusitype des="提取的操作类型">=dwbusitype</dwbusitype>
+			<dwhousearea des="房屋面积">=dwhousearea</dwhousearea>
+			<inputamt des="初审金额">=inputamt</inputamt>
+			<drawreasoncode1 des="提取依据号码1">=drawreasoncode1</drawreasoncode1>
+			<tqyy des="提取原因">=tqyy</tqyy>
+			<referamt des="封顶金额">=referamt</referamt>
+			<relation des="关系">=relation</relation>
+			<recordbackdate des="备案日期">=recordbackdate</recordbackdate>
+			<xingming des="姓名">=getRealUserExtInfo("xingming")</xingming>
+			<zjhm des="证件号码">=getRealUserExtInfo("zjhm")</zjhm>
+			<hyzk des="婚姻状况">=hyzk</hyzk>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<enddate des="终止日期">=enddate</enddate>
+			<fwxz des="房屋性质">=fwxz</fwxz>
+			<fwzj des="房屋总价">=fwzj</fwzj>
+			<fwzl des="房屋坐落">=fwzl</fwzl>
+			<housepayamt des="房屋补偿款">=housepayamt</housepayamt>
+			<houseridate des="取得产权日期">=houseridate</houseridate>
+			<maxfdamt des="参考金额">=maxfdamt</maxfdamt>
+			<rentdate des="租房起始日期">=rentdate</rentdate>
+			<dqrq des="到期日期">=dqrq</dqrq>
+			<rentmonths des="租房月数">=rentmonths</rentmonths>
+			<stepseqno des="步骤号">=stepseqno</stepseqno>
+			<rentamt des="月房租">=rentamt</rentamt>
+			<tqfs des="提取方式">=jsfs</tqfs>
+			<remark des="备注">=remark</remark>
+			<payeebankacc0 des="收款单位银行账号">=payeebankacc0</payeebankacc0>
+			<payeebankaccnm0 des="收款单位名称">=payeebankaccnm0</payeebankaccnm0>
+			<payeebankname des="收款开户银行">=payeebankname</payeebankname>
+			<paymentmode des="购房付款方式">=paymentmode</paymentmode>
+			<housetype des="房屋类型">=housetype</housetype>
+			<htdkje des="合同贷款金额">=htdkje</htdkje>
+			<firstflag des="提取依据是否首次办理">=firstflag</firstflag>
+			<crefiledate des="准建证日期">=crefiledate</crefiledate>
+			<dbfilenum des="低保文号/证件号">=dbfilenum</dbfilenum>
+			<begdate des="开始日期">=begdate</begdate>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<drawamt des="提取金额">=drawamt</drawamt>
+			<procode des="提取依据编码">=tqyjh</procode>
+			<oldapprnum des="原贷款受理编号">=oldapprnum</oldapprnum>
+			<procode2 des="提取原因的编号2">=procode2</procode2>
+		</up>
+		<down>
+			<calintamt des="结息金额">=calintamt</calintamt>
+			<increbal des="增量余额">=increbal</increbal>
+			<keepbal des="存量余额">=keepbal</keepbal>
+			<apprnum des="审批号">=apprnum</apprnum>
+			<drawamt des="提取金额">=drawamt</drawamt>
+			<procode des="提取依据编码">=procode</procode>
+			<oldapprnum des="原贷款受理编号">=oldapprnum</oldapprnum>
+			<procode2 des="提取原因的编号2">=procode2</procode2>
+		</down>
+	</interface>
+<<<<<<< .mine
+||||||| .r165
+	<!-- 单位职工基本信息查询 -->
+	<interface id="getZGJBXXCX" keepattr1="7020" tr_code="business/appapi115001.json" system="HTTP_POST_YBMAP2" des="网厅个人信息查询">
+		<up>
+			<zjhm des="证件号码">=getRealUserExtInfo('zjhm')</zjhm>
+			<zjhm1 des="证件号码">=zjhm1</zjhm1>
+		</up>
+		<down>
+			<jtysr des="家庭月收入">=jtysr</jtysr>
+			<zhiye des="职业">=zhiye</zhiye>
+			<smrzbs des="通过实名认证验证标识">=smrzbs</smrzbs>
+			<gddhhm des="固定电话号码">=gddhhm</gddhhm>
+			<lastdrawdate des="上笔提取日期">=lastdrawdate</lastdrawdate>
+			<csny des="出生年月">=csny</csny>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<xingbie des="性别">=xingbie</xingbie>
+			<jzny des="缴至年月">=jzny</jzny>
+			<grzhye des="个人账户余额">=grzhye</grzhye>
+			<grjcjs des="个人缴存基数">=grjcjs</grjcjs>
+			<jkhth des="借款合同编号">=jkhth</jkhth>
+			<jtzz des="家庭住址">=jtzz</jtzz>
+			<yzbm des="邮政编码">=amt1</yzbm>
+			<ydrawamt des="年提取额">=ydrawamt</ydrawamt>
+			<unitaccname des="单位名称">=unitaccname</unitaccname>
+			<hyzk des="婚姻状况">=hyzk</hyzk>
+			<zhichen des="职称">=zhichen</zhichen>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<grzh des="个人账号">=grzh</grzh>
+			<khrq des="开户日期">=khrq</khrq>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<indiprop des="个人缴存比例">=indiprop</indiprop>
+=======
+	<!-- 单位职工基本信息查询 -->
+	<interface id="getZGJBXXCX" keepattr1="7020" tr_code="business/appapi115001.json" system="HTTP_POST_YBMAP2" des="网厅个人信息查询">
+		<up>
+			<zjhm des="证件号码">=zjhm1</zjhm>
+		</up>
+		<down>
+			<jtysr des="家庭月收入">=jtysr</jtysr>
+			<zhiye des="职业">=zhiye</zhiye>
+			<smrzbs des="通过实名认证验证标识">=smrzbs</smrzbs>
+			<gddhhm des="固定电话号码">=gddhhm</gddhhm>
+			<lastdrawdate des="上笔提取日期">=lastdrawdate</lastdrawdate>
+			<csny des="出生年月">=csny</csny>
+			<zjlx des="证件类型">=zjlx</zjlx>
+			<xingbie des="性别">=xingbie</xingbie>
+			<jzny des="缴至年月">=jzny</jzny>
+			<grzhye des="个人账户余额">=grzhye</grzhye>
+			<grjcjs des="个人缴存基数">=grjcjs</grjcjs>
+			<jkhth des="借款合同编号">=jkhth</jkhth>
+			<jtzz des="家庭住址">=jtzz</jtzz>
+			<yzbm des="邮政编码">=amt1</yzbm>
+			<ydrawamt des="年提取额">=ydrawamt</ydrawamt>
+			<unitaccname des="单位名称">=unitaccname</unitaccname>
+			<hyzk des="婚姻状况">=hyzk</hyzk>
+			<zhichen des="职称">=zhichen</zhichen>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<grzh des="个人账号">=grzh</grzh>
+			<khrq des="开户日期">=khrq</khrq>
+			<sjhm des="手机号码">=sjhm</sjhm>
+			<indiprop des="个人缴存比例">=indiprop</indiprop>
+>>>>>>> .r178
+
+
+	<!-- 单位职工基本信息变更提交 -->
+	<interface id="getZGJBXXBG" keepattr1="7025" tr_code="business/appapi115019.json" system="HTTP_POST_YBMAP2" des="单位职工基本信息变更提交">
+		<up>
+			<accnum name="accnum" type="2">=grzh</accnum>
+			<grzh name="accnum" type="2">=grzh</grzh>
+			<zjhm name="accnum" type="2">=zjhm</zjhm>
+			<unitaccnum name="unitaccnum" type="2">=dwzh1</unitaccnum>
+			<xingbie name="xingbie" type="2">=xingbie3</xingbie>
+			<jtzz name="jtzz" type="2">=jtzz3</jtzz>
+			<hyzk name="hyzk" type="2">=hyzk3</hyzk>
+			<xingming name="hyzk" type="2">=xingming3</xingming>
+			<sjhm name="sjhm" type="2">=sjhm3</sjhm>
+			<gddhhm name="gddhhm" type="2">=gddhhm3</gddhhm>
+			<yzbm name="yzbm" type="2">=yzbm3</yzbm>
+			<zhiye name="zhiye" type="2">=zhiye3</zhiye>
+			<zhichen name="zhichen" type="2">=zhichen3</zhichen>
+			<zhiwu name="zhiwu" type="2">=zhiwu3</zhiwu>
+			<xueli name="xueli" type="2">=xueli3</xueli>
+			<zjlx name="xueli" type="2">=zjlx3</zjlx>
+			<flag1 name="xueli" type="2">=flag1</flag1>
+			<dwzh name="xueli" type="2">=dwzh1</dwzh>
+		</up>
+		<down>
+			<filename des="变更后打印文件">=filename</filename>
+		</down>
+	</interface>
+</interfaces>

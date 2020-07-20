@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFWDZH02" desc="单位视图我的账户" startPage="step1" flowchart="0" endmessage="">
+    <config>
+        <flowvars>
+            <flowvar name="ym01" desc="单位视图我的账户">common_wdzh_02.ydpx</flowvar>
+        </flowvars>
+        <title>=pagetit</title>
+    </config>
+    <step id="step1" url="=_flowvar_ym01" desc="单位视图我的账户" appflag="X" buttonflag="" in="0" out="0">
+        <init>
+            <setvar name="pagetit">=_STEPNAME</setvar>
+        </init>
+    </step>
+</flow>

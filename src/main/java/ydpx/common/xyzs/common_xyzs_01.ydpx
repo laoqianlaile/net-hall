@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page template="0403" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+    thisTab.pageOnload = function () {
+       
+       if('undefined'==poolSelect['fileid']||poolSelect['fileid']==null||''==poolSelect['fileid']){
+    	    ydl.alert("文件加载失败,请刷新重试！");
+    	    return false;
+    	}
+        var url = '/fileInteractiveOne/viewfile/xywj/' + poolSelect['fileid'];
+        //发请求解析文件
+        ydl.ajax(ydl.contexPath + url, {_POOLKEY: poolSelect['_POOLKEY']}, function (data) {
+            //显示解析后的内容
+            if(data['returnCode']=='00000000') {
+                $('#voucher .panel-body').html(data['html']);
+            }else{
+    	  	  ydl.alert("文件加载失败,请刷新重试！");
+            }
+    
+        }, {method: 'GET'});
+        
+        // 不同意按钮事件
+        $('#b_flow_B').click(function(event) {
+        	//注册的协议返回登录页
+        	if($("#returnType").val()=="login"){
+        		location.href=ydl.contexPath;
+        	}else{
+	        	location.href=ydl.contexPath+'/home';
+        	}
+    	});
+    	//控制协议展示时的位置
+    	$("div.panel-body").css(
+			{"width":"-595px" ,
+			 "margin-bottom":"0px",
+			 "margin-left":"0px",
+			 "margin-top":"-62px",
+			 "margin-right":"-90px"
+		 	}
+		 );
+    };
+    ]]></script>
+  </scripts>
+  <dataset/>
+  <ajax>
+  </ajax>
+  <containers>
+	<container id="voucher" type="box"></container>
+      <container type="hidden">
+	      <component id="xybh" type="hidden">=xyid</component>
+	      <component id="xybbh" type="hidden">=bbh</component>
+	      <component id="xymc" type="hidden">=xymc</component>
+	      <component id="returnType" type="hidden">=returnType</component>
+      </container>
+  </containers>
+
+</page>

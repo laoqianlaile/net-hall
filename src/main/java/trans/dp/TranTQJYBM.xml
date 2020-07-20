@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranTQJYBM" tranName="网厅还贷提取获取个人信息及提取依据号">
+        <comps>
+            <comp compCode="CompSingleTransaction" compName="网厅还贷提取获取个人信息及提取依据号" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getTQJYBM"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="网厅还贷提取获取个人信息及提取依据号"/>
+<!--                     <inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant" -->
+<!--                              paramValue="FREEUSE1:iCount,XMQP:transdate,ACCNAME1:dkzt,ACCNAME2:state"/> -->
+<!--                     <inParam ignoreNull="1" paramCode="fileField" paramName="下传文件字段名" paramType="constant" paramValue="file"/> -->
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="缴存基数变更"/>
+    <editlogs>
+      <log editor="wsf" edittime="2020-04-17"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script include="/common/script/cst_phone_verification.js"/>
+    <script><![CDATA[//页面加载后执行
+
+    //页面加载后执行
+    thisTab.pageOnload = function () {
+    	//刷新列表
+        $("#list_JSBGList_buttons_refresh").click();
+        var dwjcbl = parseFloat($("#dwjcbl").val()).toFixed(0);
+        var grjcbl = parseFloat($("#grjcbl").val()).toFixed(0);
+        $("#dwjcbl").val(dwjcbl);
+        $("#grjcbl").val(grjcbl);
+
+
+    	 //$("#info").css({"color":"red","font-size":"120%"});
+    	 //$("#info1").css({"color":"red","font-size":"120%"});
+
+    	 //缴存比例样式的调整
+    	//var grjcbl = parseInt(parseFloat($("#grjcbl").val())*100);
+    	//$("#grjcbl").val(grjcbl);
+    	//var dwjcbl = parseInt(parseFloat($("#dwjcbl").val())*100);
+    	//$("#dwjcbl").val(dwjcbl);
+
+
+    }
+
+    //列表datalist1初始化、翻页、保存、新增等动作完成后执行
+    thisTab.datalist_callback_JSBGList=function(rows) {
+        var dwyje = 0.00,gryje = 0.00,afdwyje = 0.00,afgryje = 0.00,ze = 0.00,afze = 0.00;
+    	$(rows).each(function () {
+            initRow(this);
+            var rtnObj = saveRow(this);
+            dwyje += parseFloat(rtnObj.dwyje);
+            gryje += parseFloat(rtnObj.gryje);
+            afdwyje += parseFloat(rtnObj.afdwyje);
+            afgryje += parseFloat(rtnObj.afgryje);
+            ze += parseFloat(rtnObj.dwyje) + parseFloat(rtnObj.gryje);
+            afze += parseFloat(rtnObj.afdwyje) + parseFloat(rtnObj.afgryje);
+        });
+        /*$("#dwyjce").val(dwyje);
+        $("#dwyjce1").val(afdwyje);
+        $("#gryjce").val(gryje);
+        $("#gryjce1").val(afgryje);
+        $("#yjcze").val(ze);
+        $("#yjcze1").val(afze);*/
+
+
+    }
+
+    function saveRow(row){
+        //获取变更前单位月缴额
+        var dwyje = $(row).getCell('freeuse1', 'input').val();
+        //变更前个人月缴额
+        var gryje = $(row).getCell('agentop', 'input').val();
+        //变更后单位月缴额
+        var afdwyje = $(row).getCell('jtzz', 'input').val();
+        //变更后个人月缴额
+        var afgryje = $(row).getCell('agentop1', 'input').val();
+        return {"dwyje":dwyje,"gryje":gryje,"afdwyje":afdwyje,"afgryje":afgryje};
+    }
+    //列表新增的时候执行
+    thisTab.datalist_add_JSBGList = function(row) {
+        initRow(row);
+    };
+    function initRow(row) {
+        var $grzh = $(row).getCell('grzh', 'input');
+        var $xingming2 = ydl.attr($(row).getCell('xingming2', 'input'), 'readonly');    // 个人姓名文本框，并设置只读
+        var $zjhm = ydl.attr($(row).getCell('zjhm', 'input'), 'readonly');	            // 证件号码
+        var $payvouamt = ydl.attr($(row).getCell('payvouamt', 'input'), 'readonly');    // 变更前基数
+        var $freeuse1  = ydl.attr($(row).getCell('freeuse1', 'input'), 'readonly');     // 变更前单位月缴额
+        var $grjcjs = $(row).getCell('grjcjs', 'input');					            // 变更后基数
+        var $jtzz = $(row).getCell('jtzz', 'input');
+        var $agentop1 = $(row).getCell('agentop1', 'input');
+        var $agentop = ydl.attr($(row).getCell('agentop', 'input'), 'readonly');  		// 变更前单位缴存比例
+        var $agentop1 = ydl.attr($(row).getCell('agentop1', 'input'), 'readonly');  		// 变更前个人缴存比例
+      //  var $reason = ydl.attr($(row).getCell('reason', 'input'), 'readonly');  		// 变更后单位缴存比例
+     //   var $freeuse4 = ydl.attr($(row).getCell('freeuse4', 'input'), 'readonly');  	// 变更后个人缴存比例
+        var $jtzz = ydl.attr($(row).getCell('jtzz', 'input'), 'readonly');  			// 变更后个人缴存比例
+
+
+        //变更后基数、单位月缴额、职工月缴额赋初值
+        if( poolSelect["rw"] != 'r' ){
+
+            if($(row).getCell('grjcjs', 'input').val() == ''){
+                $(row).getCell('grjcjs', 'input').val('0.00');
+            }
+        }
+        //异步ajax提交获取单位账号下的相关信息
+        $(row).getCell('grzh', 'input').change(function() {
+             var grzh = $(row).getCell('grzh', 'input').val();
+             ydl.sendCommand('cmdGRXXCX',{"grzh":grzh},function(data,code,msg){
+                if (code != '00000000') {
+                    ydl.alert({'code':code, 'message':msg});
+                }else{
+                    if(data){
+                        var dwzh = data.dwzh;
+                        console.log(data);
+                        if ( dwzh != $$('dwzh').value ){
+                            ydl.alert("个人账户非本单位账户！");
+                            $(row).getCell('xingming2', 'input').val('');
+                            $(row).getCell('grzh', 'input').val('');
+                            return false;
+                        }
+                        $(row).getCell('xingming2', 'input').val(data.xingming);
+                        $(row).getCell('zjhm', 'input').val(data.zjhm);
+                        $(row).getCell('payvouamt', 'input').val(data.grjcjs);
+                        $(row).getCell('freeuse1', 'input').val(data.dwyjce);//单位月缴存额
+                        $(row).getCell('agentop', 'input').val(data.gryjce);//个人月缴存额
+                        $(row).getCell('grjcjs', 'input').val('0.00');
+                        $(row).getCell('jtzz', 'input').val('0.00');
+                        $(row).getCell('agentop1', 'input').val('0.00');
+                        $(row).getCell('dwzh1', 'input').val(dwzh);
+                        $(row).getCell('dwmc1', 'input').val(data.unitaccname);
+                    }
+                }
+             });
+        });
+        //动态更新变更的缴存基数
+        $(row).getCell('grjcjs', 'input').change(function() {
+            console.log(2222222222222);
+            var grjcjs_new = $(row).getCell('grjcjs', 'input').val();
+            var dwbl = $("#dwjcbl").val();
+            var grbl = $("#grjcbl").val();
+            $(row).getCell('jtzz', 'input').val((parseFloat(dwbl)/100)*grjcjs_new);
+            $(row).getCell('agentop1', 'input').val((parseFloat(grbl)/100)*grjcjs_new);
+        });
+        //给变更后月缴存基数绑定事件
+        $(row).getCell('grjcjs', 'input').change(function() {
+            console.log(1111111);
+            if( $(row).getCell('grjcjs', 'input').val() == '' ){
+                $(row).getCell('grjcjs', 'input').val('0.00');
+            }
+            var unitprop = parseFloat(parseFloat($$('dwjcbl').value)/100).toFixed(2);
+            var indiprop = parseFloat(parseFloat($$('grjcbl').value)/100).toFixed(2);
+            //自治区出了最低工资的新标准，是1580元，2020年3月1日起执行，到3月1日要用这个作最低基数
+            var grjcjs2 = 1580;
+            var grjcjs = $(row).getCell('grjcjs', 'input').val();
+            if ( grjcjs < grjcjs2){
+                ydl.alert("缴存基数不能少于1580元！");
+                $(row).getCell('grjcjs', 'input').val('');
+                return false;
+            }
+            var amt3 = Math.round(parseFloat($(row).getCell('grjcjs', 'input').val())* unitprop );
+            //变更后月缴存总额
+            $(row).getCell('jtzz', 'input').val(parseFloat(amt3).toFixed(2));
+        });
+    }
+
+    //表单提交时执行
+    thisTab.form_validate = function () {
+
+    	return true;
+    }
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax>
+    <!--<query id="ajax1" desc="" trigger="" message="">
+      <sql>="select sum(accname1) as bfyjcze, sum(freeuse1) as afyjcze  from dp077 where instance="+_IS+" "</sql>
+    </query>-->
+  </ajax>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form" layout="connect">
+        <component type="label" for="dwzh">单位账号：</component>
+        <component id="dwzh" type="input" subtype="text" maxlength="20" fromdic="true" required="1" readonly="1">=getRealUserExtInfo("dwzh")</component>
+        <component type="label" for="dwmc">单位名称：</component>
+        <component id="dwmc" type="input" subtype="text" maxlength="255" fromdic="true" readonly="1" width="90%">=dwmc</component>
+        <component type="label" for="jzny">缴至年月：</component>
+        <component id="jzny" type="input" subtype="text" maxlength="7" fromdic="true" readonly="1">=jzny</component>
+        <component type="label" for="dwjcbl">单位缴存比例：</component>
+        <component id="dwjcbl" type="input" subtype="text" maxlength="4" fromdic="true" datatype="int" declen="2" readonly="1" suffix="%">=unitprop</component>
+        <component type="label" for="grjcbl">个人缴存比例：</component>
+        <component id="grjcbl" type="input" subtype="text" maxlength="6" fromdic="true" datatype="int" declen="3" readonly="1" suffix="%">=indinorprop</component>
+        <component type="label" for="dwzh">调整原因：</component>
+        <component id="tzyy" type="input" subtype="text" maxlength="20" fromdic="true" required="false">=tzyy</component>
+    </container>
+    <container uid="container-4f85940a29c846f5ae465ff52230fd5b" type="box" layout="auto-height no-result-info" id="container-4f85940a29c846f5ae465ff52230fd5b">
+       <component id="JSBGList" type="datalist" paging="true" layout="auto-height no-result-info" allowinsert="true" allowupdate="true" allowdelete="true"  showrowid="true" dialogedit="0" allowexport="true" allowimport="true" saveimportfile="false" caption="明细信息" allowprint="false"  exportfilename="个人基数变更列表" clearbeforeimport="true" template="false">
+        <columns>
+          <col id="grzh" desc="个人账号" coltype="2" hidden="false" required="true" ischar="true" maxlength="12" datatype="validchar" dict="none" importcol="0" keycol="false"/>
+          <col id="xingming2" desc="姓名" coltype="2" hidden="false" required="false" ischar="true" datatype="validchar" dict="none" importcol="1" keycol="false"/>
+          <col coltype="3" id="o_xingming2" desc="o_姓名" hidden="true" dict="none"/>
+          <col id="zjhm" desc="证件号码" coltype="2" hidden="false" required="false" ischar="true" datatype="validchar" dict="none" importcol="2" keycol="false"/>
+          <col id="payvouamt" desc="变更前缴存基数(元)" coltype="2" hidden="false" required="false" ischar="false" maxlength="12" datatype="money" dict="none" importcol="3" keycol="false"/>
+          <col id="freeuse1" desc="变更前单位月缴额(元)" coltype="2" hidden="false" required="false" ischar="true" maxlength="12" datatype="money" dict="none" importcol="6" keycol="false"/>
+          <col id="agentop" desc="变更前个人月缴额(元)" coltype="2" hidden="false" required="false" ischar="true" maxlength="12" datatype="money" dict="none" importcol="6" keycol="false"/>
+          <col id="grjcjs" desc="变更后缴存基数(元)" coltype="2" hidden="false" required="true" ischar="false" maxlength="12" datatype="money" dict="none" importcol="7" keycol="false"/>
+          <col coltype="3" id="o_grjcjs" desc="o_变更后缴存基数(元)" hidden="true" dict="none"/>
+          <col id="jtzz" desc="变更后单位月缴额(元)" coltype="2" hidden="false" required="false" ischar="false" datatype="money" dict="none" importcol="10" keycol="false"/>
+          <col id="agentop1" desc="变更后个人月缴额(元)" coltype="2" hidden="false" required="false" ischar="false" datatype="money" dict="none" importcol="10" keycol="false"/>
+          <col id="seqno" desc="序号" coltype="3" hidden="true" required="true" ischar="false" datatype="int" dict="none" keycol="false"/>
+          <col id="dwzh1" desc="单位账号" coltype="2" hidden="false" required="false" ischar="false" datatype="validchar" dict="none" importcol="10" keycol="false"/>
+          <col id="dwmc1" desc="单位名称" coltype="2" hidden="false" required="false" ischar="false" datatype="validchar" dict="none" importcol="10" keycol="false"/>
+        </columns>
+        <sqls datasource="ds_biz">
+          <sql type="insert">="insert into dp077(unitaccnum1,seqno,unitaccname2,unitaccname1,unitaccnum2,accnum1,accnum2,accname1,accname2,freeuse1,dpbusitype,instance,certinum,reason,agentinstcode,agentop)values('"+grzh[#]+"',(select NVL(max(t.seqno),0)+1 from dp077 t where t.instance='"+_IS+"' and dpbusitype='84'),'"+xingming2[#]+"','"+zjhm[#]+"','"+payvouamt[#]+"','"+agentop[#]+"','"+agentop1[#]+"','"+freeuse1[#]+"','"+grjcjs[#]+"','"+jtzz[#]+"','84','"+_IS+"','"+dwzh1[#]+"','"+dwmc1[#]+"','07750011','9999')"</sql>
+          <sql type="select">="select unitaccnum1 as grzh,seqno ,unitaccname2 as xingming2,unitaccname1 as zjhm,unitaccnum2 as payvouamt,accnum1 as agentop,accnum2 as agentop1,accname1 as freeuse1,accname2 as grjcjs,freeuse1 as jtzz, dpbusitype,certinum as dwzh1,reason as dwmc1 from dp077 where instance='"+_IS+"'</sql>
+          <sql type="update">="update dp077 set unitaccnum1='"+grzh[#]+"', unitaccname2='"+xingming2[#]+"', unitaccname1='"+zjhm[#]+"', unitaccnum2='"+payvouamt[#]+"', accnum1='"+agentop[#]+"', accnum2='"+agentop1[#]+"', accname1='"+freeuse1[#]+"', accname2='"+grjcjs[#]+"', certinum ='"+dwzh1[#]+"',reason ='"+dwmc1[#]+"', freeuse1='"+jtzz[#]+"' where instance='"+_IS+"' and seqno='"+seqno[#]+"'"</sql>
+          <sql type="delete">="delete from DP077 where instance='"+_IS+"' and seqno='"+seqno[#]+"'</sql>
+        </sqls>
+      </component>
+    </container>
+  </containers>
+</page>

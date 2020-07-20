@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHQHKXX02" tranName="获取商贷还款信息">
+        <comps>
+            <comp compCode="CompHQHKXX02" compName="获取商贷还款信息" expression="">
+            	<inParams>
+            		<inParam paramCode="sddkhth" ignoreNull="0" paramName="商贷贷款合同号" paramValue="sddkhth" paramType="string(0,-1)"/>
+            	</inParams>
+                <outParams>
+                	<outParam ignoreNull="0" paramCode="dkyh" paramName="贷款银行" paramType="string(0,-1)" paramValue="dkyh"/>
+                	<outParam ignoreNull="0" paramCode="dkye" paramName="贷款余额" paramType="string(0,-1)" paramValue="dkye"/>
+                	<outParam ignoreNull="0" paramCode="yhmc" paramName="银行名称" paramType="string(0,-1)" paramValue="yhmc"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

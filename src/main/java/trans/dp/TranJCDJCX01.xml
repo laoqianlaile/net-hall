@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranJCDJCX01" tranName="缴存登记撤销">
+        <comps>
+            <comp compCode="CompJCDJCX01" compName="获取缴存登记信息" expression="#flag=='hqjcdjxx'">
+                <outParams>
+               		<outParam ignoreNull="1" paramCode="djh" paramName="登记号" paramType="string(0,-1)" paramValue="djh"/>
+                	<outParam ignoreNull="1" paramCode="djrq" paramName="登记日期" paramType="string(0,-1)" paramValue="djrq"/>
+                	<outParam ignoreNull="1" paramCode="jclx" paramName="缴存类型" paramType="string(0,-1)" paramValue="jclx"/>
+                	<outParam ignoreNull="1" paramCode="fkyh" paramName="付款银行" paramType="string(0,-1)" paramValue="fkyh"/>
+                	<outParam ignoreNull="1" paramCode="jkfs" paramName="缴款方式" paramType="string(0,-1)" paramValue="jkfs"/>
+                	<outParam ignoreNull="1" paramCode="jcje" paramName="缴款金额" paramType="string(0,-1)" paramValue="jcje"/>
+                </outParams>
+            </comp>
+            <comp compCode="CompJCDJCX02" compName="提交缴存登记撤销信息" expression="#flag=='cxjcdjxx'">
+                <inParams>
+               		<inParam ignoreNull="0" paramCode="djh" paramName="登记号" paramType="string(1,20)" paramValue="djh"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

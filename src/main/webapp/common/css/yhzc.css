@@ -1,0 +1,7 @@
+/* 刷脸认证 */
+.form-2code-img {margin: 15px auto;}
+.form-2code-img div {text-align: center; line-height: 2em; font-size: 12px;}
+.form-2code-img div.refresh {line-height: 200px;}
+.form-2code-img b {color:#D62C06;}
+.form-2code-img a {cursor: pointer; text-decoration: underline;}
+.form-2code-img img {width: 200px; height: 200px; border:1px solid #948C8C; background: url(../image/load-running.gif) no-repeat center; display: block; margin: 0 auto; }

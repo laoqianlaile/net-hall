@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="公积金贷款额度试算"/>
+    <editlogs>
+      <log editor="ypf" edittime="2020-04-20"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+    thisTab.pageOnload = function (){
+
+    	//是否公转商标志时，只能选择是
+    	//ydl.setValue("comcialflag",1);
+    	ydl.setValue("comcialflag",0);
+    	$$('zk').value = '1';
+
+    	$('#comcialflag').change(function(event) {
+    		if( $$('comcialflag').value == '0' )
+    		{
+    			$$('zk').value = '1';
+    			$$('llfdbl').value = '1';
+    			ydl.attr('zk', 'readonly');
+    			ydl.attr('llfdbl', 'readonly');
+    		}
+    		else
+    		{
+    			ydl.removeAttr('zk', 'readonly');
+    			ydl.removeAttr('llfdbl', 'readonly');
+    		}
+    	});
+
+    	$('#b_query').addIcon('search').click(function(event) {
+
+    	    //上传参数
+            var gtjkrzjhm = ydl.getValue("gtjkrzjhm");
+            var gjzqqms	=ydl.getValue("gjzqqms");
+            var dkqs =ydl.getValue("dkqs");
+            var comcialflag	=ydl.getValue("comcialflag");
+            var dkhkfs = ydl.getValue("dkhkfs");
+            var zk = ydl.getValue("zk");
+            var zjhm = poolSelect["zjhm"];
+            console.log("zjhm",zjhm);
+            var monthinc = ydl.getValue("monthinc");
+            var lncrelevel = ydl.getValue("lncrelevel");
+            var llfdbl = ydl.getValue("llfdbl");
+
+            var param = {"gtjkrzjhm":gtjkrzjhm,"gjzqqms":gjzqqms,"dkqs":dkqs,"comcialflag":comcialflag,"dkhkfs":dkhkfs,"zk":zk,"zjhm":zjhm,"monthinc":monthinc,"lncrelevel":lncrelevel,"llfdbl":llfdbl};
+            console.log(param)
+            ydl.sendCommand('dkss',param,function(data,code,msg){
+
+                if (code != '00000000') {
+                    ydl.alert({'code':code, 'message':msg});
+                }else{
+                  ydl.setValue("sdll",data.sdll);
+                  ydl.setValue("zxll",data.zxll);
+                  ydl.setValue("loanamt",data.loanamt);
+                }
+            });
+    	});
+
+    }
+]]></script>
+  </scripts>
+  <dataset>
+  </dataset>
+  <ajax/>
+  <containers>
+        <container uid="container-tip" type="box" layout="tips">
+          <component id="info2" keep="true" type="plain"><![CDATA[
+                <b>※温馨提示：</b>
+                <ol>
+                  <li>受贷款政策限制，借款人和共同借款人有未结清的公积金贷款不符合贷款要求，故不能进行贷款额度试算；</li>
+                  <li>受贷款政策限制，借款人必须连续缴存满6个月且缴存状态为正常，不符合此要求的不能进行贷款额度试算；</li>
+                </ol>]]>
+            </component>
+        </container>
+        <container uid="container-6fd292435318494b837be1445d11908e" type="table" layout="fit" cols="4" id="container-6fd292435318494b837be1445d11908e">
+          <component type="label">共同借款人证件号码：</component>
+          <component id="gtjkrzjhm" type="input" subtype="text" fromdic="false">=zjhm</component>
+          <component type="label">共同借款人月收入：</component>
+          <component id="monthinc" type="input" subtype="text" fromdic="false" datatype="money" maxlength="18" declen="2">=monthinc</component>
+          <component type="label" for="gjzqqms">家庭其他债务金额：</component>
+          <component id="gjzqqms" type="input" subtype="text" fromdic="false" datatype="money" maxlength="18" declen="2">=gjzqqms</component>
+          <component type="label">是否公转商：</component>
+          <component id="comcialflag" type="multivalue" subtype="select" value="=comcialflag" fromdic="false">
+              <sql datasource="os_mdic">bsp.ln.dkhkfs</sql>
+              <item label="否" value="0"/>
+              <item label="是" value="1"/>
+          </component>
+          <component type="label" for="dkhkfs">贷款还款方式：</component>
+          <component id="dkhkfs" type="multivalue" subtype="select" fromdic="false" value="=dkhkfs" required="true">
+            <sql datasource="os_mdic">bsp.ln.dkhkfs</sql>
+            <item label="请选择..."/>
+            <item label="=paraval" value="=paraname"/>
+          </component>
+          <component type="label">贷款年限：</component>
+          <component id="dkqs" type="input" subtype="text" required="1" fromdic="false">=dkqs</component>
+          <component type="label">利率浮动比例：</component>
+          <component id="llfdbl" type="multivalue" subtype="select" value="=llfdbl" fromdic="false">
+              <sql datasource="ds_biz"/>
+              <item label="1" value="1"/>
+              <item label="1.1" value="1.1"/>
+          </component>
+          <component type="label">折扣：</component>
+          <component id="zk" type="multivalue" subtype="select" value="=zk" fromdic="false">
+              <sql datasource="ds_biz"></sql>
+              <item label="86折" value="0.86"/>
+              <item label="88折" value="0.88"/>
+              <item label="9折" value="0.9"/>
+              <item label="无" value="1"/>
+          </component>
+          <component type="label">信用等级：</component>
+          <component id="lncrelevel" type="multivalue" subtype="select" value="=lncrelevel" fromdic="false">
+              <sql datasource="ds_biz"/>
+              <item label="良好" value="0"/>
+              <item label="不良" value="1"/>
+          </component>
+        </container>
+        <container uid="container-c26495d672124a0880602dfe2be17737" type="box" layout="buttons" id="container-c26495d672124a0880602dfe2be17737">
+           <component id="b_query" type="button" subtype="button">试算</component>
+        </container>
+        <container type="table" id="ct_form" cols="4" uid="ct_form" layout="connect">
+          <component type="caption">试算结果（注：仅供参考 实际贷款额以贷款审批时为准！！！）</component>
+          <component type="label">贷款年利率：</component>
+          <component id="sdll" type="input" subtype="text" readonly="1" fromdic="false">=sdll</component>
+          <component type="label">贷款执行利率：</component>
+          <component id="zxll" type="input" subtype="text" readonly="1" fromdic="false">=zxll</component>
+          <component type="label">最高贷款额度：</component>
+          <component id="loanamt" type="input" subtype="text" readonly="1" fromdic="false">=loanamt</component>
+          <component type="blank"/>
+          <component type="blank"/>
+        </container>
+  </containers>
+</page>

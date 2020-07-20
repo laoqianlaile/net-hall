@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDKJDCX01" tranName="个人贷款进度查询">
+        <comps>
+            <comp compCode="CompDKJDCX01" compName="个人贷款进度查询" expression="">
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="dksqbh" paramName="贷款申请编号" paramType="string(0,-1)" paramValue="dksqbh"/>
+                	<outParam ignoreNull="1" paramCode="swtyhmc" paramName="受委托银行名称" paramType="string(0,-1)" paramValue="swtyhmc"/>
+                	<outParam ignoreNull="1" paramCode="htdkje" paramName="贷款金额" paramType="string(0,-1)" paramValue="htdkje"/>
+                	<outParam ignoreNull="1" paramCode="dkqs" paramName="贷款期数" paramType="string(0,-1)" paramValue="dkqs"/>
+                	<outParam ignoreNull="1" paramCode="fwzj" paramName="房屋总价" paramType="string(0,-1)" paramValue="fwzj"/>
+                	<outParam ignoreNull="1" paramCode="fwzl" paramName="房屋坐落" paramType="string(0,-1)" paramValue="fwzl"/>
+                	<outParam ignoreNull="1" paramCode="dklc" paramName="贷款流程" paramType="string(0,-1)" paramValue="dklc"/>
+                	<outParam ignoreNull="1" paramCode="jkhtbh" paramName="借款合同编号" paramType="string(0,-1)" paramValue="jkhtbh"/>
+                	<outParam ignoreNull="1" paramCode="dklx" paramName="贷款类型" paramType="string(0,-1)" paramValue="dklx"/>
+                	<outParam ignoreNull="1" paramCode="fwxz" paramName="房屋性质" paramType="string(0,-1)" paramValue="fwxz"/>
+                	<outParam ignoreNull="1" paramCode="dklc" paramName="贷款流程" paramType="string(0,-1)" paramValue="dklc"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

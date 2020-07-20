@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+	<interface id="KF00-OAPI-01" tr_code="123456" system="99" des="获得工作日信息">
+		<up>
+			<krq des="开始日期">=ksrq</krq>
+			<jrq des="结束日期">=jsrq</jrq>
+		</up>
+		<down>
+        	<detail>
+		        <rq>=rq</rq>
+		        <gzrbz>=gzrbz</gzrbz><!-- 0 工作日、1 休息日、2 节假日 -->
+		        <id>=id</id>
+	    	</detail>
+        </down>
+	</interface>
+	<interface id="KF00-OAPI-02" tr_code="123456" system="99" des="获得可预约网点信息">
+		<up>
+			 <wdjgh>=wdjgh</wdjgh>
+		</up>
+		<down>
+        	<detail>
+		        <wdjgh>=wdjgh</wdjgh>
+		        <wdmc>=wdmc</wdmc>
+		        <wdxz>=wdxz</wdxz><!-- 1银行网点2管理部网点       -->
+	    	</detail>
+        </down>
+	</interface>
+	<interface id="KF00-OAPI-03" tr_code="123456" system="99" des="获得可预约业务信息">
+		<up>
+			<ywlch>=ywlch</ywlch>
+		</up>
+		<down>
+        	<detail>
+		        <ywlch>=ywlch</ywlch>
+		        <ywmc>=ywmc</ywmc>
+		        <khbs>=khbs</khbs><!-- 0个人1单位       -->
+	    	</detail>
+        </down>
+	</interface>
+</interfaces>

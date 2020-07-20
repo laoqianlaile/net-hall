@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranWDCX01" tranName="预约申请-可预约网点查询" extCall="true">
+        <comps>
+            <comp compCode="CompYYSQJK01" compName="预约申请-可预约网点查询" expression="">
+            <sql id="selectByTJ">
+                   <![CDATA[
+					   select *
+						  from mi202
+
+                    ]]>
+            	</sql>
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="wdbh" paramName="网点编号" paramType="string(0,40)" paramValue="wdbh"/>
+                    <inParam ignoreNull="1" paramCode="ywbh" paramName="业务编号" paramType="string(0,-1)" paramValue="ywbh"/>
+          			<inParam ignoreNull="1" paramCode="order" paramName="排序字段" paramValue="order" paramType="string(0,-1)" ></inParam>
+				</inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

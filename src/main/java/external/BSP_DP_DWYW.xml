@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+	<interface id="BSP_DP_TJGRFC_01" tr_code="123456" system="99" des="提交封存信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<file des="上传的文件">=filename</file>
+		</up>
+		<down>
+			<lsh des="流水号">=lsh</lsh>
+			<jbjg des="经办机构">=jbjg</jbjg>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<!-- <interface id="BSP_DP_TJGRQF_01" tr_code="businessCompany/appapi20305.json" system="TEST_YBMAP2" des="提交启封信息"> -->
+	<interface id="BSP_DP_TJGRQF_01" tr_code="123456" system="99" des="提交启封信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<file des="上传的文件">=filename</file>
+		</up>
+		<down>
+			<lsh des="流水号">=lsh</lsh>
+			<jbjg des="经办机构">=jbjg</jbjg>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<interface id="BSP_DP_DWXXBG_01" tr_code="123456" system="99" des="提交单位信息以及经办人信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<dwsshy des="单位所属行业">=dwsshy</dwsshy>
+			<dwxz des="单位性质">=dwxz</dwxz>
+			<dwlsgx des="单位隶属关系">=dwlsgx</dwlsgx>
+			<dwjjlx des="单位经济类型">=dwjjlx</dwjjlx>
+			<dwyb des="单位邮编">=dwyb</dwyb>
+			<dwdzxx des="单位电子信箱">=dwdzxx</dwdzxx>
+			<dwslrq des="单位设立日期">=dwslrq</dwslrq>
+			<dwfxr des="单位发薪日">=dwfxr</dwfxr>
+			<zgbm des="主管部门">=zgbm</zgbm>
+			<sftsba des="是否托收备案">=sftsba</sftsba>
+			<file des="经办人信息文件">=filename</file>
+		</up>
+		<down>
+		</down>
+	</interface>
+	<interface id="BSP_DP_DWJCXX_02" tr_code="123456" system="99" des="单位缴存信息查询">
+    <!-- <interface id="BSP_DP_DWJCXX_02" tr_code="businessCompany/appapi20122.json" system="HTTP_GET_YBMAP2" des="单位缴存信息查询"> -->
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<jclx des="缴存类型">=jclx</jclx>
+			<ywzt des="业务状态">=ywzt</ywzt>
+			<jkfs des="缴款方式">=jkfs</jkfs>
+			<rzksrq des="入账开始日期">=rzksrq</rzksrq>
+			<rzjsrq des="入账结束日期">=rzjsrq</rzjsrq>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_DP_DWJCXX_03" tr_code="123456" system="99" des="批量查询单位下员工缴存信息">
+		<up>
+			<djh des="登记号">=djh</djh>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_DP_GRJBXX_01" tr_code="123456" system="99" des="查询单位下个人基本信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<grzh des="个人账号">=grzh</grzh>
+			<xingming des="姓名">=xingming</xingming>
+			<grzhzt des="个人账户状态">=grzhzt</grzhzt>
+			<khqsrq des="开户起始日期">=khqsrq</khqsrq>
+			<khjzrq des="开户截止日期">=khjzrq</khjzrq>
+		</up>
+		<down>
+			<file des="单位下个人信息文件">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_DP_GRJCXX_02" tr_code="123456" system="99" des="单位下个人缴存信息查询">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<grzh des="个人账号">=grzh</grzh>
+			<xingming des="姓名">=xingming</xingming>
+			<jcsbh des="缴存书编号">=jcsbh</jcsbh>
+			<jclx des="缴存类型">=jclx</jclx>
+			<ywzt des="业务状态">=ywzt</ywzt>
+			<slqsrq des="受理起始日期">=slqsrq</slqsrq>
+			<sljzrq des="受理截止日期">=sljzrq</sljzrq>
+		</up>
+		<down>
+			<file des="单位下个人信息文件">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_DP_GRJCBG_01" tr_code="123456" system="99" des="单位下个人缴存变更明细查询">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<bglx des="变更类型">=bglx</bglx>
+			<bgqsrq des="变更起始日期">=bgqsrq</bgqsrq>
+			<bgjzrq des="变更截止日期">=bgjzrq</bgjzrq>
+		</up>
+		<down>
+			<file des="单位下个人缴存变更信息文件">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_DP_GRMX_01" tr_code="123456" system="99" des="单位下个人明细账查询">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<grzh des="个人账号">=grzh</grzh>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<ksrq des="开始日期">=ksrq</ksrq>
+			<jsrq des="结束日期">=jsrq</jsrq>
+		</up>
+		<down>
+			<file des="单位下个人明细账文件">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_DP_DWJCZM_01" tr_code="123456" system="99" des="获取单位缴存证明信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<khrq des="开户日期">=khrq</khrq>
+			<dwzhzt des="单位账户状态">=dwzhzt</dwzhzt>
+			<zhjg des="账户机构">=zhjg</zhjg>
+			<dwjcbl des="单位缴存比例">=dwjcbl</dwjcbl>
+			<grjcbl des="个人缴存比例">=grjcbl</grjcbl>
+			<jcqsny des="缴存起始年月">=jcqsny</jcqsny>
+			<jzny des="缴至年月">=jzny</jzny>
+			<zjly des="资金来源">=zjly</zjly>
+			<zhye des="账户余额">=zhye</zhye>
+			<fcrs des="封存人数">=fcrs</fcrs>
+			<zcrs des="正常人数">=zcrs</zcrs>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<interface id="BSP_DP_HQHJZHXX_01" tr_code="123456" system="99" des="获取汇缴账户信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<jzny des="缴至年月">=jzny</jzny>
+			<zchkyye des="暂存户可用余额">=zchkyye</zchkyye>
+			<fkzh des="付款账号">=fkzh</fkzh>
+			<fkzhm des="付款账户名">=fkzhm</fkzhm>
+			<fkyh des="付款银行">=fkyh</fkyh>
+		</down>
+	</interface>
+	<interface id="BSP_DP_HQDWHJXX_01" tr_code="123456" system="99" des="获取单位汇缴信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<ksny des="开始年月">=ksny</ksny>
+			<zzny des="终止年月">=zzny</zzny>
+		</up>
+		<down>
+			<yjje des="应缴金额">=yjje</yjje>
+			<hjrs des="汇缴人数">=hjrs</hjrs>
+			<hjys des="汇缴月数">=hjys</hjys>
+			<jkfs des="缴款方式">=jkfs</jkfs>
+		</down>
+	</interface>
+	<interface id="BSP_DP_HQDWQJXX_01" tr_code="123456" system="99" des="获取单位欠缴信息（缴至年月至当前时点）">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<file des="单位欠缴批量文件">=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_DP_HQZJHJXX_01" tr_code="123456" system="99" des="获取最近一笔汇缴信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<djh des="登记号">=djh</djh>
+			<ksny des="开始年月">=ksny</ksny>
+			<jzny des="缴至年月">=jzny</jzny>
+			<sjje des="实缴金额">=sjje</sjje>
+			<yjje des="应缴金额">=yjje</yjje>
+			<sjrs des="实缴人数">=sjrs</sjrs>
+			<yjrs des="应缴人数">=yjrs</yjrs>
+			<jkfs des="缴款方式">=jkfs</jkfs>
+			<jclx des="缴存类型">=jclx</jclx>
+			<zchzrje des="暂存户转入金额">=zchzrje</zchzrje>
+			<zchzcje des="暂存户转出金额">=zchzcje</zchzcje>
+			<slrq des="受理日期">=slrq</slrq>
+			<rzrq des="入账日期">=rzrq</rzrq>
+			<ywzt des="业务状态">=ywzt</ywzt>
+		</down>
+	</interface>
+	<interface id="BSP_DP_HQBYRYXX_01" tr_code="123456" system="99" des="获取单位下人员信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<zrs des="总人数">=zrs</zrs>
+			<zrrs des="转入人数">=zrrs</zrrs>
+			<zcrs des="转出人数">=zcrs</zcrs>
+			<fcrs des="封存人数">=fcrs</fcrs>
+			<qfrs des="启封人数">=qfrs</qfrs>
+			<khrs des="开户人数">=khrs</khrs>
+		</down>
+	</interface>
+	<!--<interface id="BSP_DP_HQDWHJTJ_01" tr_code="businessCompany/appapi20309.json" system="HTTP_POST_YBMAP2" des="单位汇缴信息提交">-->
+	<interface id="BSP_DP_HQDWHJTJ_01" tr_code="123456" system="99" des="单位汇缴信息提交">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<ksny des="开始年月">=ksny</ksny>
+			<zzny des="终止年月">=zzny</zzny>
+			<hjrs des="汇缴人数">=hjrs</hjrs>
+			<hjys des="汇缴月数">=hjys</hjys>
+			<yjje des="应缴金额">=yjje</yjje>
+			<sjje des="实缴金额">=sjje</sjje>
+			<jkfs des="缴款方式">=jkfs</jkfs>
+			<fkyh des="付款银行">=fkyh</fkyh>
+			<fkzh des="付款账号">=fkzh</fkzh>
+			<fkzhm des="付款账户名">=fkzhm</fkzhm>
+			<zchzcje des="暂存户转出金额">=zchzcje</zchzcje>
+		</up>
+		<down>
+			<skyhzh des="收款银行账号">=skyhzh</skyhzh>
+			<skyhmc des="收款银行账号">=skyhmc</skyhmc>
+			<jbjg des="经办机构">=jbjg</jbjg>
+			<dwjcje des="单位汇缴金额">=dwjcje</dwjcje>
+			<grjcje des="个人汇缴金额">=grjcje</grjcje>
+			<jclx des="缴存类型">=jclx</jclx>
+			<rzlsh des="入账流水号">=rzlsh</rzlsh>
+			<djh des="登记号">=djh</djh>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<interface id="BSP_DP_DWBJXX_02" tr_code="123456" system="99" des="获取个人补缴金额信息">
+		<up>
+			<grzh des="个人账号">=grzh</grzh>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<ksny des="开始年月">=ksny</ksny>
+			<jzny des="截止年月">=jzny</jzny>
+		</up>
+		<down>
+			<xingming des="姓名">=xingming</xingming>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<bjje des="补缴金额">=bjje</bjje>
+		</down>
+	</interface>
+	<interface id="BSP_DP_DWBJTJ_01" tr_code="123456" system="99" des="单位补缴提交">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<bjlx des="补缴类型">=bjlx</bjlx>
+			<jkfs des="缴款方式">=jkfs</jkfs>
+			<fkyh des="付款银行">=fkyh</fkyh>
+			<fkzh des="付款账号">=fkzh</fkzh>
+			<fkzhm des="付款账户名">=fkzhm</fkzhm>
+			<bjrs des="补缴人数">=bjrs</bjrs>
+			<sjje des="实缴金额">=sjje</sjje>
+			<zchzcje des="暂存户转出金额">=zchzcje</zchzcje>
+			<file desc="补缴人员详细信息">=filename</file>
+		</up>
+		<down>
+			<skyhzh des="收款银行账号">=skyhzh</skyhzh>
+			<skyhmc des="收款银行账号">=skyhmc</skyhmc>
+			<jbjg des="经办机构">=jbjg</jbjg>
+			<dwjcje des="单位补缴金额">=dwjcje</dwjcje>
+			<grjcje des="个人补缴金额">=grjcje</grjcje>
+			<rzlsh des="入账流水号">=rzlsh</rzlsh>
+			<ksny des="开始年月">=ksny</ksny>
+			<djh des="登记号">=djh</djh>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<interface id="BSP_DP_HQZJBJXX_01" tr_code="123456" system="99" des="获取最近一笔补缴信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<djh des="登记号">=djh</djh>
+			<ksny des="开始年月">=ksny</ksny>
+			<jzny des="缴至年月">=jzny</jzny>
+			<sjje des="实缴金额">=sjje</sjje>
+			<yjje des="应缴金额">=yjje</yjje>
+			<sjrs des="实缴人数">=sjrs</sjrs>
+			<yjrs des="应缴人数">=yjrs</yjrs>
+			<jkfs des="缴款方式">=jkfs</jkfs>
+			<jclx des="缴存类型">=jclx</jclx>
+			<zchzrje des="暂存户转入金额">=zchzrje</zchzrje>
+			<zchzcje des="暂存户转出金额">=zchzcje</zchzcje>
+			<slrq des="受理日期">=slrq</slrq>
+			<rzrq des="入账日期">=rzrq</rzrq>
+			<ywzt des="业务状态">=ywzt</ywzt>
+		</down>
+	</interface>
+	<interface id="BSP_DP_GRZYCX_01" tr_code="123456" system="99" des="个人转移查询">
+		<!-- <interface id="BSP_DP_GRZYCX_01" tr_code="businessCompany/appapi20128.json" system="HTTP_GET_YBMAP2" des="个人转移查询"> -->
+		<up>
+			<ksrq des="开始日期">=ksrq</ksrq>
+			<jsrq des="结束日期">=jsrq</jsrq>
+			<grzh des="个人账号">=grzh</grzh>
+			<zjhm des="证件号码">=zjhm</zjhm>
+			<zylx des="转移类型">=zylx</zylx>
+			<xingming des="姓名">=xingming</xingming>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<interface id="BSP_DP_XGDWMM_01" tr_code="123456" system="99" des="单位密码修改">
+		<!-- <interface id="BSP_DP_XGDWMM_01" tr_code="YBMAPZH/appapi50015.json" system="HTTP_GET_YBMAP2" des="单位密码修改"> -->
+		<up>
+			<ydlmm des="原登录密码" jmflag="1">=ydlmm</ydlmm>
+			<xdlmm des="新登录密码" jmflag="1">=xdlmm</xdlmm>
+			<qrxdlmm des="确认新登录密码" jmflag="1">=qrxdlmm</qrxdlmm>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+	</interface>
+	<interface id="BSP_DP_XGDWMM_02" tr_code="123456" system="99" des="临时单位用户密码修改">
+		<up>
+			<jbrxm des="经办人姓名">=getRealUserExtInfo('jbrxm')</jbrxm>
+			<jbrzjlx des="经办人证件类型">=getRealUserExtInfo('jbrzjlx')</jbrzjlx>
+			<jbrzjhm des="经办人证件号码">=getRealUserExtInfo('jbrzjhm')</jbrzjhm>
+			<ydlmm des="原登录密码" jmflag="1">=ydlmm</ydlmm>
+			<xdlmm des="新登录密码" jmflag="1">=xdlmm</xdlmm>
+			<qrxdlmm des="确认新登录密码" jmflag="1">=qrxdlmm</qrxdlmm>
+		</up>
+	</interface>
+	<interface id="BSP_DP_TJGRKHXX_01" tr_code="123456" system="99" des="提交个人开户信息">
+		<!-- <interface id="BSP_DP_TJGRKHXX_01" tr_code="businessCompany/appapi20303.json" system="HTTP_GET_YBMAP2" des="提交个人开户信息"> -->
+		<up>
+			<dwzh des="单位账号">=getUserExtInfo('dwdjh')</dwzh>
+			<file>=filename</file>
+		</up>
+		<down>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<!--单位托收信息查询  -->
+	<interface id="BSP_DP_DWTSXX_01" tr_code="123456" system="99" des="单位托收信息查询">
+		<!-- <interface id="BSP_DP_DWTSXX_01" tr_code="" system="" des="单位托收信息查询"> -->
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<wtskxybh des="委托收款协议编号">=wtskxybh</wtskxybh>
+			<wtskxyzt des="委托收款协议状态">=wtskxyzt</wtskxyzt>
+			<fkdwmc des="付款单位名称">=fkdwmc</fkdwmc>
+			<fkdwyhmc des="付款单位银行名称">=fkdwyhmc</fkdwyhmc>
+			<fkdwyhzh des="付款单位银行账号">=fkdwyhzh</fkdwyhzh>
+			<fkhtcjhh des="付款行同城交换号">=fkhtcjhh</fkhtcjhh>
+			<tsr des="托收日">=tsr</tsr>
+			<qyjbrq des="签约经办日期">=qyjbrq</qyjbrq>
+			<qyjbjg des="签约经办机构">=qyjbjg</qyjbjg>
+			<qyjbr des="签约经办人">=qyjbr</qyjbr>
+		</down>
+	</interface>
+	<!-- 单位挂账信息查询 -->
+	<interface id="BSP_DP_DWGZCX_01" tr_code="123456" system="99" des="单位挂账信息查询">
+		<!--<interface id="BSP_DP_DWGZCX_01" tr_code="businessCompany/appapi20122.json" system="HTTP_GET_YBMAP2" des="单位挂账信息查询">-->
+		<up>
+			<startdate des="开始日期">=ksrq</startdate>
+			<enddate des="结束日期">=jsrq</enddate>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<ywlx des="业务类型">=ywlx</ywlx>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<!-- 单位明细账查询 -->
+	<interface id="BSP_DP_DWMXXX_01" tr_code="123456" system="99" des="单位明细账查询">
+		<!--<interface id="BSP_DP_DWMXXX_01" tr_code="businessCompany/appapi20103.json" system="HTTP_GET_YBMAP2" des="单位明细账查询">-->
+		<up>
+			<startdate des="开始日期">=ksrq</startdate>
+			<enddate des="结束日期">=jsrq</enddate>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<file>=filename</file>
+		</down>
+	</interface>
+	<!--缴存比例调整  -->
+	<interface id="BSP_DP_JCBLTZ_01" tr_code="123456" system="99" des="缴存比例调整">
+		<!-- <interface id="BSP_DP_JCBLTZ_01" tr_code="YBMAPZH/businessCompany/appapi20307.json" system="HTTP_GET_YBMAP2" des="缴存比例调整"> -->
+		<up>
+			<bghdwjcbl des="变更后单位缴存比例" >=dwjcbl</bghdwjcbl>
+			<bghgrjcbl des="变更后个人缴存比例">=grjcbl</bghgrjcbl>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<!--缴存基数调整  -->
+	<interface id="BSP_DP_JCJSTZ_01" tr_code="123456" system="99" des="提交缴存基数调整信息">
+		<!-- <interface id="BSP_DP_JCJSTZ_01" tr_code="businessCompany/appapi20306.json" system="HTTP_GET_YBMAP2" des="提交缴存基数调整信息"> -->
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<file>=filename</file>
+		</up>
+		<down>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<!--获取缴存基数调低标志  -->
+	<interface id="BSP_DP_JCJSTZ_02" tr_code="123456" system="99" des="缴存基数调低标志查询">
+		<!-- <interface id="BSP_DP_JCJSTZ_02" tr_code="" system="HTTP_GET_YBMAP2" des="缴存基数调低标志查询"> -->
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<tdflag des="缴存基数调低标志">=tdflag</tdflag>
+		</down>
+	</interface>
+	<!--获取缴存额信息  -->
+	<interface id="BSP_DP_JCJSTZ_03" tr_code="123456" system="99" des="获取调整后的月缴存额信息">
+		<!-- <interface id="BSP_DP_JCJSTZ_03" tr_code="" system="HTTP_GET_YBMAP2" des="获取调整后的月缴存额信息"> -->
+		<up>
+			<grzh des="个人账号">=grzh</grzh>
+			<tzhjcjs des="调整后个人缴存基数">=tzhjcjs</tzhjcjs>
+		</up>
+		<down>
+			<tzdwyjce des="调整后单位月缴存额">=tzdwyjce</tzdwyjce>
+			<tzgryjce des="调整后个人月缴存额">=tzgryjce</tzgryjce>
+			<tzhyjce des="调整后月缴存额">=tzhyjce</tzhyjce>
+		</down>
+	</interface>
+	<interface id="BSP_DP_GETTGHZH_01" tr_code="123456" system="99" des="获取单位托管户账号">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<tghzh des="托管户账号">=tghzh</tghzh>
+		</down>
+	</interface>
+	<interface id="BSP_DP_TJZYXX_01" tr_code="123456" system="99" des="提交转移信息">
+		<!-- <interface id="BSP_DP_TJZYXX_01" tr_code="businessCompany/appapi20316.json" system="HTTP_GET_YBMAP2" des="提交转移信息"> -->
+		<up>
+			<zylx des="转移类型">=zylx</zylx>
+			<zyjylx des="转移交易类型">=zyjylx</zyjylx>
+			<zcdwzh des="转出单位账号">=zcdwzh</zcdwzh>
+			<zcdwmc des="转出单位名称">=zcdwmc</zcdwmc>
+			<zrdwzh des="转入单位账号">=zrdwzh</zrdwzh>
+			<zrdwmc des="转入单位名称">=zrdwmc</zrdwmc>
+			<file>=filename</file>
+		</up>
+		<down>
+
+		</down>
+	</interface>
+	<interface id="BSP_DP_DWTJXX_01" tr_code="123456" system="99" des="提交退缴信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<tkfs des="退款方式">=tkfs</tkfs>
+			<skyh des="收款银行">=skyh</skyh>
+			<skzhmc des="收款账户名称">=skzhmc</skzhmc>
+			<skzh des="收款账号">=skzh</skzh>
+			<file>=filename</file>
+		</up>
+		<down>
+
+		</down>
+	</interface>
+	<!--单位登录密码找回  -->
+	<interface id="BSP_DP_DWMMZH_01" tr_code="123456" system="99" des="单位登录密码找回">
+		<!-- <interface id="BSP_DP_DWMMZH_01" tr_code="YBMAPZH/appapi50014.json" system="HTTP_GET_YBMAP2" des="单位登录密码找回"> -->
+		<up>
+
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<dwmc des="单位名称" >=dwmc</dwmc>
+			<xdlmm des="新登录密码" jmflag="1">=xdlmm</xdlmm>
+			<qrxdlmm des="确认新登录密码" jmflag="1">=qrxdlmm</qrxdlmm>
+		</up>
+	</interface>
+	<interface id="BSP_DP_DWJCXX_04" tr_code="123456" system="99" des="查询汇缴书信息">
+		<!-- <interface id="BSP_DP_DWJCXX_04" tr_code="businessCompany/appapi20204.json" system="HTTP_GET_YBMAP2" des="查询汇缴书信息"> -->
+		<up>
+			<djh des="登记号">=djh</djh>
+		</up>
+		<down>
+			<rzrq des="入账日期">=rzrq</rzrq>
+			<dwzh des="单位账号">=dwzh</dwzh>
+			<dwmc des="单位名称">=dwmc</dwmc>
+			<ksny des="开始年月">=ksny</ksny>
+			<jsny des="结束年月">=jsny</jsny>
+			<dwjcje des="单位汇缴金额">=dwjcje</dwjcje>
+			<grjcje des="个人汇缴金额">=grjcje</grjcje>
+			<rzje des="入账金额">=rzje</rzje>
+			<jclx des="缴存类型">=jclx</jclx>
+			<rzyh des="入账银行">=rzyh</rzyh>
+			<jcrs des="缴存人数">=jcrs</jcrs>
+			<jkfs des="缴款方式">=jkfs</jkfs>
+			<rzlsh des="入账流水号">=rzlsh</rzlsh>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+	<interface id="BSP_DP_JCDJXX_01" tr_code="123456" system="99" des="查询缴存登记信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<djh des="登记号">=djh</djh>
+			<djrq des="登记日期">=djrq</djrq>
+			<jclx des="缴存类型">=jclx</jclx>
+			<fkyh des="付款银行">=fkyh</fkyh>
+			<jkje des="缴款金额">=jkje</jkje>
+			<jkfs des="缴款方式">=jkfs</jkfs>
+		</down>
+	</interface>
+	<interface id="BSP_DP_CXJCDJXX_01" tr_code="123456" system="99" des="提交缴存登记撤销信息">
+		<!-- <interface id="BSP_DP_CXJCDJXX_01" tr_code="businessCompany/appapi20204.json" system="HTTP_GET_YBMAP2" des="提交缴存登记撤销信息"> -->
+		<up>
+			<djh des="登记号">=djh</djh>
+		</up>
+	</interface>
+	<interface id="BSP_DP_DWXGRXXGB_01" tr_code="123456" system="99" des="提交单位下个人信息变更信息">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+			<file des="文件名称">=filename</file>
+		</up>
+	</interface>
+	<!--单位下个人结息对账单查询  -->
+	<interface id="BSP_DP_GRJXDZ_01" tr_code="123456" system="99" des="单位下个人结息对账单查询">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<file>=filename</file>
+			<qxrq des="起息日期">=qxrq</qxrq>
+			<jxrq des="结息日期">=jxrq</jxrq>
+			<dqrll des="定期日利率">=dqrll</dqrll>
+			<hqrll des="活期日利率">=hqrll</hqrll>
+			<xjrs des="小计人数">=xjrs</xjrs>
+			<xjdqbj des="小计定期本金">=xjdqbj</xjdqbj>
+			<xjhqbj des="小计活期本金">=xjhqbj</xjhqbj>
+			<xjzbj des="小计总本金">=xjzbj</xjzbj>
+			<xjdqlx des="小计定期利息">=xjdqlx</xjdqlx>
+			<xjhqlx des="小计活期利息">=xjhqlx</xjhqlx>
+			<xjzlx des="小计总利息">=xjzlx</xjzlx>
+			<xjye des="小计余额">=xjye</xjye>
+			<!--启用凭证系统时设置此下传参数  -->
+			<pzfilename des="凭证文件名">=pzfilename</pzfilename>
+		</down>
+	</interface>
+	<!--单位结息对账单查询  -->
+	<interface id="BSP_DP_DWJXDZ_01" tr_code="123456" system="99" des="单位结息对账单查询">
+		<up>
+			<dwzh des="单位账号">=getRealUserExtInfo('dwdjh')</dwzh>
+		</up>
+		<down>
+			<qxrq des="起息日期">=qxrq</qxrq>
+			<jxrq des="结息日期">=jxrq</jxrq>
+			<dqrll des="定期日利率">=dqrll</dqrll>
+			<hqrll des="活期日利率">=hqrll</hqrll>
+			<hqbj des="活期本金">=hqbj</hqbj>
+			<dqbj des="定期本金">=dqbj</dqbj>
+			<hqlx des="活期利息">=hqlx</hqlx>
+			<dqlx des="定期利息">=dqlx</dqlx>
+			<lxhj des="利息合计">=lxhj</lxhj>
+			<dwzhye des="单位账户余额">=dwzhye</dwzhye>
+			<!--启用凭证系统时设置此下传参数  -->
+			<filename des="凭证文件名">=filename</filename>
+		</down>
+	</interface>
+</interfaces>

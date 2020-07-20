@@ -1,0 +1,22 @@
+/* 流程可视化新增图片CSS */
+.flow-chart-edit div		{ background-position: 0 -420px;}
+.flow-chart-add div		{ background-position: 0 -462px;}
+
+/** 首页头部，显示登录后所属网厅**/
+/*个人 */
+.header .home-logo div.home-logo-person{width:80px;right:-80px;background-position:0 0;}
+/*单位 */
+.header .home-logo div.home-logo-orgauth{width:80px;right:-80px;background-position:0 -20px;}
+/*单位临时用户*/
+.header .home-logo div.home-logo-orgtemp{width:80px;right:-80px;background-position:0 -20px;}
+/*开发商 */
+.header .home-logo div.home-logo-developer{width:91px;right:-80px;background-position:0 -40px;}
+/*管理员 */
+.header .home-logo div.home-logo-manager{width:0;right:0;}
+
+/*点击提交后显示的提示图片样式，配合loading-4(1).gif使用*/
+/*.layui-layer-loading .layui-layer-content.layui-layer-loading0{
+    width: 255px;
+    height: 160px;
+    opacity: 0.75;
+}*/

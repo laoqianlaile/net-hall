@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFWJMA02" desc="忘记密码" startPage="step1" flowchart="1" isMenu="0" checksession="0" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="身份信息校验">common_wjma_03.ydpx</flowvar>
+              <flowvar name="ym02" desc="重置密码">common_wjma_04.ydpx</flowvar>
+          </flowvars>
+          <mudics>
+             <mudic key="bsp.pb.zjlx" desc="证件类型"></mudic>
+          </mudics>
+          <title>=pagetit</title>
+          <buttons>
+             <buttons id="A" text="返回" icon="backward" url="/"/> <!-- 页面上的按钮id将会为 b_flow_A appvalue="0"  -->
+          </buttons>
+          <endpage buttonflag="n">
+		     <init>		   
+		       <setvar name="_HIDE_PERSON_INFO" desc="控制个人信息隐藏方式">true</setvar><!--true 隐藏 -->
+		       <setvar name="_RESULT_PAGE_TITLE"><![CDATA[恭喜您，密码修改成功。]]></setvar>
+		       <setvar name="_RESULT_PAGE_CONTENT"><![CDATA[='单位名称：'+dwmc+'<br>证件号码(用户名)：'+jbrzjhm]]></setvar>
+		     </init>
+		 </endpage>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="身份信息校验" appflag="X" buttonflag="Ag" in="1" out="1" flowchartkey="1" >
+		    <init>
+		        <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		    </init>
+		</step>
+		<step id="step2" url="=_flowvar_ym02" desc="重置密码" appflag="X" buttonflag="fa" notoid="step1" in="1" out="1" flowchartkey="1" >
+		    <init>
+		        <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		    </init>
+		</step>
+</flow>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="项目信息录入"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2019-06-20 13:15:54"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	
+	// 有效时间
+	var yxsj = poolSelect['yxsj'];
+	
+	if(yxsj != undefined && yxsj != ""){
+		$('#xyjssj').val(ydl.dateAdd(ydl.today(), parseInt(yxsj) , 'y'));
+	}
+	
+	//设置可选择日期范围
+	$('#xykssj').datepicker({
+		forceParse: false,
+		startDate: ydl.dateAdd(ydl.today(), 0, 'd')
+	});
+	//设置可选择日期范围
+	$('#xyjssj').datepicker({
+		forceParse: false,
+		startDate: ydl.dateAdd(ydl.today(), 0, 'd'),
+		endDate: ydl.dateAdd(ydl.today(), parseInt(yxsj), 'y')
+	});
+	
+	//校验协议开始日期协议结束日期大小关系
+	$('#xykssj').change(function(event) {
+		ydl.validator.clear();
+		if($('#xykssj').val() !="" && $('#xyjssj').val()!=""){
+			if (!ydl.validator('xykssj',{silent: true, rule:$('#xyjssj').val() >= $('#xykssj').val(),message:"开始日期不能大于结束日期！请重新输入"})) return false;
+		}
+	});
+	$('#xyjssj').change(function(event) {
+		ydl.validator.clear();
+		if($('#xyjssj').val() !="" && $('#xykssj').val()!=""){
+			if (!ydl.validator('xyjssj',{silent: true, rule:$('#xyjssj').val() >= $('#xykssj').val(),message:"结束日期不能小于开始日期！请重新输入"})) return false;
+		}
+	});
+
+	// 根据是否收取保证金，设置保证金账户必填属性
+	if(ydl.mudic.getValByMask("ish.gg.other.sf","YES")!=poolSelect["sfsqbzj"]){
+		ydl.removeAttr('bzjkhyh','required');
+		ydl.removeAttr('bzjzhmc','required');
+		ydl.removeAttr('bzjzhhm','required');
+	}else{
+		ydl.attr('bzjkhyh','required');
+		ydl.attr('bzjzhmc','required');
+		ydl.attr('bzjzhhm','required');
+	}
+
+    // 楼盘面积、楼盘均价、楼盘总套数、楼盘总幢数需大于0
+	$('#lpjj').change(function(event) {
+    	ydl.validator.clear('lpjj');
+    	if($('#lpjj').val() !=""){
+    		if (!ydl.validator('lpjj',{rule:Number($('#lpjj').val()) >0,message:"楼盘均价需大于0，请重新输入"})) return false;
+    	}
+    });
+    $('#lpmj').change(function(event) {
+        ydl.validator.clear('lpmj');
+        if($('#lpmj').val() !=""){
+        	if (!ydl.validator('lpmj',{rule:Number($('#lpmj').val()) >0,message:"楼盘面积需大于0，请重新输入"})) return false;
+        }
+    });
+    $('#lpzts').change(function(event) {
+        ydl.validator.clear('lpzts');
+        if($('#lpzts').val() !=""){
+            if (!ydl.validator('lpzts',{rule:Number($('#lpzts').val()) >0,message:"楼盘总套数需大于0，请重新输入"})) return false;
+        }
+    });
+    $('#lpzzs').change(function(event) {
+        ydl.validator.clear('lpzzs');
+        if($('#lpzzs').val() !=""){
+            if (!ydl.validator('lpzzs',{rule:Number($('#lpzzs').val()) >0,message:"楼盘总幢数需大于0，请重新输入"})) return false;
+        }
+    });
+}
+
+//表单提交时执行
+thisTab.form_validate = function () {
+    if (!ydl.validator('lpjj',{rule:Number($('#lpjj').val()) >0,message:"楼盘均价需大于0，请重新输入"})) return false;
+    if (!ydl.validator('lpmj',{rule:Number($('#lpmj').val()) >0,message:"楼盘面积需大于0，请重新输入"})) return false;
+    if (!ydl.validator('xyjssj',{silent: true, rule:$('#xyjssj').val() >= $('#xykssj').val(),message:"结束日期不能小于开始日期！请重新输入"})) return false;
+	return true;
+}
+
+]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_xmxx" cols="12" uid="ct_form">
+      <component type="label" colspan="3" for="xmmc">项目名称：</component>
+      <component id="xmmc" type="input" subtype="text" required="rw=='w'" datatype="validchar" colspan="3" fromdic="false">=xmmc</component>
+      <component type="label" colspan="3" for="lpqymc">楼盘区域名称：</component>
+      <component id="lpqymc" type="multivalue" subtype="select" value="=lpqymc" required="rw=='w'" colspan="3" fromdic="false">
+        <sql datasource="os_mdic">bsp.ln.projarea</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" colspan="3" for="xmwz">项目位置：</component>
+      <component id="xmwz" type="input" subtype="text" colspan="9" datatype="validchar" required="rw=='w'" fromdic="false">=xmwz</component>
+      <component type="label" colspan="3" for="xykssj">协议开始日期：</component>
+      <component id="xykssj" type="input" subtype="date" datatype="date" required="rw=='w'" colspan="3" fromdic="false" readonly="true">=@sysdate</component>
+      <component type="label" colspan="3" for="xyjssj">协议结束日期：</component>
+      <component id="xyjssj" type="input" subtype="date" datatype="date" required="rw=='w'" colspan="3" fromdic="false">=xyjssj</component>
+      <component type="label" colspan="3" for="lpjj">楼盘均价：</component>
+      <component id="lpjj" type="input" subtype="money" datatype="money" maxlength="18" declen="2" required="rw=='w'" colspan="3" fromdic="false" suffix="元">=lpjj</component>
+      <component type="label" colspan="3" for="lpmj">楼盘面积：</component>
+      <component id="lpmj" type="input" subtype="text" datatype="float" declen="2" maxlength="18" required="rw=='w'" colspan="3" fromdic="false" suffix="㎡">=lpmj</component>
+      <component type="label" colspan="3" for="lpzts">楼盘总套数：</component>
+      <component id="lpzts" type="input" subtype="text" datatype="int" readonly="true" colspan="3" fromdic="false">=lpzts</component>
+      <component type="label" colspan="3" for="lpzzs">楼盘总幢数：</component>
+      <component id="lpzzs" type="input" subtype="text" datatype="int" readonly="true" colspan="3" fromdic="false">=lpzzs</component>
+      <component type="label" colspan="3" for="yssj">预售时间：</component>
+      <component id="yssj" type="input" subtype="date" datatype="date" required="rw=='w'" colspan="3" fromdic="false">=yssj</component>
+      <component type="label" colspan="3" for="jgsj">竣工时间：</component>
+      <component id="jgsj" type="input" subtype="date" datatype="date" required="rw=='w'" colspan="3" fromdic="false">=jgsj</component>
+      <component type="label" colspan="3" for="syqlx">使用权类型：</component>
+      <component id="syqlx" type="multivalue" subtype="select" value="=syqlx" required="rw=='w'" colspan="3" fromdic="false">
+        <sql datasource="os_mdic">bsp.ln.syqlx</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" colspan="3" for="syqzzrq">使用权终止日期：</component>
+      <component id="syqzzrq" type="input" subtype="date" datatype="date" required="rw=='w'" colspan="3" fromdic="false">=syqzzrq</component>
+      <component type="label" colspan="3" for="tdzfzjg">土地证发证机关：</component>
+      <component id="tdzfzjg" type="input" subtype="text" datatype="validchar" required="rw=='w'" colspan="3" fromdic="false">=tdzfzjg</component>
+      <component type="label" colspan="3" for="jsydghydmj">建设用地规划用地面积：</component>
+      <component id="jsydghydmj" type="input" subtype="text" datatype="float" maxlength="18" declen="2" colspan="3" fromdic="false" suffix="㎡">=jsydghydmj</component>
+      <component type="label" colspan="3" for="jsydghjsgm">建设用地规划建设规模：</component>
+      <component id="jsydghjsgm" type="input" subtype="text" datatype="float" maxlength="18" declen="2" colspan="3" fromdic="false" suffix="㎡">=jsydghjsgm</component>
+      <component type="label" colspan="3" for="jsydghydxz">建设用地规划用地性质：</component>
+      <component id="jsydghydxz" type="input" subtype="text" datatype="validchar" colspan="3" fromdic="false">=jsydghydxz</component>
+      <component type="label" colspan="3" for="tdzbh">土地证编号：</component>
+      <component id="tdzbh" type="input" subtype="text" datatype="validchar" required="rw=='w'" colspan="3" fromdic="false">=tdzbh</component>
+      <component type="label" colspan="3" for="jsgcsgxkz">建筑工程施工许可证：</component>
+      <component id="jsgcsgxkz" type="input" subtype="text" datatype="validchar" required="rw=='w'" colspan="3" fromdic="false">=jsgcsgxkz</component>
+      <component type="label" colspan="3" for="jzgcghxkz">建筑工程规划许可证：</component>
+      <component id="jzgcghxkz" type="input" subtype="text" datatype="validchar" required="rw=='w'" colspan="3" fromdic="false">=jzgcghxkz</component>
+      <component type="label" colspan="3" for="jsydghxkz">建设用地规划许可证：</component>
+      <component id="jsydghxkz" type="input" subtype="text" datatype="validchar" required="rw=='w'" colspan="3" fromdic="false">=jsydghxkz</component>
+      <component type="label" colspan="3" for="bzjkhyh">保证金开户银行：</component>
+      <component id="bzjkhyh" type="multivalue" subtype="select" value="=bzjkhyh" colspan="3" fromdic="false">
+        <sql datasource="os_mdic">bsp.ln.yh</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" colspan="3" for="bzjzhmc">保证金开户银行：</component>
+      <component id="bzjzhmc" type="input" subtype="text" datatype="validchar" colspan="3" fromdic="false">=bzjzhmc</component>
+      <component type="label" colspan="3" for="bzjzhhm">保证金账户号码：</component>
+      <component id="bzjzhhm" type="input" subtype="text" datatype="number" colspan="9" fromdic="false">=bzjzhhm</component>
+    </container>
+  </containers>
+</page>

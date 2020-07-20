@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFSBCX01" desc="申报业务查询" startPage="step1" endmessage=""><!-- menu_gen_inst="1" -->
+	<config>
+		<flowvars>
+			<flowvar name="ym01" desc="申报业务查询">common_sbcx_01.ydpx</flowvar>
+		</flowvars>
+		<title>=pagetit</title>
+		<subpages>
+			<subpage id="subpage01" desc="凭证补打展示页面" url="common_sbcx_02.ydpx"></subpage>
+		  </subpages>
+		<mudics>
+			<mudic key="ish.gg.wf.sbzt" desc="申报状态"></mudic>
+			<mudic key="ish.gg.wf.jglx" desc="机构类型"></mudic>
+			<mudic key="ish.gg.wf.rwlx" desc="任务类型"></mudic>
+		</mudics>
+		
+		<subpages>
+			<subpage id="subpage01" url="common_sbcx_02.ydpx" in="0"></subpage>
+		</subpages>
+		<buttons>
+			<button id="A" text="返回首页" icon="home" url="/home"/> <!-- 可以改变系统提供的按钮上的文字和图标 -->
+		</buttons>
+	</config>
+	<step id="step1" url="=_flowvar_ym01" desc="申报业务查询" appflag="X" buttonflag="A" in="0" out="0">
+		<init>
+		    <setvar name="pagetit">=_STEPNAME</setvar>
+		</init>
+	</step>
+</flow>

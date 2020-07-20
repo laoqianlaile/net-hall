@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRXXCX2" tranName="个人信息查询2">
+        <comps>
+            <comp compCode="CompSingleTransaction" compName="个人信息查询2" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getZGJBXXCX"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="个人信息查询2"/>
+                    <!--<inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant"-->
+                             <!--paramValue="xingming:accname1,zjlx:certitype,zjhm:certinum,grjcjs:basenum,seqno:seqno,payvouamt:payvouamt,amt2:amt2,dwzh2:unitaccnum2,instance:instance,unitprop:unitprop,indiprop:indiprop,proptype:proptype,dpbusitype:dpbusitype,transdate:transdate,unitaccnum1:unitaccnum1,agentinstcode:agentinstcode,agentop:agentop"/>-->
+                    <!--<inParam ignoreNull="1" paramCode="fileField" paramName="上传文件字段名" paramType="constant"-->
+                             <!--paramValue="file"/>-->
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

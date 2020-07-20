@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="网上业务凭证重打"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-10-30 11:34:39"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	var htmlary;
+	var reprtywmc;
+	if($('#yhlx').val()==ydl.mudic.getValByMask("ish.gg.user.yhlx","DWYH")){
+		ydl.mudic.getList("bsp.pb.orgreprt",function(data){
+			htmlary=[];
+			htmlary.push("<option value=''>请选择...</option>");
+			for(var i=0;i<data.length;i++){
+				var tdata=data[i];
+				htmlary.push("<option value='"+tdata[0]+"'>"+tdata[1]+"</option>");
+				if(i==0){
+					reprtywmc=tdata[0];
+				}else{
+					reprtywmc=reprtywmc+","+tdata[0];
+				}
+			}
+			$('#reprtywmc').val(reprtywmc);
+			$("[name='ywmc']").html(htmlary.join(""));
+		});
+	}else if($('#yhlx').val()==ydl.mudic.getValByMask("ish.gg.user.yhlx","GRYH")){
+		ydl.mudic.getList("bsp.pb.personreprt",function(data){
+			htmlary=[];
+			htmlary.push("<option value=''>请选择...</option>")
+			for(var i=0;i<data.length;i++){
+				var tdata=data[i];
+				htmlary.push("<option value='"+tdata[0]+"'>"+tdata[1]+"</option>")
+				if(i==0){
+					reprtywmc=tdata[0];
+				}else{
+					reprtywmc=reprtywmc+","+tdata[0];
+				}
+			}
+			$('#reprtywmc').val(reprtywmc);
+			$("[name='ywmc']").html(htmlary.join(""));
+		});
+	}
+	
+	//校验开始时间结束时间大小关系
+	$('#kssj').change(function(event) {
+		ydl.validator.clear();
+		if($('#kssj').val() !="" && $('#jssj').val()!=""){
+			if (!ydl.validator('kssj',{silent: true, rule:$('#jssj').val() >= $('#kssj').val(),message:"开始时间不能大于结束时间！请重新输入"})) return false;
+		}
+	});
+	$('#jssj').change(function(event) {
+		ydl.validator.clear();
+		if($('#jssj').val() !="" && $('#kssj').val()!=""){
+			if (!ydl.validator('jssj',{silent: true, rule:$('#jssj').val() >= $('#kssj').val(),message:"结束时间不能小于开始时间！请重新输入"})) return false;
+		}
+	});
+	//设置可选择日期范围
+	$('#kssj').datepicker({
+		forceParse: false,
+		endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+	});
+	//设置可选择日期范围
+	$('#jssj').datepicker({
+		forceParse: false,
+		endDate: ydl.dateAdd(ydl.today(), 0, 'd')
+	});
+	//关联两个日期控件的起止范围
+	$('#kssj').datepicker('changeDate', function(date) {
+	    $('#jssj').datepicker('setStartDate', date);
+	});
+	$('#jssj').datepicker('changeDate', function(date) {
+	    $('#kssj').datepicker('setEndDate', date);
+	});
+	
+	$('#b_query').addIcon('search').click(function(event) {
+		ydl.validator.clear();
+		var kssj = $("#kssj").val();
+	 	var jssj = $("#jssj").val();
+	 	var ywmc = $("#ywmc").val();
+		if($('#kssj').val() !="" && $('#jssj').val()!=""){
+			if (!ydl.validator('kssj',{silent: true, rule:$('#jssj').val() >= $('#kssj').val(),message:"开始时间不能大于结束时间！请重新输入"})) return false;
+		}
+		if (!ydl.validator('ywgjz1',{type:'validchar'})) return false;
+		if (!ydl.validator('ywgjz2',{type:'validchar'})) return false;
+		if (!ydl.validator('ywgjz3',{type:'validchar'})) return false;
+		if (!ydl.validator('ywgjz4',{type:'validchar'})) return false;
+		if (!ydl.validator('ywgjz5',{type:'validchar'})) return false;
+		if (!ydl.validator('ywgjz6',{type:'validchar'})) return false;
+		if (!ydl.validator('ywgjz7',{type:'validchar'})) return false;
+		if (!ydl.validator('ywgjz8',{type:'validchar'})) return false;
+		ydl.init.list('pzlist',{}, thisTab);
+	});
+}
+//列表pzxxlist初始化、翻页、保存、新增等动作完成后执行
+thisTab.list_callback_pzlist = function(rows) {
+	$(rows).each(function(i){
+		//点击补打按钮事件
+		var type=$(this).getCell(3).find("p").data("value");
+		var poolkey=$(this).getCell(2).find("p").data("value");
+		$(this).find(':button').eq(0).click(function(){
+			ydl.subPage('subpage01', {"type":type, "fileid":poolkey, dialogVersion: 'scroll'},[]);
+		});
+	});
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+	return true;
+}
+
+]]></script>
+  </scripts>
+  <dataset>
+    <sql id="ds1" desc="查询补打批量信息" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="ds_biz"><![CDATA[select * from cpl_voucher where 1=1 
+<if test="reprtywmc != null" >
+	and flowname in 
+	<foreach collection="@com.yd.svrplatform.util.StringUtil@split(reprtywmc,',')" item="item" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+</if>
+<if test="yhlx != null" >
+	and yhlx=#{yhlx,jdbcType=VARCHAR}
+</if>
+<if test="ywmc != null" >
+	and flowname=#{ywmc,jdbcType=VARCHAR}
+</if>
+<if test="_ORGID != null &amp;&amp; yhlx == 1" >
+	and dwzh=#{_ORGID,jdbcType=VARCHAR}
+</if>
+<if test="_OPERID != null &amp;&amp; yhlx == 0" >
+	and ywczyid=#{_OPERID,jdbcType=VARCHAR}
+</if>
+<if test="jssj != null" >
+	and jbsj &lt;= #{jssj,jdbcType=VARCHAR}
+</if>
+<if test="kssj != null" >
+	and jbsj &gt;= #{kssj,jdbcType=VARCHAR}
+</if>
+<if test="ywgjz1 != null" >
+	and ywgjz1=#{ywgjz1,jdbcType=VARCHAR}
+</if>
+<if test="ywgjz2 != null" >
+	and ywgjz2=#{ywgjz2,jdbcType=VARCHAR}
+</if>
+<if test="ywgjz3 != null" >
+	and ywgjz3=#{ywgjz3,jdbcType=VARCHAR}
+</if>
+<if test="ywgjz4 != null" >
+	and ywgjz4=#{ywgjz4,jdbcType=VARCHAR}
+</if>
+<if test="ywgjz5 != null" >
+	and ywgjz5=#{ywgjz5,jdbcType=VARCHAR}
+</if>
+<if test="ywgjz6 != null" >
+	and ywgjz6=#{ywgjz6,jdbcType=VARCHAR}
+</if>
+<if test="ywgjz7 != null" >
+	and ywgjz7=#{ywgjz7,jdbcType=VARCHAR}
+</if>
+<if test="ywgjz8 != null" >
+	and ywgjz8=#{ywgjz8,jdbcType=VARCHAR}
+</if>
+<if test="ds1_order_by != null">
+          	order by ${ds1_order_by}
+        </if>]]></sql>
+  </dataset>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form" layout="connect">
+      <component type="label">开始时间：</component>
+      <component id="kssj" type="input" subtype="date" datatype="yyyy-mm-dd" fromdic="false">=kssj</component>
+      <component type="label">结束时间：</component>
+      <component id="jssj" type="input" subtype="date" datatype="yyyy-mm-dd" fromdic="false">=jssj</component>
+      <component type="label">业务名称：</component>
+      <component id="ywmc" type="multivalue" subtype="select" value="=ywmc" fromdic="false">
+        <sql datasource="workflow.cfg.xml"/>
+      </component>
+      <component type="label">业务关键字1：</component>
+      <component id="ywgjz1" type="input" subtype="text" fromdic="false" datatype="validchar">=ywgjz1</component>
+      <component type="label">业务关键字2：</component>
+      <component id="ywgjz2" type="input" subtype="text" fromdic="false" datatype="validchar">=ywgjz2</component>
+      <component type="label">业务关键字3：</component>
+      <component id="ywgjz3" type="input" subtype="text" fromdic="false" datatype="validchar">=ywgjz3</component>
+      <component type="label">业务关键字4：</component>
+      <component id="ywgjz4" type="input" subtype="text" fromdic="false" datatype="validchar">=ywgjz4</component>
+      <component type="label">业务关键字5：</component>
+      <component id="ywgjz5" type="input" subtype="text" fromdic="false" datatype="validchar">=ywgjz5</component>
+      <component type="label">业务关键字6：</component>
+      <component id="ywgjz6" type="input" subtype="text" fromdic="false" datatype="validchar">=ywgjz6</component>
+      <component type="label">业务关键字7：</component>
+      <component id="ywgjz7" type="input" subtype="text" fromdic="false" datatype="validchar">=ywgjz7</component>
+      <component type="label">业务关键字8：</component>
+      <component id="ywgjz8" type="input" subtype="text" fromdic="false" datatype="validchar">=ywgjz8</component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-cdefa73691f14db78c7dd1f07d2fe8e4" type="box" layout="buttons" id="container-cdefa73691f14db78c7dd1f07d2fe8e4">
+      <component id="b_query" type="button" subtype="button">查询</component>
+    </container>
+    <container uid="container-212f4c4fe280446db3de437adb7d5f60" type="list" layout="auto-height no-result-info" cols="14" id="pzlist" dataset="ds1" caption="业务凭证重打列表" allowexport="true" allowprint="true">
+      <listhead>
+      	<component type="label">打印</component>
+        <component type="label" sortname="instanceid">流程实例号</component>
+        <component type="label" sortname="jbsj">交易日期</component>
+        <component type="label">业务名称</component>
+        <component type="label">经办人姓名</component>
+        <component type="label">表单名称</component>
+        <component type="label">业务关键字1</component>
+        <component type="label">业务关键字2</component>
+        <component type="label">业务关键字3</component>
+        <component type="label">业务关键字4</component>
+        <component type="label">业务关键字5</component>
+        <component type="label">业务关键字6</component>
+        <component type="label">业务关键字7</component>
+        <component type="label">业务关键字8</component>
+      </listhead>
+      <listbody>
+      	<component type="button" subtype="button">打印</component>
+        <component type="plain">=ds1.instanceid[#]</component>
+        <component type="plain" value="=ds1.fileid[#]">=ds1.jbsj[#]</component>
+        <component type="plain" value="=ds1.filetype[#]">=ds1.flowname[#]</component>
+        <component type="plain">=ds1.ywczy[#]</component>
+        <component type="plain">=ds1.wjmc[#]</component>
+        <component type="plain">=ds1.ywgjz1[#]</component>
+        <component type="plain">=ds1.ywgjz2[#]</component>
+        <component type="plain">=ds1.ywgjz3[#]</component>
+        <component type="plain">=ds1.ywgjz4[#]</component>
+        <component type="plain">=ds1.ywgjz5[#]</component>
+        <component type="plain">=ds1.ywgjz6[#]</component>
+        <component type="plain">=ds1.ywgjz7[#]</component>
+        <component type="plain">=ds1.ywgjz8[#]</component>
+      </listbody>
+      <hidden/>
+    </container>
+    <container uid="container-5cff9a9d18ad44309f49e309467c915d" type="hidden" id="container-5cff9a9d18ad44309f49e309467c915d">
+      <component id="yhlx" type="hidden">=getUserExtInfo("khbs")</component>
+      <component id="reprtywmc" type="hidden"/>
+    </container>
+  </containers>
+</page>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../trans.xsd">
+    <tran tranCode="TranWJMA04" tranName="忘记密码保存信息">
+        <comps>
+        	<comp compCode="CompWJMA04" compName="忘记密码保存信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="dwmc" paramName="单位名称" paramType="string(0,255)" paramValue="dwmc"/>
+                    <inParam ignoreNull="0" paramCode="jbrzjlx" paramName="经办人证件类型" paramType="string(0,2)" paramValue="jbrzjlx"/>
+                    <inParam ignoreNull="0" paramCode="jbrzjhm" paramName="经办人证件号码" paramType="string(0,18)" paramValue="jbrzjhm"/>
+                    <inParam ignoreNull="0" paramCode="dlmm" paramName="登录密码" paramType="string(0,32)" paramValue="dlmm"/>
+               </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFSBYW02" desc="申报业务待办任务-示例流程" startPage="step1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="=applyid"><!-- menu_gen_inst="1" -->
+	<config>
+		<flowvars>
+			<flowvar name="ym01" desc="申报业务待办任务-示例流程">common_exa_sbyw_02.ydpx</flowvar>
+		</flowvars>
+		<title>=pagetit</title>
+	</config>
+	<step id="step1" url="=_flowvar_ym01" desc="申报业务待办任务-示例流程" appflag="X" buttonflag="aiq" in="0" out="0">
+		<init>
+		    <setvar name="pagetit">=_STEPNAME</setvar>
+			<setvar name="rw">=_rw</setvar>
+		</init>
+		<submit>
+			<apply apptitle="申报待办任务-标题" appOrgType="0" appOrgDesc="" apptype="1" inCause="true">
+				 <upfile>
+					<upfileDtl tn="CPL_SHENBAO_TEMP" mappingname="apptest1">
+						<item fdname="XH" col="1"/>
+						<item fdname="XINGMING" col="1"/>
+						<item fdname="ZJLX" col="1"/>
+						<item fdname="ZJHM" col="1"/>
+						<item fdname="SJHM" col="1"/>
+						<item fdname="instanceid" col="0">=_IS</item>
+						<item fdname="LB" col="0">1</item>
+					</upfileDtl>
+					<upfileDtl tn="CPL_SHENBAO_TEMP" mappingname="apptest2">
+						<item fdname="XH" col="1"/>
+						<item fdname="XINGMING" col="1"/>
+						<item fdname="XINGBIE" col="1"/>
+						<item fdname="ZJLX" col="1"/>
+						<item fdname="ZJHM" col="1"/>
+						<item fdname="JCJS" col="1"/>
+						<item fdname="instanceid" col="0">=_IS</item>
+						<item fdname="LB" col="0">2</item>
+					</upfileDtl> 
+				</upfile>
+			</apply>
+		</submit>
+	</step>
+</flow>

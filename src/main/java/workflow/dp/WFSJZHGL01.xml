@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFSJZHGL01" desc="手机号码与公积金账号关联" startPage="step1"  endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+        <config>
+          <flowvars> 
+              <flowvar name="ym01" desc="手机号码与公积金账号关联">dp_sjzhgl_01.ydpx</flowvar> 
+          </flowvars>
+          <mudics>
+             <mudic key="ish.gg.user.zjlx" desc="证件类型"></mudic>
+              <mudic key="ish.gg.other.dxyzm" desc="短信验证码"></mudic>
+          </mudics> 
+          <title>=pagetit</title>
+          <endpage >
+		     <init>		   
+		       <setvar name="_RESULT_PAGE_TITLE"><![CDATA[手机号码与公积金账号关联成功。]]></setvar>
+		     </init>
+		 </endpage>
+        </config>
+		<step id="step1" url="=_flowvar_ym01" desc="手机号码与公积金账号关联" appflag="X" buttonflag="a" in="" out="1" >
+		    <init>
+		        <setvar name="pagetit">=_FLOWNAME+'->'+_STEPNAME</setvar>
+		    </init>
+		</step>
+</flow>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWHJ04" tranName="获取单位欠缴信息(缴至年月至当前时点)">
+        <comps>
+        	<comp compCode="CompDWHJ04" compName="获取单位欠缴信息(缴至年月至当前时点)" expression="">
+                <outParams>
+					<outParam ignoreNull="0" paramCode="json" paramName="批量文件转json数据" paramType="string(0,-1)" paramValue="json"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

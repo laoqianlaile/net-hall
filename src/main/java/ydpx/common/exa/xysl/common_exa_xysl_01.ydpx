@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="=pagetit"/>
+    <editlogs>
+      <log editor="0000(离线)" edittime="2016-04-12 13:03:49"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+        var src = ydl.contexPath + '/ranCode.jsp';
+        thisTab.pageOnload = function () {
+            console.log("加载验证码信息0");
+            //加载验证码信息
+            $('#p_yzm').append($('<img id="t_yzm" src="' + src + '" style="cursor:pointer;" />'));
+            $('#t_yzm').click(function () {
+                refresh();
+            });
+            refresh();
+            //提示信息
+            $('#wbk1').tips('这是提示信息。');
+            
+             //关联两个日期控件的起止范围
+		     $('#qssj').datepicker('changeDate', function(date) {
+		         $('#jzsj').datepicker('setStartDate', date);
+		     });
+		     $('#jzsj').datepicker('changeDate', function(date) {
+		         $('#qssj').datepicker('setEndDate', date);
+		     });
+        }
+        
+        //校验方法
+        function cmdValidate(){
+        	var result = true;
+            result &= ydl.validator('zjlx', { required: true, silent:true });
+            result &= ydl.validator('zjhm', { required: true, silent:true });
+            result &= ydl.validator('xm', { required: true, silent:true });
+            return !!result;
+        }
+        //刷新验证码
+        function refresh() {
+            ydl.ajax(src,{},function (data) {
+                if(data["returnCode"]==0){
+                    $$('t_yzm').src=data["image"];
+                    $$('yzmkey').value=data["key"];
+                }
+            })
+        }
+        //返回按钮事件
+	    $('#b_flow_A').click(function () {
+	        location.href=ydl.contexPath+'/home';
+		});
+        //表单提交时执行
+        thisTab.form_validate = function () {
+         
+            return true;
+        }
+
+        ]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container uid="container-c274fd179f9e45ccb93f93d647427603" type="table" layout="fit" cols="6" id="container-c274fd179f9e45ccb93f93d647427603">
+      <component type="label" for="wbk1" colspan="2">文本框示例1：</component>
+      <component id="wbk1" type="input" subtype="text" readonly="false" fromdic="false"  colspan="2"/>
+      <component type="plain" colspan="2">这是个带提示的文本框。</component>
+      <component type="label" for="wbk2" colspan="2">文本框示例2：</component>
+      <component id="wbk2" type="input" subtype="text" readonly="false" fromdic="false" required="true" colspan="2"/>
+      <component type="plain" colspan="2">这个是必输类型文本框。</component>
+      <component type="label" for="qssj" colspan="2">起始时间：</component>
+      <component id="qssj" type="input" subtype="date" datatype="date" readonly="false" fromdic="false" required="true" colspan="2"/>
+      <component type="plain" colspan="2">这个是起始时间控件，输入有控制。</component>
+      <component type="label" for="jzsj" colspan="2">截止时间：</component>
+      <component id="jzsj" type="input" subtype="date" datatype="date" readonly="false" fromdic="false" required="true" colspan="2"/>
+      <component type="plain" colspan="2">这个是必输类型文本框。</component>
+      <component type="label" for="zjlx" colspan="2">下拉框示例：</component>
+      <component id="zjlx" type="multivalue" subtype="select" fromdic="false" colspan="2">
+        <sql datasource="os_mdic">ish.gg.user.zjlx</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="plain" colspan="2">这是个下拉框。</component>
+      <component type="label" for="dxk" colspan="2">单选框示例：</component>
+      <component id="dxk" type="multivalue" subtype="radio" direction="H" fromdic="false" colspan="2">
+        <sql datasource="os_mdic">ish.gg.other.sf</sql>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="plain" colspan="2"></component>
+      <component type="label" for="duoxk" colspan="2">多选框示例：</component>
+      <component id="duoxk" type="multivalue" subtype="checkbox" direction="V" fromdic="false" colspan="2">
+        <sql datasource="os_mdic">ish.gg.func.systemtype</sql>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="plain" colspan="2"></component>
+      <component type="label" for="yzm" colspan="2">随机验证码：</component>
+      <component id="yzm" type="input" subtype="text" colspan="2" fromdic="false" required="true"/>
+      <component id="p_yzm" type="plain" colspan="2"/>
+    </container>
+    <container type="hidden" id="container-1745d1b198785e1421b8165580983523" uid="container-1745d1b198785e1421b8165580983523">
+      <component id="yzmkey" type="hidden"/>
+    </container>
+  </containers>
+</page>

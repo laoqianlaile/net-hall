@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranZHJBXX01" tranName="公积金账户基本信息">
+        <comps>
+            <comp compCode="CompSingleTransaction" compName="获取公积金账户基本信息" expression="">
+            	<inParams>
+					<inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+							 paramValue="getGRXXCX"/>
+					<inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+							 paramValue="公积金账户基本信息"/>
+            	</inParams>
+                <!--<outParams>-->
+                	<!--<outParam ignoreNull="1" paramCode="jcjs" paramName="缴存基数" paramType="string(0,-1)" paramValue="jcjs" />-->
+                	<!--<outParam ignoreNull="1" paramCode="dwjcbl" paramName="单位缴存比例" paramType="string(0,-1)" paramValue="dwjcbl" />-->
+                	<!--<outParam ignoreNull="1" paramCode="grjcbl" paramName="个人缴存比例" paramType="string(0,-1)" paramValue="grjcbl" />-->
+                	<!--<outParam ignoreNull="1" paramCode="dwyjce" paramName="单位月缴存额" paramType="string(0,-1)" paramValue="dwyjce" />-->
+                	<!--<outParam ignoreNull="1" paramCode="gryjce" paramName="个人月缴存额" paramType="string(0,-1)" paramValue="gryjce" />-->
+                	<!--<outParam ignoreNull="1" paramCode="yjcehj" paramName="月应缴额" paramType="string(0,-1)" paramValue="yjcehj" />-->
+                	<!--<outParam ignoreNull="1" paramCode="grzhye" paramName="个人账户余额" paramType="string(0,-1)" paramValue="grzhye" />-->
+                	<!--<outParam ignoreNull="1" paramCode="zhhjny" paramName="缴至年月" paramType="string(0,-1)" paramValue="zhhjny" />-->
+                	<!--<outParam ignoreNull="1" paramCode="grzhzt" paramName="个人账户状态" paramType="string(0,-1)" paramValue="grzhzt" />-->
+                	<!--<outParam ignoreNull="1" paramCode="khrq" paramName="开户日期" paramType="string(0,-1)" paramValue="khrq" />-->
+                	<!--<outParam ignoreNull="1" paramCode="jcyh" paramName="缴存银行" paramType="string(0,-1)" paramValue="jcyh" />-->
+                	<!--<outParam ignoreNull="1" paramCode="glyh" paramName="关联银行" paramType="string(0,-1)" paramValue="glyh" />-->
+                	<!--<outParam ignoreNull="1" paramCode="glyhkh" paramName="关联银行卡号" paramType="string(0,-1)" paramValue="glyhkh" />-->
+                	<!--<outParam ignoreNull="1" paramCode="djje" paramName="冻结金额" paramType="string(0,-1)" paramValue="djje" />-->
+                	<!--<outParam ignoreNull="1" paramCode="kyye" paramName="可用余额" paramType="string(0,-1)" paramValue="kyye" />-->
+                	<!--<outParam ignoreNull="1" paramCode="sjhm" paramName="手机号码" paramType="string(0,-1)" paramValue="sjhm" />-->
+                	<!--<outParam ignoreNull="1" paramCode="xingming" paramName="姓名" paramType="string(0,-1)" paramValue="xingming" />-->
+                <!--</outParams>-->
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWMXXXCX" tranName="单位明细信息查询">
+        <comps>
+            <comp compCode="CompBatchGetTransaction" compName="单位明细信息查询" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="getDWMXXXCX"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="单位明细信息查询"/>
+                    <inParam ignoreNull="1" paramCode="fileCols" paramName="批量文件字段定义" paramType="constant"
+                             paramValue="freeuse4:iCount,freeuse1:jzrq,unitaccnum1:dwzh,accname1:dwmc,accname2:ywlx,onym:peoplenum,amt1:fse,indiprop:zhye,amt2:zshye,jtzz:jzny,unitaccname1:bz,unitaccname2:jbgy"/>
+                    <inParam ignoreNull="1" paramCode="fileField" paramName="上传文件字段名" paramType="constant"
+                             paramValue="file"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<title>首页</title>
+<link rel="shortcut icon" href="${CONTEXT_PATH}/template/ish02/image/favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="stylesheet" type="text/css" href="${CONTEXT_PATH}/common/lib/css/bootstrap.min.css">
+<link rel="stylesheet" href="${CONTEXT_PATH}/template/ish02/css/message-normal-6b133b34fa.css">
+<script type="text/javascript">//<![CDATA[
+//页面信息
+var pageData = ${PAGE_DATA};//PAGE_DATA_END
+//]]></script>
+</head>
+<body>
+<!-- 页头 -->
+<div class="frame-header">
+	<div class="pull-left">
+		<div class="home-logo">
+			<img class="home-logo-img1" src="${CONTEXT_PATH}/template/ish02/image/logo-name-275x38.png" alt="">
+			<div class="home-logo-type"></div>
+		</div>
+	</div>
+	<div class="pull-right header-nav">
+		<ul id="head-nav" class="pull-left">
+			<li class="link-first"><a id="sysHome" href=""><span class="move0"></span>首页</a></li>
+		</ul>
+		<div class="pull-left header-user">
+			<img src="${CONTEXT_PATH}/template/ish02/image/icon-user-home-32x32.png" alt="">
+			<span class="user-name"></span>
+			<i></i>
+			<dl>
+				<dd>
+					<a id="systemExit">
+					<span class="user-exit"></span>退出</a>
+				</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+<!-- 顶栏 -->
+<div class="frame-neck">
+	<div class="pull-left">
+		<label>当前位置：</label><span id="frameCurrentPlace">首页</span>
+	</div>
+	<div class="pull-right">
+		<span class="frame-message">
+			<img src="${CONTEXT_PATH}/template/ish02/image/0bg_1x1.png"><span id="frameMessage"></span>
+		</span>
+		<span id="frameCompany" class="hide">
+			<img src="${CONTEXT_PATH}/template/ish02/image/0bg_1x1.png"><span></span>
+		</span>
+	</div>
+</div>
+<!-- 中部 -->
+<div class="frame-main-base">
+	<div class="frame-main">
+		<div id="frameMenuBase"></div>
+		<div class="frame-main-right">
+			<ul id="frameNav" class="nav nav-tabs" data-maxid="1">
+				<li class="active" data-tabid="Home"><a href="#mainTabHome" data-toggle="tab" data-id="home" title="首页">首页</a></li>
+			</ul>
+			<div id="mainWrap" class="tab-content">
+				<div id="mainTabHome" class="tab-pane active">
+					<iframe id="mainFrameHome" name="mainFrameHome" src="" frameborder="0"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="${CONTEXT_PATH}/common/lib/js/jquery-3.3.1-with-migrate-3.0.0.min.js"></script>
+<script src="${CONTEXT_PATH}/template/ish02/js/lib-base-558f3b0385.min.js"></script>
+<script src="${CONTEXT_PATH}/template/ish02/js/ydl-frameset-e46a626dd6.min.js"></script>
+</body>
+</html>

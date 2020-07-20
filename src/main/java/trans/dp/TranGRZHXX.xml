@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRZHXX" tranName="获取个人信息">
+        <comps>
+            <comp compCode="CompSingleTransaction" compName="获取个人信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="1" paramCode="apiId" paramName="交易码" paramType="constant"
+                             paramValue="BSP_DP_GETGRXX_01"/>
+                    <inParam ignoreNull="1" paramCode="apiName" paramName="交易描述" paramType="constant"
+                             paramValue="获取个人信息"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

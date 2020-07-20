@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="贷款首付提取"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2019-10-16 16:56:06"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+	//页面数据赋值
+	$('#grzhye').text(ydl.addComma(poolSelect['grzhye'])+" 元");
+	$('#djje').text(ydl.addComma(poolSelect['djje'])+" 元");
+	$('#kyye').text(ydl.addComma(poolSelect['kyye'])+" 元");
+	$('#tqyy').val(ydl.mudic.getValByMask("bsp.dw.tqyy","14"));
+	getJkhtbh();
+	
+	//调用接口获取绑定的银行卡信息
+	ydl.sendCommand('hqyhzh',{},function(data,code,msg){
+		if (code != '00000000') {
+			ydl.alert({'code':code, 'message':msg});
+		}else {
+			//若有已绑定的卡，将卡号银行显示在页面上
+			if(ydl.mudic.getValByMask("ish.gg.other.sf","YES")==data.sfbd){
+				$("#skrzhhm").val(data.yhzh);
+				ydl.setValue('skrkhyh',data.yhbh);
+			}
+		}
+	});
+	
+	//手机短信验证码获取 开始
+	var param={
+		before:cmdValidate,//发送短信验证码之前调用的方法，次方法需要返回boolean类型值，只有返回true，才会发送短信验证码。可以不传此参数
+		pid:'dxyzm',
+		ywmc:'贷款首付提取',	//业务名称：此项需要根据自己的业务进行修改
+		xhid:'yzmxh',
+		cmd:'cmd001',		//流程助手中cmd方法中的task参数值
+		func:'checkForm'
+		//fail:refresh		//发送失败调用的方法，可以不传此参数
+	};
+	cst.verification(param);
+	//手机短信验证码获取 结束
+	
+	//计算可提取金额
+	$('#ktqje').addButton('计算', function(input) {
+		ydl.setValue('ktqje',"");
+		ydl.formValidate('ct_sfxx').done(function () { 
+			//调用交易获取可提取金额
+			ydl.sendCommand('jsktqje',{},function(data,code,msg){
+				// 失败
+				if (code != '00000000') {
+					ydl.alert({'code':code, 'message':msg});
+				}else {
+					ydl.validator.clear('tqje');
+					ydl.setValue('ktqje',data.ktqje);
+					//若提取金额不为空，校验提取金额
+					if($('#tqje').val() != ""){
+						if (!ydl.validator('tqje', {rule:Number($('#tqje').val())<=Number($('#ktqje').val()), message:'提取金额不能大于可提取金额'})) return false;
+					}
+				}
+			});
+		})
+	})
+	
+	//提取金额change事件
+	$('#tqje').change(function(event) {
+		if($('#ktqje').val() == ""){
+			ydl.setValue('tqje',"");
+			ydl.alert("请点击可提取金额后的计算按钮，进行试算");
+			return false;
+		}
+		//若提取金额不为空，校验提取金额
+		if($('#tqje').val() != ""){
+			if (!ydl.validator('tqje', {rule:Number($('#tqje').val())<=Number($('#ktqje').val()), message:'提取金额不能大于可提取金额'})) return false;
+		}
+	});
+	
+	// 借款合同编号change事件
+	$('#jkhtbh').change(function(event) {
+		ydl.setValue('ktqje',"");
+		ydl.setValue('tqje',"");
+		//调用交易获取贷款首付信息
+		ydl.sendCommand('hqdksfxx',{"jkhtbh":$('#jkhtbh').val()},function(data,code,msg){
+			// 失败
+			if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else {
+				$('#fkrq').val(data.fkrq);
+				ydl.setValue('fwzj',data.fwzj);
+				$('#fwzl').val(data.fwzl);
+				ydl.setValue('gfsfk',data.gfsfk);
+				ydl.setValue('sfkytqje',data.sfkytqje);
+			}
+		});
+	});
+	
+	//与购房人关系change事件
+	$('#ygfrgx').change(function(event) {
+		//若与购房人关系为本人，购房人信息赋值登录人信息并设置只读属性
+		if(ydl.mudic.getValByMask("bsp.dw.type","1")==$('#ygfrgx').val()){
+			ydl.validator.clear('gfrzjhm');
+			ydl.validator.clear('gfrxm');
+			$('#gfrxm').val($('#xm').text());
+			$('#gfrzjhm').val($('#zjhm').text());
+			ydl.attr('gfrxm','readonly');
+			ydl.attr('gfrzjhm','readonly');
+		}else{
+			//若与购房人关系不为本人，清空购房人信息并取消只读属性
+			$('#gfrxm').val("");
+			$('#gfrzjhm').val("");
+			ydl.removeAttr('gfrxm','readonly');
+			ydl.removeAttr('gfrzjhm','readonly');
+		}
+	});
+
+}
+// 页面校验
+thisTab.checkForm = function () {
+	return cmdValidate();
+}
+
+// 校验页面必输信息
+function cmdValidate(){
+	//校验通过 
+	var result=true;
+	if($('#ktqje').val() == ""){
+		ydl.alert("请点击可提取金额后的计算按钮，进行试算");
+		return false;
+	}
+	result &= ydl.validator('tqje', {required: true, silent:true,type:'money'});
+	result &= ydl.validator('jymm', { required: true, silent:true});
+	result &= ydl.validator('tqje', {rule:Number($('#tqje').val())<=Number($('#ktqje').val()), message:'提取金额不能大于可提取金额'});
+	return !!result;
+}
+function getJkhtbh() {
+    var array = poolSelect['jkhtbhsz'].split(",");
+    if (array.length == 1) {
+        items = "<option  value=" + array[0] + ">" + array[0] + "</option>";
+    }
+    if (array.length > 1) {
+        items = "<option value=''>请选择</option>";
+        for (var i = 0; i < array.length; i++) {
+            var jkhtbhval = array[i];
+            var jkhtbhname = array[i];
+            items += "<option value=" + jkhtbhval + ">" + jkhtbhname + "</option>";
+        }
+    }
+
+    $('#jkhtbh').append(items);
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+	if(ydl.mudic.getValByMask("bsp.pb.zjlx","01")==$('#xfrzjlx').val() && ydl.mudic.getValByMask("bsp.dw.type","1")!=$('#yxfrgx').val()){
+		if (!ydl.validator('xfrzjhm', {required: true, type: 'idcard'})) return false;
+	}
+	if($('#ktqje').val() == ""){
+		ydl.alert("请点击可提取金额后的计算按钮，进行试算");
+		return false;
+	}
+	if (!ydl.validator('tqje', {rule:Number($('#tqje').val())<=Number($('#ktqje').val()), message:'提取金额不能大于可提取金额'})) return false;
+	return true;
+}]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form" caption="公积金信息">
+      <component type="label">个人账号：</component>
+      <component type="plain">=getUserExtInfo('grzh')</component>
+      <component type="label">姓名：</component>
+      <component type="plain" id="xm">=getUserExtInfo('xingming')</component>
+      <component type="label">证件类型：</component>
+      <component type="plain" id="zjlx">=getMulData('bsp.pb.zjlx',getUserExtInfo('zjlx'))</component>
+      <component type="label">证件号码：</component>
+      <component type="plain" id="zjhm">=getUserExtInfo('zjhm')</component>
+      <component type="label">个人账户状态：</component>
+      <component type="plain">=getMulData('bsp.dp.grzhzt',grzhzt)</component>
+      <component type="label">个人账户余额：</component>
+      <component type="plain" id="grzhye"/>
+      <component type="label">冻结金额：</component>
+      <component type="plain" id="djje"/>
+      <component type="label">可用余额：</component>
+      <component type="plain" id="kyye"/>
+    </container>
+    <container uid="container-8431c3c95abf40e8889f1365c3beda08" type="table" layout="fit" cols="4" id="ct_sfxx" caption="贷款信息">
+      <component type="label" for="jkhtbh">借款合同编号：</component>
+      <component id="jkhtbh" type="multivalue" subtype="select" value="=jkhtbh" required="true" fromdic="false">
+        <sql datasource="workflow.cfg.xml"/>
+      </component>
+      <component type="label" for="ygfrgx">与购房人关系：</component>
+      <component id="ygfrgx" type="multivalue" subtype="select" fromdic="false" value="=ygfrgx" required="true">
+        <sql datasource="os_mdic">bsp.dw.type|2</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="gfrxm">购房人姓名：</component>
+      <component id="gfrxm" type="input" subtype="text" required="true" datatype="validchar" fromdic="false">=gfrxm</component>
+      <component type="label" for="gfrzjhm">购房人证件号码：</component>
+      <component id="gfrzjhm" type="input" subtype="text" required="true" fromdic="false" datatype="validchar">=gfrzjhm</component>
+      <component type="label" for="fkrq">放款日期：</component>
+      <component id="fkrq" type="input" subtype="date" datatype="date" fromdic="false" readonly="true">=fkrq</component>
+      <component type="label" for="fwzj">房屋总价：</component>
+      <component id="fwzj" type="input" subtype="money" datatype="money" suffix="元" fromdic="false" readonly="true">=fwzj</component>
+      <component type="label" for="fwzl">房屋坐落：</component>
+      <component id="fwzl" type="input" subtype="text" colspan="3" datatype="validchar" fromdic="false" readonly="true">=fwzl</component>
+      <component type="label" for="sfkje">购房首付款：</component>
+      <component id="gfsfk" type="input" subtype="money" datatype="money" readonly="true" suffix="元" fromdic="false">=gfsfk</component>
+      <component type="label" for="sfkytqje">首付款已提取额：</component>
+      <component id="sfkytqje" type="input" subtype="money" datatype="money" suffix="元" fromdic="false" readonly="true">=sfkytqje</component>
+    </container>
+    <container uid="container-c6003caeb5fb4b59b39150b72c61e33f" type="table" layout="fit" cols="4" id="container-c6003caeb5fb4b59b39150b72c61e33f" caption="提取信息">
+      <component type="label" for="tqyy">提取原因：</component>
+      <component id="tqyy" type="multivalue" subtype="select" value="=tqyy" readonly="true" fromdic="false">
+        <sql datasource="os_mdic">bsp.dw.tqyy</sql>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="jsfs">结算方式：</component>
+      <component id="jsfs" type="multivalue" subtype="select" required="true" fromdic="false" value="=jsfs">
+        <sql datasource="os_mdic">bsp.dw.jsfs|2</sql>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="ktqje">可提取金额：</component>
+      <component id="ktqje" type="input" subtype="money" datatype="money" maxlength="18" declen="2" fromdic="false" suffix="元" readonly="true">=ktqje</component>
+      <component type="label" for="tqje">提取金额：</component>
+      <component id="tqje" type="input" subtype="money" required="true" maxlength="18" datatype="money" declen="2" suffix="元" fromdic="false">=tqje</component>
+      <component type="label" for="skrkhyh">收款人开户银行：</component>
+      <component id="skrkhyh" type="multivalue" subtype="select" fromdic="false" combobutton="true" combofuzzy="true" combomark="false" combodirty="false" value="=skrkhyh" required="true">
+        <sql datasource="ds_biz">select unitaccname1, unitaccnum1 from dp077 where instance=#{_IS,jdbcType=INTEGER}</sql>
+        <item label="请选择..."/>
+        <item label="=unitaccname1" value="=unitaccnum1"/>
+      </component>
+      <component type="label" for="skrzhmc">收款人账户名称：</component>
+      <component id="skrzhmc" type="input" subtype="text" readonly="true" fromdic="false" maxlength="120" datatype="validchar">=getRealUserExtInfo('xingming')</component>
+      <component type="label" for="skrzhhm">收款人账户号码：</component>
+      <component id="skrzhhm" type="input" subtype="text" fromdic="false" maxlength="20" datatype="validchar" required="true">=skrzhhm</component>
+      <component type="label" for="jymm">交易密码：</component>
+      <component id="jymm" type="input" subtype="password" required="true" fromdic="false">=jymm</component>
+      <component type="label" for="sjhm">手机号码：</component>
+      <component id="sjhm" type="input" subtype="text" readonly="true" datatype="mobile" fromdic="false" maxlength="11">=sjhm</component>
+      <component type="label" for="dxyzm">短信验证码：</component>
+      <component id="dxyzm" type="input" subtype="text" fromdic="false" required="true" datatype="validchar">=dxyzm</component>
+    </container>
+    <container type="hidden" id="container-ced1844780197c65d715c30965940981" uid="container-ced1844780197c65d715c30965940981">
+      <component id="yzmxh" type="hidden"/>
+    </container>
+  </containers>
+</page>

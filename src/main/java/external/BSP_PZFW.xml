@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<interfaces>
+	<interface id="BSP_PZFW_PZCX_01" tr_code="123456" system="99" des="查询凭证信息" attr1="1234">
+		<up>
+			<vouchersource des="凭证来源（0-网厅；1-核心；2-凭证系统）">=vouchersource</vouchersource>
+			<cxtj des="查询条件（Json格式）">=cxtj</cxtj>
+		</up>
+		<down>
+			<prtfilename des="凭证文件ftp上的相对路径（包括文件名）">=prtfilename</prtfilename>
+		</down>
+	</interface>
+</interfaces>

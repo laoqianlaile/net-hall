@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow id="WFPLMBXZ01" desc="批量模板下载" startPage="step1" isMenu="1" endurl="=(_template == '' || _template== 'ish01' ? 'common/end.ydpx' : 'common/end_'+_template+'.ydpx')" endmessage="">
+	<config>
+  		<flowvars> 
+      		<flowvar name="ym01" desc="批量模板下载">common_plmbxz_01.ydpx</flowvar> 
+ 		</flowvars>
+	</config>
+	<step id="step1" url="=_flowvar_ym01" desc="批量模板下载" appflag = "X"  in="0" out="0">
+	</step>
+	
+</flow>

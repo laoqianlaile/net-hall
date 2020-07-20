@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranHQDKZC01" tranName="获取贷款政策信息">
+        <comps>
+            <comp compCode="CompHQDKZC01" compName="获取贷款政策信息" expression="">
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="grzfdkzged" paramName="个人住房贷款最高额度" paramType="string(0,-1)" paramValue="grzfdkzged"/>
+                	<outParam ignoreNull="1" paramCode="fqzfdkzged" paramName="夫妻住房贷款最高额度" paramType="string(0,-1)" paramValue="fqzfdkzged"/>
+                	<outParam ignoreNull="1" paramCode="grzfdkzcnx" paramName="个人住房贷款最长年限" paramType="string(0,-1)" paramValue="grzfdkzcnx"/>
+                	<outParam ignoreNull="1" paramCode="fqzfdkzcnx" paramName="夫妻住房贷款最长年限" paramType="string(0,-1)" paramValue="fqzfdkzcnx"/>
+                	<outParam ignoreNull="1" paramCode="zfgjjdklvwnyn" paramName="住房公积金贷款利率五年以内" paramType="string(0,-1)" paramValue="zfgjjdklvwnyn"/>
+                	<outParam ignoreNull="1" paramCode="zfgjjdklvwnys" paramName="住房公积金贷款利率五年以上" paramType="string(0,-1)" paramValue="zfgjjdklvwnys"/>
+				</outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranCXMMBG01" tranName="查询密码变更">
+        <comps>
+            <comp compCode="CompCXMMBG01" compName="查询密码变更" expression="">
+                <inParams>
+                	<inParam ignoreNull="0" paramCode="ycxmm" paramName="原查询密码" paramType="string(0,-1)" paramValue="ycxmm"/>
+                    <inParam ignoreNull="0" paramCode="xcxmm" paramName="新查询密码" paramType="string(0,-1)" paramValue="xcxmm"/>
+                	<inParam ignoreNull="0" paramCode="qrxcxmm" paramName="确认新查询密码" paramType="string(0,-1)" paramValue="qrxcxmm"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

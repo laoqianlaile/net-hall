@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDLYZ04" tranName="CA登录">
+        <comps>
+            <comp compCode="CompDLYZ404" compName="CA登录" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="pubzh" paramName="登录id" paramType="string(0,25)" paramValue="pubzh"/>
+                    <inParam ignoreNull="0" paramCode="password" paramName="密码" paramType="string(0,32)" paramValue="password"/>
+                    <inParam ignoreNull="0" paramCode="dllx" paramName="登录类型" paramType="string(0,32)" paramValue="dllx"/>
+                </inParams>
+                <outParams>
+                    <outParam ignoreNull="0" paramCode="jbrdjh" paramName="经办人编号" paramType="string(0,-1)" paramValue="jbrdjh"/>
+                    <outParam ignoreNull="0" paramCode="jbrxm" paramName="经办人姓名" paramType="string(0,-1)" paramValue="jbrxm"/>
+                    <outParam ignoreNull="0" paramCode="dwdjh" paramName="单位登记号" paramType="string(0,-1)" paramValue="dwdjh"/>
+                    <outParam ignoreNull="0" paramCode="dwmc" paramName="单位名称" paramType="string(0,-1)" paramValue="dwmc"/>
+                    <outParam ignoreNull="0" paramCode="instcode" paramName="机构号" paramType="string(0,-1)" paramValue="instcode"/>
+                    <outParam ignoreNull="0" paramCode="instname" paramName="机构名" paramType="string(0,-1)" paramValue="instname"/>
+                    <outParam ignoreNull="0" paramCode="rolecodes" paramName="角色集合" paramType="string(0,-1)" paramValue="rolecodes"/>
+                    <outParam ignoreNull="1" paramCode="dwdz" paramName="dwdz" paramType="string(0,-1)" paramValue="dwdz"/>
+                    <outParam ignoreNull="1" paramCode="yyzzhm" paramName="营业执照号码" paramType="string(0,-1)" paramValue="yyzzhm"/>
+                    <outParam ignoreNull="1" paramCode="dwclsj" paramName="单位成立时间" paramType="string(0,-1)" paramValue="dwclsj"/>
+                    <outParam ignoreNull="0" paramCode="dwzhzt" paramName="单位账号状态" paramType="string(0,-1)" paramValue="dwzhzt"/>
+                    <outParam ignoreNull="0" paramCode="zzjgdm" paramName="单位账号状态" paramType="string(0,-1)" paramValue="zzjgdm"/>
+                    <outParam ignoreNull="0" paramCode="jzny" paramName="缴至年月" paramType="string(0,-1)" paramValue="jzny"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranJKHTBH01" tranName="获取借款合同编号">
+        <comps>
+            <comp compCode="CompJKHTBH01" compName="获取借款合同编号" expression="">
+            	<inParams>
+            		<inParam paramCode="dkzt" ignoreNull="1" paramName="贷款状态" paramValue="dkzt" paramType="string(1,2)"/>
+            	</inParams>
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

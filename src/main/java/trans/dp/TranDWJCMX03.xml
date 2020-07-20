@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranDWJCMX03" tranName="查询个人缴存明细">
+        <comps>
+        	<comp compCode="CompDWJCMX03" compName="查询汇缴书信息" expression="">
+                <inParams>
+                    <inParam ignoreNull="0" paramCode="djh" paramName="登记号" paramType="string(0,-1)" paramValue="djh"/>
+                </inParams>
+                <outParams>
+                	<outParam paramCode="rzrq" ignoreNull="1" paramName="入账日期" paramValue="rzrq" paramType="string(1,10)"/>
+                	<outParam paramCode="dwzh" ignoreNull="1" paramName="单位账号" paramValue="dwzh" paramType="string(1,20)"/>
+                	<outParam paramCode="dwmc" ignoreNull="1" paramName="单位名称" paramValue="dwmc" paramType="string(1,255)"/>
+                	<outParam paramCode="ksny" ignoreNull="1" paramName="开始年月" paramValue="ksny" paramType="string(1,6)"/>
+                	<outParam paramCode="jsny" ignoreNull="1" paramName="结束年月" paramValue="jsny" paramType="string(1,6)"/>
+                	<outParam paramCode="dwjcje" ignoreNull="1" paramName="单位汇缴金额" paramValue="dwjcje" paramType="double(18,2)"/>
+                	<outParam paramCode="grjcje" ignoreNull="1" paramName="个人汇缴金额" paramValue="grjcje" paramType="double(18,2)"/>
+                	<outParam paramCode="rzje" ignoreNull="1" paramName="入账金额" paramValue="rzje" paramType="double(18,2)"/>
+                	<outParam paramCode="jclx" ignoreNull="1" paramName="缴存类型" paramValue="jclx" paramType="string(1,2)"/>
+                	<outParam paramCode="rzyh" ignoreNull="1" paramName="入账银行" paramValue="rzyh" paramType="string(0,-1)"/>
+                	<outParam paramCode="jcrs" ignoreNull="1" paramName="缴存人数" paramValue="jcrs" paramType="int"/>
+                	<outParam paramCode="jkfs" ignoreNull="1" paramName="缴款方式" paramValue="jkfs" paramType="string(1,2)"/>
+                	<outParam paramCode="rzlsh" ignoreNull="1" paramName="入账流水号" paramValue="rzlsh" paramType="string(0,-1)"/>
+               		 <!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

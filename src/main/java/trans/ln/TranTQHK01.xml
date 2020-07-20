@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranTQHK01" tranName="提前还款">
+        <comps>
+            <comp compCode="CompTQHK01" compName="获取提前还款后信息" expression="#flag=='hqtqhkhxx'">
+            	<inParams>
+            		<inParam paramCode="jkhtbh" ignoreNull="0" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(1,30)"/>
+            		<inParam paramCode="tqhkzje" ignoreNull="0" paramName="提前还款总金额" paramValue="tqhkzje" paramType="double(18,2)"/>
+            		<inParam paramCode="dkbgbz" ignoreNull="0" paramName="贷款变更标志" paramValue="dkbgbz" paramType="string(1,2)"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+					<inParam paramCode="hklx" ignoreNull="0" paramName="还款类型" paramValue="hklx" paramType="string(0,-1)"/>
+				</inParams>
+                <outParams>
+                	<outParam ignoreNull="1" paramCode="shbj" paramName="实还本金" paramType="string(0,-1)" paramValue="shbj"/>
+                	<outParam ignoreNull="1" paramCode="shfx" paramName="实还罚息" paramType="string(0,-1)" paramValue="shfx"/>
+                	<outParam ignoreNull="1" paramCode="shlx" paramName="实还利息" paramType="string(0,-1)" paramValue="shlx"/>
+                </outParams>
+            </comp>
+            <comp compCode="CompTQHK02" compName="提交提前还款信息" expression="#flag=='tjxx'">
+            	<inParams>
+            		<inParam paramCode="jkhtbh" ignoreNull="1" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(1,30)"/>
+            		<inParam paramCode="tqhkzje" ignoreNull="1" paramName="提前还款总金额" paramValue="tqhkzje" paramType="double(18,2)"/>
+            		<inParam paramCode="dkbgbz" ignoreNull="1" paramName="dkbgbz" paramValue="dkbgbz" paramType="string(1,2)"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+				</inParams>
+            	<outParams>
+                	<!--启用凭证系统时设置此出口参数  -->
+               		<outParam ignoreNull="1" paramCode="filename" paramName="凭证文件名" paramType="string(0,-1)" paramValue="filename"/>
+                </outParams>
+            </comp>
+            <comp compCode="CompTQHK03" compName="获取公积金还款人信息" expression="#flag=='hqgjjhkr'">
+            	<inParams>
+            		<inParam paramCode="jkhtbh" ignoreNull="0" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(1,30)"/>
+            		<inParam paramCode="instance" ignoreNull="0" paramName="实例号" paramValue="_IS" paramType="int"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+				</inParams>
+            </comp>
+            <comp compCode="CompTQHK04" compName="根据月数获取提前还月供金额" expression="#flag=='hqtqhygje'">
+            	<inParams>
+            		<inParam paramCode="jkhtbh" ignoreNull="0" paramName="借款合同编号" paramValue="jkhtbh" paramType="string(1,30)"/>
+            		<inParam paramCode="hygqs" ignoreNull="0" paramName="还月供期数" paramValue="hygqs" paramType="int"/>
+					<inParam ignoreNull="1" paramCode="jkhtbhsz" paramName="借款合同编号数组" paramType="string(0,-1)" paramValue="jkhtbhsz"/>
+				</inParams>
+            	<outParams>
+                	<outParam ignoreNull="1" paramCode="tqhkzje" paramName="提前还款总金额" paramType="string(0,-1)" paramValue="tqhkzje"/>
+                </outParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

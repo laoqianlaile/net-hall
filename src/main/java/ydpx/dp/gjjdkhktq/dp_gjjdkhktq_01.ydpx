@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="公积金贷款还贷提取"/>
+    <editlogs>
+      <log editor="wsf" edittime="2020-04-20"/>
+    </editlogs>
+  </info>
+  <styles>
+    <style>
+        #layui-layer1{
+            width: 1100px;
+            left: 120.5px;
+        }
+    </style>
+  </styles>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+thisTab.pageOnload = function () {
+    var div = '<div id="popDiv" class="mydiv" style="">' +
+            '<p style="font-weight: bold;text-align: center;">业务须知</p>' +
+            '<p>各位职工：</p>'+
+            '<p>欢迎您登陆贵港市住房公积金管理中心网厅办理业务，为了您能更快捷方便办理相关业务，在办理业务前，请您注意以下事项：</p>'+
+            '<p>选择网上办理公积金还贷提取业务的</p>'+
+            '<p>1、只针对仅有一笔贷款并且是住房公积金贷款的职工家庭户（包括配偶、共有人在内）开办，拥有2笔（含）以上未结清住房贷款的家庭户（包括配偶、共有人在内）不能选择网厅办理公积金还贷提取业务，只能到中心业务柜台办理。</p>'+
+            '<p>2、自2016年11月1日我市住房公积金新系统上线之日起，已在柜台办理过 “偿还购房贷款本息提取”业务的，方可在网厅办理。</p>'+
+            '<p>3、（1）押款。只要贷款尚未还清，主借款人公积金账户上必须保留一定额度的缴存额。（2）提前还款。若提前还款发生在起点时间当天的，不能在网厅办理提取；若提前还款发生在终点时间，请到柜台办理提取或第二个工作日在网厅办理。用公积金余额来对冲提前还款的，不计算在可提取金额额度内。（3）（近）一年内贷款连续逾期还款三次（含）以上或一年内累计六期（含）以上，不能办理网厅提取。（4）签订过约定还贷提取协议的，不能办理网厅还贷提取。(5)公转商贷款、组合贷款不能在网厅办理提取。</p>'+
+            '<p>4、（1）职工的婚姻状况及房产产权有变更时，有义务及时到柜台告知我中心。（2）职工提供的银行储蓄卡，目前所选择的开户银行只能为工行、农行、中行、建行、交行、农村信用社、北部湾银行、邮储银行和柳州银行。</p>'+
+            '<p>5、本规则只适用于本人、配偶及共有人办理，其它关系人请及时到柜台办理。</p>'+
+
+
+          '</div>';
+    ydl.confirm(div);
+    $(".layui-layer-btn0").text("我已阅读并同意");
+    $(".layui-layer-btn1").text("不同意");
+    $(".layui-layer-btn0").click(function(){
+        ydl.confirm("您的家庭户（包括配偶方、共有人在内）总共拥有多少笔住房贷款？");
+        $(".layui-layer-btn0").text("仅有该笔住房公积金贷款，无其他住房贷款");
+        $(".layui-layer-btn1").text("拥有2笔或以上贷款");
+        $(".layui-layer-btn1").click(function(){
+            ydl.alert("拥有多套（笔）住房贷款的家庭户请到中心业务柜台还贷提取业务。");
+            $(".layui-layer-btn1").click(function(){
+                window.location.href = ydl.contexPath + "/home";
+            });
+        });
+    });
+    $(".layui-layer-btn1").click(function(){
+        window.location.href = ydl.contexPath + "/home";
+    });
+
+
+
+    //选择提取依据号后，查询提取材料信息，并计算提取金额
+    $('#drawreasoncode').change(function(event) {
+        var draw = $$('drawreasoncode').value;
+        if(draw != ''){
+            ydl.sendCommand('cmdHDTQJESS',{"drawreasoncode":draw},function(data,code,msg){
+                if (code != '00000000') {
+                    ydl.alert({'code':code, 'message':msg});
+                }else{
+                    console.log("还款计算",data);
+                    for(var key in data){
+                        /*if(key == "skipflag"){
+                            $("#flag").val(data[key]);
+                        }else if(key == "grzhzt"){
+                            continue;
+                        }else{
+
+                        }*/
+                        $("#" + key).val(data[key]);
+                    }
+                    //根据是否有值去显示
+                    if($$('matename').value == ''){
+                        $('#matename,#ownname1,#ownname2,#ownname3,#matecertinum,#owncertinum1,#owncertinum2,#owncertinum3').closest('div').hide();
+                        $('label[for="matename"],label[for="ownname1"],label[for="ownname2"],label[for="ownname3"],label[for="matecertinum"],label[for="owncertinum1"],label[for="owncertinum2"],label[for="owncertinum3"]').hide();
+                    }else if($$('ownname1').value == ''){
+                        $('#ownname1,#ownname2,#ownname3,#owncertinum1,#owncertinum2,#owncertinum3').closest('div').hide();
+                        $('label[for="ownname1"],label[for="ownname2"],label[for="ownname3"],label[for="owncertinum1"],label[for="owncertinum2"],label[for="owncertinum3"]').hide();
+                    }else if($$('ownname2').value == ''){
+                        $('#ownname2,#ownname3,#owncertinum2,#owncertinum3').closest('div').hide();
+                        $('label[for="ownname2"],label[for="ownname3"],label[for="owncertinum2"],label[for="owncertinum3"]').hide();
+                    }else if($$('ownname3').value == ''){
+                        $('#ownname3,#owncertinum3').closest('div').hide();
+                        $('label[for="ownname3"],label[for="owncertinum3"]').hide();
+                    }
+                    if($$('xingming').value != $$('jkrxm').value){
+                        $('#amt2').closest('div').hide();
+                        $('label[for="amt2"]').hide();
+                    }
+                    //不是主借款人时，银行押款字段显示
+                    if($$('skipflag').value == '0'){
+                        $('#amt2').hide();
+                        $('label[for="amt2"]').hide();
+                    }
+                    $$('procode').value = $$('drawreasoncode').value;
+                }
+            });
+        }
+        ydl.alert("您的关系人与实际是否一致，如不一致，请到柜台办理！");
+    });
+    var array=new Array();
+    var drawreasoncode1 = $$('drawreasoncode1').value;
+    array = drawreasoncode1.split(",");
+    for (var i = 1;i < array.length ; i++ ){
+        $("#drawreasoncode").append("<option value='"+array[i]+"'>"+array[i]+"</option>");
+    }
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+    var val = $$('returnval').value;
+    if(val=='1'){
+        return true;
+    }else{
+        window.open(ydl.contexPath + "/xieyi3.jsp","","height=530,width=800,top=90,left=330,status=yes,toolbar=no,menubar=no,location=no");
+        return false;
+    }
+    return true;
+}]]></script>
+  </scripts>
+  <dataset/>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form" caption="个人账户信息">
+      <component type="label" for="grzh">公积金账号：</component>
+      <component id="grzh" type="input" subtype="text" readonly="1" fromdic="false">=getRealUserExtInfo('grzh')</component>
+      <component type="label" for="xingming">姓名：</component>
+      <component id="xingming" type="input" subtype="text" readonly="1" fromdic="false">=getRealUserExtInfo('xingming')</component>
+      <component type="label" for="zjhm">证件号码：</component>
+      <component id="zjhm" type="input" subtype="text" readonly="1" fromdic="false">=getRealUserExtInfo('zjhm')</component>
+      <component type="label" for="zhzt">账户状态：</component>
+      <component id="grzhzt" type="input" subtype="text" readonly="1" fromdic="false">=getMulData("bsp.dp.grzhzt",grzhzt)</component>
+      <component id="drawreasoncodeHidden" type="hidden">=drawreasoncode1</component>
+    </container>
+    <container type="table" cols="4" caption="提取材料">
+      <component type="label" for="drawreasoncode">提取依据号码：</component>
+      <component id="drawreasoncode" type="multivalue" subtype="select" fromdic="false">
+      ` <sql></sql>
+        <item label="请选择..."/>
+
+      </component>
+    </container>
+    <container type="table" cols="4" caption="提取房屋信息">
+      <component type="label" for="jkrxm">借款人姓名：</component>
+      <component id="jkrxm" type="input" subtype="text" readonly="1" fromdic="false">=jkrxm</component>
+      <component type="label" for="jkhtbh">借款合同编号：</component>
+      <component id="jkhtbh" type="input" subtype="text" readonly="1" fromdic="false">=jkhtbh</component>
+      <component type="label" for="matename">配偶姓名：</component>
+      <component id="matename" type="input" subtype="text" readonly="1" fromdic="false">=matename</component>
+      <component type="label" for="matecertinum">配偶证件号码：</component>
+      <component id="matecertinum" type="input" subtype="text" readonly="1" fromdic="false">=matecertinum</component>
+
+
+      <component type="label" for="ownname1">共有权人一姓名：</component>
+      <component id="ownname1" type="input" subtype="text" readonly="1" fromdic="false">=ownname1</component>
+      <component type="label" for="owncertinum1">共有权人一证件号码：</component>
+      <component id="owncertinum1" type="input" subtype="text" readonly="1" fromdic="false">=owncertinum1</component>
+      <component type="label" for="ownname2">共有权人二姓名：</component>
+      <component id="ownname2" type="input" subtype="text" readonly="1" fromdic="false">=ownname2</component>
+      <component type="label" for="owncertinum2">共有权人二证件号码：</component>
+      <component id="owncertinum2" type="input" subtype="text" readonly="1" fromdic="false">=owncertinum2</component>
+      <component type="label" for="ownname3">共有权人三姓名：</component>
+      <component id="ownname3" type="input" subtype="text" readonly="1" fromdic="false">=ownname3</component>
+      <component type="label" for="owncertinum3">共有权人三证件号码：</component>
+      <component id="owncertinum3" type="input" subtype="text" readonly="1" fromdic="false">=owncertinum3</component>
+
+      <component type="label" for="address">房屋地址：</component>
+      <component id="address" type="input" subtype="text" readonly="1" fromdic="false">=address</component>
+      <component type="label" for="grzhye" >当前余额：</component>
+      <component id="amt1" type="input" subtype="text" readonly="1" fromdic="false" suffix="元">=grzhye</component>
+
+      <component type="label" for="amt3">未领还贷金额：</component>
+      <component id="amt3" type="input" subtype="text" readonly="1" fromdic="false" suffix="元">=amt3</component>
+      <component type="label" for="amt2">主借款人押款额：</component>
+      <component id="amt2" type="input" subtype="text" readonly="1" fromdic="false" suffix="元">=amt2</component>
+      <component type="label" for="drawamt">计算的可提取金额：</component>
+      <component id="drawamt" type="input" subtype="text" readonly="1" fromdic="false" suffix="元">=drawamt</component>
+      <component type="label" for="payeebankname">收款开户银行：</component>
+      <component id="payeebankname" type="multivalue" subtype="select" value="=payeebankname"  required="true">
+        <sql datasource="os_mdic">bsp.cm.payeebankname</sql>
+        <item label="请选择..."/>
+        <item label="=PARAVAL" value="=PARANAME"/>
+      </component>
+      <component type="label" for="cardno">卡号：</component>
+      <component id="cardno" type="input" fromdic="false">=cardno</component>
+      <component type="label" for="sjhm">手机号码：</component>
+      <component id="sjhm" type="input" subtype="text" readonly="1" fromdic="false">=sjhm</component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-a024c8bfde9a4c76b99710ba22454a44" type="hidden" id="container-a024c8bfde9a4c76b99710ba22454a44">
+      <component id="bankname" type="hidden">=bankname</component>
+      <component id="tqyy" type="hidden">24</component>
+      <component id="returnval" type="hidden">=returnval</component>
+      <component id="drawreasoncode1" type="hidden">=drawreasoncode1</component>
+      <component id="skipflag" type="hidden">=skipflag</component>
+      <component id="procode" type="hidden">=drawreasoncode</component>
+    </container>
+  </containers>
+</page>

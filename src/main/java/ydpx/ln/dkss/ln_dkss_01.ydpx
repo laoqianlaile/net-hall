@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="公积金贷款试算"/>
+    <editlogs>
+      <log editor="Y00585(离线)" edittime="2018-09-19 10:20:28"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[//页面加载后执行
+var count=0;//点击计算最高贷款额度及年限按钮次数
+var dkhkfs;//贷款还款方式
+var tzbz=0;//跳转标志0-无跳转；1-其他业务跳转至此流程
+var getjkhtbh;// 获取到的借款合同编号（只有一笔未还清的贷款时需记录）
+thisTab.pageOnload = function () {
+	ydl.helpShow('1');
+	//页面返回按钮、商业贷款信息隐藏
+	$('#b_flow_A').hide();
+	$('#ct_sydk').hide();
+	//获取借款合同编号
+	getJkhtbh();
+	//商业贷款月还款额一行隐藏
+	$('#syyhke').parent().parent().hide();
+	//设置商业贷款容器内字段不必填
+	ydl.removeAttr($('#ct_sydk .panel-body').find('input, select'),'required');
+	//贷款信息与还款计划信息多页签形式展示
+	var $queryTabs=ydl.tabs([{id:'ct_gjjdk,ct_sydk,ct_dkxx,ct_hkxx,ct_buttons,ct_ssjg',title:"贷款试算"},
+			{id:'ct_dyqs,ct_querybtn,hkjhlist_panel',title:"还款计划"}]);
+	//提示信息增加贷款参数
+	$("#ct_tips ol li").eq(0).append(ydl.addComma(poolSelect['zgdkedfirst'])+ " 元");
+	$("#ct_tips ol li").eq(1).append(ydl.addComma(poolSelect['zgdkedsecond'])+ " 元");
+	$("#ct_tips ol li").eq(2).append(poolSelect['zgdknx']+" 年");
+	
+	//增加页面字段只读属性
+	ydl.attr('tzhdksyqs','readonly');
+	ydl.attr('bghdkhkfs','readonly');
+	ydl.attr('tqhkzje','readonly');
+	ydl.attr('dkbgbz','readonly');
+	
+	$('#sslx').change(function(event) {
+		var sslx=$('#sslx').val();
+		//试算类型为贷前试算,页面字段显示隐藏控制
+		if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="01"){
+		    $('#jkhtbh').val("");
+			$('#ct_gjjdk').show();
+			$('#ct_hkxx').hide();
+			$('#ct_dkxx').hide();
+			ydl.attr('jkhtbh','hidden');
+			ydl.removeAttr('jkhtbh','required');
+			ssjgShowHide1();
+			ydl.removeAttr('tzhdksyqs','required');
+			ydl.removeAttr('bghdkhkfs','required');
+			ydl.removeAttr('tqhkzje','required');
+			ydl.removeAttr('dkbgbz','required');
+			ydl.attr($('#ct_gjjdk .panel-body').find('input, select'),'required');
+			ydl.removeAttr('zgdked','required');
+			ydl.removeAttr('zgdknx','required');
+			ydl.attr('dntfdk','required');
+			ydl.attr('fwzj','required');
+			$('#ct_hkxx .panel-body').find('p').text("");
+			$('#ct_dkxx .panel-body').find('p').text("");
+		}
+		//试算类型为期限调整试算,页面字段显示隐藏控制
+		else if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="02"){
+		    // 若只返回一条借款合同编号，自动赋值并获取贷款信息
+		    if (getjkhtbh != "" && $('#jkhtbh').val() == null){
+                $('#jkhtbh').val(getjkhtbh);
+                getDkxx();
+		    }
+			$('#ct_gjjdk').hide();
+			$('#ct_sydk').hide();
+			$('#ct_hkxx').hide();
+			$('#ct_dkxx').show();
+			ydl.removeAttr('jkhtbh','hidden');
+			ydl.attr('jkhtbh','required');
+			ssjgShowHide1();
+			$('#syyhke').parent().parent().hide();
+			ydl.removeAttr('tzhdksyqs','hidden');
+			ydl.removeAttr('tzhdkdqrq','hidden');
+			ydl.attr('bghdkhkfs','hidden');
+			ydl.attr('tzhdksyqs','required');
+			ydl.removeAttr('bghdkhkfs','required');
+			ydl.removeAttr('tqhkzje','required');
+			ydl.removeAttr('dkbgbz','required');
+			ydl.removeAttr('dntfdk','required');
+			ydl.removeAttr('fwzj','required');
+			ydl.removeAttr($('#ct_sydk .panel-body').find('input, select'),'required');
+			ydl.removeAttr($('#ct_gjjdk .panel-body').find('input, select'),'required');
+		}
+		//试算类型为还款方式变更试算,页面字段显示隐藏控制
+		else if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="03"){
+		    // 若只返回一条借款合同编号，自动赋值并获取贷款信息
+		    if (getjkhtbh != "" && $('#jkhtbh').val() == null){
+                $('#jkhtbh').val(getjkhtbh);
+                getDkxx();
+            }
+			$('#ct_gjjdk').hide();
+			$('#ct_sydk').hide();
+			$('#ct_hkxx').hide();
+			$('#ct_dkxx').show();
+			ydl.removeAttr('jkhtbh','hidden');
+			ydl.attr('jkhtbh','required');
+			ssjgShowHide1();
+			$('#syyhke').parent().parent().hide();
+			ydl.attr('tzhdksyqs','hidden');
+			ydl.attr('tzhdkdqrq','hidden');
+			ydl.removeAttr('bghdkhkfs','hidden');
+			ydl.removeAttr('tzhdksyqs','required');
+			ydl.attr('bghdkhkfs','required');
+			ydl.removeAttr('tqhkzje','required');
+			ydl.removeAttr('dkbgbz','required');
+			ydl.removeAttr('dntfdk','required');
+			ydl.removeAttr('fwzj','required');
+			ydl.removeAttr($('#ct_sydk .panel-body').find('input, select'),'required');
+			ydl.removeAttr($('#ct_gjjdk .panel-body').find('input, select'),'required');
+		}
+		//试算类型为提前还款试算,页面字段显示隐藏控制
+		else if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="04"){
+		    // 若只返回一条借款合同编号，自动赋值并获取贷款信息
+		    if (getjkhtbh != "" && $('#jkhtbh').val() == null){
+                $('#jkhtbh').val(getjkhtbh);
+                getDkxx();
+        	}
+			$('#ct_gjjdk').hide();
+			$('#ct_sydk').hide();
+			$('#ct_hkxx').show();
+			$('#ct_dkxx').hide();
+			ydl.removeAttr('jkhtbh','hidden');
+			ydl.attr('jkhtbh','required');
+			ssjgShowHide2();
+			$('#syyhke').parent().parent().hide();
+			ydl.removeAttr('tzhdksyqs','required');
+			ydl.removeAttr('bghdkhkfs','required');
+			ydl.attr('tqhkzje','required');
+			ydl.attr('dkbgbz','required');
+			ydl.removeAttr('dntfdk','required');
+			ydl.removeAttr('fwzj','required');
+			ydl.removeAttr($('#ct_sydk .panel-body').find('input, select'),'required');
+			ydl.removeAttr($('#ct_gjjdk .panel-body').find('input, select'),'required');
+		}
+		
+	}).change();
+	
+	//借款合同编号change事件
+	$('#jkhtbh').change(function(event) {
+        getDkxx();
+	}).change();
+
+
+	//贷款类型change事件
+	dklxChange();
+	
+	//试算还款情况按钮点击事件
+	$('#b_cal').click(function(event) {
+		calHkqk();
+	});
+	//调整后贷款剩余期数change事件，设置到期日期
+	$('#tzhdksyqs').change(function(event) {
+	    $('#tzhdkdqrq').val("");
+	    if (!ydl.validator('tzhdksyqs', {required:true})) return false;
+		if(tzbz==0 && !tzhdksyqsCheck()){
+			return false;
+		}
+		// 根据调整后剩余期数，获取调整后到期日期
+        ydl.sendCommand('getdqrq',{"jkhtbh":$('#jkhtbh').val(),"tzhdksyqs":$('#tzhdksyqs').val()},function(data,code,msg){
+        	if (code != '00000000') {
+        		ydl.alert({'code':code, 'message':msg});
+        	}else{
+        		$('#tzhdkdqrq').val(data.tzhdqrq);
+        	}
+        });
+	});
+	
+	$('#tqhkzje').change(function(event) {
+		tqhkzjeCheck();
+	});
+	
+	$('#hkr').change(function(event) {
+		var sslx=$('#sslx').val();
+		ydl.validator.clear('hkr');
+		//试算类型为贷前试算,校验还款日
+		if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="01"){
+			if (!ydl.validator('hkr', {type:'day'})) return false;
+		}
+	});
+	
+	$('#syhkr').change(function(event) {
+		var sslx=$('#sslx').val();
+		//试算类型为贷前试算,校验商业贷款还款日
+		if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="01"){
+			if (!ydl.validator('syhkr', {type:'day'})) return false;
+		}
+	});
+	
+	//计算最高贷款额度及年限按钮点击事件
+	$('#b_jsdked').click(function(event) {
+		//按钮点击次数加1
+		count++;
+		var dntfdk=$('#dntfdk').val();
+		var fwzj=$('#fwzj').val();
+		if (!ydl.validator('dntfdk', {required:true})) return false;
+		if (!ydl.validator('fwzj', {required:true,type:'money'})) return false;
+		//根据第N套房贷款、房屋总价获取最高贷款年限、最高贷款额度
+		ydl.sendCommand('jsdked',{"dntfdk":dntfdk,"fwzj":fwzj},function(data,code,msg){
+			if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+				ydl.setValue('zgdked',data.zgdked);
+				$('#zgdknx').val(data.zgdknx);
+			}
+		});
+	});
+	//贷款金额change校验，贷款金额不能大于最高贷款额度
+	$('#dkje').change(function(event) {
+		dkjeCheck();
+	});
+	
+	//贷款期限change校验，贷款金额不能大于最高贷款额度
+	$('#dkqx').change(function(event) {
+		dkqxCheck();
+	});
+	
+	//查询按钮点击事件，获取贷款还款计划
+	$('#b_query').click(function(event) {
+		var dyksqs=$('#dyksqs').val();
+		var dyjsqs=$('#dyjsqs').val();
+		ydl.init.list('hkjhlist', {}, thisTab);
+
+	});
+	
+	//改变第N套房贷款、房屋总价时，计算最高贷款额度与年限按钮点击次数置为0
+	$('#dntfdk,#fwzj').change(function(event) {
+		count=0;
+	});
+	
+	//变更后贷款还款方式校验
+	$('#bghdkhkfs').change(function(event) {
+		bghdkhkfsCheck();
+	});
+	
+	
+	//返回按钮，返回至贷款期限变更流程
+	$('#b_flow_A').click(function(){
+		var url;
+		var sslx=$('#sslx').val();
+		//试算类型为贷款期限变更，跳转回贷款期限变更流程
+		if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="02"){
+			url=$('#qxbgurl').val();
+			location.href=ydl.contexPath+url;
+		}//试算类型为提前还款，跳转回提前还款流程
+		else if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="04"){
+			url=$('#tqhkurl').val();
+			location.href=ydl.contexPath+url;
+		}
+		//试算类型为还款方式变更，跳转回还款方式变更流程
+		else if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="03"){
+			url=$('#hkfsbgurl').val();
+			location.href=ydl.contexPath+url;
+		}
+	});
+	
+	$('#sslx, #jkhtbh').change(function(event) {
+		//清空页面信息
+		$('#ct_dkxx .panel-body').find('input, select').val("");
+		$('#ct_gjjdk .panel-body').find('input, select').val("");
+		$('#ct_sydk .panel-body').find('input, select').val("");
+		$('#ct_hkxx .panel-body').find('input, select').val("");
+		$('#ct_ssjg .panel-body').find('p').text("");
+		$('#dyksqs').val("1");
+		$('#dyjsqs').val("");
+		$('#cxbz').val("");
+		ydl.init.list('hkjhlist', {}, thisTab);
+	})
+}
+
+//试算类型为贷前试算/期限调整试算/还款方式变更试算，试算结果字段显示隐藏控制
+function ssjgShowHide1(){
+	$('#shbj').parent().parent().hide();
+	$('#shfx').parent().parent().hide();
+	$('#xsyqs').parent().parent().hide();
+	$('#lxhj2').parent().parent().hide();
+	$('#hkhj').parent().parent().show();
+	$('#gjjyhke').parent().parent().show();
+}
+
+//试算类型为提前还款试算，试算结果字段显示隐藏控制
+function ssjgShowHide2(){
+	$('#shbj').parent().parent().show();
+	$('#shfx').parent().parent().show();
+	$('#xsyqs').parent().parent().show();
+	$('#lxhj2').parent().parent().show();
+	$('#hkhj').parent().parent().hide();
+	$('#gjjyhke').parent().parent().hide();
+}
+
+function dklxChange(){
+	$('#dklx').change(function(event) {
+		var dklx=$('#dklx').val();
+		$('#ct_sydk .panel-body').find('input, select').val("");
+		//贷款类型为组合贷款时，显示商贷   信息
+		if(ydl.mudic.getMask('bsp.ln.dklx.'+dklx)=="02"){
+			$('#ct_sydk').show();
+			$('#syyhke').parent().parent().show();
+			ydl.attr($('#ct_sydk .panel-body').find('input, select'),'required');
+		}else{
+		//贷款类型为其他情况时，隐藏商贷信息
+			$('#ct_sydk').hide();
+			$('#syyhke').parent().parent().hide();
+			ydl.removeAttr($('#ct_sydk .panel-body').find('input, select'),'required');
+		}
+	})
+}
+
+//获取借款合同编号
+function getJkhtbh(){
+	$('#jkhtbh').empty();
+	var array = poolSelect['jkhtbhsz'].split(",");
+		var items;
+		if(array.length==1){
+			items="<option  value="+array[0]+">"+array[0]+"</option>";
+			getjkhtbh = array[0];
+		}
+		if(array.length > 1){
+			items="<option value=''>请选择</option>";
+			for(var i=0;i<array.length;i++){
+				var jkhtbhval=array[i];
+				var jkhtbhname=array[i];
+				items+="<option value="+jkhtbhval+">"+jkhtbhname+"</option>";
+			}
+		}
+	$('#jkhtbh').append(items);
+	//跳转至贷款试算流程时
+	if(poolSelect['jkhtbhtz']!=undefined && poolSelect['jkhtbhtz']!=""){
+		//借款合同编号赋值
+		$('#jkhtbh').val(poolSelect['jkhtbhtz']);
+		//设置页面信息只读
+		ydl.attr($('#ct_dkxx .panel-body').find('input, select'),'readonly');
+		ydl.attr($('#ct_hkxx .panel-body').find('input, select'),'readonly');
+		ydl.attr($('#ct_form .panel-body').find('input, select'),'readonly');
+		//跳转标志设为1
+		tzbz=1;
+		//返回按钮显示
+		$('#b_flow_A').show();
+		$('#b_flow_B').hide();
+		$('#ct_buttons').hide();
+	}
+}
+//贷前试算时校验贷款期限
+function dkqxCheck(){
+	ydl.validator.clear('zgdknx');
+	var dkqx=$('#dkqx').val();
+	var zgdknx=$('#zgdknx').val();
+	if(dkqx != ""){
+		if (!ydl.validator('dkqx', {rule:Number(dkqx)<=Number(zgdknx),message:"贷款期限不能大于最高贷款期限"})) return false;
+	}
+	return true;
+}
+//贷前试算时校验贷款金额
+function dkjeCheck(){
+	ydl.validator.clear('zgdked');
+	var dkje=$('#dkje').val();
+	var zgdkje=$('#zgdked').val();
+	if(dkje != ""){
+		if (!ydl.validator('dkje', {rule:Number(dkje)<=Number(zgdkje),message:"贷款金额不能大于最高贷款额度"})) return false;
+	}
+	return true;
+}
+
+//提前还款总金额校验
+function tqhkzjeCheck(){
+	ydl.validator.clear('tqhkzje');
+	var tqhkzje=$('#tqhkzje').val();
+	var zje=ydl.delComma($('#tqqbhkje').text());
+	var yqzje=ydl.delComma($('#yqzje').text());
+	var tqqbhkje=zje.substring(0,zje.length-2);
+	var yqzje1=yqzje.substring(0,yqzje.length-2);
+	if(tqhkzje != ""){
+		if (!ydl.validator('tqhkzje', {rule:Number(tqhkzje) <= Number(tqqbhkje) && Number(tqhkzje) >= Number(yqzje1),message:"提前还款总金额应大于逾期总金额并且小于提前全部还款金额"})) return false;
+	}
+	return true;	
+}
+
+//调整后贷款剩余期数校验
+function tzhdksyqsCheck(){
+	if(tzbz==0){
+		ydl.validator.clear('tzhdksyqs');
+		var tzhdksyqs=$('#tzhdksyqs').val();
+		var dkqs=$('#dkqs').text();
+		var dkqs1=dkqs.substring(0,dkqs.length-2);
+		if(tzhdksyqs != ""){
+			if (!ydl.validator('tzhdksyqs', {rule:Number(tzhdksyqs) < Number(dkqs1),message:"调整后贷款剩余期数应小于贷款期数"})) return false;
+		}
+	}
+	return true;
+}
+
+//变更后贷款还款方式校验
+function bghdkhkfsCheck(){
+	ydl.validator.clear('bghdkhkfs');
+	var bghdkhkfs=$('#bghdkhkfs').val();
+	if(bghdkhkfs != ""){
+		if (!ydl.validator('bghdkhkfs', {rule:bghdkhkfs != dkhkfs,message:"变更后贷款还款方式不能与之前相同"})) return false;
+	}
+	return true;
+}
+
+//还款情况试算
+function calHkqk(){
+	if (!ydl.validator('sslx', {required: true})) return false;
+	var sslx=$('#sslx').val();
+	var jkhtbh=$('#jkhtbh').val();
+	var dkje=$('#dkje').val();
+	var dkqx=$('#dkqx').val();
+	var dklx=$('#dklx').val();
+	var dkhkfs=$('#dkhkfs').val();
+	var dntfdk=$('#dntfdk').val();
+	var hkr=$('#hkr').val();
+	var sydkje=$('#sydkje').val();
+	var sydkqx=$('#sydkqx').val();
+	var sydkhkfs=$('#sydkhkfs').val();
+	var sydkll=$('#sydkll').val();
+	var syhkr=$('#syhkr').val();
+	var tzhdksyqs=$('#tzhdksyqs').val();
+	var bghdkhkfs=$('#bghdkhkfs').val();
+	var tqhkzje=$('#tqhkzje').val();
+	var dkbgbz=$('#dkbgbz').val();
+	var sslx=$('#sslx').val();
+	if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="01"){
+		if(count <= 0 ){
+			ydl.alert("请点击计算最高贷款额度及年限按钮");
+			return false;
+		}
+	}else{
+		if (!ydl.validator('jkhtbh', {required: true})) return false;
+	}
+	
+	//试算类型为贷前试算,页面字段显示隐藏控制
+	ydl.formValidate($('#pageMain form:first')).done(function () { 
+		//试算类型为贷前试算,校验还款日、贷款期限、贷款金额
+		if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="01"){
+			if (!ydl.validator('hkr', {type:'day'})) return false;
+			if(!dkqxCheck()){
+				return false;
+			}
+			if(!dkjeCheck()){
+				return false;
+			}
+			var dklx=$('#dklx').val();
+			//贷款类型为组合贷款时，校验商业贷款还款日
+			if(ydl.mudic.getMask('bsp.ln.dklx.'+dklx)=="02"){
+				if (!ydl.validator('syhkr', {type:'day'})) return false;
+			}
+		}
+		//试算类型为提前还款试算,校验提前还款总金额
+		else if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="04"){
+			if(!tqhkzjeCheck()){
+				return false;
+			}
+		}
+		//试算类型为贷款期限变更试算,校验调整后贷款期限
+		else if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="02"){	
+			if(!tzhdksyqsCheck()){
+				return false;
+			}
+		}
+		//试算类型为还款方式变更试算,校验变更后贷款还款方式
+		else if(ydl.mudic.getMask('bsp.ln.sslx.'+sslx)=="03"){	
+			if(!bghdkhkfsCheck()){
+				return false;
+			}
+		}
+			
+		//获取试算结果
+		ydl.sendCommand('dkss',{"sslx":sslx,"jkhtbh":jkhtbh,"dkje":dkje,"dkqx":dkqx,
+		"dklx":dklx,"dkhkfs":dkhkfs,"dntfdk":dntfdk,"hkr":hkr,"sydkje":sydkje,
+		"sydkqx":sydkqx,"sydkhkfs":sydkhkfs,"sydkll":sydkll,"syhkr":syhkr,"tzhdksyqs":tzhdksyqs,
+		"bghdkhkfs":bghdkhkfs,"tqhkzje":tqhkzje,"dkbgbz":dkbgbz},function(data,code,msg){
+			if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+				$('#shbj').text(ydl.addComma(data.shbj)+" 元");
+				$('#shlx').text(ydl.addComma(data.shlx)+" 元");
+				$('#shfx').text(ydl.addComma(data.shfx)+" 元");
+				$('#tqhkbjze').text(ydl.addComma(data.tqhkbjze)+" 元");
+				$('#xsyqs').text(data.xsyqs+" 月");
+				$('#yhke').text(ydl.addComma(data.yhke)+" 元");
+				$('#gjjyhke').text(ydl.addComma(data.gjjyhke)+" 元");
+				$('#lxhj').text(ydl.addComma(data.lxhj)+" 元");
+				$('#syyhke').text(ydl.addComma(data.syyhke)+" 元");
+				$('#hkehj').text(ydl.addComma(data.hkehj)+" 元");
+				$('#hkhj').text(ydl.addComma(data.hkhj)+" 元");
+				$('#lxhj2').text(ydl.addComma(data.lxhj)+" 元");
+				$('#hkhj2').text(ydl.addComma(data.hkhj)+" 元");
+				$('#cxbz').val("1");
+				ydl.init.list('hkjhlist', {}, thisTab);
+			}
+		});
+	});
+}
+// 获取贷款信息
+function getDkxx(){
+    var jkhtbh = $('#jkhtbh').val();
+	var sslx=$('#sslx').val();
+	if(jkhtbh != null && jkhtbh != ""){
+		//根据借款合同编号获取贷款账户信息
+		ydl.sendCommand("hqdkxx",{"jkhtbh":jkhtbh},function(data,code,msg){
+			if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+				$('#jkrxm').text(data.jkrxm);
+				$('#jkrzjhm').text(data.jkrzjhm);
+				$('#dkffrq').text(data.dkffrq);
+				$('#dkdqrq').text(data.xdqrq);
+				$('#dkhkfs2').text(ydl.mudic.getName("bsp.ln.repaymode."+data.dkhkfs));
+				$('#dkll').text(data.dkll+" %");
+				$('#dkye').text(ydl.addComma(data.dkye)+" 元");
+				$('#syqs').text(data.syqs+" 月");
+				if(tzbz==1){
+					$('#tzhdkdqrq').val(ydl.dateAdd($('#dkffrq').text(),Number($('#tzhdksyqs').val()), 'm'));
+					calHkqk();
+				}
+				dkhkfs=data.dkhkfs;
+				$('#htdkje').text(ydl.addComma(data.htdkje)+" 元");
+				$('#dkqs').text(data.dkqs+" 月");
+				$('#yqbj').text(ydl.addComma(data.yqbj)+" 元");
+				$('#yqlx').text(ydl.addComma(data.yqlx)+" 元");
+				$('#whfx').text(ydl.addComma(data.whfx)+" 元");
+				$('#yqzje').text(ydl.addComma(data.yqzje)+" 元");
+				$('#tqqbhkje').text(ydl.addComma(data.tqqbhkje)+" 元");
+				$('#wdqbj').text(ydl.addComma(data.wdqbj)+" 元");
+				$('#xcslx').text(ydl.addComma(data.xcslx)+" 元");
+				if(tzbz==1){
+					calHkqk();
+				}
+			}
+		})
+		if(poolSelect['jkhtbhtz']==undefined || poolSelect['jkhtbhtz']==""){
+			//去掉页面字段只读属性
+			ydl.removeAttr('tzhdksyqs','readonly');
+			ydl.removeAttr('bghdkhkfs','readonly');
+			ydl.removeAttr('tqhkzje','readonly');
+			ydl.removeAttr('dkbgbz','readonly');
+		}
+	}else{
+		//清空页面信息
+		$('#ct_dkxx .panel-body').find('p').text("");
+		$('#ct_hkxx .panel-body').find('p').text("");
+		//增加页面字段只读属性
+		ydl.attr('tzhdksyqs','readonly');
+		ydl.attr('bghdkhkfs','readonly');
+		ydl.attr('tqhkzje','readonly');
+		ydl.attr('dkbgbz','readonly');
+	}
+}
+//表单提交时执行
+thisTab.form_validate = function () {
+	return true;
+}]]></script>
+  </scripts>
+  <dataset>
+    <sql id="ds1" desc="获取还款计划信息" paging="true" pagesize="10" maxrows="99999999" scopeall="false" datasource="ds_biz"><![CDATA[select * from dp077 where instance=#{_IS,jdbcType=INTEGER}
+     <if test="dyksqs != null">
+        and peoplenum &gt;= #{dyksqs,jdbcType=INTEGER}
+     </if>
+     <if test="dyjsqs != null">
+        and peoplenum &lt;= #{dyjsqs,jdbcType=INTEGER}
+     </if>
+     order by seqno
+]]></sql>
+  </dataset>
+  <ajax/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" uid="ct_form">
+      <component type="label" for="sslx">试算类型：</component>
+      <component id="sslx" type="multivalue" subtype="select" value="=sslx" fromdic="false">
+        <sql datasource="os_mdic">bsp.ln.sslx</sql>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="jkhtbh">借款合同编号：</component>
+      <component id="jkhtbh" type="multivalue" subtype="select" fromdic="false" value="=jkhtbh">
+        <sql datasource="workflow.cfg.xml"/>
+      </component>
+    </container>
+    <container uid="container-bd22da7a39ba4648af51d90535ca8579" type="table" layout="connect" cols="4" id="ct_gjjdk" caption="公积金贷款信息">
+      <component type="label" for="dntfdk">第N套房贷款：</component>
+      <component id="dntfdk" type="multivalue" subtype="select" fromdic="false">
+        <sql datasource="os_mdic">bsp.ln.loanhousenum</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="blank"/>
+      <component type="blank"/>
+      <component type="label" for="fwzj">房屋总价：</component>
+      <component id="fwzj" type="input" subtype="money" datatype="money" maxlength="18" declen="2" suffix="元" fromdic="false"/>
+      <component id="b_jsdked" type="button" subtype="button" colspan="2">计算最高贷款额度及年限</component>
+      <component type="label" for="zgdked">最高贷款额度：</component>
+      <component id="zgdked" type="input" subtype="money" datatype="money" readonly="true" suffix="元" fromdic="false"/>
+      <component type="label" for="zgdknx">最高贷款期限：</component>
+      <component id="zgdknx" type="input" subtype="text" readonly="true" datatype="int" suffix="年" fromdic="false"/>
+      <component type="label" for="dkje">贷款金额：</component>
+      <component id="dkje" type="input" subtype="money" fromdic="false" suffix="元" datatype="money" maxlength="18" declen="2"/>
+      <component type="label" for="dkqx">贷款期限：</component>
+      <component id="dkqx" type="input" subtype="text" fromdic="false" datatype="int" maxlength="2" suffix="年"/>
+      <component type="label" for="dklx">贷款类型：</component>
+      <component id="dklx" type="multivalue" subtype="select" fromdic="false">
+        <sql datasource="os_mdic">bsp.ln.dklx</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="dkhkfs">贷款还款方式：</component>
+      <component id="dkhkfs" type="multivalue" subtype="select" fromdic="false">
+        <sql datasource="os_mdic">bsp.ln.dkhkfs</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="hkr">还款日：</component>
+      <component id="hkr" type="input" subtype="text" fromdic="false" datatype="int" maxlength="2" suffix="日"/>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-c901994a35d74f36b443045fd634d306" type="table" layout="connect" cols="4" id="ct_sydk" caption="商业贷款信息">
+      <component type="label" for="sydkje">商业贷款金额：</component>
+      <component id="sydkje" type="input" subtype="money" fromdic="false" suffix="元" datatype="money"/>
+      <component type="label" for="sydkqx">商业贷款期限：</component>
+      <component id="sydkqx" type="input" subtype="text" fromdic="false" suffix="年" datatype="int"/>
+      <component type="label" for="sydkhkfs">商业贷款还款方式：</component>
+      <component id="sydkhkfs" type="multivalue" subtype="select" fromdic="false">
+        <sql datasource="os_mdic">bsp.ln.dkhkfs</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="sydkll">商业贷款利率（年）：</component>
+      <component id="sydkll" type="input" subtype="text" fromdic="false" suffix="%" datatype="float"/>
+      <component type="label" for="syhkr">还款日：</component>
+      <component id="syhkr" type="input" subtype="text" fromdic="false" suffix="日" datatype="int"/>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-4790189ed41144cc8545a33c8a26102d" type="table" layout="connect" cols="4" id="ct_dkxx" caption="贷款信息">
+      <component type="label">合同贷款金额：</component>
+      <component id="htdkje" type="plain"/>
+      <component type="label">贷款期数：</component>
+      <component id="dkqs" type="plain"/>
+      <component type="label">借款人姓名：</component>
+      <component id="jkrxm" type="plain"/>
+      <component type="label">借款人证件号码：</component>
+      <component id="jkrzjhm" type="plain"/>
+      <component type="label">贷款发放日期：</component>
+      <component id="dkffrq" type="plain"/>
+      <component type="label">贷款到期日期：</component>
+      <component id="dkdqrq" type="plain"/>
+      <component type="label">贷款还款方式：</component>
+      <component id="dkhkfs2" type="plain"/>
+      <component type="label">贷款利率（年）：</component>
+      <component id="dkll" type="plain"/>
+      <component type="label">贷款余额：</component>
+      <component id="dkye" type="plain"/>
+      <component type="label">贷款剩余期数：</component>
+      <component id="syqs" type="plain"/>
+      <component type="label" for="tzhdksyqs">调整后贷款剩余期数：</component>
+      <component id="tzhdksyqs" type="input" subtype="text" fromdic="false" datatype="int" maxlength="3" suffix="月">=tzhdksyqs</component>
+      <component type="label" for="tzhdkdqrq">调整后贷款到期日期：</component>
+      <component id="tzhdkdqrq" type="input" subtype="date" datatype="date" fromdic="false" readonly="true"/>
+      <component type="label" for="bghdkhkfs">变更后贷款还款方式：</component>
+      <component id="bghdkhkfs" type="multivalue" subtype="select" fromdic="false" value="=bghdkhkfs">
+        <sql datasource="os_mdic">bsp.ln.repaymode</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-97085041ef1a4e88a7d8d1b407583746" type="table" layout="connect" cols="4" id="ct_hkxx" caption="还款信息">
+      <component type="label">逾期本金：</component>
+      <component id="yqbj" type="plain"/>
+      <component type="label">逾期利息：</component>
+      <component id="yqlx" type="plain"/>
+      <component type="label">未还罚息：</component>
+      <component id="whfx" type="plain"/>
+      <component type="label">逾期总金额：</component>
+      <component id="yqzje" type="plain"/>
+      <component type="label">未到期本金：</component>
+      <component id="wdqbj" type="plain"/>
+      <component type="label">新产生利息：</component>
+      <component id="xcslx" type="plain"/>
+      <component type="label">提前全部还款金额：</component>
+      <component id="tqqbhkje" type="plain"/>
+      <component type="label" for="tqhkzje">提前还款总金额：</component>
+      <component id="tqhkzje" type="input" subtype="money" datatype="money" fromdic="false" maxlength="18" declen="2" suffix="元">=tqhkzje</component>
+      <component type="label" for="dkbgbz">贷款变更标志：</component>
+      <component id="dkbgbz" type="multivalue" subtype="select" fromdic="false" value="=dkbgbz">
+        <sql datasource="os_mdic">bsp.ln.shttermflag</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="blank"/>
+      <component type="blank"/>
+    </container>
+    <container uid="container-995836067e45442a98a5be8cc707f8ce" type="box" layout="buttons" id="ct_buttons">
+      <component type="button" subtype="button" id="b_cal">试算还款情况</component>
+    </container>
+    <container uid="container-251bb1091c9443c08a71a88638035dc5" type="table" layout="fit" cols="4" id="ct_ssjg" caption="试算结果">
+      <component type="label">实还本金：</component>
+      <component id="shbj" type="plain"/>
+      <component type="label">实还利息：</component>
+      <component id="shlx" type="plain"/>
+      <component type="label">实还罚息：</component>
+      <component id="shfx" type="plain"/>
+      <component type="label">提前还款本金总额：</component>
+      <component id="tqhkbjze" type="plain"/>
+      <component type="label">新剩余期数：</component>
+      <component id="xsyqs" type="plain"/>
+      <component type="label">月还款额：</component>
+      <component id="yhke" type="plain"/>
+      <component type="label">公积金月还款额：</component>
+      <component id="gjjyhke" type="plain"/>
+      <component type="label">利息合计：</component>
+      <component id="lxhj" type="plain"/>
+      <component type="label">商贷月还款额：</component>
+      <component id="syyhke" type="plain"/>
+      <component type="label">还款额合计：</component>
+      <component id="hkehj" type="plain"/>
+      <component type="label">还款合计：</component>
+      <component id="hkhj" type="plain"/>
+      <component type="blank"/>
+      <component type="blank"/>
+      <component type="label">利息合计：</component>
+      <component id="lxhj2" type="plain"/>
+      <component type="label">还款合计：</component>
+      <component id="hkhj2" type="plain"/>
+    </container>
+    <container uid="container-f1bef66939a54f48be688f4f527ee3aa" type="table" layout="connect" cols="4" id="ct_dyqs">
+      <component type="label" for="dyksqs">打印开始期数：</component>
+      <component id="dyksqs" type="input" subtype="text" fromdic="false" datatype="int">1</component>
+      <component type="label" for="dyjsqs">打印结束期数：</component>
+      <component id="dyjsqs" type="input" subtype="text" fromdic="false" datatype="int"/>
+    </container>
+    <container uid="container-c0e1d2d9c71d4fb0a80366790811f57c" type="box" layout="buttons" id="ct_querybtn">
+      <component id="b_query" type="button" subtype="button">查询还款计划</component>
+    </container>
+    <container uid="container-e6ab2cd60456499ca898f6ec06221b45" type="list" layout="auto-height no-result-info" cols="6" id="hkjhlist" allowexport="true" allowprint="true" dataset="ds1" caption="还款计划信息">
+      <listhead>
+        <component type="label">期次</component>
+        <component type="label">期初余额</component>
+        <component type="label">应还本金</component>
+        <component type="label">应还利息</component>
+        <component type="label">应还合计</component>
+        <component type="label">还款日期</component>
+      </listhead>
+      <listbody>
+        <component type="plain">=ds1.peoplenum[#]</component>
+        <component type="plain" datatype="money">=ds1.amt1[#]</component>
+        <component type="plain" datatype="money">=ds1.basenum[#]</component>
+        <component type="plain" datatype="money">=ds1.jtysr[#]</component>
+        <component type="plain" datatype="money">=ds1.amt2[#]</component>
+        <component type="plain">=ds1.transdate[#]</component>
+      </listbody>
+      <hidden/>
+    </container>
+    <container uid="container-36fb3e98db224afdb922f144ea93e223" type="box" layout="tips" id="ct_tips">
+      <component id="info" keep="true" type="plain"><![CDATA[<b>※注意事项：</b><ol><li>一手房个人最高可贷款额度为</li>  <li>二手房个人最高可贷款额度为</li>	  <li>个人最高可贷款年限为</li>   </ol>]]></component>
+    </container>
+    <container uid="container-1c286799bcdf44d9a1a745d5c2904fc4" type="hidden" id="container-1c286799bcdf44d9a1a745d5c2904fc4">
+      <component id="qxbgurl" type="hidden">=encryptionUrl('WFDKQXBG01','jkhtbhtz='+jkhtbhtz+',tzhwdqqs='+tzhdksyqs+',bgyy='+bgyy,0)</component>
+      <component id="tqhkurl" type="hidden">=encryptionUrl('WFTQHK01','jkhtbhtz='+jkhtbhtz+',tqhkzje='+tqhkzje+',dkbgbz='+dkbgbz+',hklx='+hklx+',jsfs='+jsfs+',hygqs='+hygqs,0)</component>
+      <component id="hkfsbgurl" type="hidden">=encryptionUrl('WFHKFSBG01','jkhtbhtz='+jkhtbhtz+',xdkhkfs='+bghdkhkfs+',bgyy='+bgyy,0)</component>
+      <component id="cxbz" type="hidden">=cxbz</component>
+    </container>
+  </containers>
+</page>

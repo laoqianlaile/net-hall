@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../trans.xsd">
+    <tran tranCode="TranGRZYCX01" tranName="单位下个人转移查询">
+        <comps>
+            <comp compCode="CompGRZYCX01" compName="获取个人转移查询批量信息" expression="">
+                <inParams>
+                	<inParam ignoreNull="1" paramCode="instance" paramName="实例号" paramType="int" paramValue="_IS"/>
+                	<inParam ignoreNull="1" paramCode="ksrq" paramName="开始日期" paramType="string(0,10)" paramValue="ksrq"/>
+                	<inParam ignoreNull="1" paramCode="jsrq" paramName="结束日期" paramType="string(0,10)" paramValue="jsrq"/>
+                	<inParam ignoreNull="1" paramCode="grzh" paramName="个人账号" paramType="string(1,30)" paramValue="grzh"/>
+                	<inParam ignoreNull="1" paramCode="zjhm" paramName="证件号码" paramType="string(1,30)" paramValue="zjhm"/>
+                	<inParam ignoreNull="1" paramCode="zylx" paramName="转移类型" paramType="string(0,2)" paramValue="zylx"/>
+                	<inParam ignoreNull="1" paramCode="xingming" paramName="姓名" paramType="string(0,120)" paramValue="xingming"/>
+                </inParams>
+            </comp>
+        </comps>
+    </tran>
+</trans>

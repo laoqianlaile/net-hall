@@ -1,0 +1,62 @@
+/*********************\ 
+ * Description: 电子档案上传CSS
+ * Author: zhc 
+ * Date: 2018-01-22* \
+ ************************/
+#e_record { position: relative; border: 1px solid #D0D0D0; margin-bottom: 10px; padding: 0; font-family: "Microsoft Yahei", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif; border-radius: 15px; overflow: hidden;}
+#e_record h3 { position: relative; color: #0084bb; font-size: 16px; line-height: 36px; margin: 0; background: #f4f4f7 url(../image/bg_files_header.png) repeat-x; height: 38px; border-bottom: 1px solid #dedede; }
+#e_record h3 span { display: inline-block; height: 37px; width: 200px; text-align: center; background: #f0f0f3 url(../image/bg_files_header.png) repeat-x 0 -38px; border-right: 1px solid #f1f1f2; }
+#e_record h3 i { float:right; font-style:normal; font-size: 12px; margin-right: 15px; color: #aaa; }
+#eFileBase { position: absolute; height: 30px; margin-top: 3px; top: 0px; left: 210px; }
+#e_record h3 input { position: absolute; top: 0px; left: 0px; opacity: 0; filter: alpha(opacity=0); cursor: pointer;}
+#e_record h3 .addFile { padding-left: 24px; font-size: 12px; color: #888; float: left; background: url(../image/ico_files_e.png) no-repeat; background-position: 0px -1px; text-align: center; line-height: 28px; border: 1px solid #D1D1D1; }
+#eFile , #e_record h3 .addFile { width: 158px; height: 30px; }
+#eFileText { height: 30px; font-size: 12px; color: #aaa; overflow: auto; line-height: 30px; padding-left: 15px;}
+#e_record h3 #eFileText span { display: inline; color: #888; background:none; border: 0px; }
+#e_record .items { min-height: 66px; margin: 0; background-color: #fff;}
+#e_record .nav-tabs { width: 200px; height: 100%; border-right: 1px solid #DEDEDE; border-bottom: 0; padding: 0; background-color: #f1f1f1; float: left; margin-bottom: 0; }
+#e_record .nav-tabs .badge { margin-left: 5px; background-color: #f40f0f; }
+#e_record .nav-tabs em { color: #ff0000; }
+#e_record .nav-tabs li, #e_record .nav-tabs li.active { width: 100%; margin: 0; padding: 0;}
+#e_record .nav-tabs li a { padding: 5px 10px; font-size: 16px; margin: 0; border-style: solid; border-width: 1px; border-radius: 0; border-color: transparent transparent #dedede transparent; }
+#e_record .nav-tabs li.active a { border-color: transparent #fff #dedede transparent; background-color: #fff; margin-right: -1px;}
+#e_record .nav-tabs li:first-child.active a { border-top-color: #fff; }
+#e_record .tab-content { background-color: #fff; max-height: 463px; overflow: auto; margin-left: 200px}
+#e_record .tab-pane { padding: 7px; }
+#e_record .tab-pane li { position: relative; float: left; border: 1px solid #c6c6c6; height: 218px; width: 207px; margin: 5px;}
+#e_record .tab-pane button { visibility: hidden; position: absolute; top:0px; right: 0px; z-index: 2; height: 29px; width: 29px; background-color: #ffffff; opacity: 0.7; filter: alpha(opacity=70);}
+#e_record .tab-pane li:hover button { visibility: visible; }
+#e_record .tab-pane div { display: block; width: auto; height: 175px; margin: 5px; cursor: pointer; }
+#e_record .tab-pane div img{ display: block; max-height: 100%; max-width: 100%; margin: auto;}
+#e_record div.add { background: url(../image/ico_files_e.png) no-repeat 50% 50%; }
+#e_record .tab-pane li p { position: absolute; width: 100%; height: 36px; bottom: 0px; margin: 0px; padding: 5px; overflow: auto;}
+#e_record .tab-pane li p * { display:block; width: 100%; height: 100%; resize:none; bottom: 0; border-style: solid; border-width: 0px; border-color: #D1D1D1; text-align: center; padding: 1px; word-break: break-all; }
+#e_record .tab-pane li p span { color: #888; cursor: default; overflow-y: auto; }
+#e_record_modal .modal-body { padding: 0px; overflow: auto; text-align: center; }
+#e_record_modal .modal-footer { text-align: center; }
+#e_record_modal .modal-body img { cursor: move; position: relative; }
+#e_record_modal .modal-body img.transform2 {
+	transform:rotate(90deg);
+	/*IE滤镜旋转*/
+	filter:progid:DXImageTransform.Microsoft.BasicImage(rotation:1);
+}
+#e_record_modal .modal-body img.transform3 {
+	transform:rotate(180deg);
+	/*IE滤镜旋转*/
+	filter:progid:DXImageTransform.Microsoft.BasicImage(rotation:2);
+}
+#e_record_modal .modal-body img.transform4 {
+	transform:rotate(270deg);
+	/*IE滤镜旋转*/
+	filter:progid:DXImageTransform.Microsoft.BasicImage(rotation:3);
+}
+.eButImg { width: 30px; height: 30px; box-sizing: content-box; padding: 0; background: url(../image/pic-control-30x30x5.png) no-repeat; }
+.eButImgLeft { background-position: 0px 0px; }
+.eButImgRight { background-position: -30px 0px; }
+.eButImgBig { background-position: -60px 0px; }
+.eButImgSmall { background-position: -90px 0px; }
+.eButImgDownload { background-position: -120px 0px; }
+#eDownloadImg { width: 30px; height: 32px; margin: 0px 5px 0px 5px; }
+#eBigImgCover, #eRecCover{ position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; background: url(../image/load-list.gif) no-repeat 50% 50%; background-color: #ffffff; }
+#eBigImgCover { border-radius: 6px; }
+#eRecCover { opacity: 0.6; }

@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page template="0401" version="2.0" formaction="">
+  <info>
+    <description title="单位汇缴"/>
+    <editlogs>
+      <log editor="G00027(离线)" edittime="2019-03-08 11:44:43"/>
+    </editlogs>
+  </info>
+  <scripts>
+    <script><![CDATA[
+//页面加载后执行
+thisTab.pageOnload = function () {
+
+	//受托银行账号
+	if($$('payeebankaccnum').value){
+		$$('basebankaccnum').value = $$('payeebankaccnum').value;
+	}
+	//缴至年月
+	if( $$('jzny').value && $$('jzny').value != '189912'){
+	} else{
+		$$('jzny').value = '';
+	}
+	// 自筹     资金来源标志
+	if( $$('fundsouflag').value == '0' ){
+		$$('lmpaynum').value = $$('lmselpaynum').value;
+		$$('lmpayamt').value = $$('lmselpayamt').value;
+		$$('cmpaynum').value = $$('cmselpaynum').value;
+		$$('cmpayamt').value = $$('cmselpayamt').value;
+	}else if ( $$('fundsouflag').value == '1' ){   // 财政
+		$$('lmpaynum').value = $$('lmfinpaynum').value;
+		$$('lmpayamt').value = $$('lmfinpayamt').value;
+		$$('cmpaynum').value = $$('cmfinpaynum').value;
+		$$('cmpayamt').value = $$('cmfinpayamt').value;
+	}else{   // 其他(组合)
+		$$('lmpaynum').value = '';
+		$$('lmpayamt').value = '';
+		$$('cmpaynum').value = '';
+		$$('cmpayamt').value = '';
+	}
+	//增加blur事件使暂收户可用余额加载时就显示 .00
+	$('#upreusebal').blur();
+
+    //本月增加金额
+	//$$('cmaddpayamt').value = (parseFloat($$('cmaddpayamt').value) + parseFloat($$('chgaddpayamt').value)).toFixed(2);
+	$$('cmaddpayamt').value = parseFloat($$('chgaddpayamt').value).toFixed(2);
+	//本月减少金额
+	//$$('cmdecpayamt').value = (parseFloat($$('cmdecpayamt').value)+parseFloat($$('chgdecpayamt').value)).toFixed(2);
+	$$('cmdecpayamt').value = parseFloat($$('chgdecpayamt').value).toFixed(2);
+	// 计算应缴额
+	nGetPayAmt();
+
+	/* 4.根据不同缴款方式,初始化页面 */
+	if( $$('paymode').value == '1' ){
+		$$('uprepayamt').value = $$('upaytotamt').value;
+		$('#payinaccbank').attr({readonly:false, disabled:false});
+		ydl.attr('payinaccbank', 'required');
+		$('#styhdm').parent().parent().hide();
+		$('#cstbankaccname').parent().parent().hide();
+		ydl.attr('uprepayamt', 'readonly', true);
+		ydl.attr('uprepayamt', 'readonly', true);
+	}else if( $$('paymode').value == '3' ){// 预缴转入
+		$$('uprepayamt').value = $$('upaytotamt').value;//预缴账户转出金额等于应缴金额
+		$$('factpayamt').value = 0.00;
+		$('#uprepayamt').attr({readonly:true, disabled:true});
+		$('#factpayamt').attr({readonly:true, disabled:true});
+		$$('payinaccbank').value = '';
+		$('#payinaccbank').attr({readonly:true, disabled:true});
+		ydl.removeAttr('payinaccbank', 'required');
+		$('#styhdm').parent().parent().hide();
+		$('#cstbankaccname').parent().parent().hide();
+	}else if( $$('paymode').value == '7' ){		// 实时结算
+		$('#factpayamt').value = 0.00;
+		$('#payinaccbank').attr({readonly:false, disabled:false});
+		ydl.attr('payinaccbank', 'required');
+		$('#styhdm').parent().parent().show();
+		$('#cstbankaccname').parent().parent().show();
+		ydl.attr('payinaccbank', 'readonly', true);
+		ydl.attr('uprepayamt', 'readonly', true);
+	}else{
+		$('#factpayamt').value = $('#upaytotamt').value;
+		$('#payinaccbank').attr({readonly:false, disabled:false});
+		ydl.attr('payinaccbank', 'required');
+		$('#styhdm').parent().parent().hide();
+		$('#cstbankaccname').parent().parent().hide();
+	}
+
+	//4.汇缴类型 onChange事件
+	$('#colpaytype').change(function(event) {
+		nGetPayAmt();			// 计算应缴金额
+	});
+
+	//开始日期 onChange事件
+	$('#begym').change(function(event) {
+		var len = $('#begym').val().length2();
+		if(len==6){
+			var begymyear = $('#begym').val().substr(0,4);
+			var begymmonth = $('#begym').val().substr(4,5);
+			$('#begym').val(begymyear+'-'+begymmonth);
+		}
+		// 验证终止日期不能小于起始日期
+		var begym = $$('begym').value;
+		var endym = $$('endym').value;
+		if( !ydl.validator('endym',{
+			rule: function(){
+				if( begym && endym && (endym < begym) ){
+					return false;
+				}
+				return true;
+			},message:'终止日期不能小于起始日期'}) )
+		return false;
+	});
+
+	// 开始日期、终止日期 onChange事件
+    $('#begym,#endym').change(function(event) {
+        ydl.alert("调用金额计算===========>3");
+        // 验证日期格式正确
+        if( !ydl.validator('begym',{ type:'yyyy-mm' })) return false;
+        if( !ydl.validator('endym',{ type:'yyyy-mm' })) return false;
+        console.log("调用金额计算===========>3");
+        // 验证终止日期不能小于起始日期
+        if( !ydl.validator('endym',{
+            rule: function(){
+                if( $$('begym').value != '' && $$('endym').value != '' ){
+                    if( $$('endym').value < $$('begym').value ){
+                        return false;
+                    }
+                }
+                return true;
+            },
+            message:'终止日期不能小于起始日期'}) ) return false;
+
+        console.log("调用金额计算===========>1");
+        ydl.alert($$('begym').value + "," + $$('dwzh').value + "," + $$('colpaytype').value +
+            "," + $$('endym').value);
+        // 计算应缴额
+        if( $$('begym').value != ''
+            && $$('endym').value != ''
+            && $$('dwzh').value != ''
+            && $$('colpaytype').value != ''){
+            console.log("调用金额计算===========>2");
+            // 计算应缴金额
+            nGetPayAmt();
+        }
+    });
+
+	//6.缴款方式变更onChange事件
+	$('#paymode').change( function(event) {
+		var dUPreUseBal = parseFloat(ydl.delComma($$('upreusebal').value));
+		var dUPayTotAmt = parseFloat(ydl.delComma($$('upaytotamt').value));
+		var dSupupreusebal = parseFloat(ydl.delComma($$('supupreusebal').value));
+		// 验证预缴户余额不足
+		if( !ydl.validator('paymode',{
+		    rule: function(){
+				if( $$('paymode').value == '3' && ( dUPreUseBal < dUPayTotAmt ) ){
+                    return false;
+                }else{
+                    return true;
+                }
+			},
+			message:'暂收户余额不足'}
+		)){
+            ydl.selectByValue('paymode', '' );
+            $$('uprepayamt').value = 0.00;
+            $$('factpayamt').value = 0.00;
+            return false;
+        }
+		ydl.removeAttr('uprepayamt', 'readonly');
+		// 暂存款转入
+		if( $$('paymode').value == '3' ){
+			$$('uprepayamt').value = $$('upaytotamt').value;
+			$$('factpayamt').value = 0.00;
+			$('#uprepayamt').attr({readonly:true, disabled:true});
+			$('#factpayamt').attr({readonly:true, disabled:true});
+			$$('payinaccbank').value = '';
+			$('#payinaccbank').attr({readonly:true, disabled:true});
+			ydl.removeAttr('payinaccbank', 'required');
+			$('#styhdm').parent().parent().hide();
+			$('#cstbankaccname').parent().parent().hide();
+			ydl.removeAttr('styhdm', 'required');
+			ydl.removeAttr('basebankaccnum', 'required');
+			ydl.removeAttr('cstbankaccname', 'required');
+			//预缴和现金直接入账标志flag=1,打印入账回单
+			$$('flag').value = '1';
+		// 转账
+		}else if( $$('paymode').value == '1' ){
+			$$('uprepayamt').value = 0.00;//暂收户转出金额
+			$$('factpayamt').value = $$('upaytotamt').value;
+			$('#uprepayamt').attr({readonly:false, disabled:false});
+			$('#factpayamt').attr({readonly:false, disabled:false});
+			$('#payinaccbank').attr({readonly:false, disabled:false});
+			ydl.attr('payinaccbank', 'required');
+			$('#styhdm').parent().parent().hide();
+			$('#cstbankaccname').parent().parent().hide();
+			//转账时不直接入账，只进行登记，打印不同回单
+			$$('flag').value = '0';
+			//转账时支票号隐藏
+			ydl.attr('uprepayamt', 'readonly', true);
+			ydl.removeAttr('styhdm', 'required');
+			ydl.removeAttr('basebankaccnum', 'required');
+			ydl.removeAttr('cstbankaccname', 'required');
+		// 实时结算
+		}else if( $$('paymode').value == '7' ){
+			$$('uprepayamt').value = 0.00;//暂收户转出金额
+			$$('factpayamt').value = $$('upaytotamt').value; //实际缴款金额
+			$('#uprepayamt').attr({readonly:false, disabled:false});
+			$('#factpayamt').attr({readonly:false, disabled:false});
+			ydl.removeAttr('payinaccbank', 'required');
+			ydl.attr('uprepayamt', 'readonly', true);
+			$('#styhdm').parent().parent().show(); //受委托银行代码
+			$('#cstbankaccname').parent().parent().show(); //单位托收银行账户名称
+			$$('flag').value = '1';
+			ydl.selectByValue('payinaccbank',$$('payerbankcode').value);
+			//
+			ydl.attr('styhdm', 'required', true);
+			ydl.attr('basebankaccnum', 'required', true);  //基本银行账号
+			ydl.attr('cstbankaccname', 'required', true);  //单位托收银行账户名称
+			if( $$('styhdm').value == '' || $$('basebankaccnum').value == '' || $$('cstbankaccname').value == '' ){
+				ydl.alert('单位受托信息不全,请携单位信息变更登记表到前台进行修改!')
+				$$('paymode').value = '';
+				$$('factpayamt').value = '';
+				return  false;
+			}
+			//add by 贵港
+			ydl.attr('payinaccbank', 'readonly', true);
+			ydl.attr('styhdm', 'readonly', true);
+            ydl.attr('basebankaccnum', 'readonly', true);
+            ydl.attr('cstbankaccname', 'readonly', true);
+			$('#payinaccbank').val($$('bankcode').value);
+		}else if( $$('paymode').value == '' ){	// 请选择
+			$$('uprepayamt').value = 0.00;
+			$$('factpayamt').value = 0.00;
+			$('#uprepayamt').attr({readonly:false, disabled:false});
+			$('#factpayamt').attr({readonly:false, disabled:false});
+			$('#payinaccbank').attr({readonly:false, disabled:false});
+			ydl.attr('payinaccbank', 'required');
+			$('#styhdm').parent().parent().hide();
+			$('#cstbankaccname').parent().parent().hide();
+		}
+	});
+
+	/* 7.实际缴款金额 onChange事件 */
+	$('#factpayamt').change( function(event) {
+		$$('uprepayamt').value = 0.00;
+		// 检查录入金额不能大于应缴金额
+		if( !ydl.validator('factpayamt',{
+			rule: parseFloat(ydl.delComma($$('factpayamt').value )) == parseFloat(ydl.delComma($$('upaytotamt').value)),
+			message:'实际缴款金额必须等于应缴金额'}) ) {
+			$$('factpayamt').value = 0.00;
+			return false;
+		}
+		// 检查预缴户余额不足
+		if( !ydl.validator('uprepayamt',{
+			rule: ( parseFloat(ydl.delComma($$('upaytotamt').value)) - parseFloat(ydl.delComma($$('factpayamt').value)) ) <= parseFloat(ydl.delComma($$('upreusebal').value)),
+			message:'暂收户可用余额不足'}) ) {
+			$$('uprepayamt').value = 0.00;
+			return false;
+		}
+		if( parseFloat(ydl.delComma($$('factpayamt').value )) <= parseFloat(ydl.delComma($$('upaytotamt').value)) ){
+			$$('uprepayamt').value = (parseFloat(ydl.delComma($$('upaytotamt').value)) - parseFloat(ydl.delComma($$('factpayamt').value))).toFixed(2);
+		}else{
+			$$('uprepayamt').value = 0.00;
+		}
+	});
+
+	//8.暂收户转出金额 onChange事件
+	$('#uprepayamt').change(function(event) {
+		$$('factpayamt').value = 0.00;
+		var uprepayamt = parseFloat(ydl.delComma($$('uprepayamt').value));	//暂收户转出金额
+		var upaytotamt = parseFloat(ydl.delComma($$('upaytotamt').value));	//应缴金额
+		var upreusebal = parseFloat(ydl.delComma($$('upreusebal').value));	//预缴户余额
+		// 预缴户转出金额必须小于应缴金额
+		if( !ydl.validator('uprepayamt',{ rule: uprepayamt < upaytotamt, message:'暂收户户转出金额必须小于应缴金额'}) ) {
+			$$('uprepayamt').value = 0.00;
+			return false;
+		}
+		// 检查预缴户余额不足
+		if( !ydl.validator('uprepayamt',{ rule: uprepayamt <= upreusebal, message:'暂收户可用余额不足'}) ) {
+			$$('uprepayamt').value = 0.00;
+			return false;
+		}
+		$$('factpayamt').value = (upaytotamt - uprepayamt).toFixed(2);
+	});
+}
+
+// 试算应缴金额
+function nGetPayAmt(){
+	var begym = $$('begym').value;
+	var endym = $$('endym').value;
+	var dwzh  = $$('dwzh').value;
+	var colpaytype = $$('colpaytype').value;
+	if( begym && endym && dwzh && colpaytype ){
+		ydl.selectByValue('paymode', '');
+		$('#uprepayamt').attr({readonly:false, disabled:false});
+		$('#factpayamt').attr({readonly:false, disabled:false});
+		$$('uprepayamt').value = 0.00;
+		$$('factpayamt').value = 0.00;
+		ydl.sendCommand('cmdHJYZJS',{"dwzh":$$('dwzh').value,"begym":$$('begym').value,"endym":$$('endym').value,"colpaytype":$$('colpaytype').value},function(data,code,msg){
+	    	if (code != '00000000') {
+				ydl.alert({'code':code, 'message':msg});
+			}else{
+				if (data) {
+					if(data.factpayamt != ""){
+					    $$('upaytotamt').value = parseFloat(data.factpayamt);
+					}else{
+					    $$('upaytotamt').value = 0.00;
+					}
+				}else{
+					$$('upaytotamt').value = '';
+					$$('begym').value ='';
+					$$('endym').value ='';
+				}
+			}
+	    });
+	}
+}
+
+//表单提交时执行
+this.form_validate = function() {
+    //账户状态
+    if($$('dwzhzt').value == '02'){
+        ydl.alert("账户为开户状态，不能办理此业务！");
+        return false;
+    }
+    //汇缴人数
+    if($$('cmpaynum').value == '0'){
+        ydl.alert("汇缴人数为0，不能办理此业务！");
+        return false;
+    }
+}
+
+]]></script>
+  </scripts>
+  <ajax>
+    <query id="getBankcode" desc="" trigger="" message="">
+        <sql datasource="bsp.cfg.xml">="select grzh from dp077 where dwzh='shoutuoyinhang' and grzh2='" +styhdm+ "' and instancenum=" + _IS</sql>
+    </query>
+  </ajax>
+  <dataset/>
+  <containers>
+    <container type="table" id="ct_form" cols="4" layout="fit" uid="ct_form">
+      <component type="label" for="dwzh">单位账号：</component>
+      <component id="dwzh" type="input" subtype="text" maxlength="12" fromdic="true" readonly="1" colspan="1" required="1">=getRealUserExtInfo('dwzh')</component>
+      <component type="caption">账户信息</component>
+      <component type="label" for="dwmc">单位名称：</component>
+      <component id="dwmc" type="input" subtype="text" maxlength="128" fromdic="true" colspan="3" width="90%" readonly="1">=dwmc</component>
+      <component type="label" for="lpaym">缴至年月：</component>
+      <component id="jzny" type="input" subtype="text" maxlength="7" fromdic="true" readonly="1">=jzny</component>
+      <component type="label" for="bal">单位账户余额：</component>
+      <component id="dwzhye" type="input" subtype="money" maxlength="18" fromdic="true" datatype="money" declen="2" readonly="1" suffix="元">=ye</component>
+      <component type="label" for="upreusebal">暂收户可用余额：</component>
+      <component id="upreusebal" type="input" subtype="text" maxlength="18" fromdic="true" datatype="float" declen="2" readonly="1" suffix="元">=upreusebal</component>
+      <component type="label" for="fundsouflag">资金来源标志：</component>
+      <component id="fundsouflag" type="multivalue" subtype="select" fromdic="true" value="=fundsouflag" readonly="true">
+        <sql datasource="os_mdic">bsp.dp.fundsouflag</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="supunitaccnum" hidden="1">上级单位账号：</component>
+      <component id="supunitaccnum" type="input" subtype="text" fromdic="false" hidden="1">=supunitaccnum</component>
+      <component type="label" for="supupreusebal" hidden="1">上级预缴户可用余额：</component>
+      <component id="supupreusebal" type="input" subtype="text" fromdic="false" hidden="1">=supupreusebal</component>
+    </container>
+    <container uid="container-b09a7d4b609543bca33c178bfe432373" type="table" layout="fit" cols="4" id="container1">
+      <component type="caption">缴存情况</component>
+      <component type="label" for="lmpaynum">上月汇缴人数：</component>
+      <component type="input" subtype="text" fromdic="false" readonly="1" id="lmpaynum" datatype="int">=lmpaynum</component>
+      <component type="label" for="lmpayamt">上月汇缴金额：</component>
+      <component type="input" subtype="text" fromdic="false" readonly="1" id="lmpayamt" datatype="float" maxlength="18" declen="2" suffix="元">=lmpayamt</component>
+      <component type="label" for="cmaddpaynum">本月增加汇缴人数：</component>
+      <component id="cmaddpaynum" type="input" subtype="text" fromdic="true" datatype="int" declen="0" readonly="1">=cmaddpaynum</component>
+      <component type="label" for="cmdecpaynum">本月减少汇缴人数：</component>
+      <component id="cmdecpaynum" type="input" subtype="text" fromdic="true" datatype="int" declen="0" readonly="1">=cmdecpaynum</component>
+      <component type="label" for="cmaddpayamt">本月增加汇缴金额：</component>
+      <component id="cmaddpayamt" type="input" subtype="text" maxlength="18" fromdic="true" datatype="float" declen="2" readonly="1" suffix="元">=cmaddpayamt</component>
+      <component type="label" for="cmdecpayamt">本月减少汇缴金额：</component>
+      <component id="cmdecpayamt" type="input" subtype="text" maxlength="18" fromdic="true" datatype="float" declen="2" readonly="1" suffix="元">=cmdecpayamt</component>
+    </container>
+    <container uid="container-3086485335734be88515defe91286553" type="table" layout="fit" cols="4" id="container3">
+      <component type="caption">汇缴信息</component>
+      <component type="label" for="colpaytype">汇缴类型：</component>
+      <component id="colpaytype" type="multivalue" subtype="select" fromdic="true" colspan="3" value="0" required="true" readonly="true">
+        <sql datasource="os_mdic"></sql>
+        <item label="请选择..." value=""/>
+        <item label="全部" value="0"/>
+      </component>
+      <component type="label" for="begym">开始年月：</component>
+      <component id="begym" type="input" subtype="text" maxlength="7" fromdic="true" required="1" suffix="格式：yyyy-mm">=begym</component>
+      <component type="label" for="endym">终止年月：</component>
+      <component id="endym" type="input" subtype="text" maxlength="7" fromdic="true" required="1" suffix="格式：yyyy-mm">=endym</component>
+      <component type="label" for="upaytotamt">应缴金额：</component>
+      <component id="upaytotamt" type="input" subtype="text" maxlength="18" fromdic="true" datatype="float" declen="2" readonly="1" suffix="元">=upaytotamt</component>
+      <component type="label" for="paymode">缴款方式：</component>
+      <component type="multivalue" subtype="select" fromdic="false" id="paymode" value="=paymode" required="true">
+        <sql datasource=""></sql>
+        <item label="请选择..."/>
+        <item label="暂收款转入" value="3"/>
+        <item label="实时结算" value="7"/>
+      </component>
+      <component type="label" for="factpayamt">实缴金额：</component>
+      <component id="factpayamt" type="input" subtype="text" datatype="float" maxlength="18" declen="2" fromdic="false" suffix="元">=factpayamt</component>
+      <component type="label" for="uprepayamt">暂收户转出金额：</component>
+      <component id="uprepayamt" type="input" subtype="text" datatype="float" maxlength="18" declen="2" fromdic="false" suffix="元">=uprepayamt</component>
+      <component type="label" for="payinaccbank">划入银行：</component>
+      <component id="payinaccbank" type="multivalue" subtype="select" value="=payinaccbank" fromdic="false">
+        <sql datasource="os_mdic">bsp.cm.payinaccbank</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="hidden"></component>
+      <component type="hidden"></component>
+      <component type="label" for="styhdm">受托银行名称：</component>
+      <component id="styhdm" type="multivalue" subtype="select" value="=styhdm" fromdic="false">
+        <sql datasource="os_mdic">bsp.dp.fkyh</sql>
+        <item label="请选择..."/>
+        <item label="=paraval" value="=paraname"/>
+      </component>
+      <component type="label" for="basebankaccnum">受托银行账号：</component>
+      <component id="basebankaccnum" type="input" subtype="text" maxlength="30" fromdic="true">=basebankaccnum</component>
+      <component type="label" for="cstbankaccname">受托银行账户名称：</component>
+      <component id="cstbankaccname" type="input" subtype="text" maxlength="255" fromdic="true" colspan="3" width="90%">=cstbankaccname</component>
+    </container>
+
+
+
+    <container type="hidden" id="ct_hidden" uid="ct_hidden">
+      <component id="regnum" type="hidden">=regnum</component>
+      <component id="payeebankaccnum" type="hidden">=payeebankaccnum</component>
+      <component id="lmselpaynum" type="hidden">=lmselpaynum</component>
+      <component id="lmselpayamt" type="hidden">=lmselpayamt</component>
+      <component id="cmselpaynum" type="hidden">=cmselpaynum</component>
+      <component id="cmselpayamt" type="hidden">=cmselpayamt</component>
+
+      <component id="lmfinpaynum" type="hidden">=lmfinpaynum</component>
+      <component id="lmfinpayamt" type="hidden">=lmfinpayamt</component>
+      <component id="cmfinpaynum" type="hidden">=cmfinpaynum</component>
+      <component id="cmfinpayamt" type="hidden">=cmfinpayamt</component>
+
+      <component id="sincolflag" type="hidden">=sincolflag</component>
+      <component id="morecheflag" type="hidden">=morecheflag</component>
+      <component id="unitacctype" type="hidden">=unitacctype</component>
+      <component id="supunittype" type="hidden">=supunittype</component>
+      <component id="dwzhzt" type="hidden">=dwzhzt</component>
+      <component id="chgaddpayamt" type="hidden">=chgaddpayamt</component>
+      <component id="chgdecpayamt" type="hidden">=chgdecpayamt</component>
+      <component id="finalflag" type="hidden">=finalflag</component>
+      <component id="flag" type="hidden">=flag</component>
+      <component id="dptype" type="hidden">=dptype</component>
+      <component id="cmpaynum" type="hidden">=cmpaynum</component>
+      <component id="cmpayamt" type="hidden">=cmpayamt</component>
+      <component id="accinstcode" type="hidden">=accinstcode</component>
+      <component id="payerbankcode" type="hidden">=payerbankcode</component>
+      <component id="superbankcode" type="hidden">=superbankcode</component>
+      <component id="qzbh" type="hidden">=qzbh</component>
+      <component id="bankcode" type="hidden">=bankcode</component>
+      <component id="flag1" type="hidden">=3</component>
+    </container>
+  </containers>
+</page>
