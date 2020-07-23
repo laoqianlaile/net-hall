@@ -1076,4 +1076,36 @@
 			<sealtype des="封存类型">=sealtype</sealtype>
 		</down>
 	</interface>
+	<!--新增提取获取关系人信息，服务于购房提取、建房提取、修房提取和低保提取-->
+	<interface id="getRelation" keepattr1="7068" tr_code="business/appapi153015.json" system="HTTP_POST_YBMAP2" des="新增提取获取关系人信息">
+		<up>
+			<procode des="提取依据号">=procode</procode>
+			<type des="关系人类型">=relaType</type>
+			<BrcCode des="经办机构">=getRealUserExtInfo('BrcCode')</BrcCode>
+			<ChannelSeq des="实例号">=_IS</ChannelSeq>
+		</up>
+		<down>
+			<procode des="提取依据号">=procode</procode>
+			<xingming2 des="配偶姓名">=xingming2</xingming2>
+			<zjhm2 des="配偶证件号码">=zjhm2</zjhm2>
+			<ownname1 des="关系人共有权人1姓名">=ownname1</ownname1>
+			<owncertinum1 des="关系人共有权人1证件号">=owncertinum1</owncertinum1>
+			<ownname2 des="关系人共有权人2姓名">=ownname2</ownname2>
+			<owncertinum2 des="关系人共有权人2证件号">=owncertinum2</owncertinum2>
+			<ownname3 des="关系人共有权人3姓名">=ownname3</ownname3>
+			<owncertinum3 des="关系人共有权人3证件号">=owncertinum3</owncertinum3>
+		</down>
+	</interface>
+	<!--医疗提取关系人获取-->
+	<interface id="getYltqRelation" keepattr1="7069" tr_code="business/appapi153016.json" system="HTTP_POST_YBMAP2" des="医疗提取关系人获取">
+		<up>
+			<procode des="提取依据号">=procode</procode>
+			<BrcCode des="经办机构">=getRealUserExtInfo('BrcCode')</BrcCode>
+			<ChannelSeq des="实例号">=_IS</ChannelSeq>
+		</up>
+		<down>
+			<procode des="提取依据号">=procode</procode>
+			<file des="文件名称">=filename</file>
+		</down>
+	</interface>
 </interfaces>
